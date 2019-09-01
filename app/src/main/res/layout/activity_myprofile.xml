@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".myprofile">
+
+
+    <Button
+        android:id="@+id/bPersonal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="50dp"
+
+        android:text="Update Personal Info" />
+
+    <Button
+        android:id="@+id/bUpdinterest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bPersonal"
+
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+
+        android:text="Update intersts" />
+
+    <Button
+        android:id="@+id/bBookmark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_below="@+id/bUpdinterest"
+
+        android:text="bookmarks" />
+    <Button
+        android:id="@+id/bMypost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+        android:layout_below="@+id/bBookmark"
+
+        android:text="mypost" />
+    <Button
+        android:id="@+id/bSignout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+        android:layout_below="@+id/bMypost"
+        android:text="signout" />
+
+
+
+
+
+</RelativeLayout>
