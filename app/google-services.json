@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "310451762238",
+    "firebase_url": "https://vlearn-874f0.firebaseio.com",
+    "project_id": "vlearn-874f0",
+    "storage_bucket": "vlearn-874f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:310451762238:android:af43d1162a7deb47",
+        "android_client_info": {
+          "package_name": "com.example.vlearn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "310451762238-a0m0llo7pgn5djvphke51ads9ii0nrf0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.vlearn",
+            "certificate_hash": "092040b43ea1ff1a92c591af72dc8db2901b3f9b"
+          }
+        },
+        {
+          "client_id": "310451762238-6kmb82898rh1dn1v033h20qfh9kv80i0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBguv4w12JBVgJfxg48lZx8xDJD2Nzy17s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "310451762238-6kmb82898rh1dn1v033h20qfh9kv80i0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
