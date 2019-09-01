@@ -22,9 +22,11 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
         this.ctx=ctx;
     }
     protected String doInBackground(String... params) {
-        String reg_url="https://demovicky.000webhostapp.com/insert.php";
+
+
         String method=params[0];
         if(method.equals("register")){
+            String reg_url="https://vlearndroidrun.000webhostapp.com/register.php";
             String name=params[1];
             String email=params[2];
             String password=params[3];
@@ -53,6 +55,38 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+        }
+        else if(method.equals("login")){
+
+            String reg_url="https://vlearndroidrun.000webhostapp.com/login.php";
+            String name=params[1];
+            String password=params[3];
+
+            try {
+
+                URL url=new URL(reg_url);
+                HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                OutputStream os=httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
+                String data= URLEncoder.encode("name","UTF-8")+"="+URLEncoder.encode(name,"UTF-8")+"&"+
+                        URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(password,"UTF-8");
+                bufferedWriter.write(data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                os.close();
+                InputStream IS=httpURLConnection.getInputStream();
+                IS.close();
+                return "Login success";
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
 
         }
         return "hi";
