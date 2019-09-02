@@ -33,6 +33,9 @@ public class register extends AppCompatActivity {
     public static final String LOGIN_SUCCESS="success";
     public static final String SHARED_PREF_NAME="tech";
     public static final String EMAIL_SHARED_PREF="name";
+
+    Button temp;
+
     public static final String LOGGEDIN_SHARED_PREF="loggedin";
     private boolean loggedIn=false;
     @Override
@@ -44,6 +47,15 @@ public class register extends AppCompatActivity {
         pass=findViewById(R.id.Password);
         re_pass=findViewById(R.id.Re_Password);
         register=findViewById(R.id.register);
+        temp=findViewById(R.id.gotemp);
+
+        temp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(register.this,questionActivity.class);
+                startActivity(i);
+            }
+        });
 
 
         register.setOnClickListener(new View.OnClickListener() {

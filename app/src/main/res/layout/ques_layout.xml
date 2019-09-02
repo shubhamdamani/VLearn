@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="75dp">
+
+
+    <TextView
+        android:id="@+id/tx_Topic"
+        android:layout_width="70dp"
+
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:gravity="center"
+        android:text="shubham"
+        android:textAppearance="?android:textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/tx_User_Id"
+        android:layout_width="wrap_content"
+
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="37dp"
+        android:layout_marginEnd="213dp"
+
+        android:gravity="center"
+        android:text="shubham"
+        android:textAppearance="?android:textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/tx_Q_Id"
+        android:layout_width="82dp"
+
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="148dp"
+        android:layout_marginEnd="89dp"
+
+        android:gravity="center"
+        android:text="shubham"
+        android:textAppearance="?android:textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/tx_Question"
+        android:layout_width="68dp"
+
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="266dp"
+        android:layout_marginEnd="7dp"
+
+        android:gravity="center"
+        android:text="shubham"
+        android:textAppearance="?android:textAppearanceLarge" />
+
+</RelativeLayout>
