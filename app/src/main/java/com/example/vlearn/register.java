@@ -52,7 +52,7 @@ public class register extends AppCompatActivity {
         temp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(register.this,questionActivity.class);
+                Intent i=new Intent(register.this,interests.class);
                 startActivity(i);
             }
         });
