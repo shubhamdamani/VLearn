@@ -2,7 +2,6 @@ package com.example.vlearn;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -14,22 +13,24 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class BackgroundTask extends AsyncTask<String,Void,String> {
+public class IntBackgroundTask extends AsyncTask<Integer,Void,String> {
 
 
     Context ctx;
-    public BackgroundTask(Context ctx) {
+    public IntBackgroundTask(Context ctx){
         this.ctx=ctx;
     }
-    protected String doInBackground(String... params) {
 
 
-        String method=params[0];
-        if(method.equals("register")){
+    @Override
+    protected String doInBackground(Integer... integers) {
+
+        Integer method=integers[0];
+
+        if(method==77)
+        {
             String reg_url="https://vlearndroidrun.000webhostapp.com/register.php";
-            String name=params[1];
-            String email=params[2];
-            String password=params[3];
+            Integer pas=integers[1];
 
             try {
 
@@ -39,9 +40,7 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
                 httpURLConnection.setDoOutput(true);
                 OutputStream os=httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
-                String data= URLEncoder.encode("name","UTF-8")+"="+URLEncoder.encode(name,"UTF-8")+"&"+
-                        URLEncoder.encode("email","UTF-8")+"="+URLEncoder.encode(email,"UTF-8")+"&"+
-                        URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(password,"UTF-8");
+                String data= URLEncoder.encode("name","UTF-8")+"="+URLEncoder.encode(String.valueOf(pas),"UTF-8");
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -57,10 +56,12 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
             }
 
         }
-        return "hi";
+
+
+
+
+        return "error";
     }
-
-
 
     @Override
     protected void onPreExecute() {
@@ -68,8 +69,9 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
     }
 
     @Override
-    protected void onPostExecute(String result) {
-        Toast.makeText(ctx,result,Toast.LENGTH_LONG).show();
+    protected void onPostExecute(String s) {
+
+        //super.onPostExecute(s);
     }
 
     @Override
@@ -77,4 +79,3 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
         super.onProgressUpdate(values);
     }
 }
-

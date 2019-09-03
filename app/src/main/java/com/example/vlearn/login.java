@@ -25,7 +25,7 @@ import java.util.Map;
 
 public class login extends AppCompatActivity {
     EditText username,pass;
-    Button Login;
+    Button Login,gotoRegister;
     String l_name="",l_pass="";
 
     public static final String LOGIN_URL="https://vlearndroidrun.000webhostapp.com/login.php";
@@ -46,6 +46,7 @@ public class login extends AppCompatActivity {
         username=findViewById(R.id.L_username);
         pass=findViewById(R.id.L_password);
         Login=findViewById(R.id.login);
+        gotoRegister=findViewById(R.id.goto_register);
 
         l_name=username.getText().toString();
         l_pass=pass.getText().toString();
@@ -56,6 +57,17 @@ public class login extends AppCompatActivity {
 
             }
         });
+
+
+        gotoRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(login.this,register.class);
+                startActivity(i);
+            }
+        });
+        
+
     }
     private void loginmet() {
 

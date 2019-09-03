@@ -6,7 +6,7 @@ public class questionfetch {
 
     public questionfetch(String topic, String user_Id, String q_Id, String question) {
         Topic = topic;
-        User_Id = user_Id;
+        User_Id = user_Id;            //Actually UserName
         Q_Id = q_Id;
         Question = question;
     }

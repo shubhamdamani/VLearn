@@ -15,29 +15,28 @@
             android:padding="8dp">
 
             <TextView
-                android:id="@+id/tx_User_Id"
+                android:id="@+id/answer"
                 android:layout_width="wrap_content"
                 android:padding="20dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center"
-                android:text="PostedBy"
                 />
 
 
             <TextView
-                android:id="@+id/tx_Question"
+                android:id="@+id/ans_user_name"
                 android:layout_width="267dp"
                 android:layout_height="701dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="-3dp"
-                android:layout_toEndOf="@+id/tx_User_Id"
+                android:layout_below="@+id/answer"
                 android:gravity="center"
                 android:padding="20dp"
-                android:text="Question" />
+                android:text="UserName" />
 
             <TextView
-                android:id="@+id/tx_Topic"
+                android:id="@+id/ans_User_Id"
                 android:layout_width="0dp"
                 android:padding="0dp"
                 android:layout_height="0dp"
@@ -46,15 +45,6 @@
                 android:visibility="invisible"
                 />
 
-
-            <TextView
-                android:id="@+id/tx_Q_Id"
-                android:layout_width="0dp"
-                android:padding="0dp"
-                android:layout_height="0dp"
-                android:layout_alignParentEnd="true"
-                android:visibility="invisible"
-                />
 
         </RelativeLayout>
 

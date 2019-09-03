@@ -1,0 +1,177 @@
+package com.example.vlearn;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
+
+public class QuestionDetail extends AppCompatActivity {
+
+    String Question, Q_Id, User_Id, Topic;              //UserName
+    String json_string,JSON_String;
+    JSONArray jsonArray;
+    JSONObject jsonObject;
+    TextView txt_quesDisp;
+    List<AnswerForQuestionCard> mquestionfetch;
+    AnswerForQuestionAdapter adapter;
+    private RecyclerView recyclerView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_question_detail);
+        //recyclerView
+        recyclerView = (RecyclerView) findViewById(R.id.ques_detail_recylerview);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        txt_quesDisp=findViewById(R.id.myQuestion);
+        Bundle bundle = getIntent().getExtras();
+        Question = bundle.getString("Question");
+        Q_Id = bundle.getString("Q_Id");
+        User_Id = bundle.getString("User_Id");
+        Topic = bundle.getString("Topic");
+
+        txt_quesDisp.setText(Question);
+
+
+
+        Toast.makeText(this,Question+" "+Q_Id+ " "+User_Id+" "+Topic,Toast.LENGTH_LONG).show();
+
+        new BackgroundTask().execute();
+       //getDatafromJSON() in PostExecute Method Below;
+
+
+    }
+    public void getDatafromJSON()
+    {
+        Toast.makeText(QuestionDetail.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();
+        String answer,user_Id;
+        String user_name,q_Id,ans_Id;
+        mquestionfetch =new ArrayList<>();
+
+        try {
+            jsonObject=new JSONObject(JSON_String);
+
+            int count=0;
+            jsonArray=jsonObject.getJSONArray("server_response");
+
+            while(count<jsonArray.length())
+            {
+                JSONObject jo=jsonArray.getJSONObject(count);
+                ans_Id=jo.getString("Ans_Id");
+                user_Id=jo.getString("User_Id");
+                q_Id=jo.getString("Q_Id");
+                user_name="need to add";
+                answer=jo.getString("Answer");
+                Toast.makeText(QuestionDetail.this,"answer:"+answer+user_Id,Toast.LENGTH_LONG).show();
+                AnswerForQuestionCard contacts=new AnswerForQuestionCard(answer,user_Id,user_name);
+                mquestionfetch.add(contacts);
+                adapter = new AnswerForQuestionAdapter(this, mquestionfetch);
+                recyclerView.setAdapter(adapter);
+                count++;
+
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+    class BackgroundTask extends AsyncTask<Void,Void,String>
+    {
+        String json_url="https://vlearndroidrun.000webhostapp.com/getAnswer.php";
+
+
+        @Override
+        protected String doInBackground(Void... voids) {
+
+            try {
+                URL url=new URL(json_url);
+                HttpURLConnection httpURLConnection=(HttpURLConnection) url.openConnection();
+                //my
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                OutputStream os=httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
+                String data= URLEncoder.encode("Q_Id","UTF-8")+"="+URLEncoder.encode(Q_Id,"UTF-8");
+                bufferedWriter.write(data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                os.close();
+                //
+                InputStream inputStream=httpURLConnection.getInputStream();
+                BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream));
+                StringBuilder stringBuilder=new StringBuilder();
+
+                while((json_string=bufferedReader.readLine())!=null)
+                {
+                    stringBuilder.append(json_string+"\n");
+                }
+
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                JSON_String=stringBuilder.toString().trim();
+                return stringBuilder.toString().trim();
+
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+        public BackgroundTask()
+        {
+            super();
+        }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            JSON_String=result;
+
+            Toast.makeText(QuestionDetail.this,JSON_String,Toast.LENGTH_LONG).show();
+            getDatafromJSON();
+
+            //super.onPostExecute(aVoid);
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+    }
+
+}

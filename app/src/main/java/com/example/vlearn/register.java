@@ -34,7 +34,7 @@ public class register extends AppCompatActivity {
     public static final String SHARED_PREF_NAME="tech";
     public static final String EMAIL_SHARED_PREF="name";
 
-    Button temp;
+    Button temp,ques;
 
     public static final String LOGGEDIN_SHARED_PREF="loggedin";
     private boolean loggedIn=false;
@@ -48,6 +48,16 @@ public class register extends AppCompatActivity {
         re_pass=findViewById(R.id.Re_Password);
         register=findViewById(R.id.register);
         temp=findViewById(R.id.gotemp);
+        ques=findViewById(R.id.question);
+
+        ques.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i=new Intent(register.this,questionActivity.class);
+                startActivity(i);
+            }
+        });
 
         temp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,6 +142,8 @@ public class register extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
+
    /* @Override
     protected void onResume() {
         super.onResume();

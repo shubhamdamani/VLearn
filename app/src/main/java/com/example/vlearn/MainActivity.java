@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.nav_ques:
                             sel=new QuesFragment();
                             break;
+                            default:
+                                sel=new NewsFragment();
 
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

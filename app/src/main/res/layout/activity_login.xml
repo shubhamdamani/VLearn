@@ -29,5 +29,12 @@
         android:layout_marginTop="20dp"
         android:background="@android:color/holo_blue_dark"
         android:text="login" />
+    <Button
+        android:id="@+id/goto_register"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/holo_blue_dark"
+        android:text="new user register" />
 
 </LinearLayout>
