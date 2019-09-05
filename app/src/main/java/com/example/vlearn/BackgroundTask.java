@@ -56,6 +56,38 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
                 e.printStackTrace();
             }
 
+        }else if(method.equals("addanswer"))
+        {
+            String ans_url="https://vlearndroidrun.000webhostapp.com/addAnswer.php";
+            String qid=params[1];
+            String answer=params[2];
+            String userid=params[3];
+
+            try {
+
+                URL url=new URL(ans_url);
+                HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                OutputStream os=httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
+                String data= URLEncoder.encode("Q_id","UTF-8")+"="+URLEncoder.encode(qid,"UTF-8")+"&"+
+                        URLEncoder.encode("answer","UTF-8")+"="+URLEncoder.encode(answer,"UTF-8")+"&"+
+                        URLEncoder.encode("U_id","UTF-8")+"="+URLEncoder.encode(userid,"UTF-8");
+                bufferedWriter.write(data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                os.close();
+                InputStream IS=httpURLConnection.getInputStream();
+                IS.close();
+                return "Answer Posted";
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
         return "hi";
     }

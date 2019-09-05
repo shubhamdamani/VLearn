@@ -9,19 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".QuestionDetail"></activity>
+        <activity android:name=".addquestion"></activity>
+        <activity android:name=".QuestionDetail" />
         <activity android:name=".questionActivity" />
         <activity android:name=".queslistview" />
         <activity android:name=".interests" />
-        <activity android:name=".login" >
+        <activity android:name=".login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".register"/>
-
+        <activity android:name=".register" />
         <activity android:name=".myprofile" />
         <activity android:name=".MainActivity" />
     </application>

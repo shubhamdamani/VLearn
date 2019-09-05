@@ -1,10 +1,12 @@
 package com.example.vlearn;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,6 +39,7 @@ public class QuesFragment extends Fragment {
     Question_adapter adapter;
     private RecyclerView recyclerView;
     List<questionfetch> mquestionfetch;
+    Button askQuestion;
 
 
 
@@ -57,6 +60,17 @@ public class QuesFragment extends Fragment {
         recyclerView = v.findViewById(R.id.my_recycler_view);
         //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        askQuestion=v.findViewById(R.id.ask_ques);
+        askQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(getContext(),addquestion.class);
+
+
+
+                startActivity(i);
+            }
+        });
 
       //  fun();
 

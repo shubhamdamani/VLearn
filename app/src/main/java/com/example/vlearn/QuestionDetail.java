@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +33,7 @@ import java.util.List;
 
 public class QuestionDetail extends AppCompatActivity {
 
-    String Question, Q_Id, User_Id, Topic;              //UserName
+    String Question, Q_Id, User_Id, Topic;
     String json_string,JSON_String;
     JSONArray jsonArray;
     JSONObject jsonObject;
@@ -39,6 +41,10 @@ public class QuestionDetail extends AppCompatActivity {
     List<AnswerForQuestionCard> mquestionfetch;
     AnswerForQuestionAdapter adapter;
     private RecyclerView recyclerView;
+    EditText editanswer;
+    Button postanswer;
+    String answer;
+    public static final String POST_ANSWER_URL="https://vlearndroidrun.000webhostapp.com/addAnswer.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +55,18 @@ public class QuestionDetail extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        editanswer=findViewById(R.id.editanswer);
+        postanswer=findViewById(R.id.postanswer);
+
+        postanswer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                answer=editanswer.getText().toString();
+                postfun();
+               // Intent i=new Intent(QuestionDetail.this,QuestionDetail.class);
+                //startActivity(i);
+            }
+        });
         txt_quesDisp=findViewById(R.id.myQuestion);
         Bundle bundle = getIntent().getExtras();
         Question = bundle.getString("Question");
@@ -67,6 +85,36 @@ public class QuestionDetail extends AppCompatActivity {
 
 
     }
+
+
+
+    // ANSWER POST KRNE VALA METHOD POSTFUN
+
+    public void postfun()
+    {
+
+        String method="addanswer";
+        if(answer.trim().equals(""))
+        {
+            Toast.makeText(QuestionDetail.this,"plese add anser",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+       com.example.vlearn.BackgroundTask backgroundTask=new com.example.vlearn.BackgroundTask(getBaseContext());
+        backgroundTask.execute(method,Q_Id.toString(),answer,User_Id);
+
+    }
+
+
+
+
+
+
+
+
+
+
+    //RETRIEVE DETAILS
     public void getDatafromJSON()
     {
         Toast.makeText(QuestionDetail.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();
