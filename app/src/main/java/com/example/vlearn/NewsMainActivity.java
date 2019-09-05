@@ -1,35 +1,17 @@
 package com.example.vlearn;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Retrofit;
-import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.vlearn.model.Feed;
 import com.example.vlearn.model.MainRediffFeed;
 import com.example.vlearn.model.NYTimesFeed;
@@ -59,7 +41,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class NewsFragment extends Fragment {
+import androidx.appcompat.app.AppCompatActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
+
+public class NewsMainActivity extends AppCompatActivity {
+
 
     public static final String CHECK_URL="https://vlearndroidrun.000webhostapp.com/check_user.php";
     private static final String TAG = "MainActivity";
@@ -79,20 +68,16 @@ public class NewsFragment extends Fragment {
     int USER_ID=1;
     JSONObject jsonObject;
 
-
-
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-
-
-        View v= inflater.inflate(R.layout.fragment_news,container,false);
-        btnLoadFeed = (Button)v.findViewById(R.id.btnRefreshFeed);
-        mFeedName = (EditText)v.findViewById(R.id.etFeedName);
+        btnLoadFeed = (Button)findViewById(R.id.btnRefreshFeed);
+        mFeedName = (EditText)findViewById(R.id.etFeedName);
         posts = new ArrayList<Post>();
 
-        listView = (ListView)v.findViewById(R.id.listView);
+        listView = (ListView)findViewById(R.id.listView);
         btnLoadFeed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,8 +92,6 @@ public class NewsFragment extends Fragment {
 
         ret();
 
-
-        return v;
     }
 
     private void LoadNewsFeed() {
@@ -213,7 +196,7 @@ public class NewsFragment extends Fragment {
             @Override
             public void onFailure(Call<Feed> call, Throwable t) {
                 Log.e(TAG, "Failure : Unable to retrieve RSS Feeds "+t.getMessage());
-                //   Toast.makeText(MainActivity.this,"An error occured",Toast.LENGTH_LONG).show();
+             //   Toast.makeText(MainActivity.this,"An error occured",Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -270,7 +253,7 @@ public class NewsFragment extends Fragment {
             @Override
             public void onFailure(Call<MainRediffFeed> call, Throwable t) {
                 Log.e(TAG, "Failure : Unable to retrieve RSS Feeds "+t.getMessage());
-                //  Toast.makeText(MainActivity.this,"An error occured",Toast.LENGTH_LONG).show();
+              //  Toast.makeText(MainActivity.this,"An error occured",Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -322,7 +305,7 @@ public class NewsFragment extends Fragment {
             @Override
             public void onFailure(Call<NYTimesFeed> call, Throwable t) {
                 Log.e(TAG, "Failure : Unable to retrieve RSS Feeds "+t.getMessage());
-                //   Toast.makeText(MainActivity.this,"An error occured",Toast.LENGTH_LONG).show();
+             //   Toast.makeText(MainActivity.this,"An error occured",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -375,7 +358,7 @@ public class NewsFragment extends Fragment {
             @Override
             public void onFailure(Call<YahooFeed> call, Throwable t) {
                 Log.e(TAG, "Failure : Unable to retrieve RSS Feeds "+t.getMessage());
-                //  Toast.makeText(MainActivity.this,"An error occured",Toast.LENGTH_LONG).show();
+              //  Toast.makeText(MainActivity.this,"An error occured",Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -385,7 +368,7 @@ public class NewsFragment extends Fragment {
 
     private void setListView(){
 
-        CustomListAdapter customListAdapter = new CustomListAdapter(getContext(),R.layout.card_layout_news,posts);
+        CustomListAdapter customListAdapter = new CustomListAdapter(NewsMainActivity.this,R.layout.card_layout_news,posts);
         listView.setAdapter(customListAdapter);
 
     }
@@ -408,21 +391,21 @@ public class NewsFragment extends Fragment {
 //                        fun();
 
 
-                    }
+}
                 },
                 new com.android.volley.Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("VOLLEY ERROR : ","Volley error ");
-                    }
-                }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> prams = new HashMap<>();
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("VOLLEY ERROR : ","Volley error ");
+                        }
+                        }){
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String,String> prams = new HashMap<>();
 
-                return prams;
-            }
-        };
+                        return prams;
+                        }
+                        };
 
 
 
@@ -432,7 +415,7 @@ public class NewsFragment extends Fragment {
     public void ret()
     {
         Integer integer=77;
-        NewsFragment.BackgroundTask backgroundTask=new NewsFragment.BackgroundTask();
+        BackgroundTask backgroundTask=new BackgroundTask();
         backgroundTask.execute(integer,USER_ID);
     }
 
@@ -532,7 +515,4 @@ public class NewsFragment extends Fragment {
         /*  -----------------------------------------------*/
 
     }
-
-
-
 }
