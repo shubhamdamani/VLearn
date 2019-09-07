@@ -4,11 +4,25 @@
     android:layout_height="match_parent">
 
 
-    <TextView
-        android:layout_width="wrap_content"
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/post_recycler"
+
+        />
+
+    <Button
+        android:id="@+id/post_artical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="posts"
-        android:layout_centerInParent="true"/>
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/holo_blue_dark"
+        android:padding="20dp"
+        android:text="Post" />
+
+
 
 
 </RelativeLayout>

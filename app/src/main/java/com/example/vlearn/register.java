@@ -70,7 +70,7 @@ public class register extends AppCompatActivity {
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {                           //Register button Listener
                 r_name=username.getText().toString();
                 r_email=email.getText().toString();
                 r_pass=pass.getText().toString();
@@ -96,6 +96,9 @@ public class register extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Enter Same Password in Both Fields",Toast.LENGTH_SHORT).show();
         }
     }
+
+    //This method check if user already exist or not
+    // if not then it will create new account
     private void reg_check() {
 
         final String name = username.getText().toString();
@@ -118,6 +121,7 @@ public class register extends AppCompatActivity {
                             editor.putString(EMAIL_SHARED_PREF, name);
 
                             editor.commit();
+                            //if user exist already then intent send to the login activity
                             Intent intent = new Intent(register.this, login.class);
                             startActivity(intent);
                         }else{

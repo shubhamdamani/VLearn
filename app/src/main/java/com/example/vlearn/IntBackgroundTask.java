@@ -13,7 +13,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class IntBackgroundTask extends AsyncTask<Integer,Void,String> {
+
+//UNUSED CLASS
+public class IntBackgroundTask extends AsyncTask<Integer,Void,String> {     //parameter int hone par
 
 
     Context ctx;

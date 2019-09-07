@@ -5,11 +5,11 @@ import org.simpleframework.xml.Root;
 import org.simpleframework.xml.Text;
 
 
-@Root(name = "item", strict = false)
+@Root(name = "item", strict = false)                // ye sab main saman h
 public class Item {
 
     //@Element(name = "title",required = false)
-    @Path("title")
+    @Path("title")                                  //these all are required info of particular news feed
     @Text(required=false)
     private String title;
 

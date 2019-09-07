@@ -17,6 +17,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+//UNUSED ACTIVITY
+
 public class queslistview extends AppCompatActivity {
 
     String json_string;

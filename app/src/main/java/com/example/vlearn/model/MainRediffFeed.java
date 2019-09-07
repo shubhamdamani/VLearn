@@ -5,7 +5,7 @@ import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
 
-@Root(name = "rss", strict = false)
+@Root(name = "rss", strict = false)                                                 //rediff ki parent class, here parent tag is channel
 public class MainRediffFeed implements Serializable {
 
     @Element(name = "channel")

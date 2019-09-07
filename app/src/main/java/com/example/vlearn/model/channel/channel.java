@@ -7,8 +7,8 @@ import org.simpleframework.xml.Root;
 import java.io.Serializable;
 import java.util.List;
 
-@Root(name = "channel", strict = false)
-public class channel implements Serializable {
+@Root(name = "channel", strict = false)                 //this class is basically based on tags of xml of rss feeds for fetching
+public class channel implements Serializable {          // channel is the parent tag and sub tags are the elementsdescribed below
 
     @Element(name = "language")
     private String language;
@@ -19,8 +19,8 @@ public class channel implements Serializable {
     @Element(name = "lastBuildDate")
     private String lastbuilddate;
 
-    @ElementList(inline = true, name = "item")
-    private List<Item> items;
+    @ElementList(inline = true, name = "item")          // this itself is an array so for this we will create another array
+    private List<Item> items;                           //main saman issi m h
 
 
     public String getLanguage() {

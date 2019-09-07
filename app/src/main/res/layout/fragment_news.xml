@@ -17,7 +17,7 @@
             android:layout_height="60dp"
             android:layout_gravity="bottom"
             android:layout_weight="75"
-            android:hint="Type a topic"
+            android:hint="Testing purpose only"
             android:textAlignment="center" />
 
         <Button

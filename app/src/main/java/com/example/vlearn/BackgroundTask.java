@@ -14,8 +14,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class BackgroundTask extends AsyncTask<String,Void,String> {
-
+public class BackgroundTask extends AsyncTask<String,Void,String> {     //this is for online communication in background
+                                                                        //alag thread chalegi background
 
     Context ctx;
     public BackgroundTask(Context ctx) {
@@ -36,7 +36,7 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
                 URL url=new URL(reg_url);
                 HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoOutput(true);                        //encoding data and the uploading
                 OutputStream os=httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
                 String data= URLEncoder.encode("name","UTF-8")+"="+URLEncoder.encode(name,"UTF-8")+"&"+

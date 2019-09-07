@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 
 
-@Root(name = "channel", strict = false)
+@Root(name = "channel", strict = false)             //explaination same as channel
 public class channelYahoo implements Serializable {
 
     @Element(name = "language")

@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class interests extends AppCompatActivity {
+public class interests extends AppCompatActivity { //user k topic select krne k liye
     MyCustomAdapter dataAdapter = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

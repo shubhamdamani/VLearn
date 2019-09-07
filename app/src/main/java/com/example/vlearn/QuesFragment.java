@@ -35,7 +35,6 @@ public class QuesFragment extends Fragment {
     String JSON_String;
     JSONArray jsonArray;
     JSONObject jsonObject;
-    // questionadapter contactAdapter;
     Question_adapter adapter;
     private RecyclerView recyclerView;
     List<questionfetch> mquestionfetch;
@@ -51,11 +50,11 @@ public class QuesFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        new BackgroundTask().execute();
+        new BackgroundTask().execute();         //jaise hi is activity pe aaye, question fetch ho jaaye
 
 
 
-        /*return*/View v= inflater.inflate(R.layout.fragment_ques,container,false);
+        View v= inflater.inflate(R.layout.fragment_ques,container,false);
 
         recyclerView = v.findViewById(R.id.my_recycler_view);
         //recyclerView.setHasFixedSize(true);
@@ -85,7 +84,7 @@ public class QuesFragment extends Fragment {
 
     }
 
-    public void fun()
+    public void fun()                   //PARSING JSON OBJECT TO NORMAL STRING AND SHIFTING TO CARDVIEW
     {
         json_string=JSON_String;
 
@@ -99,12 +98,12 @@ public class QuesFragment extends Fragment {
             jsonObject=new JSONObject(JSON_String);
 
             int count=0;
-            jsonArray=jsonObject.getJSONArray("server_response");
+            jsonArray=jsonObject.getJSONArray("server_response");       //THIS IS NAME OF OUR JSON ARRAY
 
             while(count<jsonArray.length())
             {
                 JSONObject jo=jsonArray.getJSONObject(count);
-                Topic=jo.getString("Topic");
+                Topic=jo.getString("Topic");                        // ARRAY KA SUB-TAG, MATLAB KEY OF REQIRED VALUE
                 User_Id=jo.getString("User_Id");
                 Q_Id=jo.getString("Q_Id");
                 Question=jo.getString("Question");
@@ -112,7 +111,7 @@ public class QuesFragment extends Fragment {
                 //questionfetch contacts=new questionfetch(Topic,User_Id,Q_Id,Question);
                 questionfetch contacts=new questionfetch(Topic,User_Id,Q_Id,Question);
                 mquestionfetch.add(contacts);
-                adapter = new Question_adapter(getContext(), mquestionfetch);
+                adapter = new Question_adapter(getContext(), mquestionfetch);       //ONE BY ONE PUSHING QUESTIONS TO CARDVIEW
                 recyclerView.setAdapter(adapter);
                 count++;
 
@@ -127,7 +126,7 @@ public class QuesFragment extends Fragment {
     }
 
 
- /*  static*/ class BackgroundTask extends AsyncTask<Void,Void,String> ///KOI DIKKAT AAE TOH STATIC HATA DENA
+  class BackgroundTask extends AsyncTask<Void,Void,String>
     {
         String json_url="https://vlearndroidrun.000webhostapp.com/question.php";
 

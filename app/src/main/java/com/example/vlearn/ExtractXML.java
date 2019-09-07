@@ -3,7 +3,7 @@ package com.example.vlearn;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExtractXML {
+public class ExtractXML {               //xml ganda h matlab bohot tags h and kam ki chij nikalni h using string and xml functions
 
     private static final String TAG = "ExtractXML";
 

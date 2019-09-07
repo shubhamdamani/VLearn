@@ -1,6 +1,6 @@
 package com.example.vlearn;
 
-public class questionfetch {
+public class questionfetch {                                       /*Question structuring class*/
 
     private String Topic,User_Id,Q_Id,Question;
 

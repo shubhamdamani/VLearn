@@ -80,14 +80,14 @@ public class NewsFragment extends Fragment {
     JSONObject jsonObject;
 
 
-
+    //har site se info nikal rhe h interest k according site automatically select ho rhi h
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
 
-        View v= inflater.inflate(R.layout.fragment_news,container,false);
+        View v= inflater.inflate(R.layout.fragment_news,container,false);       //fragment ka view for other purpose
         btnLoadFeed = (Button)v.findViewById(R.id.btnRefreshFeed);
         mFeedName = (EditText)v.findViewById(R.id.etFeedName);
         posts = new ArrayList<Post>();
@@ -161,18 +161,18 @@ public class NewsFragment extends Fragment {
 
     private void init(String currentFeed){
 
-        Retrofit retrofit = new Retrofit.Builder()
+        Retrofit retrofit = new Retrofit.Builder()                                          //retrofit xml parsing m help krega
                 .baseUrl(BASE_URL)
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .build();
 
-        FeedAPI feedAPI = retrofit.create(FeedAPI.class);
+        FeedAPI feedAPI = retrofit.create(FeedAPI.class);                           //apni requirement k hisaab se feedAPI m given exact link se connection establish ho raha h
 
         Call<Feed> call = feedAPI.getFeed(currentFeed);
 
-        call.enqueue(new Callback<Feed>() {
+        call.enqueue(new Callback<Feed>() {                                      // getting our objects(here entry) of news feed
             @Override
-            public void onResponse(Call<Feed> call, retrofit2.Response<Feed> response) {
+            public void onResponse(Call<Feed> call, retrofit2.Response<Feed> response) {        //conversion of retrofit object to our class feed object
 
 
                 List<Entry> entrys = response.body().getEntrys();

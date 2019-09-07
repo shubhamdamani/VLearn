@@ -10,8 +10,8 @@ import java.io.Serializable;
 import java.util.List;
 
 
-@Root(name = "feed", strict = false)
-public class Feed implements Serializable {
+@Root(name = "feed", strict = false)               //this is reddit feed
+public class Feed implements Serializable {            // ye parent file h reddit xml parsing ki
 
     @Element(name = "icon")
     private String icon;
@@ -31,7 +31,7 @@ public class Feed implements Serializable {
     @Element(name = "subtitle")
     private String subtitle;
 
-    @ElementList(inline = true, name = "entry")
+    @ElementList(inline = true, name = "entry")             //this is array of oue news feed, basically every tag or every news is named entry there
     private List<Entry> entrys;
 
     public String getIcon() {

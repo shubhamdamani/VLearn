@@ -44,10 +44,7 @@ public class login extends AppCompatActivity {
     EditText userame,pass;
     Button Login,gotoRegister;
     String l_name="",l_pass="";
-    public String LOGGED_USER_NAME;
     public String LOGGED_USER_EMAIL;
-    public String LOGGED_USER_ID;
-
     public static final String LOGIN_URL="https://vlearndroidrun.000webhostapp.com/login.php";
     public static final String KEY_NAME="name";
     public static final String KEY_PASSWORD="password";
@@ -56,14 +53,12 @@ public class login extends AppCompatActivity {
     public static final String EMAIL_SHARED_PREF="name";
     public static final String LOGGEDIN_SHARED_PREF="loggedin";
     private boolean loggedIn=false;
-
     String json_string;
     String JSON_String;
     JSONArray jsonArray;
     JSONObject jsonObject;
     String emyl;
     public String USER_ID,USER_NAME;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,17 +72,17 @@ public class login extends AppCompatActivity {
 
         l_name=userame.getText().toString();
         l_pass=pass.getText().toString();
+
+        //Login process and fetching data of user is performed here
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(login.this,"hio"+emyl,Toast.LENGTH_LONG).show();
 
                 loginmet();
 
             }
         });
-
-
+        //If User want to create new account this register button send intent to registerActivity
         gotoRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,14 +95,10 @@ public class login extends AppCompatActivity {
 
     }
 
-    //RETRIEVE DETAILS
+    //Retrieve Details Of USER from Database using JSON parsing
     public void getDatafromJSON()
     {
-        Toast.makeText(login.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();
-       // String answer,user_Id;
-        //String user_name,q_Id,ans_Id;
-        //mquestionfetch =new ArrayList<>();
-
+       // Toast.makeText(login.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();
         try {
             jsonObject=new JSONObject(JSON_String);
 
@@ -117,9 +108,14 @@ public class login extends AppCompatActivity {
             while(count<jsonArray.length())
             {
                 JSONObject jo=jsonArray.getJSONObject(count);
-                USER_NAME=jo.getString("User_Name");
+                USER_NAME=jo.getString("UserName");
                 USER_ID=jo.getString("User_Id");
-                Toast.makeText(login.this,USER_NAME+" "+USER_ID,Toast.LENGTH_SHORT).show();
+                //User_obj=new USER_Class();
+                USER_Class.setLoggedUserId(USER_ID);
+                USER_Class.setLoggedUserEmail(emyl);
+                USER_Class.setLoggedUserName(USER_NAME);
+                Toast.makeText(login.this,"hi",Toast.LENGTH_SHORT).show();
+                count++;
 
 
             }
@@ -128,12 +124,11 @@ public class login extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+    //Thread is created to fetch user info as a JSON data
+    //which work in background
     class BackgroundTask extends AsyncTask<Void,Void,String>
     {
         String json_url="https://vlearndroidrun.000webhostapp.com/getDetails.php";
-
-
-
         @Override
         protected String doInBackground(Void... voids) {
 
@@ -150,7 +145,6 @@ public class login extends AppCompatActivity {
                 bufferedWriter.flush();
                 bufferedWriter.close();
                 os.close();
-                //
                 InputStream inputStream=httpURLConnection.getInputStream();
                 BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder stringBuilder=new StringBuilder();
@@ -159,7 +153,6 @@ public class login extends AppCompatActivity {
                 {
                     stringBuilder.append(json_string+"\n");
                 }
-
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
@@ -189,10 +182,11 @@ public class login extends AppCompatActivity {
 
             JSON_String=result;
 
-            Toast.makeText(login.this,JSON_String,Toast.LENGTH_LONG).show();
+            //Toast.makeText(login.this,JSON_String,Toast.LENGTH_SHORT).show();
            getDatafromJSON();
+            //Toast.makeText(login.this,USER_ID+" "+USER_Class.getLoggedUserId(),Toast.LENGTH_SHORT).show();
             Intent i=new Intent(login.this,MainActivity.class);
-            startActivity(i);
+           startActivity(i);
             //super.onPostExecute(aVoid);
         }
 
@@ -203,7 +197,7 @@ public class login extends AppCompatActivity {
     }
 
 
-
+    //To check user is already logged in or not
     private void loginmet() {
 
         final String name = userame.getText().toString();
@@ -212,28 +206,19 @@ public class login extends AppCompatActivity {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, LOGIN_URL,
                 new Response.Listener<String>() {
-                   // Toast.makeText(login.this,"fkng",Toast.LENGTH_LONG).show();
                     @Override
                     public void onResponse(String response) {
-
-
-
                         if(response.trim().equalsIgnoreCase(LOGIN_SUCCESS)){
-
                             SharedPreferences sharedPreferences = login.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-
                             SharedPreferences.Editor editor = sharedPreferences.edit();
-
                             editor.putBoolean(LOGGEDIN_SHARED_PREF, true);
                             editor.putString(EMAIL_SHARED_PREF, emyl);
-
                             editor.commit();
-
                             new login.BackgroundTask().execute();
-                           /* Intent intent = new Intent(login.this, MainActivity.class);
-                            startActivity(intent);*/
+
                         }else{
-                            Toast.makeText(login.this, "Invalid username or password", Toast.LENGTH_LONG).show();
+                            // If invalid Email or Password is entered
+                            Toast.makeText(login.this, "Invalid Email or password", Toast.LENGTH_LONG).show();
                         }
                     }
                 },
@@ -254,14 +239,17 @@ public class login extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-  /*  @Override
+    //If user is already Logged in then User data will be collected and
+    // stored in USER_Class and then Intent to MainActivity
+    @Override
     protected void onResume() {
         super.onResume();
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         loggedIn = sharedPreferences.getBoolean(LOGGEDIN_SHARED_PREF, false);
         if(loggedIn){
-            Intent intent = new Intent(login.this, MainActivity.class);
-            startActivity(intent);
+            loginmet();
+            //Intent intent = new Intent(login.this, MainActivity.class);
+            //startActivity(intent);
         }
-    }*/
+    }
 }

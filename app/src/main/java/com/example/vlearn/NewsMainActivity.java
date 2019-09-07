@@ -47,6 +47,8 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
+//UNUSED IN THIS APP
+
 public class NewsMainActivity extends AppCompatActivity {
 
 

@@ -34,7 +34,7 @@ import java.util.List;
 public class QuestionDetail extends AppCompatActivity {
 
     String Question, Q_Id, User_Id, Topic;
-    String json_string,JSON_String;
+    String json_string,JSON_String;                 //this activity is showing answer of particular question and giving option to add answer
     JSONArray jsonArray;
     JSONObject jsonObject;
     TextView txt_quesDisp;
@@ -114,7 +114,7 @@ public class QuestionDetail extends AppCompatActivity {
 
 
 
-    //RETRIEVE DETAILS
+    //RETRIEVE DETAILS or Answers
     public void getDatafromJSON()
     {
         Toast.makeText(QuestionDetail.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();
@@ -150,7 +150,7 @@ public class QuestionDetail extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-    class BackgroundTask extends AsyncTask<Void,Void,String>
+    class BackgroundTask extends AsyncTask<Void,Void,String>            //answer upload karega
     {
         String json_url="https://vlearndroidrun.000webhostapp.com/getAnswer.php";
 

@@ -1,6 +1,6 @@
 package com.example.vlearn;
 
-public class AnswerForQuestionCard {
+public class AnswerForQuestionCard {        //class for answer objects
 
     String Answer, User_Id, UserName;
 

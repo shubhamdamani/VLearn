@@ -33,6 +33,7 @@
         android:id="@+id/ques_detail_recylerview">
     </androidx.recyclerview.widget.RecyclerView>
 
+
     <EditText
         android:id="@+id/editanswer"
         android:layout_width="match_parent"
@@ -44,7 +45,9 @@
         android:minLines="1"
         android:scrollHorizontally="false"
         android:scrollbars="vertical"
-        android:text="add answer" />
+        android:text="add answer"
+        android:background="#bee7f7"
+        android:padding="20dp"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -52,7 +55,8 @@
         android:id="@+id/postanswer"
         android:layout_alignParentBottom="true"
         android:text="post answer"
-        android:textSize="10dp"/>
+        android:textSize="10dp"
+        android:background="@color/colorPrimaryDark"/>
 
 
 

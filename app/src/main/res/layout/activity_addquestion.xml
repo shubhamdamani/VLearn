@@ -15,17 +15,17 @@
         android:id="@+id/tag"/>
 
     <EditText
+        android:id="@+id/Q_txt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/Q_txt"
         android:layout_below="@+id/tag"
+        android:background="?attr/colorButtonNormal"
         android:gravity="top|left"
         android:inputType="textMultiLine"
         android:lines="20"
         android:minLines="5"
-        android:scrollHorizontally="false"
         android:scrollbars="vertical"
-        />
+        android:scrollHorizontally="false" />
 
     <Button
         android:id="@+id/Q_post"
