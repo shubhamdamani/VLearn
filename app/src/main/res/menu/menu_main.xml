@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/logoutMenu"
+        android:orderInCategory="500"
+        app:showAsAction="never"
+        android:title="Logout">
+    </item>
+
+    <item
+        android:id="@+id/profileMenu"
+        android:orderInCategory="200"
+        app:showAsAction="never"
+        android:title="Profile">
+    </item>
+
+    <item
+        android:id="@+id/aboutMenu"
+        android:orderInCategory="250"
+        app:showAsAction="never"
+        android:title="About VLearn">
+    </item>
+    <item
+        android:id="@+id/chatMenu"
+        android:orderInCategory="220"
+        app:showAsAction="never"
+        android:title="Chat with Admin">
+    </item>
+
+</menu>

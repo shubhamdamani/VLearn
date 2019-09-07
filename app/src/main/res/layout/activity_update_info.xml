@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PersonalInfo.UpdateInfo">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="currentemail"
+        android:textSize="30dp"
+        android:id="@+id/updemail"
+        android:layout_marginTop="70dp"
+        />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:id="@+id/updname"
+        android:text="username"
+        android:layout_below="@+id/updemail"
+        android:layout_marginTop="50dp"/>
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:id="@+id/updpassword"
+        android:text="password"
+        android:layout_below="@+id/updname"
+        android:layout_marginTop="50dp"/>
+
+    <Button
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnChange"
+        android:text="Update"
+        android:layout_below="@+id/updpassword"
+        android:layout_marginTop="50dp"/>
+
+</RelativeLayout>
