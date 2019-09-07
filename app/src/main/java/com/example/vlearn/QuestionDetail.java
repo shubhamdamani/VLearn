@@ -105,15 +105,6 @@ public class QuestionDetail extends AppCompatActivity {
 
     }
 
-
-
-
-
-
-
-
-
-
     //RETRIEVE DETAILS or Answers
     public void getDatafromJSON()
     {

@@ -40,10 +40,15 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewH
         Post_content product = productList.get(position);
 
         //binding the data with the viewholder views
-        holder.post_user.setText(product.getPost_user());
-        holder.artical.setText(product.getArtical());
-        holder.upvote.setText(Integer.toString(product.getUpvote()));
-       holder.downvote.setText(Integer.toString(product.getDownvotes()));
+        holder.post_user.setText(product.getUserName());
+        holder.artical.setText(product.getPost_content());
+        holder.upvote.setText(Integer.toString(product.getUpvotes()));
+        holder.downvote.setText(Integer.toString(product.getDownvotes()));
+        holder.post_title.setText(product.getPost_Title());
+        holder.post_date.setText(product.getPost_Date());
+        holder.topic.setText(product.getTopic());
+        holder.user_id.setText(product.getUser_Id());
+        holder.post_id.setText(product.getPost_Id());
 
 
 
@@ -58,7 +63,7 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewH
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView post_user, artical, upvote, downvote;
+        TextView post_user, artical, upvote, downvote,post_title,post_date,topic,user_id,post_id;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
@@ -67,21 +72,30 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewH
             artical = itemView.findViewById(R.id.artical);
             upvote = itemView.findViewById(R.id.nup);
             downvote = itemView.findViewById(R.id.ndown);
+            post_title=itemView.findViewById(R.id.post_title);
+            post_date=itemView.findViewById(R.id.post_date);
+            topic=itemView.findViewById(R.id.topic);
+            user_id=itemView.findViewById(R.id.user_id);
+            post_id=itemView.findViewById(R.id.post_id);
 
-            /*itemView.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), PostDetail.class);
-                    intent.putExtra("User_Id",txt_userId.getText());
-                    intent.putExtra("Q_Id",txt_Q_Id.getText());
-                    //Toast.makeText(v.getContext(), "Q_Id : " + txt_Q_Id.getText(), Toast.LENGTH_LONG).show();
-                    intent.putExtra("Question",txt_ques.getText());
-                    intent.putExtra("Topic",txt_Topic.getText());
+                    intent.putExtra("User_Id",user_id.getText());
+                    intent.putExtra("Post_User",post_user.getText());
+                    intent.putExtra("Post",artical.getText());
+                    intent.putExtra("Topic",topic.getText());
+                    intent.putExtra("Post_Date",post_date.getText());
+                    intent.putExtra("Post_Id",post_id.getText());
+                    intent.putExtra("Post_Title",post_title.getText());
+                    intent.putExtra("Upvotes",upvote.getText());
+                    intent.putExtra("Downvotes",downvote.getText());
                     v.getContext().startActivity(intent);
 
 
                 }
-            });*/
+            });
 
         }
     }

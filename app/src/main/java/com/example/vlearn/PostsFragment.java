@@ -57,18 +57,6 @@ public class PostsFragment extends Fragment {
         });
 
 
-        /*mPostContent =new ArrayList<>();
-        Post_content contacts=new Post_content("vivek","hello World",10,2);
-        mPostContent.add(contacts);
-        adapter = new post_adapter(getContext(), mPostContent);
-        adapter = new post_adapter(getContext(), mPostContent);
-        contacts=new Post_content("vivek1","hello World1",1,2);
-        mPostContent.add(contacts);
-        adapter = new post_adapter(getContext(), mPostContent);
-        recyclerView.setAdapter(adapter);
-
-        */
-
         return v;
     }
 
@@ -76,7 +64,7 @@ public class PostsFragment extends Fragment {
     {
         json_string=JSON_String;
 
-        String TopicStr,Post_Id,Post_Title,Post,Post_Date,User_Id;
+        String Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName;
         Integer Upvotes,Downvotes;
 
 
@@ -91,18 +79,19 @@ public class PostsFragment extends Fragment {
 
             while(count<jsonArray.length())
             {
-                JSONObject jo=jsonArray.getJSONObject(count);
-                TopicStr=jo.getString("TopicStr");                        // ARRAY KA SUB-TAG, MATLAB KEY OF REQIRED VALUE
+                JSONObject jo=jsonArray.getJSONObject(count);  // ARRAY KA SUB-TAG, MATLAB KEY OF REQIRED VALUE
                 User_Id=jo.getString("User_Id");
-                Post=jo.getString("Post");
+                Post_content=jo.getString("Post");
+                Post_Title=jo.getString("Post_Title");
                 Post_Date=jo.getString("Post_Date");
                 Post_Id=jo.getString("Post_Id");
                 Upvotes=jo.getInt("Upvotes");
                 Downvotes=jo.getInt("Downvotes");
-
+                Topic=jo.getString("TopicStr");
+                UserName=jo.getString("UserName");
 
                 //questionfetch contacts=new questionfetch(Topic,User_Id,Q_Id,Question);
-                Post_content contacts=new Post_content(User_Id,TopicStr,Upvotes,Downvotes);
+                Post_content contacts=new Post_content(Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName,Upvotes,Downvotes);
                 mPostContent.add(contacts);
                 adapter = new post_adapter(getContext(), mPostContent);       //ONE BY ONE PUSHING QUESTIONS TO CARDVIEW
                 recyclerView.setAdapter(adapter);

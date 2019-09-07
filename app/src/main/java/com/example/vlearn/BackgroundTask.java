@@ -88,6 +88,37 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {     //this i
                 e.printStackTrace();
             }
 
+        }else if(method.equals("addComment"))
+        {
+            String ans_url="https://vlearndroidrun.000webhostapp.com/addComment.php";
+            String user_id=params[1];
+            String post_id=params[2];
+            String post_comment=params[3];
+
+            try {
+
+                URL url=new URL(ans_url);
+                HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                OutputStream os=httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
+                String data= URLEncoder.encode("User_Id","UTF-8")+"="+URLEncoder.encode(user_id,"UTF-8")+"&"+
+                        URLEncoder.encode("Post_Id","UTF-8")+"="+URLEncoder.encode(post_id,"UTF-8")+"&"+
+                        URLEncoder.encode("Comment","UTF-8")+"="+URLEncoder.encode(post_comment,"UTF-8");
+                bufferedWriter.write(data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                os.close();
+                InputStream IS=httpURLConnection.getInputStream();
+                IS.close();
+                return "Comment Posted";
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return "hi";
     }

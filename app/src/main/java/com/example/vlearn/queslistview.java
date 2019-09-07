@@ -35,7 +35,7 @@ public class queslistview extends AppCompatActivity {
         setContentView(R.layout.activity_queslistview);
 
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-        recyclerView.setHasFixedSize(true);
+       recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
