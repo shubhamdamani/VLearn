@@ -63,6 +63,7 @@ public class register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(register.this,interests.class);
+                i.putExtra("operation","insert_interest");
                 startActivity(i);
             }
         });

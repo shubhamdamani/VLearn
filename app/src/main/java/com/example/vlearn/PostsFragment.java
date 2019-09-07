@@ -102,7 +102,7 @@ public class PostsFragment extends Fragment {
 
 
                 //questionfetch contacts=new questionfetch(Topic,User_Id,Q_Id,Question);
-                Post_content contacts=new Post_content(User_Id,Post,Upvotes,Downvotes);
+                Post_content contacts=new Post_content(User_Id,TopicStr,Upvotes,Downvotes);
                 mPostContent.add(contacts);
                 adapter = new post_adapter(getContext(), mPostContent);       //ONE BY ONE PUSHING QUESTIONS TO CARDVIEW
                 recyclerView.setAdapter(adapter);

@@ -52,7 +52,7 @@ public class login extends AppCompatActivity {
     public static final String SHARED_PREF_NAME="tech";
     public static final String EMAIL_SHARED_PREF="name";
     public static final String LOGGEDIN_SHARED_PREF="loggedin";
-    private boolean loggedIn=false;
+   private boolean loggedIn=false;
     String json_string;
     String JSON_String;
     JSONArray jsonArray;

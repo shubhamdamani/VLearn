@@ -10,10 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddPost"></activity>
-        <activity android:name=".PersonalInfo.UpdateInfo"/>
-        <activity android:name=".Chat"/>
-        <activity android:name=".AboutVLearn"/>
+        <activity android:name=".AddPost" />
+        <activity android:name=".PersonalInfo.UpdateInfo" />
+        <activity android:name=".Chat" />
+        <activity android:name=".AboutVLearn" />
         <activity android:name=".addquestion" />
         <activity android:name=".PostDetail" />
         <activity android:name=".QuestionDetail" />
