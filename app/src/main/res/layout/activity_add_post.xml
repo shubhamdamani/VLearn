@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddPost"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Write your Post"
+        android:padding="10dp"
+        android:id="@+id/heading"/>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/topic"
+        android:layout_below="@+id/heading"
+        android:padding="20dp">
+
+    </Spinner>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Post_title"
+        android:layout_below="@+id/topic"
+        android:hint="Post Title"
+        android:padding="20dp"
+        android:inputType="textMultiLine"
+
+        />
+
+    <EditText
+        android:id="@+id/Post_content"
+        android:layout_below="@+id/Post_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:minLines="5"
+        android:maxLines="30"
+        android:padding="20dp"
+        android:hint="Write here"
+        android:gravity="left"/>
+    <Button
+        android:id="@+id/Post_submit"
+        android:layout_below="@+id/Post_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:padding="20dp"
+        android:layout_alignParentEnd="true"
+        android:background="@color/colorPrimaryDark"
+        />
+
+</RelativeLayout>

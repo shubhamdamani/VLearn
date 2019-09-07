@@ -19,7 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@android:color/holo_blue_dark"
-        android:padding="20dp"
         android:text="Post" />
 
 
