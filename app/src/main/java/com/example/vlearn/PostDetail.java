@@ -79,12 +79,8 @@ public class PostDetail extends AppCompatActivity  {
         artical=i.getStringExtra("Post");
         title=i.getStringExtra("Post_Title");
         Post_Id=i.getStringExtra("Post_Id");
-        Toast.makeText(PostDetail.this,Post_Id,Toast.LENGTH_SHORT).show();
-        /*getCommentData=new ArrayList<>();
-        getComment_data contacts=new getComment_data("user_name","p_comment");
-        getCommentData.add(contacts);
-        adapter = new post_comment_adapter(this, getCommentData);
-        recyclerView.setAdapter(adapter);*/
+
+
 
         tvUsername.setText(username);
         tvArtical.setText(artical);
