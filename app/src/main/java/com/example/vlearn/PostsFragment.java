@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,11 +51,11 @@ public class PostsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.fragment_posts,container,false);
-        new PostsFragment.BackgroundTask().execute();
+        //new PostsFragment.BackgroundTask().execute();
         B_postArtical=v.findViewById(R.id.post_artical);
         recyclerView = v.findViewById(R.id.post_recycler);
-        dialog=new SpotsDialog(getContext());
-        dialog.show();
+        //dialog=new SpotsDialog(getContext());
+        //dialog.show();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         B_postArtical.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +64,8 @@ public class PostsFragment extends Fragment {
                 startActivity(new Intent(getContext(),AddPost.class));
             }
         });
+        Toast.makeText(getContext(),USER_Class.getLoggedUserId(),Toast.LENGTH_SHORT).show();
+        new PostsFragment.BackgroundTask().execute();
 
 
         return v;
@@ -73,7 +76,7 @@ public class PostsFragment extends Fragment {
         json_string=JSON_String;
 
         String Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName;
-        Integer Upvotes,Downvotes,Bookmark;
+        Integer Upvotes,Downvotes;//Bookmark;
 
 
 
@@ -97,10 +100,10 @@ public class PostsFragment extends Fragment {
                 Downvotes=jo.getInt("Downvotes");
                 Topic=jo.getString("TopicStr");
                 UserName=jo.getString("UserName");
-                Bookmark=jo.getInt("BookmarkStatus");
+               String  Bookmark=jo.getString("BookmarkStatus");
 
                 //questionfetch contacts=new questionfetch(Topic,User_Id,Q_Id,Question);
-                Post_content contacts=new Post_content(Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName,Upvotes,Downvotes,Bookmark);
+                Post_content contacts=new Post_content(Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName,Upvotes,Downvotes,Integer.parseInt(Bookmark));
                 mPostContent.add(contacts);
                 adapter = new post_adapter(getContext(), mPostContent);       //ONE BY ONE PUSHING QUESTIONS TO CARDVIEW
                 recyclerView.setAdapter(adapter);
@@ -108,7 +111,7 @@ public class PostsFragment extends Fragment {
 
 
             }
-            dialog.dismiss();
+            //dialog.dismiss();
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -178,6 +181,7 @@ public class PostsFragment extends Fragment {
             //TextView tv=findViewById(R.id.tv);
             //tv.setText(result);
             JSON_String=result;
+            //Toast.makeText(getContext(),"hi"+JSON_String,Toast.LENGTH_LONG).show();
             fun();
 
 

@@ -81,9 +81,10 @@ public class BookmarkActivity extends AppCompatActivity {
                 Downvotes=jo.getInt("Downvotes");
                 Topic=jo.getString("TopicStr");
                 UserName=jo.getString("UserName");
+                int bookmark=jo.getInt("BookmarkStatus");
 
                 //questionfetch contacts=new questionfetch(Topic,User_Id,Q_Id,Question);
-                Post_content contacts=new Post_content(Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName,Upvotes,Downvotes);
+                Post_content contacts=new Post_content(Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName,Upvotes,Downvotes,bookmark);
                 mPostContent.add(contacts);
                 adapter = new post_adapter(getApplicationContext(), mPostContent);       //ONE BY ONE PUSHING QUESTIONS TO CARDVIEW
                 recyclerView.setAdapter(adapter);

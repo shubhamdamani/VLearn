@@ -49,6 +49,8 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewH
         holder.topic.setText(product.getTopic());
         holder.user_id.setText(product.getUser_Id());
         holder.post_id.setText(product.getPost_Id());
+       // String s=
+        holder.bookmark.setText((product.getBookmark()).toString());
 
 
 
@@ -63,7 +65,7 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewH
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView post_user, artical, upvote, downvote,post_title,post_date,topic,user_id,post_id;
+        TextView post_user, artical, upvote, downvote,post_title,post_date,topic,user_id,post_id,bookmark;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
@@ -77,6 +79,7 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewH
             topic=itemView.findViewById(R.id.topic);
             user_id=itemView.findViewById(R.id.user_id);
             post_id=itemView.findViewById(R.id.post_id);
+            bookmark=itemView.findViewById(R.id.bookmarkState);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -91,6 +94,7 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewH
                     intent.putExtra("Post_Title",post_title.getText());
                     intent.putExtra("Upvotes",upvote.getText());
                     intent.putExtra("Downvotes",downvote.getText());
+                    intent.putExtra("Bookmark",bookmark.getText());
                     v.getContext().startActivity(intent);
 
 

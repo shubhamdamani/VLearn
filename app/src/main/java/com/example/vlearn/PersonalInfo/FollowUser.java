@@ -82,8 +82,8 @@ public class FollowUser extends AppCompatActivity {
         });
 
         tv.setText(fusername);
-        dialog=new SpotsDialog(this);
-        dialog.show();
+        //dialog=new SpotsDialog(this);
+      //  dialog.show();
        // dialog.show();
         fuid=in.getStringExtra("User_Id");
         //Toast.makeText(FollowUser.this,fusername+" "+fuid,Toast.LENGTH_SHORT).show();
@@ -128,9 +128,10 @@ public class FollowUser extends AppCompatActivity {
                 Downvotes=jo.getInt("Downvotes");
                 Topic=jo.getString("TopicStr");
                 UserName=jo.getString("UserName");
-
+               String bookmark=jo.getString("BookmarkStatus");
+              //  String bookmark="bookmk";
                 //questionfetch contacts=new questionfetch(Topic,User_Id,Q_Id,Question);
-                Post_content contacts=new Post_content(Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName,Upvotes,Downvotes);
+                Post_content contacts=new Post_content(Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName,Upvotes,Downvotes,Integer.parseInt(bookmark));
                 mPostContent.add(contacts);
                 adapter = new post_adapter(FollowUser.this, mPostContent);       //ONE BY ONE PUSHING QUESTIONS TO CARDVIEW
                 recyclerView.setAdapter(adapter);
@@ -139,7 +140,7 @@ public class FollowUser extends AppCompatActivity {
 
             }
 
-            dialog.dismiss();
+          //  dialog.dismiss();
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -189,7 +190,7 @@ public class FollowUser extends AppCompatActivity {
 
 
             }
-            //dialog.dismiss();
+           // dialog.dismiss();
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -215,7 +216,8 @@ public class FollowUser extends AppCompatActivity {
                 httpURLConnection.setDoOutput(true);
                 OutputStream os=httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
-                String data= URLEncoder.encode("User_Id","UTF-8")+"="+URLEncoder.encode(fuid,"UTF-8");
+                String data= URLEncoder.encode("User_Id","UTF-8")+"="+URLEncoder.encode(fuid,"UTF-8") + "&" +
+                        URLEncoder.encode("Login_Id", "UTF-8") + "=" + URLEncoder.encode(USER_Class.getLoggedUserId(), "UTF-8");
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
                 bufferedWriter.close();

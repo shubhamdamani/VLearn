@@ -55,6 +55,7 @@ public class PostDetail extends AppCompatActivity  {
     JSONObject jsonObject;
     List<getComment_data> getCommentData;
     post_comment_adapter adapter;
+    String book_state;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,16 +67,20 @@ public class PostDetail extends AppCompatActivity  {
         B_down=findViewById(R.id.btnPDDown);
         B_bookmark=findViewById(R.id.bBookmark);
 
+        Intent intent=getIntent();
+        username=intent.getStringExtra("Post_User");
+        Post_Id=intent.getStringExtra("User_Id");
+        book_state=intent.getStringExtra("Bookmark");
         tvUsername.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent j=new Intent(PostDetail.this, FollowUser.class);
 
-                Intent i=getIntent();
-                username=i.getStringExtra("Post_User");
+
+
                 //artical=i.getStringExtra("Post");
               //  title=i.getStringExtra("Post_Title");
-                Post_Id=i.getStringExtra("User_Id");
+
 
                 j.putExtra("User_Id",Post_Id);
                 j.putExtra("UserName",username);
@@ -106,14 +111,22 @@ public class PostDetail extends AppCompatActivity  {
 
             }
         });
-
-
+        boolean state=false;
+        if(book_state.equals("1")){
+            state=true;
+        }
+        B_mark.setFavorite(state);
         B_mark.setOnFavoriteChangeListener(new MaterialFavoriteButton.OnFavoriteChangeListener() {
             @Override
             public void onFavoriteChanged(MaterialFavoriteButton buttonView, boolean favorite) {
 
                 if(favorite)
                     Bookmark_fun();
+                else{
+                    String method="unBookmark";
+                    com.example.vlearn.BackgroundTask backgroundTask=new com.example.vlearn.BackgroundTask(getBaseContext());
+                    backgroundTask.execute(method,USER_Class.getLoggedUserId(),Post_Id," ");
+                }
 
             }
         });
@@ -154,7 +167,7 @@ public class PostDetail extends AppCompatActivity  {
 
             }
         });
-        
+
 
     }
     public void Bookmark_fun()

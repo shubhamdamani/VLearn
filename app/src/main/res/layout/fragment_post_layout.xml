@@ -59,6 +59,14 @@
                 android:layout_height="50dp"
                 android:background="@drawable/down"
                 />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:padding="10dp"
+                android:id="@+id/bookmarkState"
+                android:visibility="invisible"/>
+
 
 
         </LinearLayout>
