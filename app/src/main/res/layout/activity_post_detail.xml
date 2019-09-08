@@ -24,7 +24,6 @@
         android:text="Title"
         android:padding="10dp"
         />
-    />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,33 +55,41 @@
         android:layout_height="match_parent"
         android:layout_below="@id/btnPDDown"
         android:scrollbars="vertical"
-        android:layout_above="@+id/editcomment"
+        android:layout_above="@+id/commentbar"
         android:id="@+id/post_detail_recylerview">
     </androidx.recyclerview.widget.RecyclerView>
 
-    <EditText
-        android:id="@+id/editcomment"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/postcomment"
-        android:gravity="top|left"
-        android:inputType="textMultiLine"
-        android:lines="20"
-        android:minLines="1"
-        android:scrollHorizontally="false"
-        android:scrollbars="vertical"
-        android:text="add comment"
-        android:background="#bee7f7"
-        android:padding="20dp"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/postcomment"
         android:layout_alignParentBottom="true"
-        android:text="post comment"
-        android:textSize="10dp"
-        android:background="@color/colorPrimaryDark"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/commentbar"
+        android:orientation="horizontal"
+        android:weightSum="10">
+        <EditText
+            android:id="@+id/editcomment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="top|left"
+            android:inputType="textMultiLine"
+            android:lines="20"
+            android:minLines="1"
+            android:scrollHorizontally="false"
+            android:scrollbars="vertical"
+            android:hint="Write Your Answer Here"
+            android:background="#bee7f7"
+            android:padding="20dp"
+            android:layout_weight="9"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/postcomment"
+            android:text="post answer"
+            android:textSize="10dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
 
     <com.github.ivbaranov.mfb.MaterialFavoriteButton

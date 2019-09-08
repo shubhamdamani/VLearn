@@ -154,11 +154,7 @@ public class PostDetail extends AppCompatActivity  {
 
             }
         });
-
-
-
-
-
+        
 
     }
     public void Bookmark_fun()
@@ -274,11 +270,8 @@ public class PostDetail extends AppCompatActivity  {
         protected void onPostExecute(String result) {
 
             JSON_String=result;
-
             Toast.makeText(PostDetail.this,"gghg"+JSON_String,Toast.LENGTH_LONG).show();
             getDatafromJSON();
-
-            //super.onPostExecute(aVoid);
         }
 
         @Override

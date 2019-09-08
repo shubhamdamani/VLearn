@@ -3,9 +3,9 @@ package com.example.vlearn;
 public class Post_content {
 
     String Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName;
-    Integer Upvotes,Downvotes;
+    Integer Upvotes,Downvotes,Bookmark;
 
-    public Post_content(String post_Id, String post_Title, String post_content, String post_Date, String user_Id, String topic, String userName, Integer upvotes, Integer downvotes) {
+    public Post_content(String post_Id, String post_Title, String post_content, String post_Date, String user_Id, String topic, String userName, Integer upvotes, Integer downvotes, Integer bookmark) {
         Post_Id = post_Id;
         Post_Title = post_Title;
         Post_content = post_content;
@@ -15,6 +15,7 @@ public class Post_content {
         UserName = userName;
         Upvotes = upvotes;
         Downvotes = downvotes;
+        Bookmark = bookmark;
     }
 
     public String getPost_Id() {
@@ -87,5 +88,13 @@ public class Post_content {
 
     public void setDownvotes(Integer downvotes) {
         Downvotes = downvotes;
+    }
+
+    public Integer getBookmark() {
+        return Bookmark;
+    }
+
+    public void setBookmark(Integer bookmark) {
+        Bookmark = bookmark;
     }
 }

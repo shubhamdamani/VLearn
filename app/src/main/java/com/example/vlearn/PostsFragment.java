@@ -20,12 +20,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import dmax.dialog.SpotsDialog;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,7 +73,7 @@ public class PostsFragment extends Fragment {
         json_string=JSON_String;
 
         String Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName;
-        Integer Upvotes,Downvotes;
+        Integer Upvotes,Downvotes,Bookmark;
 
 
 
@@ -93,9 +97,10 @@ public class PostsFragment extends Fragment {
                 Downvotes=jo.getInt("Downvotes");
                 Topic=jo.getString("TopicStr");
                 UserName=jo.getString("UserName");
+                Bookmark=jo.getInt("BookmarkStatus");
 
                 //questionfetch contacts=new questionfetch(Topic,User_Id,Q_Id,Question);
-                Post_content contacts=new Post_content(Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName,Upvotes,Downvotes);
+                Post_content contacts=new Post_content(Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName,Upvotes,Downvotes,Bookmark);
                 mPostContent.add(contacts);
                 adapter = new post_adapter(getContext(), mPostContent);       //ONE BY ONE PUSHING QUESTIONS TO CARDVIEW
                 recyclerView.setAdapter(adapter);
@@ -124,6 +129,17 @@ public class PostsFragment extends Fragment {
             try {
                 URL url=new URL(json_url);
                 HttpURLConnection httpURLConnection=(HttpURLConnection) url.openConnection();
+                //my
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                OutputStream os=httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
+                String data= URLEncoder.encode("User_Id","UTF-8")+"="+URLEncoder.encode(USER_Class.getLoggedUserId(),"UTF-8");
+                bufferedWriter.write(data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                os.close();
+                //
                 InputStream inputStream=httpURLConnection.getInputStream();
                 BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder stringBuilder=new StringBuilder();
@@ -136,7 +152,7 @@ public class PostsFragment extends Fragment {
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
-
+                JSON_String=stringBuilder.toString().trim();
                 return stringBuilder.toString().trim();
 
 
