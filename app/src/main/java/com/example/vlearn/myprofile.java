@@ -7,11 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.vlearn.PersonalInfo.BookmarkActivity;
 import com.example.vlearn.PersonalInfo.UpdateInfo;
 
 public class myprofile extends AppCompatActivity {
 
-    Button btnUpdInfo,btnUpdinterest;
+    Button btnUpdInfo,btnUpdinterest,btnBookmark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,7 @@ public class myprofile extends AppCompatActivity {
         setContentView(R.layout.activity_myprofile);
         btnUpdInfo=findViewById(R.id.bPersonal);
         btnUpdinterest=findViewById(R.id.bUpdinterest);
+        btnBookmark=findViewById(R.id.bBookmark);
         btnUpdInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,6 +35,14 @@ public class myprofile extends AppCompatActivity {
                 Intent i=new Intent(myprofile.this,interests.class);
                 i.putExtra("operation","up_interest");
                 startActivity(i);
+
+            }
+        });
+        btnBookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Intent i=new Intent(myprofile.this, BookmarkActivity.class);
+                    startActivity(i);
 
             }
         });
