@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import dmax.dialog.SpotsDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -71,6 +72,7 @@ public class NewsFragment extends Fragment {
     private EditText mFeedName;
     private ListView listView;
     ArrayList<Post> posts;
+    SpotsDialog dialog;
 
     String retrieve;
     String json_string;
@@ -85,12 +87,14 @@ public class NewsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
+        dialog=new SpotsDialog(getContext());
+        dialog.show();
 
         View v= inflater.inflate(R.layout.fragment_news,container,false);       //fragment ka view for other purpose
         btnLoadFeed = (Button)v.findViewById(R.id.btnRefreshFeed);
         mFeedName = (EditText)v.findViewById(R.id.etFeedName);
         posts = new ArrayList<Post>();
+
 
         listView = (ListView)v.findViewById(R.id.listView);
         btnLoadFeed.setOnClickListener(new View.OnClickListener() {
@@ -106,9 +110,11 @@ public class NewsFragment extends Fragment {
         });
 
         ret();
+        //dialog.dismiss();
 
 
         return v;
+
     }
 
     private void LoadNewsFeed() {
@@ -495,6 +501,7 @@ public class NewsFragment extends Fragment {
         protected void onPostExecute(String result) {
 
             JSON_String=result;
+           // dialog.dismiss();
 
             getUserTopicString();
         }
@@ -524,6 +531,7 @@ public class NewsFragment extends Fragment {
 
 
             }
+            dialog.dismiss();
 
         } catch (JSONException e) {
             e.printStackTrace();

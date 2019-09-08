@@ -1,5 +1,6 @@
 package com.example.vlearn;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -40,7 +41,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import dmax.dialog.SpotsDialog;
+
+
 public class login extends AppCompatActivity {
+   SpotsDialog dialog;
     EditText userame,pass;
     Button Login,gotoRegister;
     String l_name="",l_pass="";
@@ -72,11 +77,17 @@ public class login extends AppCompatActivity {
 
         l_name=userame.getText().toString();
         l_pass=pass.getText().toString();
+        dialog=new SpotsDialog(this);
+
+
 
         //Login process and fetching data of user is performed here
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dialog.show();
+                dialog.setMessage("Logging in");
+
 
                 loginmet();
 
@@ -186,6 +197,7 @@ public class login extends AppCompatActivity {
            getDatafromJSON();
             //Toast.makeText(login.this,USER_ID+" "+USER_Class.getLoggedUserId(),Toast.LENGTH_SHORT).show();
             Intent i=new Intent(login.this,MainActivity.class);
+            dialog.dismiss();
            startActivity(i);
             //super.onPostExecute(aVoid);
         }

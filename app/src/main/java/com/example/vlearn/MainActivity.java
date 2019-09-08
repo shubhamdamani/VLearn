@@ -3,13 +3,18 @@ package com.example.vlearn;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import static com.example.vlearn.login.SHARED_PREF_NAME;
 
 public class MainActivity extends AppCompatActivity {
                                                                     //teen fragment banae h, or kch nh h
@@ -18,11 +23,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*Fragment f=new NewsFragment();
+        Fragment f2=new PostsFragment();
+        Fragment f1=new QuesFragment();
+        FragmentManager fe=getSupportFragmentManager();
+        Fragment active=f;
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,f,"1").commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,f1,"2").hide(f1).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,f2,"3").hide(f2).commit();
+*/
 
         BottomNavigationView bottomNavigationView=findViewById(R.id.button_navigation);
+       // bottomNavigationView.getMenu().getItem(0).setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
-
+       /* Fragment sel;
+        sel=new NewsFragment();
+*/
 
 
 
@@ -42,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
 
         switch(item.getItemId()){
             case R.id.logoutMenu:{
+
+                SharedPreferences sharedPreferences = MainActivity.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();;
+                editor.clear();
+                editor.commit();
 
                 Intent i=new Intent(MainActivity.this,login.class);
                 startActivity(i);
