@@ -11,7 +11,9 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/capsule"
+        android:paddingStart="10dp"
         android:id="@+id/L_username"
         android:text="Email"
         />
@@ -20,6 +22,8 @@
         android:layout_height="50dp"
         android:id="@+id/L_password"
         android:layout_marginTop="20dp"
+        android:paddingStart="10dp"
+        android:background="@drawable/capsule"
         android:text="Password"
         />
     <Button
@@ -27,14 +31,16 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:background="@android:color/holo_blue_dark"
+        android:paddingStart="10dp"
+        android:background="@drawable/btncapsule"
         android:text="login" />
     <Button
         android:id="@+id/goto_register"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:background="@android:color/holo_blue_dark"
+        android:paddingStart="10dp"
+        android:background="@drawable/btncapsule"
         android:text="new user register" />
 
 </LinearLayout>

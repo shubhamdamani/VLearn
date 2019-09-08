@@ -48,9 +48,9 @@ public class register extends AppCompatActivity {
         re_pass=findViewById(R.id.Re_Password);
         register=findViewById(R.id.register);
         temp=findViewById(R.id.gotemp);
-        ques=findViewById(R.id.question);
 
-        ques.setOnClickListener(new View.OnClickListener() {
+
+       /* ques.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -58,7 +58,7 @@ public class register extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
+*/
         temp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .add(android.R.id.content, new NewsFragment()).commit();}*/
 
-      /*  Fragment f=new NewsFragment();
+        Fragment f=new NewsFragment();
         Fragment f2=new PostsFragment();
         Fragment f1=new QuesFragment();
         FragmentManager fe=getSupportFragmentManager();
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,f1,"2").hide(f1).commit();
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,f2,"3").hide(f2).commit();
 
-*/
+
         BottomNavigationView bottomNavigationView=findViewById(R.id.button_navigation);
        // bottomNavigationView.getMenu().getItem(0).setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);

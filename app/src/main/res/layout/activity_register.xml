@@ -7,20 +7,24 @@
     tools:context=".register"
     android:orientation="vertical"
     android:layout_marginHorizontal="50dp"
-    android:layout_marginTop="100dp">
+    android:layout_marginTop="50dp">
 
     <EditText
+        android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="50dp"
-        android:id="@+id/username"
-        android:text="Username"
-        />
+        android:layout_marginTop="30dp"
+        android:background="@drawable/capsule"
+        android:fontFamily="sans-serif-smallcaps"
+        android:paddingStart="10dp"
+        android:text="Username" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/Email"
         android:layout_marginTop="20dp"
+        android:paddingStart="10dp"
+        android:background="@drawable/capsule"
         android:text="Email"
         />
     <EditText
@@ -28,6 +32,8 @@
         android:layout_height="50dp"
         android:id="@+id/Password"
         android:layout_marginTop="20dp"
+        android:paddingStart="10dp"
+        android:background="@drawable/capsule"
         android:text="Password"
         />
     <EditText
@@ -35,30 +41,35 @@
         android:layout_height="50dp"
         android:id="@+id/Re_Password"
         android:layout_marginTop="20dp"
+        android:paddingStart="10dp"
+        android:background="@drawable/capsule"
         android:text="Re-enter Password"
         />
 
-    <Button
-        android:id="@+id/register"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:background="@android:color/holo_blue_dark"
-        android:text="Register" />
 
     <Button
         android:id="@+id/gotemp"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/holo_blue_dark"
-        android:text="selectInterest" />
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:paddingStart="10dp"
+        android:background="@drawable/btncapsule"
+        android:text="select  Interests" />
+
     <Button
-        android:id="@+id/question"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/holo_blue_dark"
-        android:text="Question" />
+        android:id="@+id/register"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:paddingStart="10dp"
+        android:background="@drawable/btncapsule"
+
+        android:text="Register" />
+
+
 
 </LinearLayout>
