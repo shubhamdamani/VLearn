@@ -21,42 +21,52 @@
         android:id="@+id/username"
         android:text="username"
         android:gravity="end"
-        android:layout_below="@id/myQuestion"/>
+        android:paddingHorizontal="20dp"
+        android:layout_below="@id/myQuestion"
+        android:textColor="#17202A"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/username"
         android:scrollbars="vertical"
-        android:layout_above="@+id/editanswer"
+        android:layout_above="@+id/commentbar"
         android:id="@+id/ques_detail_recylerview">
     </androidx.recyclerview.widget.RecyclerView>
 
 
-    <EditText
-        android:id="@+id/editanswer"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/postanswer"
-        android:gravity="top|left"
-        android:inputType="textMultiLine"
-        android:lines="20"
-        android:minLines="1"
-        android:scrollHorizontally="false"
-        android:scrollbars="vertical"
-        android:text="add answer"
-        android:background="#bee7f7"
-        android:padding="20dp"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/postanswer"
         android:layout_alignParentBottom="true"
-        android:text="post answer"
-        android:textSize="10dp"
-        android:background="@color/colorPrimaryDark"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/commentbar"
+        android:orientation="horizontal"
+        android:weightSum="10">
+        <EditText
+            android:id="@+id/editanswer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="top|left"
+            android:inputType="textMultiLine"
+            android:lines="20"
+            android:minLines="1"
+            android:scrollHorizontally="false"
+            android:scrollbars="vertical"
+            android:hint="Write Your Answer Here"
+            android:background="#bee7f7"
+            android:padding="20dp"
+            android:layout_weight="9"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/postanswer"
+            android:text="post answer"
+            android:textSize="10dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
 
 

@@ -69,12 +69,25 @@ public class PostDetail extends AppCompatActivity  {
         dialog=new SpotsDialog(this);
         dialog.show();
 
-   /*     B_bookmark.setOnClickListener(new View.OnClickListener() {
+        B_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bookmark_fun();
+
+                String method="upvote";
+                com.example.vlearn.BackgroundTask backgroundTask=new com.example.vlearn.BackgroundTask(getBaseContext());
+                backgroundTask.execute(method,USER_Class.getLoggedUserId(),Post_Id,"");
+
             }
-        });*/
+        });
+        B_down.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String method="downvote";
+                com.example.vlearn.BackgroundTask backgroundTask=new com.example.vlearn.BackgroundTask(getBaseContext());
+                backgroundTask.execute(method,USER_Class.getLoggedUserId(),Post_Id,"");
+
+            }
+        });
 
 
         B_mark.setOnFavoriteChangeListener(new MaterialFavoriteButton.OnFavoriteChangeListener() {

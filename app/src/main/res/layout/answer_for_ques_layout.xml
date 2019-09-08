@@ -7,7 +7,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp">
+        android:layout_margin="1dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -15,17 +15,20 @@
             android:padding="8dp">
 
 
-
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/prof_icon"
+                android:background="@drawable/profile_icon"/>
             <TextView
                 android:id="@+id/ans_user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-
-
-                android:gravity="center"
+                android:layout_toRightOf="@+id/prof_icon"
+                android:paddingLeft="5dp"
                 android:padding="10dp"
-                android:text="UserName" />
+                android:text="UserName"
+                android:textColor="#17202A"/>
 
             <TextView
                 android:id="@+id/answer"
@@ -33,8 +36,8 @@
                 android:padding="20dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ans_user_name"
-
                 android:text="answer"
+                android:background="@drawable/comment_card"
                 />
 
 

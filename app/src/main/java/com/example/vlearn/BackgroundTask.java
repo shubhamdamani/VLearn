@@ -149,6 +149,66 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {     //this i
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }else if(method.equals("upvote"))
+        {
+            String ans_url="https://vlearndroidrun.000webhostapp.com/upvotePost.php";
+            String user_id=params[1];
+            String post_id=params[2];
+            //String post_comment=params[3];
+
+            try {
+
+                URL url=new URL(ans_url);
+                HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                OutputStream os=httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
+                String data= URLEncoder.encode("User_Id","UTF-8")+"="+URLEncoder.encode(user_id,"UTF-8")+"&"+
+                        URLEncoder.encode("Post_Id","UTF-8")+"="+URLEncoder.encode(post_id,"UTF-8");
+                bufferedWriter.write(data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                os.close();
+                InputStream IS=httpURLConnection.getInputStream();
+                IS.close();
+                return "upvote done";
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else if(method.equals("downvote"))
+        {
+            String ans_url="https://vlearndroidrun.000webhostapp.com/downvotePost.php";
+            String user_id=params[1];
+            String post_id=params[2];
+            //String post_comment=params[3];
+
+            try {
+
+                URL url=new URL(ans_url);
+                HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                OutputStream os=httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
+                String data= URLEncoder.encode("User_Id","UTF-8")+"="+URLEncoder.encode(user_id,"UTF-8")+"&"+
+                        URLEncoder.encode("Post_Id","UTF-8")+"="+URLEncoder.encode(post_id,"UTF-8");
+                bufferedWriter.write(data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                os.close();
+                InputStream IS=httpURLConnection.getInputStream();
+                IS.close();
+                return "downvote done";
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return "hi";
     }
