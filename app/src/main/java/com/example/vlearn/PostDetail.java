@@ -39,7 +39,7 @@ import retrofit2.http.POST;
 public class PostDetail extends AppCompatActivity  {
 
     TextView tvUsername,tvArtical,tvTitle;
-    Button B_up,B_down,B_post;
+    Button B_up,B_down,B_post,B_bookmark;
     String username,artical,title,Post_Id;
     EditText txt_comment;
     String PostComment;
@@ -58,6 +58,14 @@ public class PostDetail extends AppCompatActivity  {
         tvArtical=findViewById(R.id.tvPDPost);
         B_up=findViewById(R.id.btnPDUp);
         B_down=findViewById(R.id.btnPDDown);
+        B_bookmark=findViewById(R.id.bBookmark);
+
+        B_bookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bookmark_fun();
+            }
+        });
 
         B_post=findViewById(R.id.postcomment);
         txt_comment=findViewById(R.id.editcomment);
@@ -71,6 +79,7 @@ public class PostDetail extends AppCompatActivity  {
         artical=i.getStringExtra("Post");
         title=i.getStringExtra("Post_Title");
         Post_Id=i.getStringExtra("Post_Id");
+        Toast.makeText(PostDetail.this,Post_Id,Toast.LENGTH_SHORT).show();
         /*getCommentData=new ArrayList<>();
         getComment_data contacts=new getComment_data("user_name","p_comment");
         getCommentData.add(contacts);
@@ -91,6 +100,13 @@ public class PostDetail extends AppCompatActivity  {
             }
         });
 
+    }
+    public void Bookmark_fun()
+    {
+
+        String method="Bookmark";
+        com.example.vlearn.BackgroundTask backgroundTask=new com.example.vlearn.BackgroundTask(getBaseContext());
+        backgroundTask.execute(method,USER_Class.getLoggedUserId(),Post_Id," ");
     }
     public void postfun()
     {
