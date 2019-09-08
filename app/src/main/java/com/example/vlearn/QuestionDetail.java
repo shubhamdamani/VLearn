@@ -3,6 +3,7 @@ package com.example.vlearn;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import dmax.dialog.SpotsDialog;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -34,6 +35,7 @@ import java.util.List;
 public class QuestionDetail extends AppCompatActivity {
 
     String Question, Q_Id, User_Id, Topic;
+    SpotsDialog dialog;
     String json_string,JSON_String;                 //this activity is showing answer of particular question and giving option to add answer
     JSONArray jsonArray;
     JSONObject jsonObject;
@@ -50,6 +52,8 @@ public class QuestionDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_detail);
+        dialog=new SpotsDialog(this);
+        dialog.show();
         //recyclerView
         recyclerView = (RecyclerView) findViewById(R.id.ques_detail_recylerview);
         recyclerView.setHasFixedSize(true);
@@ -136,6 +140,7 @@ public class QuestionDetail extends AppCompatActivity {
 
 
             }
+            dialog.dismiss();
 
         } catch (JSONException e) {
             e.printStackTrace();

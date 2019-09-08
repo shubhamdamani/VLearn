@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import dmax.dialog.SpotsDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,6 +36,7 @@ public class QuesFragment extends Fragment {
     String JSON_String;
     JSONArray jsonArray;
     JSONObject jsonObject;
+    SpotsDialog dialog;
     Question_adapter adapter;
     private RecyclerView recyclerView;
     List<questionfetch> mquestionfetch;
@@ -50,7 +52,9 @@ public class QuesFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        new BackgroundTask().execute();         //jaise hi is activity pe aaye, question fetch ho jaaye
+        new BackgroundTask().execute();
+        dialog=new SpotsDialog(getContext());
+        dialog.show();//jaise hi is activity pe aaye, question fetch ho jaaye
 
 
 
@@ -117,6 +121,7 @@ public class QuesFragment extends Fragment {
 
 
             }
+            dialog.dismiss();
 
         } catch (JSONException e) {
             e.printStackTrace();
