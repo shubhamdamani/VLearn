@@ -45,6 +45,7 @@ public class QuestionDetail extends AppCompatActivity {
     private RecyclerView recyclerView;
     EditText editanswer;
     Button postanswer;
+  //  SpotsDialog dialog;
     String answer;
     public static final String POST_ANSWER_URL="https://vlearndroidrun.000webhostapp.com/addAnswer.php";
 

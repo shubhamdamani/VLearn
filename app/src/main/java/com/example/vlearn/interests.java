@@ -84,12 +84,12 @@ public class interests extends AppCompatActivity { //user k topic select krne k 
         interestList.add(interestItem);
         interestItem = new Topics("Technology",false);
         interestList.add(interestItem);
-        interestItem = new Topics("Sports",false);
-        interestList.add(interestItem);
-        interestItem = new Topics("Movies",false);
-        interestList.add(interestItem);
-        interestItem = new Topics("Music",false);
-        interestList.add(interestItem);
+        //interestItem = new Topics("Sports",false);
+        //interestList.add(interestItem);
+     //   interestItem = new Topics("Movies",false);
+       // interestList.add(interestItem);
+        //interestItem = new Topics("Music",false);
+        //interestList.add(interestItem);
 
 
         //create an ArrayAdaptar from the String Array

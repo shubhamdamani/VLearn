@@ -16,7 +16,7 @@
         android:id="@+id/findSelected"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Find countries that are Selected" />
+        android:text="Find topics that are Selected" />
     <ListView android:id="@+id/listView1" android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
 

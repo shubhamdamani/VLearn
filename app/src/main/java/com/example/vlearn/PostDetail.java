@@ -34,6 +34,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import dmax.dialog.SpotsDialog;
 import retrofit2.http.POST;
 
 public class PostDetail extends AppCompatActivity  {
@@ -42,6 +43,7 @@ public class PostDetail extends AppCompatActivity  {
     Button B_up,B_down,B_post,B_bookmark;
     String username,artical,title,Post_Id;
     EditText txt_comment;
+    SpotsDialog dialog;
     String PostComment;
     public RecyclerView recyclerView;
     String json_string,JSON_String;                 //this activity is showing answer of particular question and giving option to add answer
@@ -59,6 +61,8 @@ public class PostDetail extends AppCompatActivity  {
         B_up=findViewById(R.id.btnPDUp);
         B_down=findViewById(R.id.btnPDDown);
         B_bookmark=findViewById(R.id.bBookmark);
+        dialog=new SpotsDialog(this);
+        dialog.show();
 
         B_bookmark.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,6 +153,7 @@ public class PostDetail extends AppCompatActivity  {
 
 
             }
+            dialog.dismiss();
 
         } catch (JSONException e) {
             e.printStackTrace();
