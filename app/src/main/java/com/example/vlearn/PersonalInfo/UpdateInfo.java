@@ -52,6 +52,9 @@ public class UpdateInfo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+               // Intent i=new Intent(UpdateInfo.this,FollowUser.class);
+              //  startActivity(i);
+
                  s=USER_Class.getLoggedUserId();
                 s1=etName.getText().toString();
                 s2=etPass.getText().toString();
@@ -62,7 +65,6 @@ public class UpdateInfo extends AppCompatActivity {
 
                     new UpdateInfo.BackgroundTask().execute();
                 }
-
             }
         });
 

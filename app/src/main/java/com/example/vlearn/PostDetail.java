@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vlearn.PersonalInfo.FollowUser;
 import com.example.vlearn.adapter.post_comment_adapter;
 import com.example.vlearn.object.getComment_data;
 import com.github.ivbaranov.mfb.MaterialFavoriteButton;
@@ -64,6 +65,23 @@ public class PostDetail extends AppCompatActivity  {
         B_up=findViewById(R.id.btnPDUp);
         B_down=findViewById(R.id.btnPDDown);
         B_bookmark=findViewById(R.id.bBookmark);
+
+        tvUsername.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent j=new Intent(PostDetail.this, FollowUser.class);
+
+                Intent i=getIntent();
+                username=i.getStringExtra("Post_User");
+                //artical=i.getStringExtra("Post");
+              //  title=i.getStringExtra("Post_Title");
+                Post_Id=i.getStringExtra("User_Id");
+
+                j.putExtra("User_Id",Post_Id);
+                j.putExtra("UserName",username);
+                startActivity(j);
+            }
+        });
 
         B_mark=(MaterialFavoriteButton)findViewById(R.id.bkmark);
         dialog=new SpotsDialog(this);

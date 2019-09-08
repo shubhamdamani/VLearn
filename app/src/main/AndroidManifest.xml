@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PersonalInfo.BookmarkActivity"></activity>
+        <activity android:name=".PersonalInfo.FollowUser"></activity>
+        <activity android:name=".PersonalInfo.BookmarkActivity" />
         <activity android:name=".AddPost" />
         <activity android:name=".PersonalInfo.UpdateInfo" />
         <activity android:name=".Chat" />
