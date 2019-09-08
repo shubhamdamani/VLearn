@@ -22,7 +22,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import static okhttp3.internal.http.HttpDate.format;
 
 public class AddPost extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Spinner spinner;
@@ -68,9 +71,13 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
         //P_topic
         user_id=USER_Class.getLoggedUserId();
         Date date = new Date();
-         P_date = DateFormat.getDateTimeInstance().format(date);
+       // android.text.format.DateFormat date = new android.text.format.DateFormat();
+       // date.format("yyyy-MM-dd hh:mm:ss a", new java.util.Date());
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        P_date=sdf.format(date);
+        // P_date = DateFormat.getDateTimeInstance().format(date);
         P_title=post_title.getText().toString().trim();
-        Toast.makeText(AddPost.this,P_content+P_title+P_topic,Toast.LENGTH_LONG).show();
+        Toast.makeText(AddPost.this,P_content+P_title+P_topic+P_date,Toast.LENGTH_LONG).show();
         if(!P_content.equals("")&&!P_title.equals("")&&!P_topic.equals(""))
         {
             //post question

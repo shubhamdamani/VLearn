@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Boolean Registered;
+        /*Boolean Registered;
         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         Registered = sharedPref.getBoolean("Registered", false);
 
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         {
             Intent i=new Intent(MainActivity.this,login.class);
             //startActivity(i);
-        }
+        }*/
 
 
       /*  if (savedInstanceState == null){

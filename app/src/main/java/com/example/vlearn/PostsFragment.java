@@ -44,13 +44,17 @@ public class PostsFragment extends Fragment {
     String posts;
     Integer up=0,down=0;
     SpotsDialog dialog;
-
-    Button B_postArtical;
+    String sortType;
+    Button B_postArtical,btn_popular,btn_date,btn_follower;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.fragment_posts,container,false);
+        btn_date=v.findViewById(R.id.btn_date);
+        btn_popular=v.findViewById(R.id.btn_popular);
+        btn_follower=v.findViewById(R.id.btn_followers);
+
         //new PostsFragment.BackgroundTask().execute();
         B_postArtical=v.findViewById(R.id.post_artical);
         recyclerView = v.findViewById(R.id.post_recycler);
@@ -64,8 +68,34 @@ public class PostsFragment extends Fragment {
                 startActivity(new Intent(getContext(),AddPost.class));
             }
         });
+        sortType="-1";
         Toast.makeText(getContext(),USER_Class.getLoggedUserId(),Toast.LENGTH_SHORT).show();
         new PostsFragment.BackgroundTask().execute();
+
+
+        btn_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sortType="0";
+                new PostsFragment.BackgroundTask().execute();
+            }
+        });
+        btn_popular.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sortType="1";
+                new PostsFragment.BackgroundTask().execute();
+
+            }
+        });
+        btn_follower.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sortType="2";
+                new PostsFragment.BackgroundTask().execute();
+            }
+        });
+
 
 
         return v;
@@ -137,7 +167,8 @@ public class PostsFragment extends Fragment {
                 httpURLConnection.setDoOutput(true);
                 OutputStream os=httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
-                String data= URLEncoder.encode("User_Id","UTF-8")+"="+URLEncoder.encode(USER_Class.getLoggedUserId(),"UTF-8");
+                String data= URLEncoder.encode("User_Id","UTF-8")+"="+URLEncoder.encode(USER_Class.getLoggedUserId(),"UTF-8")+"&"+
+                        URLEncoder.encode("SortType", "UTF-8") + "=" + URLEncoder.encode(sortType, "UTF-8");
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
