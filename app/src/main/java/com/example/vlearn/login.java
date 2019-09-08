@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -57,6 +58,7 @@ public class login extends AppCompatActivity {
     public static final String SHARED_PREF_NAME="tech";
     public static final String EMAIL_SHARED_PREF="name";
     public static final String LOGGEDIN_SHARED_PREF="loggedin";
+    public static final Boolean IS_LOGGED_IN=false;
    private boolean loggedIn=false;
     String json_string;
     String JSON_String;
@@ -77,7 +79,28 @@ public class login extends AppCompatActivity {
 
         l_name=userame.getText().toString();
         l_pass=pass.getText().toString();
-        dialog=new SpotsDialog(this);
+
+        SharedPreferences sharedPreferences = login.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.commit();
+
+
+      //  dialog=new SpotsDialog(this);
+/*
+        SharedPreferences sharedPreferences = login.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.commit();*/
+      /*  SharedPreferences sharedPreferences = login.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        if(sharedPreferences.contains(SHARED_PREF_NAME))
+        {
+            Toast.makeText(login.this,"here",Toast.LENGTH_SHORT).show();
+            Intent i=new Intent(login.this,MainActivity.class);
+            startActivity(i);
+        }*/
+
+
 
 
 
@@ -85,8 +108,8 @@ public class login extends AppCompatActivity {
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.show();
-                dialog.setMessage("Logging in");
+  //              dialog.show();
+//                dialog.setMessage("Logging in");
 
 
                 loginmet();
@@ -197,7 +220,7 @@ public class login extends AppCompatActivity {
            getDatafromJSON();
             //Toast.makeText(login.this,USER_ID+" "+USER_Class.getLoggedUserId(),Toast.LENGTH_SHORT).show();
             Intent i=new Intent(login.this,MainActivity.class);
-            dialog.dismiss();
+//            dialog.dismiss();
            startActivity(i);
             //super.onPostExecute(aVoid);
         }
@@ -221,11 +244,15 @@ public class login extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         if(response.trim().equalsIgnoreCase(LOGIN_SUCCESS)){
-                            SharedPreferences sharedPreferences = login.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                           /* SharedPreferences sharedPreferences = login.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putBoolean(LOGGEDIN_SHARED_PREF, true);
+                            editor.putBoolean("LOGGEDIN", true);
                             editor.putString(EMAIL_SHARED_PREF, emyl);
-                            editor.commit();
+                            editor.commit();*/
+                            final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putBoolean("Registered", true);
+                            editor.apply();
                             new login.BackgroundTask().execute();
 
                         }else{
