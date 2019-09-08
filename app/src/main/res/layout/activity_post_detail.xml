@@ -24,14 +24,6 @@
         android:text="Title"
         android:padding="10dp"
         />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:id="@+id/bBookmark"
-        android:layout_below="@+id/tvPDUname"
-        android:text="bookmark"
-        android:layout_alignParentEnd="true"
     />
     <TextView
         android:layout_width="match_parent"
@@ -93,6 +85,20 @@
         android:background="@color/colorPrimaryDark"/>
 
 
+    <com.github.ivbaranov.mfb.MaterialFavoriteButton
+        android:id="@+id/bkmark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+
+        app:mfb_animate_favorite="true"
+        app:mfb_animate_unfavorite="false"
+
+        app:mfb_bounce_duration="300"
+        app:mfb_color="black"
+        app:mfb_rotation_angle="360"
+        app:mfb_rotation_duration="400"
+        app:mfb_type="star" />
 
 
 

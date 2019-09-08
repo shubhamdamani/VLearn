@@ -1,5 +1,6 @@
 package com.example.vlearn;
 
+import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.vlearn.adapter.post_comment_adapter;
 import com.example.vlearn.object.getComment_data;
+import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,6 +43,7 @@ public class PostDetail extends AppCompatActivity  {
 
     TextView tvUsername,tvArtical,tvTitle;
     Button B_up,B_down,B_post,B_bookmark;
+    MaterialFavoriteButton B_mark;
     String username,artical,title,Post_Id;
     EditText txt_comment;
     SpotsDialog dialog;
@@ -61,13 +64,34 @@ public class PostDetail extends AppCompatActivity  {
         B_up=findViewById(R.id.btnPDUp);
         B_down=findViewById(R.id.btnPDDown);
         B_bookmark=findViewById(R.id.bBookmark);
+
+        B_mark=(MaterialFavoriteButton)findViewById(R.id.bkmark);
         dialog=new SpotsDialog(this);
         dialog.show();
 
-        B_bookmark.setOnClickListener(new View.OnClickListener() {
+   /*     B_bookmark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bookmark_fun();
+            }
+        });*/
+
+
+        B_mark.setOnFavoriteChangeListener(new MaterialFavoriteButton.OnFavoriteChangeListener() {
+            @Override
+            public void onFavoriteChanged(MaterialFavoriteButton buttonView, boolean favorite) {
+
+                if(favorite)
+                    Bookmark_fun();
+
+            }
+        });
+        B_mark.setOnFavoriteAnimationEndListener(new MaterialFavoriteButton.OnFavoriteAnimationEndListener() {
+            @Override
+            public void onAnimationEnd(MaterialFavoriteButton buttonView, boolean favorite) {
+
+
+
             }
         });
 
@@ -99,6 +123,11 @@ public class PostDetail extends AppCompatActivity  {
 
             }
         });
+
+
+
+
+
 
     }
     public void Bookmark_fun()
