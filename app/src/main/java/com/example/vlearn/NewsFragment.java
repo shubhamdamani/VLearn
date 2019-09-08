@@ -91,13 +91,13 @@ public class NewsFragment extends Fragment {
         dialog.show();
 
         View v= inflater.inflate(R.layout.fragment_news,container,false);       //fragment ka view for other purpose
-        btnLoadFeed = (Button)v.findViewById(R.id.btnRefreshFeed);
-        mFeedName = (EditText)v.findViewById(R.id.etFeedName);
+     //   btnLoadFeed = (Button)v.findViewById(R.id.btnRefreshFeed);
+       // mFeedName = (EditText)v.findViewById(R.id.etFeedName);
         posts = new ArrayList<Post>();
 
 
         listView = (ListView)v.findViewById(R.id.listView);
-        btnLoadFeed.setOnClickListener(new View.OnClickListener() {
+      /*  btnLoadFeed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String feedName = mFeedName.getText().toString();
@@ -107,7 +107,7 @@ public class NewsFragment extends Fragment {
                 }
 
             }
-        });
+        });*/
 
         ret();
         //dialog.dismiss();
@@ -121,8 +121,8 @@ public class NewsFragment extends Fragment {
 
         HashMap<Character,String> map = new HashMap<>();
         map.put('A',"Physics");
-        map.put('B',"Maths");
-        map.put('C',"Computer");
+       map.put('B',"Maths");
+       map.put('C',"Computer");
         map.put('D',"Science");
         map.put('E',"Politics");
         map.put('F',"Business");

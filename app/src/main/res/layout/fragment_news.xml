@@ -4,37 +4,12 @@
     android:layout_height="match_parent">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/linLayout"
-        android:orientation="horizontal"
-        android:weightSum="100">
 
-        <EditText
-            android:id="@+id/etFeedName"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_gravity="bottom"
-            android:layout_weight="75"
-            android:hint="Testing purpose only"
-            android:textAlignment="center" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="25"
-            android:text="Load Feed"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:id="@+id/btnRefreshFeed"/>
-
-
-
-    </LinearLayout>
 
 
     <ListView
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
         android:layout_below="@+id/linLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

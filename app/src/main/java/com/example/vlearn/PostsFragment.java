@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import dmax.dialog.SpotsDialog;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -37,6 +38,7 @@ public class PostsFragment extends Fragment {
     JSONObject jsonObject;
     String posts;
     Integer up=0,down=0;
+    SpotsDialog dialog;
 
     Button B_postArtical;
 
@@ -47,6 +49,8 @@ public class PostsFragment extends Fragment {
         new PostsFragment.BackgroundTask().execute();
         B_postArtical=v.findViewById(R.id.post_artical);
         recyclerView = v.findViewById(R.id.post_recycler);
+        dialog=new SpotsDialog(getContext());
+        dialog.show();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         B_postArtical.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +103,7 @@ public class PostsFragment extends Fragment {
 
 
             }
+            dialog.dismiss();
 
         } catch (JSONException e) {
             e.printStackTrace();

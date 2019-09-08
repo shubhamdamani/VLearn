@@ -1,6 +1,9 @@
 package com.example.vlearn;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import dmax.dialog.SpotsDialog;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -28,6 +31,7 @@ public class addquestion extends AppCompatActivity {
     EditText Q_txt;
     Button b_Post;
     String QTxt;
+    SpotsDialog dialog;
     USER_Class User_obj;        //unused object
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +40,14 @@ public class addquestion extends AppCompatActivity {
         tag=findViewById(R.id.tag);
         Q_txt=findViewById(R.id.Q_txt);
         b_Post=findViewById(R.id.Q_post);
+        dialog=new SpotsDialog(this);
       //  User_obj=new USER_Class();
         Toast.makeText(addquestion.this,"user"+USER_Class.getLoggedUserId(),Toast.LENGTH_SHORT).show();
 
         b_Post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dialog.show();
                 QTxt=Q_txt.getText().toString().trim();
                 PostQuestion();                 // post question to database
             }
@@ -111,6 +117,13 @@ public class addquestion extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             //JSON_String=result;
+            dialog.dismiss();
+            /*QuesFragment q=new QuesFragment();
+            FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.beginTransaction(R.id.fragment_container,q);
+            fragmentTransaction.commit();*/
+            //Intent i=new Intent(addquestion.this,QuesFragment.class);
+            //startActivity(i);
 
              Toast.makeText(addquestion.this,result,Toast.LENGTH_LONG).show();
             //getDatafromJSON();
