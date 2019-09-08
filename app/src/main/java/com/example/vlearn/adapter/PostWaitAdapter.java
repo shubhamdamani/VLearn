@@ -1,4 +1,4 @@
-package com.example.vlearn;
+package com.example.vlearn.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,11 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.RecyclerView;
+import com.example.vlearn.Admin.PostWaitDetail;
+import com.example.vlearn.PostDetail;
+import com.example.vlearn.Post_content;
+import com.example.vlearn.R;
+import com.example.vlearn.post_adapter;
 
 import java.util.List;
 
-public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewHolder> {
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+public class PostWaitAdapter extends RecyclerView.Adapter<PostWaitAdapter.ProductViewHolder> {
     //this context we will use to inflate the layout
     private Context mCtx;
 
@@ -19,23 +26,25 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewH
     private List<Post_content> productList;
 
     //getting the context and product list with constructor
-    public post_adapter(Context mCtx, List<Post_content> productList) {
+    public PostWaitAdapter(Context mCtx, List<Post_content> productList) {
         this.mCtx = mCtx;
         this.productList = productList;
     }
 
     @Override
-    public post_adapter.ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PostWaitAdapter.ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //inflating and returning our view holder
 
 
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_post_layout, parent, false);
-        return new post_adapter.ProductViewHolder(view);
+        return new PostWaitAdapter.ProductViewHolder(view);
     }
 
+
+
     @Override
-    public void onBindViewHolder(post_adapter.ProductViewHolder holder, int position) {
+    public void onBindViewHolder(PostWaitAdapter.ProductViewHolder holder, int position) {
         //getting the product of the specified position
         Post_content product = productList.get(position);
 
@@ -49,13 +58,12 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewH
         holder.topic.setText(product.getTopic());
         holder.user_id.setText(product.getUser_Id());
         holder.post_id.setText(product.getPost_Id());
-       // String s=
+        // String s=
         holder.bookmark.setText((product.getBookmark()).toString());
 
 
 
     }
-
 
 
     @Override
@@ -85,11 +93,11 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewH
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), PostDetail.class);
+                    Intent intent = new Intent(v.getContext(), PostWaitDetail.class);
                     intent.putExtra("User_Id",user_id.getText());
                     intent.putExtra("Post_User",post_user.getText());
                     intent.putExtra("Post",artical.getText());
-                    intent.putExtra("Topic",topic.getText());
+                    intent.putExtra("TopicStr",topic.getText());
                     intent.putExtra("Post_Date",post_date.getText());
                     intent.putExtra("Post_Id",post_id.getText());
                     intent.putExtra("Post_Title",post_title.getText());
@@ -103,7 +111,5 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewH
             });
 
         }
-
-
     }
 }

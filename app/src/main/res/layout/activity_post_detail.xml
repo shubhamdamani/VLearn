@@ -24,6 +24,14 @@
         android:text="Title"
         android:padding="10dp"
         />
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="share"
+        android:id="@+id/share"
+        android:layout_below="@+id/tvPDUname"
+        android:layout_alignParentRight="true"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,6 +57,8 @@
         android:layout_below="@+id/tvPDPost"
         android:layout_marginTop="20dp"
         android:layout_alignParentRight="true"/>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

@@ -1,21 +1,20 @@
 package com.example.vlearn.Admin;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import dmax.dialog.SpotsDialog;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.vlearn.Post_content;
 import com.example.vlearn.R;
 import com.example.vlearn.USER_Class;
-import com.example.vlearn.adapter.PostWaitAdapter;
-import com.example.vlearn.post_adapter;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -29,89 +28,82 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
 
-public class PostWait extends AppCompatActivity {
+public class PostWaitDetail extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    List<Post_content> mPostContent;
-    PostWaitAdapter adapter;
+    TextView tv1,tv2,tv3;
+    Button b1,b2;
     String JSON_String,json_string;
     JSONArray jsonArray;
     JSONObject jsonObject;
     String posts;
     Integer up=0,down=0;
     SpotsDialog dialog;
+    String FLAG;
+    String UserName,Post_Title,Post_Id,Post,TopicStr,Upvotes,Downvotes,Bookmark,User_Id,Post_Date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post_wait);
-        recyclerView = findViewById(R.id.Apost_recycler);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        new BackgroundTask().execute();
+        setContentView(R.layout.activity_post_wait_detail);
 
 
 
 
-    }
 
 
-    public void fun()                   //PARSING JSON OBJECT TO NORMAL STRING AND SHIFTING TO CARDVIEW
-    {
-        json_string=JSON_String;
+        tv1=findViewById(R.id.tvWait);
+        tv2=findViewById(R.id.tvWait2);
+        tv3=findViewById(R.id.tvWait3);
+        b1=findViewById(R.id.btnDel);
+        b2=findViewById(R.id.btnac);
+        Intent i=getIntent();
+        tv1.setText(i.getStringExtra("UserName"));
+        tv2.setText(i.getStringExtra("Post_Title"));
+        tv3.setText(i.getStringExtra("Post"));
+        User_Id=i.getStringExtra("User_Id");
+        UserName=i.getStringExtra("UserName");
+        Post=i.getStringExtra("Post");
+        Post_Title=i.getStringExtra("Post_Title");
+        TopicStr=i.getStringExtra("TopicStr");
+        Post_Id=i.getStringExtra("Post_Id");
+        Bookmark=i.getStringExtra("Bookmark");
+        Post_Date=i.getStringExtra("Post_Date");
+        Upvotes=i.getStringExtra("Upvotes");
+        Downvotes=i.getStringExtra("Downvotes");
 
-        String Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName;
-        Integer Upvotes,Downvotes;//Bookmark;
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //delete
+                FLAG="0";
+                new BackgroundTask().execute();
 
 
-
-        mPostContent =new ArrayList<>();
-
-        try {
-            jsonObject=new JSONObject(JSON_String);
-
-            int count=0;
-            jsonArray=jsonObject.getJSONArray("server_response");       //THIS IS NAME OF OUR JSON ARRAY
-
-            while(count<jsonArray.length())
-            {
-                JSONObject jo=jsonArray.getJSONObject(count);  // ARRAY KA SUB-TAG, MATLAB KEY OF REQIRED VALUE
-                User_Id=jo.getString("User_Id");
-                Post_content=jo.getString("Post");
-                Post_Title=jo.getString("Post_Title");
-                Post_Date=jo.getString("Post_Date");
-               // Post_Id=jo.getString("Post_Id");
-               // Upvotes=jo.getInt("Upvotes");
-                //Downvotes=jo.getInt("Downvotes");
-                Topic=jo.getString("TopicStr");
-                UserName=jo.getString("UserName");
-                //String  Bookmark=jo.getString("BookmarkStatus");
-
-                //questionfetch contacts=new questionfetch(Topic,User_Id,Q_Id,Question);
-                Post_content contacts=new Post_content(" ",Post_Title,Post_content,Post_Date,User_Id,Topic,UserName,1,1,1);
-                mPostContent.add(contacts);
-                adapter = new PostWaitAdapter(this, mPostContent);       //ONE BY ONE PUSHING QUESTIONS TO CARDVIEW
-                recyclerView.setAdapter(adapter);
-                count++;
 
 
             }
-            //dialog.dismiss();
+        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+                FLAG="1";
+
+                new BackgroundTask().execute();
+
+            }
+        });
+
 
 
     }
 
-
     class BackgroundTask extends AsyncTask<Void,Void,String>
     {
-        String json_url="https://vlearndroidrun.000webhostapp.com/getAdminPosts.php";
+        String json_url="https://vlearndroidrun.000webhostapp.com/addAdminPost.php"; //delrte
 
 
         @Override
@@ -125,13 +117,18 @@ public class PostWait extends AppCompatActivity {
                 httpURLConnection.setDoOutput(true);
                 OutputStream os=httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
-                String data= URLEncoder.encode("User_Id","UTF-8")+"="+URLEncoder.encode(USER_Class.getLoggedUserId(),"UTF-8");
+                String data= URLEncoder.encode("Post_Title","UTF-8")+"="+URLEncoder.encode(Post_Title,"UTF-8")+"&"+
+                        URLEncoder.encode("User_Id","UTF-8")+"="+URLEncoder.encode(User_Id,"UTF-8")+"&"+
+                        URLEncoder.encode("TopicStr","UTF-8")+"="+URLEncoder.encode(TopicStr,"UTF-8")+"&"+
+                        URLEncoder.encode("Post","UTF-8")+"="+URLEncoder.encode(Post,"UTF-8")+"&"+
+                        URLEncoder.encode("Post_Date","UTF-8")+"="+URLEncoder.encode(Post_Date,"UTF-8")+"&"+
+                        URLEncoder.encode("FLAG","UTF-8")+"="+URLEncoder.encode(FLAG,"UTF-8");
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
                 os.close();
                 //
-                InputStream inputStream=httpURLConnection.getInputStream();
+               /* InputStream inputStream=httpURLConnection.getInputStream();
                 BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder stringBuilder=new StringBuilder();
 
@@ -141,11 +138,11 @@ public class PostWait extends AppCompatActivity {
                 }
 
                 bufferedReader.close();
-                inputStream.close();
+                inputStream.close();*/
                 httpURLConnection.disconnect();
-                JSON_String=stringBuilder.toString().trim();
-                return stringBuilder.toString().trim();
-
+              //  JSON_String=stringBuilder.toString().trim();
+                //return stringBuilder.toString().trim();
+                return null;
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -170,7 +167,8 @@ public class PostWait extends AppCompatActivity {
             //tv.setText(result);
             JSON_String=result;
             //Toast.makeText(getContext(),"hi"+JSON_String,Toast.LENGTH_LONG).show();
-            fun();
+            //fun();
+            Toast.makeText(PostWaitDetail.this,"process done..",Toast.LENGTH_SHORT).show();
 
 
             //super.onPostExecute(aVoid);
@@ -181,6 +179,11 @@ public class PostWait extends AppCompatActivity {
             super.onProgressUpdate(values);
         }
     }
+
+
+
+
+
 
 
 }

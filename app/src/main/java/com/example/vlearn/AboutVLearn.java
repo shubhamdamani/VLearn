@@ -25,7 +25,7 @@ public class AboutVLearn extends AppCompatActivity {
             public void onClick(View v) {
 
                 String s=USER_Class.getLoggedUserEmail();
-                if(s=="damani.shubham4@gmail.com" || s=="utkarsh3210@gmail.com" || s=="vickyteenwal@gmail.com")
+                if(s.equals("damani.shubham4@gmail.com") || s.equals("utkarsh3210@gmail.com") || s.equals("Email"))
                 {
                     Intent i=new Intent(AboutVLearn.this, AdminBasic.class);
                     startActivity(i);

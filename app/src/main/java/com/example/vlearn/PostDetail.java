@@ -43,7 +43,7 @@ import retrofit2.http.POST;
 public class PostDetail extends AppCompatActivity  {
 
     TextView tvUsername,tvArtical,tvTitle;
-    Button B_up,B_down,B_post,B_bookmark;
+    Button B_up,B_down,B_post,B_bookmark,share;
     MaterialFavoriteButton B_mark;
     String username,artical,title,Post_Id;
     EditText txt_comment;
@@ -55,7 +55,7 @@ public class PostDetail extends AppCompatActivity  {
     JSONObject jsonObject;
     List<getComment_data> getCommentData;
     post_comment_adapter adapter;
-    String book_state;
+    String book_state,sendpost,sendTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,12 +65,16 @@ public class PostDetail extends AppCompatActivity  {
         tvArtical=findViewById(R.id.tvPDPost);
         B_up=findViewById(R.id.btnPDUp);
         B_down=findViewById(R.id.btnPDDown);
+        share=findViewById(R.id.share);
+
         B_bookmark=findViewById(R.id.bBookmark);
 
         Intent intent=getIntent();
         username=intent.getStringExtra("Post_User");
         Post_Id=intent.getStringExtra("User_Id");
         book_state=intent.getStringExtra("Bookmark");
+        sendpost=intent.getStringExtra("Post");
+        sendTitle=intent.getStringExtra("Post_Title");
         tvUsername.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +89,22 @@ public class PostDetail extends AppCompatActivity  {
                 j.putExtra("User_Id",Post_Id);
                 j.putExtra("UserName",username);
                 startActivity(j);
+            }
+        });
+
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "AUTHOR:"+username+"\n"+"TITLE:"+sendTitle+"POST:"+sendpost);
+                sendIntent.setType("text/plain");
+
+                Intent shareIntent = Intent.createChooser(sendIntent, null);
+                startActivity(shareIntent);
+
+
             }
         });
 

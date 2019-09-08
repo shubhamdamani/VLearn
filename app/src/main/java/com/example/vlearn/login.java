@@ -256,7 +256,7 @@ public class login extends AppCompatActivity {
                             editor.putString("USER_PASS",password);
                             editor.putString("USER_EML",emyl);
                             editor.putString("USER_ID",USER_ID);
-                            editor.apply();
+                           /* editor.apply();*/
                             new login.BackgroundTask().execute();
 
                         }else{
@@ -284,7 +284,7 @@ public class login extends AppCompatActivity {
     }
     //If user is already Logged in then User data will be collected and
     // stored in USER_Class and then Intent to MainActivity
-   /* @Override
+    @Override
     protected void onResume() {
         super.onResume();
         Boolean Registered;
@@ -295,5 +295,5 @@ public class login extends AppCompatActivity {
             //Intent intent = new Intent(login.this, MainActivity.class);
             //startActivity(intent);
         }
-    }*/
+    }
 }
