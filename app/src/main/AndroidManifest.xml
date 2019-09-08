@@ -10,7 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PersonalInfo.FollowUser"></activity>
+        <activity android:name=".Admin.PostAcc"></activity>
+        <activity android:name=".Admin.PostWait" />
+        <activity android:name=".Admin.AdminBasic" />
+        <activity android:name=".PersonalInfo.FollowUser" />
         <activity android:name=".PersonalInfo.BookmarkActivity" />
         <activity android:name=".AddPost" />
         <activity android:name=".PersonalInfo.UpdateInfo" />
@@ -22,17 +25,15 @@
         <activity android:name=".questionActivity" />
         <activity android:name=".queslistview" />
         <activity android:name=".interests" />
-        <activity android:name=".login">
-
-        </activity>
+        <activity android:name=".login" />
         <activity android:name=".register" />
         <activity android:name=".myprofile" />
         <activity android:name=".MainActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
