@@ -61,31 +61,38 @@ public class chatWithAdmin extends AppCompatActivity {
 
         fuser= FirebaseAuth.getInstance().getCurrentUser();
         reference= FirebaseDatabase.getInstance().getReference("Users");
+        Intent i=getIntent();
+        String check=i.getStringExtra("userid");
+        if(check.equals("0")) {
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    // User user=dataSnapshot.getValue(User.class);//problem here
+                    //username.setText(user.getUsername());
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        chatUser user = snapshot.getValue(chatUser.class);
+                        Log.d("user", user.getUsername());
+                        String u = user.getUsername();
+                        if (u.equals("adminadmin")) {
+                            readMessage(fuser.getUid(), user.getId());
+                            username.setText("adminadmin");
+                        }
 
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               // User user=dataSnapshot.getValue(User.class);//problem here
-                //username.setText(user.getUsername());
-                for(DataSnapshot snapshot:dataSnapshot.getChildren()) {
-                    chatUser user=snapshot.getValue(chatUser.class);
-                    Log.d("user",user.getUsername());
-                    String u=user.getUsername();
-                    if(u.equals("adminadmin"))
-                    {
-                        readMessage(fuser.getUid(),user.getId());
-                        username.setText("adminadmin");
+
                     }
+                }
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 }
-            }
+            });
+        }else{
+            user_id=check;
+            Toast.makeText(this,user_id,Toast.LENGTH_SHORT).show();
+            readMessage(fuser.getUid(), user_id);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+        }
 
 
         btn_send.setOnClickListener(new View.OnClickListener() {
