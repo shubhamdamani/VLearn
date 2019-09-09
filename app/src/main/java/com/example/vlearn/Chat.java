@@ -66,7 +66,10 @@ public class Chat extends AppCompatActivity {
                         //checkEmailverification();
                         if(flag==0)
                         {
-                            startActivity(new Intent(Chat.this, chatWithAdmin.class));
+                            Intent intent=new Intent(Chat.this, chatWithAdmin.class);
+                            intent.putExtra("userid","0");
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
                         }else{
                             startActivity(new Intent(Chat.this, AdminPanel.class));
                         }
