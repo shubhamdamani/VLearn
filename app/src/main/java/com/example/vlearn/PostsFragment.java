@@ -46,6 +46,7 @@ public class PostsFragment extends Fragment {
     SpotsDialog dialog;
     String sortType;
     Button B_postArtical,btn_popular,btn_date,btn_follower;
+    String sendTopic="";
 
     @Nullable
     @Override
@@ -129,6 +130,7 @@ public class PostsFragment extends Fragment {
                 Upvotes=jo.getInt("Upvotes");
                 Downvotes=jo.getInt("Downvotes");
                 Topic=jo.getString("TopicStr");
+                sendTopic=Topic;
                 UserName=jo.getString("UserName");
                String  Bookmark=jo.getString("BookmarkStatus");
 
@@ -214,6 +216,7 @@ public class PostsFragment extends Fragment {
             JSON_String=result;
             //Toast.makeText(getContext(),"hi"+JSON_String,Toast.LENGTH_LONG).show();
             fun();
+
 
 
             //super.onPostExecute(aVoid);
