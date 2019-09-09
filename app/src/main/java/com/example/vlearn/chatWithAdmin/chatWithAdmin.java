@@ -41,7 +41,8 @@ public class chatWithAdmin extends AppCompatActivity {
     MessageAdapter messageAdapter;
     List<chat> mchat;
     RecyclerView recyclerView;
-    Intent intent;
+    public String user_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,18 +58,27 @@ public class chatWithAdmin extends AppCompatActivity {
         //prof=findViewById(R.id.profile);
         btn_send=findViewById(R.id.btn_send);
 
-        final String userid= USER_Class.getLoggedUserId();///problem of user id
-        Toast.makeText(this,userid,Toast.LENGTH_SHORT).show();
 
         fuser= FirebaseAuth.getInstance().getCurrentUser();
-        reference= FirebaseDatabase.getInstance().getReference("Users").child(userid);
+        reference= FirebaseDatabase.getInstance().getReference("Users");
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                // User user=dataSnapshot.getValue(User.class);//problem here
                 //username.setText(user.getUsername());
-                readMessage(fuser.getUid(),userid);
+                for(DataSnapshot snapshot:dataSnapshot.getChildren()) {
+                    chatUser user=snapshot.getValue(chatUser.class);
+                    Log.d("user",user.getUsername());
+                    String u=user.getUsername();
+                    if(u.equals("adminadmin"))
+                    {
+                        readMessage(fuser.getUid(),user.getId());
+                        username.setText("adminadmin");
+                    }
+
+
+                }
             }
 
             @Override
@@ -77,25 +87,26 @@ public class chatWithAdmin extends AppCompatActivity {
             }
         });
 
+
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String text=text_send.getText().toString().trim();
-                sendMessage(fuser.getUid(),userid,text);
+                sendMessage(fuser.getUid(),user_id,text);
                 text_send.setText(" ");
             }
         });
     }
     private  void sendMessage(String sender,String reciever,String message){
         DatabaseReference reference=FirebaseDatabase.getInstance().getReference();
-        HashMap<String,Object> hashMap=new HashMap<>();
+        HashMap<String,Object>hashMap=new HashMap<>();
         hashMap.put("sender",sender);
         hashMap.put("reciever",reciever);
         hashMap.put("message",message);
         reference.child("Chats").push().setValue(hashMap);
     }
     private void readMessage(final String myid,final String userid){
-
+        user_id=userid;
         // Toast.makeText(this,userid+"    "+myid,Toast.LENGTH_SHORT).show();
         mchat =new ArrayList<>();
         reference=FirebaseDatabase.getInstance().getReference("Chats");
@@ -109,19 +120,19 @@ public class chatWithAdmin extends AppCompatActivity {
                     String r=Chat.getReciever();
                     Toast.makeText(chatWithAdmin.this,Chat.getMessage(),Toast.LENGTH_SHORT).show();
                     //break;
-                    //Log.d("here",userid+" "+myid);
-                   // Log.d("verify",r+" "+s);
+                    Log.d("here",userid+" "+myid);
+                    Log.d("verify",r+" "+s);
 
 
                     if(r.equals(myid) && s.equals(userid)){
-                        //Log.d("yaha",r+" "+myid+" "+s+" "+userid);
+                        Log.d("yaha",r+" "+myid+" "+s+" "+userid);
                         mchat.add(Chat);
                         messageAdapter =new MessageAdapter(chatWithAdmin.this,mchat);
                         recyclerView.setAdapter(messageAdapter);
                     }
                     if(r.equals(userid) && s.equals(myid))
                     {
-                       // Log.d("yaha",r+" "+myid+" "+s+" "+userid);
+                        Log.d("yaha",r+" "+myid+" "+s+" "+userid);
                         mchat.add(Chat);
                         messageAdapter =new MessageAdapter(chatWithAdmin.this,mchat);
                         recyclerView.setAdapter(messageAdapter);

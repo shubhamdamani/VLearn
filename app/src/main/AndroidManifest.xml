@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".chatWithAdmin.chatWithAdmin"></activity>
+        <activity android:name=".chatWithAdmin.AdminPanel"></activity>
+        <activity android:name=".chatWithAdmin.chatWithAdmin" />
         <activity android:name=".Admin.PostWaitDetail" />
         <activity android:name=".Admin.PostAcc" />
         <activity android:name=".Admin.PostWait" />
