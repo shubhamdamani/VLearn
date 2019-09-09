@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -79,12 +81,6 @@ public class PostDetail extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 Intent j=new Intent(PostDetail.this, FollowUser.class);
-
-
-
-                //artical=i.getStringExtra("Post");
-              //  title=i.getStringExtra("Post_Title");
-
 
                 j.putExtra("User_Id",Post_Id);
                 j.putExtra("UserName",username);
@@ -208,9 +204,24 @@ public class PostDetail extends AppCompatActivity  {
         }
         com.example.vlearn.BackgroundTask backgroundTask=new com.example.vlearn.BackgroundTask(getBaseContext());
         backgroundTask.execute(method,USER_Class.getLoggedUserId(),Post_Id,PostComment);
+        txt_comment.setText("");
+        hideKeyboard(PostDetail.this);
+        new BackgroundTask().execute();
+
 
     }
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
     //RETRIEVE DETAILS or POst comments
+
     public void getDatafromJSON()
     {
         Toast.makeText(PostDetail.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();

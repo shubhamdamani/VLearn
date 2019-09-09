@@ -34,6 +34,7 @@
         android:layout_height="match_parent"
         android:id="@+id/post_recycler"
         android:layout_below="@+id/sort"
+        android:layout_above="@+id/post_artical"
 
         />
 

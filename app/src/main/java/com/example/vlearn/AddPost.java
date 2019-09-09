@@ -2,9 +2,12 @@ package com.example.vlearn;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -52,8 +55,19 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
             public void onClick(View v) {
 
                 Post_content_fun();
+                hideKeyboard(AddPost.this);
             }
         });
+    }
+    public void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
     @Override
     public void onItemSelected(AdapterView<?> arg0, View arg1, int position,long id) {
@@ -142,9 +156,12 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
             //JSON_String=result;
 
             Toast.makeText(AddPost.this,result,Toast.LENGTH_LONG).show();
+
             //getDatafromJSON();
-            // Intent i=new Intent(login.this,MainActivity.class);
-            //startActivity(i);
+            if(result.equals("Posted Successfully"))
+            {
+                 finish();
+            }
             //super.onPostExecute(aVoid);
         }
 
