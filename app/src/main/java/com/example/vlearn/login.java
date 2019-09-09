@@ -248,7 +248,6 @@ public class login extends AppCompatActivity {
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putBoolean("LOGGEDIN", true);
                             editor.putString(EMAIL_SHARED_PREF, emyl);
-                            editor.commit();
                             //final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
                            // SharedPreferences.Editor editor = sharedPref.edit();
                             editor.putBoolean("Registered", true);
@@ -256,6 +255,7 @@ public class login extends AppCompatActivity {
                             editor.putString("USER_PASS",password);
                             editor.putString("USER_EML",emyl);
                             editor.putString("USER_ID",USER_ID);
+                            editor.commit();
                            /* editor.apply();*/
                             new login.BackgroundTask().execute();
 
@@ -287,10 +287,10 @@ public class login extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Boolean Registered;
+        /*Boolean Registered;
         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        Registered = sharedPref.getBoolean("Registered", false);
-        if(!Registered){
+        Registered = sharedPref.getBoolean("Registered", false);*/
+        if(true){
             loginmet();
             //Intent intent = new Intent(login.this, MainActivity.class);
             //startActivity(intent);
