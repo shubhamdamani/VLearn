@@ -8,11 +8,12 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.vlearn.PersonalInfo.BookmarkActivity;
+import com.example.vlearn.PersonalInfo.FollowUser;
 import com.example.vlearn.PersonalInfo.UpdateInfo;
 
 public class myprofile extends AppCompatActivity {
 
-    Button btnUpdInfo,btnUpdinterest,btnBookmark;
+    Button btnUpdInfo,btnUpdinterest,btnBookmark,btnMyPost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,8 @@ public class myprofile extends AppCompatActivity {
         btnUpdInfo=findViewById(R.id.bPersonal);
         btnUpdinterest=findViewById(R.id.bUpdinterest);
         btnBookmark=findViewById(R.id.bBookmark);
+        btnMyPost=findViewById(R.id.bMypost);
+
         btnUpdInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +47,16 @@ public class myprofile extends AppCompatActivity {
                     Intent i=new Intent(myprofile.this, BookmarkActivity.class);
                     startActivity(i);
 
+            }
+        });
+
+        btnMyPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(myprofile.this, FollowUser.class);
+                i.putExtra("UserName",USER_Class.getLoggedUserName());
+                i.putExtra("User_Id",USER_Class.getLoggedUserId());
+                startActivity(i);
             }
         });
 

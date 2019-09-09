@@ -74,6 +74,12 @@ public class FollowUser extends AppCompatActivity {
         tv1=findViewById(R.id.followers);
         tv2=findViewById(R.id.following);
         foll=findViewById(R.id.btnfollow);
+        fuid=in.getStringExtra("User_Id");
+        if(fuid.equals(USER_Class.getLoggedUserId()))
+        {
+            foll.setEnabled(false);
+            foll.setVisibility(View.GONE);
+        }
         foll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,10 +88,12 @@ public class FollowUser extends AppCompatActivity {
         });
 
         tv.setText(fusername);
+
+
         //dialog=new SpotsDialog(this);
       //  dialog.show();
        // dialog.show();
-        fuid=in.getStringExtra("User_Id");
+
         //Toast.makeText(FollowUser.this,fusername+" "+fuid,Toast.LENGTH_SHORT).show();
 
         new Back().execute();
