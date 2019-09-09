@@ -250,9 +250,9 @@ public class login extends AppCompatActivity {
             //Toast.makeText(login.this,"asd"+JSON_String,Toast.LENGTH_SHORT).show();
            getDatafromJSON();
             Toast.makeText(login.this,USER_NAME+" "+USER_Class.getLoggedUserId(),Toast.LENGTH_SHORT).show();
-         //   Intent i=new Intent(login.this,MainActivity.class);
+          Intent i=new Intent(login.this,MainActivity.class);
 //            dialog.dismiss();
-           //startActivity(i);
+           startActivity(i);
             //super.onPostExecute(aVoid);
         }
 
