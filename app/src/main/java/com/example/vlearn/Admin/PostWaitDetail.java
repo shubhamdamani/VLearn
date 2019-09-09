@@ -16,6 +16,7 @@ import com.example.vlearn.R;
 import com.example.vlearn.USER_Class;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -42,6 +43,7 @@ public class PostWaitDetail extends AppCompatActivity {
     SpotsDialog dialog;
     String FLAG="0";
     String UserName,Post_Title,Waiting_Id,Post,TopicStr,Upvotes,Downvotes,Bookmark,User_Id,Post_Date;
+    String success;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +87,7 @@ public class PostWaitDetail extends AppCompatActivity {
 
                 //delete
                 FLAG="0";
-                new BackgroundTask().execute();
+                new PostWaitDetail.BackgroundTask().execute();
 
 
 
@@ -98,7 +100,7 @@ public class PostWaitDetail extends AppCompatActivity {
 
                 FLAG="1";
 
-                new BackgroundTask().execute();
+               new PostWaitDetail.BackgroundTask().execute();
 
             }
         });
@@ -106,6 +108,39 @@ public class PostWaitDetail extends AppCompatActivity {
 
 
     }
+
+
+
+
+
+    public void getDatafromJSON()
+    {
+        // Toast.makeText(login.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();
+        try {
+            jsonObject=new JSONObject(JSON_String);
+
+            int count=0;
+            jsonArray=jsonObject.getJSONArray("server_response");
+
+            while(count<jsonArray.length())
+            {
+                JSONObject jo=jsonArray.getJSONObject(count);
+                success=jo.getString("success");
+
+                count++;
+
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
 
     class BackgroundTask extends AsyncTask<Void,Void,String>
     {
@@ -129,15 +164,14 @@ public class PostWaitDetail extends AppCompatActivity {
                         URLEncoder.encode("TopicStr","UTF-8")+"="+URLEncoder.encode(TopicStr,"UTF-8")+"&"+
                         URLEncoder.encode("Post","UTF-8")+"="+URLEncoder.encode(Post,"UTF-8")+"&"+
                         URLEncoder.encode("Post_Date","UTF-8")+"="+URLEncoder.encode(Post_Date,"UTF-8")+"&"+
-                        URLEncoder.encode("FLAG","UTF-8")+"="+URLEncoder.encode(FLAG,"UTF-8")+"&"+
+                        URLEncoder.encode("jaishreeram","UTF-8")+"="+URLEncoder.encode(FLAG,"UTF-8")+"&"+
                         URLEncoder.encode("Waiting_Id","UTF-8")+"="+URLEncoder.encode(Waiting_Id,"UTF-8");
                 Log.d("up   :    ",data);
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
                 os.close();
-                //
-               /* InputStream inputStream=httpURLConnection.getInputStream();
+                InputStream inputStream=httpURLConnection.getInputStream();
                 BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder stringBuilder=new StringBuilder();
 
@@ -145,13 +179,15 @@ public class PostWaitDetail extends AppCompatActivity {
                 {
                     stringBuilder.append(json_string+"\n");
                 }
-
                 bufferedReader.close();
-                inputStream.close();*/
+                inputStream.close();
                 httpURLConnection.disconnect();
-              //  JSON_String=stringBuilder.toString().trim();
-                //return stringBuilder.toString().trim();
-                return null;
+                JSON_String=stringBuilder.toString().trim();
+                return stringBuilder.toString().trim();
+
+               // httpURLConnection.disconnect();
+
+                //return "successfully deleted";
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -172,12 +208,13 @@ public class PostWaitDetail extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            //TextView tv=findViewById(R.id.tv);
-            //tv.setText(result);
+
             JSON_String=result;
-            //Toast.makeText(getContext(),"hi"+JSON_String,Toast.LENGTH_LONG).show();
-            //fun();
-            Toast.makeText(PostWaitDetail.this,"process done..",Toast.LENGTH_SHORT).show();
+
+            Log.d("josn",JSON_String);
+            //Toast.makeText(login.this,"asd"+JSON_String,Toast.LENGTH_SHORT).show();
+            getDatafromJSON();
+            Toast.makeText(PostWaitDetail.this,success+result,Toast.LENGTH_SHORT).show();
 
 
             //super.onPostExecute(aVoid);

@@ -51,30 +51,13 @@ public class login extends AppCompatActivity {
     EditText userame,pass;
     Button Login,gotoRegister;
     String l_name="",l_pass="";
-    public String LOGGED_USER_EMAIL;
-    public static final String LOGIN_URL="https://vlearndroidrun.000webhostapp.com/login.php";
-   /* public static final String KEY_NAME="name";
-    public static final String KEY_PASSWORD="password";
-  */  public static final String LOGIN_SUCCESS="success";
 
-    private SharedPreferences mSharedPreferences;
-    public static final String PREFERENCE= "preference";
-    public static final String PREF_NAME = "name";
-    public static final String PREF_PASSWD = "passwd";
-    public static final String PREF_SKIP_LOGIN = "skip_login";
-
-
-  /*  public static final String SHARED_PREF_NAME="tech";
-    public static final String EMAIL_SHARED_PREF="name";
-    public static final String LOGGEDIN_SHARED_PREF="loggedin";
-    public static final Boolean IS_LOGGED_IN=false;*/
-   private boolean loggedIn=false;
     String json_string;
     String JSON_String;
     JSONArray jsonArray;
     JSONObject jsonObject;
     String emyl;
-    public String USER_ID,USER_NAME;
+    String USER_ID,USER_NAME;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,63 +69,17 @@ public class login extends AppCompatActivity {
         gotoRegister=findViewById(R.id.goto_register);
         emyl=userame.getText().toString().trim();
 
-        l_name=userame.getText().toString();
-        l_pass=pass.getText().toString();
+
         Log.d("login",l_name+l_pass);
 
-        //loginmet();
 
-
-
-
-        mSharedPreferences = getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE);
-        if(mSharedPreferences.contains(PREF_SKIP_LOGIN)){
-            Intent intent = new Intent(login.this,MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
-
-
-
-
-
-   /*     SharedPreferences sharedPreferences = login.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear();
-      editor.commit();
-*/
-
-      //  dialog=new SpotsDialog(this);
-/*
-        SharedPreferences sharedPreferences = login.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear();
-        editor.commit();*/
-      /*  SharedPreferences sharedPreferences = login.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        if(sharedPreferences.contains(SHARED_PREF_NAME))
-        {
-            Toast.makeText(login.this,"here",Toast.LENGTH_SHORT).show();
-            Intent i=new Intent(login.this,MainActivity.class);
-            startActivity(i);
-        }*/
-
-
-
-
-
-        //Login process and fetching data of user is performed here
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-  //              dialog.show();
-//                dialog.setMessage("Logging in");
-                mSharedPreferences = getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = mSharedPreferences.edit();
-                editor.clear();
-                editor.commit();
-                Log.d("btn","hrere");
+                l_name=userame.getText().toString();
+                l_pass=pass.getText().toString();
+
                 new login.BackgroundTask().execute();
-                //loginmet();
 
             }
         });
@@ -151,7 +88,7 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(login.this,register.class);
-                LOGGED_USER_EMAIL=l_name;
+
                 startActivity(i);
             }
         });
@@ -174,11 +111,18 @@ public class login extends AppCompatActivity {
                 JSONObject jo=jsonArray.getJSONObject(count);
                 USER_NAME=jo.getString("UserName");
                 USER_ID=jo.getString("User_Id");
+                Log.d("ghfiwhfiw:        ",USER_NAME+" "+USER_ID);
                 //User_obj=new USER_Class();
-                USER_Class.setLoggedUserId(USER_ID);
-                USER_Class.setLoggedUserEmail(emyl);
-                USER_Class.setLoggedUserName(USER_NAME);
-                Toast.makeText(login.this,"hi",Toast.LENGTH_SHORT).show();
+                if(USER_NAME.equals("no") || USER_ID.equals("no"))
+                {
+                    Toast.makeText(login.this,"USER DOES NOT EXIST",Toast.LENGTH_SHORT).show();
+
+                }else {
+                    USER_Class.setLoggedUserId(USER_ID);
+                    USER_Class.setLoggedUserEmail(l_name);
+                    USER_Class.setLoggedUserName(USER_NAME);
+                }
+                //Toast.makeText(login.this,"hi",Toast.LENGTH_SHORT).show();
                 count++;
 
 
@@ -192,7 +136,7 @@ public class login extends AppCompatActivity {
     //which work in background
     class BackgroundTask extends AsyncTask<Void,Void,String>
     {
-        String json_url="https://vlearndroidrun.000webhostapp.com/getDetails.php";
+        String json_url="https://vlearndroidrun.000webhostapp.com/loginCheck.php";
         @Override
         protected String doInBackground(Void... voids) {
 
@@ -204,7 +148,8 @@ public class login extends AppCompatActivity {
                 httpURLConnection.setDoOutput(true);
                 OutputStream os=httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
-                String data= URLEncoder.encode("u_email","UTF-8")+"="+URLEncoder.encode(emyl,"UTF-8");
+                String data= URLEncoder.encode("email","UTF-8")+"="+URLEncoder.encode(l_name,"UTF-8")+"&"+
+                        URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(l_pass,"UTF-8");
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -249,10 +194,15 @@ public class login extends AppCompatActivity {
             Log.d("josn",JSON_String);
             //Toast.makeText(login.this,"asd"+JSON_String,Toast.LENGTH_SHORT).show();
            getDatafromJSON();
-            Toast.makeText(login.this,USER_NAME+" "+USER_Class.getLoggedUserId(),Toast.LENGTH_SHORT).show();
-          Intent i=new Intent(login.this,MainActivity.class);
-//            dialog.dismiss();
-           startActivity(i);
+           if(USER_NAME.equals("no")|| USER_ID.equals("no"))
+           {
+
+           }else{
+               Intent i=new Intent(login.this,MainActivity.class);
+               startActivity(i);
+           }
+
+
             //super.onPostExecute(aVoid);
         }
 
@@ -263,92 +213,5 @@ public class login extends AppCompatActivity {
     }
 
 
-    //To check user is already logged in or not
-    private void loginmet() {
 
-        final String name = userame.getText().toString();
-        emyl=name;
-        final String password = pass.getText().toString();
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, LOGIN_URL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-                        Toast.makeText(login.this,response,Toast.LENGTH_SHORT).show();
-                        if(response.trim().equalsIgnoreCase(LOGIN_SUCCESS)){
-
-
-
-
-                            if(mSharedPreferences.contains(PREF_NAME) && mSharedPreferences.contains(PREF_PASSWD)) {
-                                SharedPreferences.Editor mEditor = mSharedPreferences.edit();
-                                mEditor.putString(PREF_SKIP_LOGIN, "skip");
-                                mEditor.apply();
-                                Intent intent = new Intent(login.this, MainActivity.class);
-                                startActivity(intent);
-                                finish();
-                            }
-
-
-
-
-
-
-                          /*  Log.d("SUCCESS",LOGIN_URL);
-                           SharedPreferences sharedPreferences = login.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putBoolean("LOGGEDIN", true);
-                            editor.putString(EMAIL_SHARED_PREF, emyl);
-                            //final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-                           // SharedPreferences.Editor editor = sharedPref.edit();
-                            editor.putBoolean("Registered", true);
-                            editor.putString("USER_NAME",name);
-                            editor.putString("USER_PASS",password);
-                            editor.putString("USER_EML",emyl);
-                            editor.putString("USER_ID",USER_ID);
-                            editor.commit();
-                           /* editor.apply();*/
-
-                            Toast.makeText(login.this,"logged in",Toast.LENGTH_LONG).show();
-                            new login.BackgroundTask().execute();
-
-                        }else{
-                            // If invalid Email or Password is entered
-                         //   Log.d("gugug","failed");
-                           // Toast.makeText(login.this, "Invalid Email or password", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                    }
-                }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> prams = new HashMap<>();
-            //    prams.put(KEY_NAME, name);
-               // prams.put(KEY_PASSWORD, password);
-
-                return prams;
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-    }
-    //If user is already Logged in then User data will be collected and
-    // stored in USER_Class and then Intent to MainActivity
-   /* @Override
-    protected void onResume() {
-        super.onResume();
-        /*Boolean Registered;
-        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        Registered = sharedPref.getBoolean("Registered", false);
-        if(true){
-            loginmet();
-            //Intent intent = new Intent(login.this, MainActivity.class);
-            //startActivity(intent);
-        }
-    }*/
 }

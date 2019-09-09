@@ -16,41 +16,18 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-/*import static com.example.vlearn.login.LOGGEDIN_SHARED_PREF;
-import static com.example.vlearn.login.PREFERENCE;
-import static com.example.vlearn.login.SHARED_PREF_NAME;*/
 
 public class MainActivity extends AppCompatActivity {
 
-    private SharedPreferences mSharedPreferences;
-    public static final String PREFERENCE= "preference";
-    public static final String PREF_NAME = "name";
-    public static final String PREF_PASSWD = "passwd";
-    public static final String PREF_SKIP_LOGIN = "skip_login";
+
                                                                     //teen fragment banae h, or kch nh h
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*Boolean Registered;
-        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        Registered = sharedPref.getBoolean("Registered", false);
 
-        if(!Registered)
-        {
-            Intent i=new Intent(MainActivity.this,login.class);
-            startActivity(i);
-        }
 
-        USER_Class.setLoggedUserName(sharedPref.getString("USER_NAME",null));
-        USER_Class.setLoggedUserEmail(sharedPref.getString("USER_EML",null));
-        USER_Class.setLoggedUserId(sharedPref.getString("USER_ID",null));
-        if(USER_Class.getLoggedUserId()==null)
-        {
-            Intent i=new Intent(MainActivity.this,login.class);
-            //startActivity(i);
-        }*/
 
 
       /*  if (savedInstanceState == null){
@@ -94,11 +71,9 @@ public class MainActivity extends AppCompatActivity {
         switch(item.getItemId()){
             case R.id.logoutMenu:{
 
-                mSharedPreferences = getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = mSharedPreferences.edit();
-                editor.clear();
-                editor.commit();
-
+                USER_Class.setLoggedUserEmail("");
+                USER_Class.setLoggedUserId("");
+                USER_Class.setLoggedUserName("");
                 Intent i=new Intent(MainActivity.this,login.class);
                 startActivity(i);
                 break;
