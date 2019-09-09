@@ -6,6 +6,7 @@ import dmax.dialog.SpotsDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -39,8 +40,8 @@ public class PostWaitDetail extends AppCompatActivity {
     String posts;
     Integer up=0,down=0;
     SpotsDialog dialog;
-    String FLAG;
-    String UserName,Post_Title,Post_Id,Post,TopicStr,Upvotes,Downvotes,Bookmark,User_Id,Post_Date;
+    String FLAG="0";
+    String UserName,Post_Title,Waiting_Id,Post,TopicStr,Upvotes,Downvotes,Bookmark,User_Id,Post_Date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,15 +63,20 @@ public class PostWaitDetail extends AppCompatActivity {
         tv2.setText(i.getStringExtra("Post_Title"));
         tv3.setText(i.getStringExtra("Post"));
         User_Id=i.getStringExtra("User_Id");
-        UserName=i.getStringExtra("UserName");
+        UserName=i.getStringExtra("Post_User");
         Post=i.getStringExtra("Post");
         Post_Title=i.getStringExtra("Post_Title");
         TopicStr=i.getStringExtra("TopicStr");
-        Post_Id=i.getStringExtra("Post_Id");
+        Waiting_Id=i.getStringExtra("Post_Id");
         Bookmark=i.getStringExtra("Bookmark");
         Post_Date=i.getStringExtra("Post_Date");
         Upvotes=i.getStringExtra("Upvotes");
         Downvotes=i.getStringExtra("Downvotes");
+
+        Log.d("here","TopicStr"+TopicStr+"Waiting_Id"+Waiting_Id+"Post_Date"+Post_Date);
+        Log.d("here","Post"+Post+"Upvotes"+Upvotes+"Downvotes"+Downvotes);
+        Log.d("here","User_Id"+User_Id+"Post_Title"+Post_Title+"UserName"+UserName);
+
 
 
         b1.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +116,7 @@ public class PostWaitDetail extends AppCompatActivity {
         protected String doInBackground(Void... voids) {
 
             try {
+                Log.d("flag",FLAG);
                 URL url=new URL(json_url);
                 HttpURLConnection httpURLConnection=(HttpURLConnection) url.openConnection();
                 //my
@@ -122,7 +129,9 @@ public class PostWaitDetail extends AppCompatActivity {
                         URLEncoder.encode("TopicStr","UTF-8")+"="+URLEncoder.encode(TopicStr,"UTF-8")+"&"+
                         URLEncoder.encode("Post","UTF-8")+"="+URLEncoder.encode(Post,"UTF-8")+"&"+
                         URLEncoder.encode("Post_Date","UTF-8")+"="+URLEncoder.encode(Post_Date,"UTF-8")+"&"+
-                        URLEncoder.encode("FLAG","UTF-8")+"="+URLEncoder.encode(FLAG,"UTF-8");
+                        URLEncoder.encode("FLAG","UTF-8")+"="+URLEncoder.encode(FLAG,"UTF-8")+"&"+
+                        URLEncoder.encode("Waiting_Id","UTF-8")+"="+URLEncoder.encode(Waiting_Id,"UTF-8");
+                Log.d("up   :    ",data);
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
                 bufferedWriter.close();

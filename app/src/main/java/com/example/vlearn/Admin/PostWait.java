@@ -63,7 +63,7 @@ public class PostWait extends AppCompatActivity {
     {
         json_string=JSON_String;
 
-        String Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName;
+        String Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName,Waiting_Id;
         Integer Upvotes,Downvotes;//Bookmark;
 
 
@@ -88,10 +88,11 @@ public class PostWait extends AppCompatActivity {
                 //Downvotes=jo.getInt("Downvotes");
                 Topic=jo.getString("TopicStr");
                 UserName=jo.getString("UserName");
+                Waiting_Id=jo.getString("Waiting_Id");
                 //String  Bookmark=jo.getString("BookmarkStatus");
 
                 //questionfetch contacts=new questionfetch(Topic,User_Id,Q_Id,Question);
-                Post_content contacts=new Post_content(" ",Post_Title,Post_content,Post_Date,User_Id,Topic,UserName,1,1,1);
+                Post_content contacts=new Post_content(Waiting_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName,1,1,1);
                 mPostContent.add(contacts);
                 adapter = new PostWaitAdapter(this, mPostContent);       //ONE BY ONE PUSHING QUESTIONS TO CARDVIEW
                 recyclerView.setAdapter(adapter);
