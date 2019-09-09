@@ -81,6 +81,8 @@ public class CustomListAdapter  extends ArrayAdapter<Post> {
         final String author = getItem(position).getAuthor();
         final String updated = getItem(position).getDate_updated();
         final String description = getItem(position).getDescription();
+        final String link =getItem(position).getPostURL();
+        final String source = getItem(position).getSource();
 
         try{
 
@@ -162,7 +164,9 @@ public class CustomListAdapter  extends ArrayAdapter<Post> {
                     intent.putExtra("author",author);
                     intent.putExtra("updated",updated);
                     intent.putExtra("description",description);
-                    Toast.makeText(mContext, "view clicked: " + description, Toast.LENGTH_SHORT).show();
+                    intent.putExtra("link",link);
+                    intent.putExtra("source",source);
+             //       Toast.makeText(mContext, "view clicked: " + description, Toast.LENGTH_SHORT).show();
 
                     view.getContext().startActivity(intent);
                 }

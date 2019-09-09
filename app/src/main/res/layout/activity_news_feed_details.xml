@@ -22,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
         android:hint="author" />
 
     <TextView
@@ -30,6 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
         android:hint="Date Updated" />
 
     <TextView
@@ -38,5 +40,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
         android:hint="Description" />
+
+    <TextView
+        android:id="@+id/link"
+        android:layout_below="@id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:hint="Link" />
+
+    <TextView
+        android:id="@+id/source"
+        android:layout_below="@id/link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:hint="Post Source" />
 </RelativeLayout>

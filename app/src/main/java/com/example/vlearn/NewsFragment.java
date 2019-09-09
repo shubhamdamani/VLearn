@@ -1,8 +1,5 @@
 package com.example.vlearn;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,12 +9,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 import dmax.dialog.SpotsDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,11 +21,8 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.vlearn.model.Feed;
 import com.example.vlearn.model.MainRediffFeed;
 import com.example.vlearn.model.NYTimesFeed;
@@ -186,6 +178,9 @@ public class NewsFragment extends Fragment {
 
                 for(int i=0;i<entrys.size();i++) {
 
+
+
+
                     ExtractXML extractXML1 = new ExtractXML(entrys.get(i).getContent(), "<a href=");
                     List<String> postContent = extractXML1.start();
 
@@ -203,7 +198,7 @@ public class NewsFragment extends Fragment {
                     }
                     int lastPosition = postContent.size()-1;
                     try {
-                        Post newPost = new Post(entrys.get(i).getTitle(),entrys.get(i).getAuthor().getName(),entrys.get(i).getUpdated(),postContent.get(0),postContent.get(lastPosition),entrys.get(i).getContent());
+                        Post newPost = new Post(entrys.get(i).getTitle(),entrys.get(i).getAuthor().getName(),entrys.get(i).getUpdated(),postContent.get(0),postContent.get(lastPosition),"No description available ", "Source : Reddit");
                         posts.add(newPost);
                     }catch (NullPointerException e){
                         e.printStackTrace();
@@ -246,7 +241,7 @@ public class NewsFragment extends Fragment {
 
                 for(int i=0;i<entrys.size();i++) {
                     try {
-                        Post newPost = new Post(entrys.get(i).getTitle(),entrys.get(i).getDesc(),entrys.get(i).getAuth(),entrys.get(i).getLink(),entrys.get(i).getImag(),entrys.get(i).getDesc());
+                        Post newPost = new Post(entrys.get(i).getTitle(),entrys.get(i).getDesc(),entrys.get(i).getAuth(),entrys.get(i).getLink(),entrys.get(i).getImag(),entrys.get(i).getDesc(),"Source : Rediff" );
                         posts.add(newPost);
                     }catch (NullPointerException e){
                         e.printStackTrace();
@@ -308,7 +303,7 @@ public class NewsFragment extends Fragment {
 
 
                     try {
-                        Post newPost = new Post(items.get(i).getTitle(),items.get(i).getCreator(),items.get(i).getLastBuildDate(),items.get(i).getLink(),"",items.get(i).getDescription());
+                        Post newPost = new Post(items.get(i).getTitle(),items.get(i).getCreator(),items.get(i).getLastBuildDate(),items.get(i).getLink(),"",items.get(i).getDescription(), "Source : The New York Times");
                         posts.add(newPost);
                     }catch (NullPointerException e){
                         Log.d(TAG,"GADBADI");
@@ -361,7 +356,7 @@ public class NewsFragment extends Fragment {
 
 
                     try {
-                        Post newPost = new Post(items.get(i).getTitle(),"Yahoo",items.get(i).getLastBuildDate(),items.get(i).getLink(),"",items.get(i).getDescription());
+                        Post newPost = new Post(items.get(i).getTitle(),"Yahoo",items.get(i).getLastBuildDate(),items.get(i).getLink(),"",items.get(i).getDescription(), "Source : Yahoo");
                         posts.add(newPost);
                     }catch (NullPointerException e){
                         Log.d(TAG,"GADBADI");

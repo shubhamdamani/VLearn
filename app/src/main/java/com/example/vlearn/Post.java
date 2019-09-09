@@ -8,14 +8,16 @@ public class Post {
     private String postURL;
     private String thumbnailURL;
     private String description;
+    private String source;
 
-    public Post(String title, String author, String date_updated, String postURL, String thumbnailURL, String description) {
+    public Post(String title, String author, String date_updated, String postURL, String thumbnailURL, String description, String source) {
         this.title = title;
         this.author = author;
         this.date_updated = date_updated;
         this.postURL = postURL;
         this.thumbnailURL = thumbnailURL;
         this.description = description;
+        this.source = source;
     }
 
     public Post(String title, String lastBuildDate, String link, String s) {
@@ -73,5 +75,13 @@ public class Post {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 }
