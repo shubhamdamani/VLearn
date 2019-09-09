@@ -16,10 +16,17 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import static com.example.vlearn.login.LOGGEDIN_SHARED_PREF;
-import static com.example.vlearn.login.SHARED_PREF_NAME;
+/*import static com.example.vlearn.login.LOGGEDIN_SHARED_PREF;
+import static com.example.vlearn.login.PREFERENCE;
+import static com.example.vlearn.login.SHARED_PREF_NAME;*/
 
 public class MainActivity extends AppCompatActivity {
+
+    private SharedPreferences mSharedPreferences;
+    public static final String PREFERENCE= "preference";
+    public static final String PREF_NAME = "name";
+    public static final String PREF_PASSWD = "passwd";
+    public static final String PREF_SKIP_LOGIN = "skip_login";
                                                                     //teen fragment banae h, or kch nh h
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,8 +94,8 @@ public class MainActivity extends AppCompatActivity {
         switch(item.getItemId()){
             case R.id.logoutMenu:{
 
-                SharedPreferences sharedPreferences = MainActivity.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
+                mSharedPreferences = getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = mSharedPreferences.edit();
                 editor.clear();
                 editor.commit();
 

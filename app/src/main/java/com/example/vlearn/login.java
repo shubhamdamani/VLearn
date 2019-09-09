@@ -53,13 +53,21 @@ public class login extends AppCompatActivity {
     String l_name="",l_pass="";
     public String LOGGED_USER_EMAIL;
     public static final String LOGIN_URL="https://vlearndroidrun.000webhostapp.com/login.php";
-    public static final String KEY_NAME="name";
+   /* public static final String KEY_NAME="name";
     public static final String KEY_PASSWORD="password";
-    public static final String LOGIN_SUCCESS="success";
-    public static final String SHARED_PREF_NAME="tech";
+  */  public static final String LOGIN_SUCCESS="success";
+
+    private SharedPreferences mSharedPreferences;
+    public static final String PREFERENCE= "preference";
+    public static final String PREF_NAME = "name";
+    public static final String PREF_PASSWD = "passwd";
+    public static final String PREF_SKIP_LOGIN = "skip_login";
+
+
+  /*  public static final String SHARED_PREF_NAME="tech";
     public static final String EMAIL_SHARED_PREF="name";
     public static final String LOGGEDIN_SHARED_PREF="loggedin";
-    public static final Boolean IS_LOGGED_IN=false;
+    public static final Boolean IS_LOGGED_IN=false;*/
    private boolean loggedIn=false;
     String json_string;
     String JSON_String;
@@ -81,6 +89,22 @@ public class login extends AppCompatActivity {
         l_name=userame.getText().toString();
         l_pass=pass.getText().toString();
         Log.d("login",l_name+l_pass);
+
+        //loginmet();
+
+
+
+
+        mSharedPreferences = getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE);
+        if(mSharedPreferences.contains(PREF_SKIP_LOGIN)){
+            Intent intent = new Intent(login.this,MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+
+
+
 
    /*     SharedPreferences sharedPreferences = login.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -112,9 +136,13 @@ public class login extends AppCompatActivity {
             public void onClick(View v) {
   //              dialog.show();
 //                dialog.setMessage("Logging in");
-
+                mSharedPreferences = getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = mSharedPreferences.edit();
+                editor.clear();
+                editor.commit();
                 Log.d("btn","hrere");
-                loginmet();
+                new login.BackgroundTask().execute();
+                //loginmet();
 
             }
         });
@@ -222,9 +250,9 @@ public class login extends AppCompatActivity {
             //Toast.makeText(login.this,"asd"+JSON_String,Toast.LENGTH_SHORT).show();
            getDatafromJSON();
             Toast.makeText(login.this,USER_NAME+" "+USER_Class.getLoggedUserId(),Toast.LENGTH_SHORT).show();
-            Intent i=new Intent(login.this,MainActivity.class);
+         //   Intent i=new Intent(login.this,MainActivity.class);
 //            dialog.dismiss();
-           startActivity(i);
+           //startActivity(i);
             //super.onPostExecute(aVoid);
         }
 
@@ -246,8 +274,28 @@ public class login extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+
+                        Toast.makeText(login.this,response,Toast.LENGTH_SHORT).show();
                         if(response.trim().equalsIgnoreCase(LOGIN_SUCCESS)){
-                            Log.d("SUCCESS",LOGIN_URL);
+
+
+
+
+                            if(mSharedPreferences.contains(PREF_NAME) && mSharedPreferences.contains(PREF_PASSWD)) {
+                                SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+                                mEditor.putString(PREF_SKIP_LOGIN, "skip");
+                                mEditor.apply();
+                                Intent intent = new Intent(login.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+
+
+
+
+
+
+                          /*  Log.d("SUCCESS",LOGIN_URL);
                            SharedPreferences sharedPreferences = login.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putBoolean("LOGGEDIN", true);
@@ -267,8 +315,8 @@ public class login extends AppCompatActivity {
 
                         }else{
                             // If invalid Email or Password is entered
-                            Log.d("gugug","failed");
-                            Toast.makeText(login.this, "Invalid Email or password", Toast.LENGTH_LONG).show();
+                         //   Log.d("gugug","failed");
+                           // Toast.makeText(login.this, "Invalid Email or password", Toast.LENGTH_LONG).show();
                         }
                     }
                 },
@@ -280,8 +328,8 @@ public class login extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> prams = new HashMap<>();
-                prams.put(KEY_NAME, name);
-                prams.put(KEY_PASSWORD, password);
+            //    prams.put(KEY_NAME, name);
+               // prams.put(KEY_PASSWORD, password);
 
                 return prams;
             }

@@ -28,11 +28,20 @@ public class register extends AppCompatActivity {
     Button register;
     String r_name="",r_email="",r_pass="",ure_pass="";
     public static final String CHECK_URL="https://vlearndroidrun.000webhostapp.com/check_user.php";
-    public static final String KEY_NAME="name";
+   /* public static final String KEY_NAME="name";
     public static final String KEY_EMAIL="email";
     public static final String LOGIN_SUCCESS="success";
     public static final String SHARED_PREF_NAME="tech";
-    public static final String EMAIL_SHARED_PREF="name";
+    public static final String EMAIL_SHARED_PREF="name";*/
+
+    public static final String LOGIN_SUCCESS="success";
+
+    private SharedPreferences mSharedPreferences;
+    public static final String PREFERENCE= "preference";
+    public static final String PREF_NAME = "name";
+    public static final String PREF_PASSWD = "passwd";
+    public static final String PREF_SKIP_LOGIN = "skip_login";
+
 
     Button temp,ques;
 
@@ -91,8 +100,19 @@ public class register extends AppCompatActivity {
 
         if(r_pass.equals(ure_pass)) {
             String method="register";
+
+
+            SharedPreferences mSharedPreference = getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE);
+            SharedPreferences.Editor mEditor = mSharedPreference.edit();
+            mEditor.putString(PREF_NAME,r_name);
+            mEditor.putString(PREF_PASSWD,r_pass);
+            mEditor.apply();
+            //finish();
+
             BackgroundTask backgroundTask=new BackgroundTask(getBaseContext());
             backgroundTask.execute(method,r_name,r_email,r_pass);
+            Intent i=new Intent(register.this,login.class);
+            startActivity(i);
         }else{
             Toast.makeText(getApplicationContext(),"Enter Same Password in Both Fields",Toast.LENGTH_SHORT).show();
         }
@@ -114,14 +134,22 @@ public class register extends AppCompatActivity {
 
                             Toast.makeText(register.this,"User already exists ",Toast.LENGTH_LONG).show();
 
-                            SharedPreferences sharedPreferences = register.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                            /*SharedPreferences sharedPreferences = register.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
                             SharedPreferences.Editor editor = sharedPreferences.edit();
 
                             editor.putBoolean(LOGGEDIN_SHARED_PREF, true);
                             editor.putString(EMAIL_SHARED_PREF, name);
 
-                            editor.commit();
+                            editor.commit();*/
+
+
+
+
+
+
+
+
                             //if user exist already then intent send to the login activity
                             Intent intent = new Intent(register.this, login.class);
                             startActivity(intent);
@@ -138,8 +166,8 @@ public class register extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> prams = new HashMap<>();
-                prams.put(KEY_NAME, name);
-                prams.put(KEY_EMAIL, Email);
+               /* prams.put(KEY_NAME, name);
+                prams.put(KEY_EMAIL, Email);*/
 
                 return prams;
             }
