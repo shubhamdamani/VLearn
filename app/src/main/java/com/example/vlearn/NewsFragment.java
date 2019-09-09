@@ -203,7 +203,7 @@ public class NewsFragment extends Fragment {
                     }
                     int lastPosition = postContent.size()-1;
                     try {
-                        Post newPost = new Post(entrys.get(i).getTitle(),entrys.get(i).getAuthor().getName(),entrys.get(0).getUpdated(),postContent.get(0),postContent.get(lastPosition));
+                        Post newPost = new Post(entrys.get(i).getTitle(),entrys.get(i).getAuthor().getName(),entrys.get(i).getUpdated(),postContent.get(0),postContent.get(lastPosition),entrys.get(i).getContent());
                         posts.add(newPost);
                     }catch (NullPointerException e){
                         e.printStackTrace();
@@ -246,7 +246,7 @@ public class NewsFragment extends Fragment {
 
                 for(int i=0;i<entrys.size();i++) {
                     try {
-                        Post newPost = new Post(entrys.get(i).getTitle(),entrys.get(i).getDesc(),entrys.get(0).getAuth(),entrys.get(i).getLink(),entrys.get(i).getImag());
+                        Post newPost = new Post(entrys.get(i).getTitle(),entrys.get(i).getDesc(),entrys.get(i).getAuth(),entrys.get(i).getLink(),entrys.get(i).getImag(),entrys.get(i).getDesc());
                         posts.add(newPost);
                     }catch (NullPointerException e){
                         e.printStackTrace();
@@ -308,7 +308,7 @@ public class NewsFragment extends Fragment {
 
 
                     try {
-                        Post newPost = new Post(items.get(i).getTitle(),items.get(i).getCreator(),items.get(i).getLastBuildDate(),items.get(i).getLink(),"");
+                        Post newPost = new Post(items.get(i).getTitle(),items.get(i).getCreator(),items.get(i).getLastBuildDate(),items.get(i).getLink(),"",items.get(i).getDescription());
                         posts.add(newPost);
                     }catch (NullPointerException e){
                         Log.d(TAG,"GADBADI");
@@ -361,7 +361,7 @@ public class NewsFragment extends Fragment {
 
 
                     try {
-                        Post newPost = new Post(items.get(i).getTitle(),"Yahoo",items.get(i).getLastBuildDate(),items.get(i).getLink(),"");
+                        Post newPost = new Post(items.get(i).getTitle(),"Yahoo",items.get(i).getLastBuildDate(),items.get(i).getLink(),"",items.get(i).getDescription());
                         posts.add(newPost);
                     }catch (NullPointerException e){
                         Log.d(TAG,"GADBADI");

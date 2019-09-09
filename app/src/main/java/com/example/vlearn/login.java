@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -79,12 +80,13 @@ public class login extends AppCompatActivity {
 
         l_name=userame.getText().toString();
         l_pass=pass.getText().toString();
+        Log.d("login",l_name+l_pass);
 
-       // SharedPreferences sharedPreferences = login.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-       // SharedPreferences.Editor editor = sharedPreferences.edit();
-       // editor.clear();
-      //  editor.commit();
-
+   /*     SharedPreferences sharedPreferences = login.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+      editor.commit();
+*/
 
       //  dialog=new SpotsDialog(this);
 /*
@@ -111,7 +113,7 @@ public class login extends AppCompatActivity {
   //              dialog.show();
 //                dialog.setMessage("Logging in");
 
-
+                Log.d("btn","hrere");
                 loginmet();
 
             }
@@ -216,6 +218,7 @@ public class login extends AppCompatActivity {
 
             JSON_String=result;
 
+            Log.d("josn",JSON_String);
             //Toast.makeText(login.this,"asd"+JSON_String,Toast.LENGTH_SHORT).show();
            getDatafromJSON();
             Toast.makeText(login.this,USER_NAME+" "+USER_Class.getLoggedUserId(),Toast.LENGTH_SHORT).show();
@@ -244,6 +247,7 @@ public class login extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         if(response.trim().equalsIgnoreCase(LOGIN_SUCCESS)){
+                            Log.d("SUCCESS",LOGIN_URL);
                            SharedPreferences sharedPreferences = login.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putBoolean("LOGGEDIN", true);
@@ -257,10 +261,13 @@ public class login extends AppCompatActivity {
                             editor.putString("USER_ID",USER_ID);
                             editor.commit();
                            /* editor.apply();*/
+
+                            Toast.makeText(login.this,"logged in",Toast.LENGTH_LONG).show();
                             new login.BackgroundTask().execute();
 
                         }else{
                             // If invalid Email or Password is entered
+                            Log.d("gugug","failed");
                             Toast.makeText(login.this, "Invalid Email or password", Toast.LENGTH_LONG).show();
                         }
                     }
@@ -284,16 +291,16 @@ public class login extends AppCompatActivity {
     }
     //If user is already Logged in then User data will be collected and
     // stored in USER_Class and then Intent to MainActivity
-    @Override
+   /* @Override
     protected void onResume() {
         super.onResume();
         /*Boolean Registered;
         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        Registered = sharedPref.getBoolean("Registered", false);*/
+        Registered = sharedPref.getBoolean("Registered", false);
         if(true){
             loginmet();
             //Intent intent = new Intent(login.this, MainActivity.class);
             //startActivity(intent);
         }
-    }
+    }*/
 }

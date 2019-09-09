@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Admin.PostWaitDetail"></activity>
+        <activity android:name=".Admin.PostWaitDetail" />
         <activity android:name=".Admin.PostAcc" />
         <activity android:name=".Admin.PostWait" />
         <activity android:name=".Admin.AdminBasic" />
@@ -26,16 +26,19 @@
         <activity android:name=".questionActivity" />
         <activity android:name=".queslistview" />
         <activity android:name=".interests" />
-        <activity android:name=".login" />
+        <activity android:name=".login" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".register" />
         <activity android:name=".myprofile" />
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+        <activity android:name=".NewsFeedDetails"></activity>
     </application>
 
 </manifest>

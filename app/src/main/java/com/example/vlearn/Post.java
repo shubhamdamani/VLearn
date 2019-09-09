@@ -7,13 +7,15 @@ public class Post {
     private String date_updated;
     private String postURL;
     private String thumbnailURL;
+    private String description;
 
-    public Post(String title, String author, String date_updated, String postURL, String thumbnailURL) {
+    public Post(String title, String author, String date_updated, String postURL, String thumbnailURL, String description) {
         this.title = title;
         this.author = author;
         this.date_updated = date_updated;
         this.postURL = postURL;
         this.thumbnailURL = thumbnailURL;
+        this.description = description;
     }
 
     public Post(String title, String lastBuildDate, String link, String s) {
@@ -65,4 +67,11 @@ public class Post {
     }
 
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

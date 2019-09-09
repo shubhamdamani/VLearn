@@ -2,6 +2,7 @@ package com.example.vlearn;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -22,6 +24,8 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -72,10 +76,11 @@ public class CustomListAdapter  extends ArrayAdapter<Post> {
 
 
         //get the persons information
-        String title = getItem(position).getTitle();
+        final String title = getItem(position).getTitle();
         String imgUrl = getItem(position).getThumbnailURL();
-        String author = getItem(position).getAuthor();
-        String updated = getItem(position).getDate_updated();
+        final String author = getItem(position).getAuthor();
+        final String updated = getItem(position).getDate_updated();
+        final String description = getItem(position).getDescription();
 
         try{
 
@@ -148,12 +153,29 @@ public class CustomListAdapter  extends ArrayAdapter<Post> {
                 }
 
             });
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), NewsFeedDetails.class);
+
+                    intent.putExtra("title",title);
+                    intent.putExtra("author",author);
+                    intent.putExtra("updated",updated);
+                    intent.putExtra("description",description);
+                    Toast.makeText(mContext, "view clicked: " + description, Toast.LENGTH_SHORT).show();
+
+                    view.getContext().startActivity(intent);
+                }
+            });
+
 
             return convertView;
         }catch (IllegalArgumentException e){
             Log.e(TAG, "getView: IllegalArgumentException: " + e.getMessage() );
             return convertView;
         }
+
+
 
     }
 

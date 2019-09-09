@@ -14,7 +14,7 @@ public class RediffItem implements Serializable {
     @Element(name = "link")
     private String link;
     @Element(name = "description")
-    private String desc;
+    private String description;
     @Element(name = "image")
     private String imag;
     @Element(name = "Byline")
@@ -28,7 +28,7 @@ public class RediffItem implements Serializable {
 
     public RediffItem(String title, String desc, String imag, String auth, String link) {
         this.title = title;
-        this.desc = desc;
+        this.description = desc;
         this.imag = imag;
         this.auth = auth;
         this.link = link;
@@ -48,11 +48,11 @@ public class RediffItem implements Serializable {
     }
 
     public String getDesc() {
-        return desc;
+        return description;
     }
 
     public void setDesc(String desc) {
-        this.desc = desc;
+        this.description = desc;
     }
 
     public String getImag() {
@@ -79,7 +79,7 @@ public class RediffItem implements Serializable {
                 ", author='" + auth + '\'' +
                 ", id='" + link + '\'' +
                 ", url='" + imag + '\'' +
-                ", des='" + desc + '\'' +
+                ", des='" + description + '\'' +
                 '}'+"\n"+
                 "------------------------------------------------------------------------------------------\n";
     }
