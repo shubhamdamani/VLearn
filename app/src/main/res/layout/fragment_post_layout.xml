@@ -7,33 +7,47 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp">
+        android:layout_marginBottom="1dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@mipmap/prof_icon"
+            android:id="@+id/prof_icon"
+            />
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_toRightOf="@+id/prof_icon"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:text="post:username"
         android:paddingHorizontal="20dp"
-        android:paddingVertical="10dp"
-        android:textSize="20dp"
+        android:paddingVertical="5dp"
         android:id="@+id/post_username"
-        android:gravity="end"/>
+        android:background="@drawable/tv_border"
+        android:textColor="@color/black"
+
+        />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="25dp"
+        android:layout_marginLeft="30dp"
+        android:padding="10dp"
+        android:textSize="20dp"
         android:id="@+id/artical"
         android:text="Artical"
-        android:layout_below="@+id/post_username"/>
+        android:layout_below="@+id/post_username"
+        android:textColor="@color/black"/>
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@+id/artical">
+            android:layout_below="@+id/artical"
+            android:layout_alignParentEnd="true">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -43,8 +57,8 @@
                 android:padding="10dp"/>
             <ImageView
                 android:id="@+id/like"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:background="@drawable/up" />
             <TextView
                 android:layout_width="wrap_content"
@@ -55,8 +69,9 @@
 
             <ImageView
                 android:id="@+id/dislike"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="4dp"
                 android:background="@drawable/down"
                 />
             <TextView
@@ -98,13 +113,14 @@
             android:id="@+id/post_date"
             android:padding="10dp"
             android:visibility="invisible"/>
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
             android:id="@+id/post_id"
+            android:layout_width="115dp"
+            android:layout_height="88dp"
             android:padding="10dp"
-            android:visibility="invisible"/>
+            android:text="0"
+            android:visibility="invisible" />
     </RelativeLayout>
     </androidx.cardview.widget.CardView>
 

@@ -49,7 +49,7 @@ import dmax.dialog.SpotsDialog;
 
 public class login extends AppCompatActivity {
    SpotsDialog dialog;
-    TextInputEditText userame,pass;
+    EditText userame,pass;
     Button Login,gotoRegister;
     String l_name="",l_pass="";
 
