@@ -40,7 +40,8 @@ public class Chat extends AppCompatActivity {
                // Intent i=new Intent(Chat.this, chatWithAdmin.class);
                 //startActivity(i);
                 flag=0;
-                login("email@gmail.com","vivek1");
+                Toast.makeText(Chat.this, USER_Class.getLoggedUserEmail(), Toast.LENGTH_SHORT).show();
+                login(USER_Class.getLoggedUserEmail(),USER_Class.getLoggedUserEmail());
             }
         });
         admin.setOnClickListener(new View.OnClickListener() {

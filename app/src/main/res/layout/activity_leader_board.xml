@@ -4,18 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Chat"
+    tools:context=".LeaderBoard"
     android:orientation="vertical">
 
-    <Button
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/chat"
-        android:text="chat"/>
-    <Button
+        android:text="Leaderboard"
+        android:padding="20dp"
+        android:textSize="20dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/admin"
-        android:text="admin"/>
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:id="@+id/leader_board_recylerview">
+    </androidx.recyclerview.widget.RecyclerView>
 
 </LinearLayout>
