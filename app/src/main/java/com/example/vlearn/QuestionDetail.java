@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.firestore.auth.User;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,7 +43,7 @@ public class QuestionDetail extends AppCompatActivity {
     String json_string,JSON_String;                 //this activity is showing answer of particular question and giving option to add answer
     JSONArray jsonArray;
     JSONObject jsonObject;
-    TextView txt_quesDisp;
+    TextView txt_quesDisp,txt_user;
     List<AnswerForQuestionCard> mquestionfetch;
     AnswerForQuestionAdapter adapter;
     private RecyclerView recyclerView;
@@ -65,6 +67,8 @@ public class QuestionDetail extends AppCompatActivity {
 
         editanswer=findViewById(R.id.editanswer);
         postanswer=findViewById(R.id.postanswer);
+        txt_user=findViewById(R.id.username);
+
 
         postanswer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +85,7 @@ public class QuestionDetail extends AppCompatActivity {
         Q_Id = bundle.getString("Q_Id");
         User_Id = bundle.getString("User_Id");
         Topic = bundle.getString("Topic");
+        txt_user.setText(User_Id);
 
         txt_quesDisp.setText(Question);
 
@@ -145,7 +150,7 @@ public class QuestionDetail extends AppCompatActivity {
                 ans_Id=jo.getString("Ans_Id");
                 user_Id=jo.getString("User_Id");
                 q_Id=jo.getString("Q_Id");
-                user_name="need to add";
+                user_name=jo.getString("ans_username");
                 answer=jo.getString("Answer");
                 Toast.makeText(QuestionDetail.this,"answer:"+answer+user_Id,Toast.LENGTH_LONG).show();
                 AnswerForQuestionCard contacts=new AnswerForQuestionCard(answer,user_Id,user_name);
