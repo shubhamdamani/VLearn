@@ -7,17 +7,30 @@
     tools:context=".AddPost"
     android:padding="20dp">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/app_icon"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/icimg"
+        />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Write your Post"
+        android:layout_below="@+id/icimg"
         android:padding="10dp"
+        android:background="@drawable/capsule"
+        android:layout_marginTop="30dp"
         android:id="@+id/heading"/>
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/topic"
         android:layout_below="@+id/heading"
+        android:background="@drawable/capsule"
+        android:layout_marginTop="15dp"
         android:padding="20dp">
 
     </Spinner>
@@ -25,9 +38,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/Post_title"
+        android:layout_marginTop="15dp"
         android:layout_below="@+id/topic"
         android:hint="Post Title"
         android:padding="20dp"
+        android:background="@drawable/capsule"
         android:inputType="textMultiLine"
 
         />
@@ -38,20 +53,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
+        android:layout_marginTop="15dp"
         android:minLines="5"
         android:maxLines="30"
         android:padding="20dp"
         android:hint="Write here"
+        android:background="@drawable/capsule"
         android:gravity="left"/>
     <Button
         android:id="@+id/Post_submit"
         android:layout_below="@+id/Post_content"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+
         android:text="Submit"
-        android:padding="20dp"
+        android:padding="1dp"
         android:layout_alignParentEnd="true"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/btncapsule"
         />
 
 </RelativeLayout>

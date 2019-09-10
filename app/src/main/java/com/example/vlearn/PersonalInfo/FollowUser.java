@@ -199,8 +199,8 @@ public class FollowUser extends AppCompatActivity {
             while(count<jsonArray1.length())
             {
                 JSONObject jo=jsonArray1.getJSONObject(count);  // ARRAY KA SUB-TAG, MATLAB KEY OF REQIRED VALUE
-                tv1.setText("followers"+jo.getString("Followers"));
-                tv2.setText("following"+jo.getString("Following"));
+                tv1.setText("followers:"+jo.getString("Followers"));
+                tv2.setText("following:"+jo.getString("Following"));
                /* Post_Title=jo.getString("Post_Title");
                 Post_Date=jo.getString("Post_Date");
                 Post_Id=jo.getString("Post_Id");
