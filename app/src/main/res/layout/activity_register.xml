@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".register"
     android:orientation="vertical"
-    android:layout_marginHorizontal="50dp"
-    android:layout_marginTop="50dp">
+    android:padding="50dp"
+    android:layout_centerInParent="true">
 
     <EditText
         android:id="@+id/username"
@@ -15,9 +15,8 @@
         android:layout_height="50dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/capsule"
-        android:fontFamily="sans-serif-smallcaps"
         android:paddingStart="10dp"
-        android:text="Username" />
+        android:hint="Username" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -25,7 +24,7 @@
         android:layout_marginTop="20dp"
         android:paddingStart="10dp"
         android:background="@drawable/capsule"
-        android:text="Email"
+        android:hint="Email"
         />
     <EditText
         android:layout_width="match_parent"
@@ -34,7 +33,7 @@
         android:layout_marginTop="20dp"
         android:paddingStart="10dp"
         android:background="@drawable/capsule"
-        android:text="Password"
+        android:hint="Password"
         />
     <EditText
         android:layout_width="match_parent"
@@ -43,7 +42,7 @@
         android:layout_marginTop="20dp"
         android:paddingStart="10dp"
         android:background="@drawable/capsule"
-        android:text="Re-enter Password"
+        android:hint="Re-enter Password"
         />
 
 

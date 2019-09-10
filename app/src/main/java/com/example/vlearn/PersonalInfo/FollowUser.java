@@ -80,7 +80,8 @@ public class FollowUser extends AppCompatActivity {
         if(fuid.equals(USER_Class.getLoggedUserId()))
         {
             foll.setEnabled(false);
-            foll.setVisibility(View.GONE);
+            btn_unfollow.setVisibility(View.GONE);
+
         }
         foll.setOnClickListener(new View.OnClickListener() {
             @Override

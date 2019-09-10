@@ -37,7 +37,7 @@ public class LeaderBoard extends AppCompatActivity {
     String json_string,JSON_String;                 //this activity is showing answer of particular question and giving option to add answer
     JSONArray jsonArray;
     JSONObject jsonObject;
-    List<Lboard_user> getCommentData;
+    List<Lboard_user> leaderData;
     Lboard_adapter adapter;
 
     @Override
@@ -49,13 +49,15 @@ public class LeaderBoard extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        new BackgroundTask().execute();
+
 
     }
     public void getDatafromJSON()
     {
         // Toast.makeText(PostDetail.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();
         String user_name,user_email,user_id;
-        getCommentData=new ArrayList<>();
+        leaderData=new ArrayList<>();
 
         try {
             jsonObject=new JSONObject(JSON_String);
@@ -72,8 +74,8 @@ public class LeaderBoard extends AppCompatActivity {
 
                 Toast.makeText(LeaderBoard.this,"hi"+user_name+user_email,Toast.LENGTH_LONG).show();
                 Lboard_user contacts=new  Lboard_user(user_name,user_email,user_id);
-                getCommentData.add(contacts);
-                adapter = new Lboard_adapter(this, getCommentData);
+                leaderData.add(contacts);
+                adapter = new Lboard_adapter(this, leaderData);
                 recyclerView.setAdapter(adapter);
                 count++;
 
@@ -87,7 +89,7 @@ public class LeaderBoard extends AppCompatActivity {
     }
     class BackgroundTask extends AsyncTask<Void,Void,String>            //answer upload karega
     {
-        String json_url="https://vlearndroidrun.000webhostapp.com/getTopUpvoter.php";
+        String json_url="https://vlearndroidrun.000webhostapp.com/getTopUpvoters.php";
 
 
         @Override

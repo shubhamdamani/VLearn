@@ -28,5 +28,11 @@
         app:showAsAction="never"
         android:title="Chat with Admin">
     </item>
+    <item
+        android:id="@+id/leaderMenu"
+        android:orderInCategory="220"
+        app:showAsAction="never"
+        android:title="Leader Board">
+    </item>
 
 </menu>

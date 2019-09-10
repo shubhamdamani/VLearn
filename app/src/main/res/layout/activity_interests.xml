@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,18 +7,28 @@
     tools:context=".interests"
     android:orientation="vertical">
 
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content" android:padding="10dp"
-        android:text="Choose Topics" android:textSize="20sp" />
+    <TextView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Choose Topics"
+        android:textSize="20sp"
+        android:id="@+id/txt"/>
 
-
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_below="@+id/txt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/findSelected"
+        android:scrollbars="vertical"/>
     <Button
         android:id="@+id/findSelected"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Find topics that are Selected" />
-    <ListView android:id="@+id/listView1" android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:text="Submit"
+        android:background="@android:color/holo_blue_dark"
+        android:layout_alignParentBottom="true"
+        />
 
 
-</LinearLayout>
+</RelativeLayout>

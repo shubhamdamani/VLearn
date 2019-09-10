@@ -252,7 +252,7 @@ public class interests extends AppCompatActivity { //user k topic select krne k 
 
             if(result.equals("Posted Successfully"))
             {
-                Intent i=new Intent(interests.this,MainActivity.class);
+                Intent i=new Intent(interests.this,login.class);
                 startActivity(i);
             }
             //JSON_String=result;

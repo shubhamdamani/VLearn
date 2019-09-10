@@ -188,7 +188,7 @@ public class register extends AppCompatActivity {
                 Toast.makeText(register.this,"REGISTRATION FAILED",Toast.LENGTH_SHORT).show();
             }else{
                 Toast.makeText(register.this,"REGISTRATION SUCCESS",Toast.LENGTH_SHORT).show();
-                Intent i=new Intent(register.this,login.class);
+                Intent i=new Intent(register.this,interests.class);
                 startActivity(i);
             }
 
