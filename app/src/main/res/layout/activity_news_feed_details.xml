@@ -8,55 +8,149 @@
 
 
     <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
+        android:id="@+id/titleText"
+        android:layout_width="114dp"
+        android:background="@drawable/btncapsule"
+        android:layout_height="20sp"
+        android:textColor="#F5F5F5"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10sp"
+        android:layout_marginEnd="10sp"
+        android:textAlignment="center"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="10sp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="TITLE"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5sp"
+        android:textAlignment="center"
+        android:layout_below="@id/titleText"
+        android:layout_centerHorizontal="true"
+        android:padding="10sp"
+        android:background="@drawable/capsule"
         android:hint="Title"
+        android:textSize="15sp"
         />
 
     <TextView
-        android:id="@+id/author"
+        android:id="@+id/authorText"
+        android:layout_width="90sp"
+
+        android:background="@drawable/btncapsule"
+        android:layout_height="20sp"
+        android:textColor="#F5F5F5"
         android:layout_below="@id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
+        android:layout_marginBottom="10sp"
+        android:textAlignment="center"
+        android:layout_marginEnd="10sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="10sp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="AUTHOR"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/author"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_below="@id/authorText"
+        android:textAlignment="center"
+        android:padding="10sp"
+        android:layout_margin="5dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/capsule"
         android:hint="author" />
 
     <TextView
-        android:id="@+id/date_updated"
+        android:id="@+id/date_text"
+        android:layout_width="150sp"
+        android:background="@drawable/btncapsule"
+        android:layout_height="20sp"
+        android:textColor="#F5F5F5"
+        android:textStyle="bold"
         android:layout_below="@id/author"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:textAlignment="center"
         android:layout_margin="10dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="DATE UPDATED" />
+
+    <TextView
+        android:id="@+id/date_updated"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/date_text"
+        android:padding="10sp"
+        android:layout_margin="5dp"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:background="@drawable/capsule"
+
         android:hint="Date Updated" />
 
     <TextView
-        android:id="@+id/description"
+        android:id="@+id/desc_text"
+        android:layout_width="130sp"
+        android:textAlignment="center"
+        android:background="@drawable/btncapsule"
+        android:layout_height="20sp"
+        android:textColor="#F5F5F5"
+        android:textStyle="bold"
         android:layout_below="@id/date_updated"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
-        android:hint="Description" />
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="DESCRIPTION" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="43dp"
+        android:padding="10sp"
+        android:layout_below="@id/desc_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:hint="Description"
+        android:textAlignment="center" />
 
     <TextView
         android:id="@+id/link"
-        android:layout_below="@id/description"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="37dp"
         android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
+       android:layout_above="@id/source"
         android:hint="Link" />
+
 
     <TextView
         android:id="@+id/source"
-        android:layout_below="@id/link"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="33dp"
+        android:layout_margin="10dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:hint="Post Source" />
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="109dp"
+        android:hint="Post Source"
+        android:textStyle="bold" />
 </RelativeLayout>

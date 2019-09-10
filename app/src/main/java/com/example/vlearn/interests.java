@@ -2,7 +2,9 @@ package com.example.vlearn;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,6 +19,8 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.vlearn.PersonalInfo.UpdateInfo;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -105,7 +109,7 @@ public class interests extends AppCompatActivity { //user k topic select krne k 
                                     int position, long id) {
                 // When clicked, show a toast with the TextView text
                 com.example.vlearn.Topics country = (com.example.vlearn.Topics) parent.getItemAtPosition(position);
-                Toast.makeText(getApplicationContext(), "Clicked on Row: " + country.getName(), Toast.LENGTH_LONG).show();
+             //   Toast.makeText(getApplicationContext(), "Clicked on Row: " + country.getName(), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -174,24 +178,42 @@ public class interests extends AppCompatActivity { //user k topic select krne k 
 
             @Override
             public void onClick(View v) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(interests.this);
+                builder.setTitle("Confirm Update !");
+                builder.setMessage("You are about to update your Topics. Do you really want to proceed ?");
+                builder.setCancelable(false);
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        StringBuffer responseText = new StringBuffer();
 
-                StringBuffer responseText = new StringBuffer();
+                        responseText.append("The following were selected...\n");
 
-                responseText.append("The following were selected...\n");
+                        ArrayList<Topics> countryList = dataAdapter.countryList;
+                        for(int i=0;i<countryList.size();i++){
+                            Topics topics = countryList.get(i);
+                            if(topics.isSelected()){
+                                responseText.append("\n" + topics.getName());
+                                String str=topics.getName();
+                                String key=TopicToKey.get(str).toString();
+                                Interest_Str.append(key);
+                            }
+                        }
 
-                ArrayList<Topics> countryList = dataAdapter.countryList;
-                for(int i=0;i<countryList.size();i++){
-                    Topics topics = countryList.get(i);
-                    if(topics.isSelected()){
-                        responseText.append("\n" + topics.getName());
-                        String str=topics.getName();
-                        String key=TopicToKey.get(str).toString();
-                        Interest_Str.append(key);
+                        Toast.makeText(getApplicationContext()," Topics  Updated", Toast.LENGTH_LONG).show();
+                        new interests.BackgroundTask().execute();
                     }
-                }
+                });
 
-                Toast.makeText(getApplicationContext(), responseText+" "+Interest_Str, Toast.LENGTH_LONG).show();
-                new interests.BackgroundTask().execute();
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "Topics not Updated", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                builder.show();
+
 
             }
         });
