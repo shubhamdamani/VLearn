@@ -2,6 +2,8 @@ package com.example.vlearn.PersonalInfo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -68,11 +70,31 @@ public class EditPost extends AppCompatActivity {
         btnEditPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FLAG="1";
-                posty=editPost.getText().toString().trim();
-                Toast.makeText(EditPost.this,posty+" "+post_id+ " postid",Toast.LENGTH_SHORT).show();
 
-                new EditPost.BackgroundTask().execute();
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(EditPost.this);
+                builder.setTitle("Confirm Edit !");
+                builder.setMessage("You are about to edit your post. Do you really want to proceed ?");
+                builder.setCancelable(false);
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "Post Edited Successfully ", Toast.LENGTH_SHORT).show();
+                        FLAG="1";
+                        posty=editPost.getText().toString().trim();
+                        new EditPost.BackgroundTask().execute();
+                    }
+                });
+
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "Post Not edited", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                builder.show();
 
 
             }
@@ -81,8 +103,32 @@ public class EditPost extends AppCompatActivity {
         btnDelPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FLAG="0";
-                new EditPost.BackgroundTask().execute();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(EditPost.this);
+                builder.setTitle("Confirm Delete !");
+                builder.setMessage("You are about to delete your post. Do you really want to proceed ?");
+                builder.setCancelable(false);
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "Post Deleted Successfully ", Toast.LENGTH_SHORT).show();
+                        FLAG="0";
+                        new EditPost.BackgroundTask().execute();
+                    }
+                });
+
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "Post Not deleted", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                builder.show();
+
+
+
+
 
             }
         });

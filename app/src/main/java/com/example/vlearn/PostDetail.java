@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -21,6 +22,7 @@ import com.example.vlearn.PersonalInfo.FollowUser;
 import com.example.vlearn.adapter.post_comment_adapter;
 import com.example.vlearn.object.getComment_data;
 import com.github.ivbaranov.mfb.MaterialFavoriteButton;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,13 +41,15 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import dmax.dialog.SpotsDialog;
 import retrofit2.http.POST;
 
-public class PostDetail extends AppCompatActivity  {
+public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnInitListener{
 
     TextView tvUsername,tvArtical,tvTitle;
+    private TextToSpeech tts;
     Button B_up,B_down,B_post,B_bookmark,share;
     MaterialFavoriteButton B_mark;
     String username,artical,title,Post_Id,User_Id;
@@ -59,11 +63,16 @@ public class PostDetail extends AppCompatActivity  {
     List<getComment_data> getCommentData;
     post_comment_adapter adapter;
     String book_state,sendpost,sendTitle;
-    Button btnEdit;
+    Button btnEdit,btnMORE,btnaudio;
+    BottomSheetBehavior bottomSheetBehavior;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_detail);
+
+
+
+
         tvUsername=findViewById(R.id.tvPDUname);
         tvTitle=findViewById(R.id.tvPDTitle);
         tvArtical=findViewById(R.id.tvPDPost);
@@ -71,6 +80,36 @@ public class PostDetail extends AppCompatActivity  {
         B_down=findViewById(R.id.btnPDDown);
         share=findViewById(R.id.share);
         btnEdit=findViewById(R.id.btnEdit);
+        btnMORE=findViewById(R.id.btnMORE);
+        btnaudio=findViewById(R.id.btnaudio);
+        tts=new TextToSpeech(this, (TextToSpeech.OnInitListener) this);
+        btnaudio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                voiceOutput();
+            }
+        });
+
+        View bottomSheet=findViewById(R.id.bottom_sheet);
+        bottomSheetBehavior=BottomSheetBehavior.from(bottomSheet);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
+        btnMORE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(bottomSheetBehavior.getState()!=BottomSheetBehavior.STATE_EXPANDED)
+                {
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                  //  btnMORE.setText("hide");
+                }else{
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                //    btnMORE.setText("more");
+                }
+            }
+        });
+
+
 
 
 
@@ -214,6 +253,53 @@ public class PostDetail extends AppCompatActivity  {
 
 
     }
+
+    private void voiceOutput()
+    {
+
+        CharSequence txt=artical;
+
+        tts.speak(txt, TextToSpeech.QUEUE_FLUSH,null,"id1");
+    }
+
+
+
+
+    public void onInit(int status)
+    {
+        //tts=new TextToSpeech(this, (TextToSpeech.OnInitListener) this);
+        if(status==TextToSpeech.SUCCESS) {
+            int reslt = tts.setLanguage(Locale.US);
+            float i = 50;
+            if (reslt == TextToSpeech.LANG_MISSING_DATA || reslt == TextToSpeech.LANG_NOT_SUPPORTED) {
+                Toast.makeText(PostDetail.this, "not", Toast.LENGTH_SHORT).show();
+            } else {
+                btnaudio.setEnabled(true);
+               // voiceOutput();
+            }
+        }
+        else
+        {
+            Toast.makeText(PostDetail.this,"fal",Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    public void onDestroy()
+    {
+        if(tts!=null)
+        {
+            tts.stop();
+            tts.shutdown();
+        }
+        super.onDestroy();
+    }
+
+
+
+
+
+
     public void Bookmark_fun()
     {
 
