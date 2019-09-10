@@ -74,6 +74,7 @@ public class QuestionDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 answer=editanswer.getText().toString();
+                Toast.makeText(QuestionDetail.this,answer,Toast.LENGTH_LONG).show();
                 postfun();
                // Intent i=new Intent(QuestionDetail.this,QuestionDetail.class);
                 //startActivity(i);

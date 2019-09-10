@@ -18,6 +18,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
 import dmax.dialog.SpotsDialog;
 
 import java.io.BufferedReader;
@@ -47,6 +51,7 @@ public class PostsFragment extends Fragment {
     String sortType;
     Button B_postArtical,btn_popular,btn_date,btn_follower;
     String sendTopic="";
+    FloatingActionButton fab;
 
     @Nullable
     @Override
@@ -57,18 +62,15 @@ public class PostsFragment extends Fragment {
         btn_follower=v.findViewById(R.id.btn_followers);
 
         //new PostsFragment.BackgroundTask().execute();
-        B_postArtical=v.findViewById(R.id.post_artical);
+       
+
         recyclerView = v.findViewById(R.id.post_recycler);
         //dialog=new SpotsDialog(getContext());
         //dialog.show();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        B_postArtical.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(),AddPost.class));
-            }
-        });
+
+
         sortType="-1";
         Toast.makeText(getContext(),USER_Class.getLoggedUserId(),Toast.LENGTH_SHORT).show();
         new PostsFragment.BackgroundTask().execute();
@@ -94,6 +96,15 @@ public class PostsFragment extends Fragment {
             public void onClick(View v) {
                 sortType="2";
                 new PostsFragment.BackgroundTask().execute();
+            }
+        });
+        fab =  v.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                startActivity(new Intent(getContext(),AddPost.class));
             }
         });
 

@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:padding="10dp"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:id="@+id/artical"
         android:text="Artical"
         android:layout_below="@+id/post_username"
