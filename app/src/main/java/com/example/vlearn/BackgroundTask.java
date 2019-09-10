@@ -4,9 +4,11 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -62,6 +64,7 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {     //this i
             String qid=params[1];
             String answer=params[2];
             String userid=params[3];
+            String json_string,JSON_String;
 
             try {
 
@@ -78,9 +81,19 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {     //this i
                 bufferedWriter.flush();
                 bufferedWriter.close();
                 os.close();
-                InputStream IS=httpURLConnection.getInputStream();
-                IS.close();
-                return "Answer Posted";
+                InputStream inputStream=httpURLConnection.getInputStream();
+                BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream));
+                StringBuilder stringBuilder=new StringBuilder();
+
+                while((json_string=bufferedReader.readLine())!=null)
+                {
+                    stringBuilder.append(json_string+"\n");
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                JSON_String=stringBuilder.toString().trim();
+                return stringBuilder.toString().trim();
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -141,7 +154,9 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {     //this i
                 bufferedWriter.close();
                 os.close();
                 InputStream IS=httpURLConnection.getInputStream();
+
                 IS.close();
+                httpURLConnection.disconnect();
                 return "Bookmark";
 
             } catch (MalformedURLException e) {

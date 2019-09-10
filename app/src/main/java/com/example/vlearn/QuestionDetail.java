@@ -112,11 +112,11 @@ public class QuestionDetail extends AppCompatActivity {
         {
             Toast.makeText(QuestionDetail.this,"plese add anser",Toast.LENGTH_SHORT).show();
             return;
-        }
+        }Toast.makeText(QuestionDetail.this,Q_Id+"h"+answer+"_"+User_Id,Toast.LENGTH_SHORT).show();
 
        com.example.vlearn.BackgroundTask backgroundTask=new com.example.vlearn.BackgroundTask(getBaseContext());
         hideKeyboard(QuestionDetail.this);
-        backgroundTask.execute(method,Q_Id.toString(),answer,User_Id);
+        backgroundTask.execute(method,Q_Id.toString(),answer,USER_Class.getLoggedUserId());
 
     }
 
