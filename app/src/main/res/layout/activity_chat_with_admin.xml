@@ -34,7 +34,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
         android:id="@+id/recycler_view"
         android:layout_below="@+id/top"
         android:layout_above="@id/bottom"
@@ -49,25 +48,27 @@
         android:layout_height="wrap_content"
         android:id="@+id/bottom"
         android:orientation="horizontal"
-        android:weightSum="10">
+        android:weightSum="10"
+        android:background="@drawable/tv_border">
 
 
         <EditText
             android:id="@+id/text_send"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingLeft="20dp"
+            android:paddingLeft="10dp"
             android:hint="Say Hola"
             android:inputType="textMultiLine"
             android:layout_weight="8"
+            android:background="@drawable/tv_border"
 
 
             />
 
         <ImageButton
             android:id="@+id/btn_send"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:background="@drawable/send_icon"
             android:layout_weight="2"
 

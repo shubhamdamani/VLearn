@@ -55,9 +55,10 @@ public class FollowUser extends AppCompatActivity {
     Integer up=0,down=0;
     SpotsDialog dialog;
     String fusername,fuid;
-    Button foll;
+    Button foll,btn_unfollow;
     TextView tv,tv1,tv2;
     //String  f1,f2;
+    String Flag;
 
     public FollowUser(){}
 
@@ -74,6 +75,7 @@ public class FollowUser extends AppCompatActivity {
         tv1=findViewById(R.id.followers);
         tv2=findViewById(R.id.following);
         foll=findViewById(R.id.btnfollow);
+        btn_unfollow=findViewById(R.id.btnunfollow);
         fuid=in.getStringExtra("User_Id");
         if(fuid.equals(USER_Class.getLoggedUserId()))
         {
@@ -83,6 +85,17 @@ public class FollowUser extends AppCompatActivity {
         foll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Flag="1";
+                new Follow().execute();
+            }
+        });
+
+        btn_unfollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Flag="0";
+
+                //unfollow_fun();
                 new Follow().execute();
             }
         });
@@ -94,13 +107,19 @@ public class FollowUser extends AppCompatActivity {
       //  dialog.show();
        // dialog.show();
 
-        //Toast.makeText(FollowUser.this,fusername+" "+fuid,Toast.LENGTH_SHORT).show();
+        Toast.makeText(FollowUser.this,fusername+" "+fuid,Toast.LENGTH_SHORT).show();
 
         new Back().execute();
         new BackgroundTask().execute();
 
 
 
+
+
+
+    }
+    public  void unfollow_fun()
+    {
 
 
 
@@ -308,7 +327,8 @@ public class FollowUser extends AppCompatActivity {
                 httpURLConnection.setDoOutput(true);
                 OutputStream os=httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
-                String data= URLEncoder.encode("User_Id","UTF-8")+"="+URLEncoder.encode(fuid,"UTF-8");
+                String data= URLEncoder.encode("User_Id","UTF-8")+"="+URLEncoder.encode(fuid,"UTF-8")+"&"+
+                        URLEncoder.encode("Login_Id", "UTF-8") + "=" + URLEncoder.encode(USER_Class.getLoggedUserId(), "UTF-8");
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -384,14 +404,15 @@ public class FollowUser extends AppCompatActivity {
                 OutputStream os=httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
                 String data= URLEncoder.encode("User_Id","UTF-8")+"="+URLEncoder.encode(USER_Class.getLoggedUserId(),"UTF-8")+"&"+
-                        URLEncoder.encode("FUser_Id","UTF-8")+"="+URLEncoder.encode(fuid,"UTF-8");
+                        URLEncoder.encode("FUser_Id","UTF-8")+"="+URLEncoder.encode(fuid,"UTF-8")+"&"+
+                        URLEncoder.encode("Flag", "UTF-8") + "=" + URLEncoder.encode(Flag, "UTF-8");
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
                 os.close();
 
                 InputStream inputStream=httpURLConnection.getInputStream();
-                BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream));
+               /* BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder stringBuilder=new StringBuilder();
 
                 while((json_string=bufferedReader.readLine())!=null)
@@ -399,11 +420,12 @@ public class FollowUser extends AppCompatActivity {
                     stringBuilder.append(json_string+"\n");
                 }
 
-                bufferedReader.close();
+                bufferedReader.close();*/
                 inputStream.close();
                 httpURLConnection.disconnect();
 
-                return stringBuilder.toString().trim();
+                return "string";
+                //return stringBuilder.toString().trim();
 
 
             } catch (MalformedURLException e) {
@@ -444,6 +466,8 @@ public class FollowUser extends AppCompatActivity {
             super.onProgressUpdate(values);
         }
     }
+
+
 
 
 }

@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vlearn.PersonalInfo.EditPost;
 import com.example.vlearn.PersonalInfo.FollowUser;
 import com.example.vlearn.adapter.post_comment_adapter;
 import com.example.vlearn.object.getComment_data;
@@ -47,7 +48,7 @@ public class PostDetail extends AppCompatActivity  {
     TextView tvUsername,tvArtical,tvTitle;
     Button B_up,B_down,B_post,B_bookmark,share;
     MaterialFavoriteButton B_mark;
-    String username,artical,title,Post_Id;
+    String username,artical,title,Post_Id,User_Id;
     EditText txt_comment;
     SpotsDialog dialog;
     String PostComment;
@@ -58,6 +59,7 @@ public class PostDetail extends AppCompatActivity  {
     List<getComment_data> getCommentData;
     post_comment_adapter adapter;
     String book_state,sendpost,sendTitle;
+    Button btnEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,21 +70,47 @@ public class PostDetail extends AppCompatActivity  {
         B_up=findViewById(R.id.btnPDUp);
         B_down=findViewById(R.id.btnPDDown);
         share=findViewById(R.id.share);
+        btnEdit=findViewById(R.id.btnEdit);
+
+
 
         B_bookmark=findViewById(R.id.bBookmark);
 
         Intent intent=getIntent();
         username=intent.getStringExtra("Post_User");
-        Post_Id=intent.getStringExtra("User_Id");
+        Post_Id=intent.getStringExtra("Post_Id");
+        User_Id=intent.getStringExtra("User_Id");
         book_state=intent.getStringExtra("Bookmark");
         sendpost=intent.getStringExtra("Post");
         sendTitle=intent.getStringExtra("Post_Title");
+
+        if(User_Id.equals(USER_Class.getLoggedUserId()) || USER_Class.getLoggedUserId().equals("1") || USER_Class.getLoggedUserId().equals("2") || USER_Class.getLoggedUserId().equals("3"))
+        {
+                Toast.makeText(PostDetail.this,User_Id+" "+USER_Class.getLoggedUserId(),Toast.LENGTH_SHORT).show();
+        }else{
+            btnEdit.setEnabled(false);
+            btnEdit.setVisibility(View.INVISIBLE);
+        }
+
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(PostDetail.this, EditPost.class);
+                i.putExtra("Post",sendpost);
+                i.putExtra("Post_Id",Post_Id);
+                i.putExtra("Post_Title",sendTitle);
+                i.putExtra("User_Id",User_Id);
+                startActivity(i);
+            }
+        });
+
+
         tvUsername.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent j=new Intent(PostDetail.this, FollowUser.class);
 
-                j.putExtra("User_Id",Post_Id);
+                j.putExtra("User_Id",User_Id);
                 j.putExtra("UserName",username);
                 startActivity(j);
             }
@@ -224,7 +252,7 @@ public class PostDetail extends AppCompatActivity  {
 
     public void getDatafromJSON()
     {
-        Toast.makeText(PostDetail.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();
+       // Toast.makeText(PostDetail.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();
         String user_name,p_comment;
          getCommentData=new ArrayList<>();
 

@@ -16,15 +16,6 @@
         android:text="waitlist"
         android:background="@drawable/btncapsule"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_below="@+id/waitlist"
-        android:layout_marginTop="25dp"
-        android:layout_centerInParent="true"
-        android:id="@+id/accepted"
-        android:background="@drawable/btncapsule"
-        android:text="accepted"
-        />
+
 
 </RelativeLayout>

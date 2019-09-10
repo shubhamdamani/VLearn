@@ -9,24 +9,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/sort">
+        android:id="@+id/sort"
+        android:weightSum="3"
+        >
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btn_popular"
-            android:text="popular"/>
+            android:text="popular"
+            android:layout_weight="1"
+            android:background="@drawable/tv_border"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btn_date"
-            android:text="date"/>
+            android:text="date"
+            android:layout_weight="1"
+            android:background="@drawable/tv_border"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btn_followers"
-            android:text="followers"/>
+            android:text="followers"
+            android:layout_weight="1"
+            android:background="@drawable/tv_border"/>
 
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView

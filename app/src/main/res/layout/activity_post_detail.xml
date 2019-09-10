@@ -31,6 +31,14 @@
         android:id="@+id/share"
         android:layout_below="@+id/tvPDUname"
         android:layout_alignParentRight="true"/>
+    <Button
+        android:layout_width="70dp"
+        android:id="@+id/btnEdit"
+        android:layout_height="wrap_content"
+        android:text="edit"
+        android:layout_below="@+id/share"
+        android:layout_alignParentRight="true"
+        />
 
     <TextView
         android:layout_width="match_parent"

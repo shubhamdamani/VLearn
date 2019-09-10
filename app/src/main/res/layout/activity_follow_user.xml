@@ -35,20 +35,33 @@
         android:layout_below="@+id/followuname"
         android:layout_alignParentRight="true"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="follow"
-        android:id="@+id/btnfollow"
-        android:layout_below="@+id/followers"
-        android:layout_centerInParent="true"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/following"
+        android:id="@+id/followbar">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="follow"
+            android:id="@+id/btnfollow"
+
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="unfollow"
+            android:id="@+id/btnunfollow"
+
+            />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/follow_recycler"
-        android:layout_below="@+id/btnfollow"
+        android:layout_below="@+id/followbar"
         android:layout_marginTop="20dp"
 
         />

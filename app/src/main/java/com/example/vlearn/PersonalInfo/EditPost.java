@@ -1,18 +1,19 @@
 package com.example.vlearn.PersonalInfo;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.vlearn.PostDetail;
-import com.example.vlearn.Post_content;
+import com.example.vlearn.Admin.PostWaitDetail;
 import com.example.vlearn.R;
-import com.example.vlearn.USER_Class;
-import com.example.vlearn.post_adapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,88 +30,120 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
 
-public class BookmarkActivity extends AppCompatActivity {
+public class EditPost extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    List<Post_content> mPostContent;
-    post_adapter adapter;
-    String JSON_String,json_string;
+    String posty,post_title,post_id,user_id;
+    TextView title;
+    EditText editPost;
+    Button btnEditPost,btnDelPost;
+    String FLAG;
+    String json_string,JSON_String;                 //this activity is showing answer of particular question and giving option to add answer
     JSONArray jsonArray;
     JSONObject jsonObject;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bookmark);
+        setContentView(R.layout.activity_edit_post);
 
-        recyclerView=findViewById(R.id.Bookmark_recyclerview);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        new BookmarkActivity.BackgroundTask().execute();
+        Intent i=getIntent();
+        posty=i.getStringExtra("Post");
+        post_title=i.getStringExtra("Post_Title");
+        post_id=i.getStringExtra("Post_Id");
+        user_id=i.getStringExtra("User_Id");
+
+
+
+        title=findViewById(R.id.tvEditTitle);
+        editPost=findViewById(R.id.tvEditPost);
+        btnEditPost=findViewById(R.id.btnEditpost);
+        btnDelPost=findViewById(R.id.btnDelpost);
+
+        title.setText(post_title);
+        editPost.setText(posty);
+
+
+
+        btnEditPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FLAG="1";
+                posty=editPost.getText().toString().trim();
+                Toast.makeText(EditPost.this,posty+" "+post_id+ " postid",Toast.LENGTH_SHORT).show();
+
+                new EditPost.BackgroundTask().execute();
+
+
+            }
+        });
+
+        btnDelPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FLAG="0";
+                new EditPost.BackgroundTask().execute();
+
+            }
+        });
+
+
+
+
+
+
+
+
 
 
     }
-    public void fun()                   //PARSING JSON OBJECT TO NORMAL STRING AND SHIFTING TO CARDVIEW
+
+
+    public void getDatafromJSON()
     {
-        //json_string=JSON_String;
-        //Toast.makeText(BookmarkActivity.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();
-        String Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName;
-        Integer Upvotes,Downvotes;
+        //Toast.makeText(PostDetail.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();
+        String status;
 
-
-
-        mPostContent =new ArrayList<>();
 
         try {
             jsonObject=new JSONObject(JSON_String);
-            Toast.makeText(BookmarkActivity.this,JSON_String,Toast.LENGTH_SHORT).show();
 
             int count=0;
-            jsonArray=jsonObject.getJSONArray("server_response");       //THIS IS NAME OF OUR JSON ARRAY
+            jsonArray=jsonObject.getJSONArray("server_response");
 
             while(count<jsonArray.length())
             {
-                JSONObject jo=jsonArray.getJSONObject(count);  // ARRAY KA SUB-TAG, MATLAB KEY OF REQIRED VALUE
-                User_Id=jo.getString("User_Id");
-                Post_content=jo.getString("Post");
-                Post_Title=jo.getString("Post_Title");
-                Post_Date=jo.getString("Post_Date");
-                Post_Id=jo.getString("Post_Id");
-                Upvotes=jo.getInt("Upvotes");
-                Downvotes=jo.getInt("Downvotes");
-                Topic=jo.getString("TopicStr");
-                UserName=jo.getString("UserName");
-                String bookmark=jo.getString("BookmarkStatus");
+                JSONObject jo=jsonArray.getJSONObject(count);
+                status=jo.getString("status");
+                Log.d("status",status);
+                //p_comment=jo.getString("Comment");
 
-                //questionfetch contacts=new questionfetch(Topic,User_Id,Q_Id,Question);
-                Post_content contacts=new Post_content(Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName,Upvotes,Downvotes,Integer.parseInt(bookmark));
-                mPostContent.add(contacts);
-                adapter = new post_adapter(getApplicationContext(), mPostContent);       //ONE BY ONE PUSHING QUESTIONS TO CARDVIEW
-                recyclerView.setAdapter(adapter);
+
                 count++;
 
 
             }
+         //   dialog.dismiss();
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
     }
+
+
 
 
     class BackgroundTask extends AsyncTask<Void,Void,String>
     {
-        String json_url="https://vlearndroidrun.000webhostapp.com/getUserBookmarks.php";
+        String json_url="https://vlearndroidrun.000webhostapp.com/editDeletePost.php"; //delrte
+
 
 
         @Override
         protected String doInBackground(Void... voids) {
 
             try {
+
                 URL url=new URL(json_url);
                 HttpURLConnection httpURLConnection=(HttpURLConnection) url.openConnection();
                 //my
@@ -118,12 +151,16 @@ public class BookmarkActivity extends AppCompatActivity {
                 httpURLConnection.setDoOutput(true);
                 OutputStream os=httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
-                String data= URLEncoder.encode("User_Id","UTF-8")+"="+URLEncoder.encode(USER_Class.getLoggedUserId(),"UTF-8");
+                String data= URLEncoder.encode("Post_Id","UTF-8")+"="+URLEncoder.encode(post_id,"UTF-8")+"&"+
+                        URLEncoder.encode("Post","UTF-8")+"="+URLEncoder.encode(posty,"UTF-8")+"&"+
+                        URLEncoder.encode("Flag","UTF-8")+"="+URLEncoder.encode(FLAG,"UTF-8");
+                Log.d("up   :    ",data);
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
                 os.close();
-                //
+
+
                 InputStream inputStream=httpURLConnection.getInputStream();
                 BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder stringBuilder=new StringBuilder();
@@ -139,6 +176,11 @@ public class BookmarkActivity extends AppCompatActivity {
                 JSON_String=stringBuilder.toString().trim();
                 return stringBuilder.toString().trim();
 
+               /// return FLAG;
+
+                // httpURLConnection.disconnect();
+
+                //return "successfully deleted";
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -160,11 +202,10 @@ public class BookmarkActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            //Toast.makeText(BookmarkActivity.this, "userid"+USER_Class.getLoggedUserId(), Toast.LENGTH_SHORT).show();
-            JSON_String=result;
-            //Toast.makeText(BookmarkActivity.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();
-            fun();
 
+          //  Toast.makeText(PostWaitDetail.this,success+result,Toast.LENGTH_SHORT).show();
+
+            getDatafromJSON();
 
             //super.onPostExecute(aVoid);
         }
@@ -174,4 +215,9 @@ public class BookmarkActivity extends AppCompatActivity {
             super.onProgressUpdate(values);
         }
     }
+
+
+
+
+
 }

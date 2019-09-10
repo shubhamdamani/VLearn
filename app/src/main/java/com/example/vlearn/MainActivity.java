@@ -84,9 +84,11 @@ public class MainActivity extends AppCompatActivity {
             }
             case R.id.aboutMenu:{
                 startActivity(new Intent(MainActivity.this,AboutVLearn.class));
+                break;
             }
             case R.id.chatMenu:{
                 startActivity(new Intent(MainActivity.this,Chat.class));
+                break;
             }
 
 

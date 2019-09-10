@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".AboutVLearn">
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="50dp"
         android:id="@+id/btnsecret"
-        android:text="kgjfjh"
+        android:text="aboutvlearn"
         android:textSize="30dp"
         android:layout_centerInParent="true"
 

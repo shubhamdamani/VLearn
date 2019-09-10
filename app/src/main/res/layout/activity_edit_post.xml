@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PersonalInfo.EditPost">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TopicTitle"
+        android:id="@+id/tvEditTitle"
+        android:textSize="50dp"
+        />
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvEditPost"
+        android:text="post things"
+        android:layout_below="@+id/tvEditTitle"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="edit"
+        android:id="@+id/btnEditpost"
+        android:layout_below="@+id/tvEditPost"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="deleete"
+        android:id="@+id/btnDelpost"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tvEditPost"/>
+
+
+
+</RelativeLayout>

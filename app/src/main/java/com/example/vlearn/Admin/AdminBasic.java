@@ -19,7 +19,7 @@ public class AdminBasic extends AppCompatActivity {
         setContentView(R.layout.activity_admin_basic);
 
         wait=findViewById(R.id.waitlist);
-        acc=findViewById(R.id.accepted);
+        //acc=findViewById(R.id.accepted);
         wait.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -28,12 +28,12 @@ public class AdminBasic extends AppCompatActivity {
             }
         });
 
-        acc.setOnClickListener(new View.OnClickListener() {
+      /*  acc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(AdminBasic.this,PostAcc.class);
                 startActivity(i);
             }
-        });
+        });*/
     }
 }

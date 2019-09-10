@@ -105,7 +105,7 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
 
     class BackgroundTask extends AsyncTask<Void,Void,String>        //this class is background task performing which will connect app to our database(php script of required) and then php script will run our queryand make changes in database
     {
-        String addPost_url="https://vlearndroidrun.000webhostapp.com/addPost.php";
+        String addPost_url="https://vlearndroidrun.000webhostapp.com/addToWaitingPosts.php";
 
 
 

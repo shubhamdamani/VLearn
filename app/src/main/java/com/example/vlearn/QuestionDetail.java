@@ -5,10 +5,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import dmax.dialog.SpotsDialog;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -48,6 +50,7 @@ public class QuestionDetail extends AppCompatActivity {
   //  SpotsDialog dialog;
     String answer;
     public static final String POST_ANSWER_URL="https://vlearndroidrun.000webhostapp.com/addAnswer.php";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,8 +109,20 @@ public class QuestionDetail extends AppCompatActivity {
         }
 
        com.example.vlearn.BackgroundTask backgroundTask=new com.example.vlearn.BackgroundTask(getBaseContext());
+        hideKeyboard(QuestionDetail.this);
         backgroundTask.execute(method,Q_Id.toString(),answer,User_Id);
 
+    }
+
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     //RETRIEVE DETAILS or Answers

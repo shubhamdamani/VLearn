@@ -6,12 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.vlearn.Admin.AdminBasic;
 
 public class AboutVLearn extends AppCompatActivity {
 
-    Button secret;
+    TextView secret;
 
 
     @Override
@@ -20,12 +21,14 @@ public class AboutVLearn extends AppCompatActivity {
         setContentView(R.layout.activity_about_vlearn);
 
         secret=findViewById(R.id.btnsecret);
+        //secret.setVisibility(View.INVISIBLE);
+        //secret.setEnabled(true);
         secret.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String s=USER_Class.getLoggedUserEmail();
-                if(s.equals("damani.shubham4@gmail.com") || s.equals("utkarsh3210@gmail.com") || s.equals("Email"))
+                String s=USER_Class.getLoggedUserId();
+                if(s.equals("1") || s.equals("2") || s.equals("3"))
                 {
                     Intent i=new Intent(AboutVLearn.this, AdminBasic.class);
                     startActivity(i);
