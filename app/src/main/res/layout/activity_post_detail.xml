@@ -145,17 +145,29 @@
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         >
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_width="75dp"
+            android:layout_height="50dp"
             android:text="audio"
             android:gravity="center"
-            android:id="@+id/btnaudio"/>
+            android:id="@+id/btnaudio"
+            android:background="@drawable/capsule"/>
         <Button
-            android:layout_width="150dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="75dp"
+            android:layout_height="50dp"
+            android:id="@+id/btnpdf"
+            android:text="save to pdf"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/capsule"/>
+
+        <Button
+            android:layout_marginTop="15dp"
+            android:layout_width="75dp"
             android:layout_height="50dp"
             android:text="share"
             android:id="@+id/share"
-
+            android:background="@drawable/capsule"
             android:layout_alignParentRight="true"/>
 
 

@@ -59,7 +59,7 @@ public class QuestionDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_detail);
         dialog=new SpotsDialog(this);
-        dialog.show();
+        //dialog.show();
         //recyclerView
         recyclerView = (RecyclerView) findViewById(R.id.ques_detail_recylerview);
         recyclerView.setHasFixedSize(true);
@@ -161,7 +161,7 @@ public class QuestionDetail extends AppCompatActivity {
 
 
             }
-            dialog.dismiss();
+//            dialog.dismiss();
 
         } catch (JSONException e) {
             e.printStackTrace();

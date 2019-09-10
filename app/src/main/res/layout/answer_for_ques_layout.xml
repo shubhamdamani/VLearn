@@ -15,11 +15,7 @@
             android:padding="8dp">
 
 
-            <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:id="@+id/prof_icon"
-                android:background="@drawable/profile_icon"/>
+
 
             <TextView
                 android:id="@+id/ans_user_name"
