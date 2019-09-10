@@ -14,6 +14,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import dmax.dialog.SpotsDialog;
 
 import org.json.JSONArray;
@@ -41,6 +44,7 @@ public class QuesFragment extends Fragment {
     private RecyclerView recyclerView;
     List<questionfetch> mquestionfetch;
     Button askQuestion;
+    FloatingActionButton fab;
 
 
 
@@ -63,22 +67,18 @@ public class QuesFragment extends Fragment {
         recyclerView = v.findViewById(R.id.my_recycler_view);
         //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        askQuestion=v.findViewById(R.id.ask_ques);
-        askQuestion.setOnClickListener(new View.OnClickListener() {
+
+
+        fab =  v.findViewById(R.id.add_ques);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                //  .setAction("Action", null).show();
                 Intent i=new Intent(getContext(),addquestion.class);
-
-
-
                 startActivity(i);
             }
         });
-
-      //  fun();
-
-
-
 
         return v;
 

@@ -1,80 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".myprofile">
+    tools:context=".myprofile"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="50dp"
+        android:padding="40dp"
         android:textSize="50dp"
-        android:text="username"
-        android:id="@+id/tvProfUname"/>
+        android:text="Username"
+        android:id="@+id/tvProfUname"
+        android:background="@android:color/holo_blue_dark"/>
 
-    <TextView
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:layout_below="@+id/tvProfUname"
-        android:id="@+id/tvProfFollowers"
-        android:layout_alignParentLeft="true"
-        android:textSize="30dp"
-        android:text="followers"/>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:layout_below="@+id/tvProfUname"
+       android:id="@+id/followbar"
+       android:weightSum="10"
 
-    <TextView
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:id="@+id/tvProfFollowing"
-        android:layout_below="@+id/tvProfUname"
-        android:layout_alignParentRight="true"
-        android:gravity="center"
-        android:textSize="30dp"
-        android:text="following"/>
+
+      >
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:gravity="center"
+           android:id="@+id/tvProfFollowers"
+           android:text="Followers"
+           android:layout_weight="5"
+           android:paddingVertical="40dp"/>
+       <View
+           android:layout_width="5dp"
+           android:layout_height="match_parent"
+           android:background="@color/black"
+           android:layout_weight="0.5"
+           />
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:id="@+id/tvProfFollowing"
+           android:gravity="center"
+           android:text="Following"
+           android:layout_weight="5"
+           android:paddingVertical="40dp"/>
+   </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c0c0c0"
+        android:layout_above="@+id/bPersonal"
+        />
 
 
     <Button
         android:id="@+id/bPersonal"
-        android:layout_below="@+id/tvProfFollowers"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="50dp"
+        android:background="@android:color/white"
+        android:text="Update Personal Info"
+        android:layout_marginTop="20dp"
 
-        android:text="Update Personal Info" />
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c0c0c0"
+        />
 
     <Button
         android:id="@+id/bUpdinterest"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bPersonal"
-
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="50dp"
-
-        android:text="Update intersts" />
+        android:text="Update intersts"
+        android:background="@android:color/white"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c0c0c0"
+        />
 
     <Button
         android:id="@+id/bBookmark"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="50dp"
-        android:layout_below="@+id/bUpdinterest"
-
-        android:text="bookmarks" />
+        android:text="bookmarks"
+        android:background="@android:color/white"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c0c0c0"
+        />
     <Button
         android:id="@+id/bMypost"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="50dp"
-        android:layout_below="@+id/bBookmark"
+        android:text="mypost"
+        android:background="@android:color/white"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c0c0c0"
+        />
 
-        android:text="mypost" />
 
-
-</RelativeLayout>
+</LinearLayout>

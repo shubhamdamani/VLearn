@@ -62,7 +62,7 @@ public class PostsFragment extends Fragment {
         btn_follower=v.findViewById(R.id.btn_followers);
 
         //new PostsFragment.BackgroundTask().execute();
-       
+
 
         recyclerView = v.findViewById(R.id.post_recycler);
         //dialog=new SpotsDialog(getContext());
@@ -102,8 +102,8 @@ public class PostsFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                      //  .setAction("Action", null).show();
                 startActivity(new Intent(getContext(),AddPost.class));
             }
         });
