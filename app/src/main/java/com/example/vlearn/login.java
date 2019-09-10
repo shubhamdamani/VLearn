@@ -22,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.textfield.TextInputEditText;
 //import com.google.android.gms.common.api.Response;
 
 import org.json.JSONArray;
@@ -48,7 +49,7 @@ import dmax.dialog.SpotsDialog;
 
 public class login extends AppCompatActivity {
    SpotsDialog dialog;
-    EditText userame,pass;
+    TextInputEditText userame,pass;
     Button Login,gotoRegister;
     String l_name="",l_pass="";
 
