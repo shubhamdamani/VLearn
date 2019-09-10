@@ -76,21 +76,26 @@ public class MainActivity extends AppCompatActivity {
                 USER_Class.setLoggedUserName("");
                 Intent i=new Intent(MainActivity.this,login.class);
                 startActivity(i);
+                finish();
                 break;
             }
             case R.id.profileMenu: {
                 startActivity(new Intent(MainActivity.this, myprofile.class));
+                finish();
                 break;
             }
             case R.id.aboutMenu:{
                 startActivity(new Intent(MainActivity.this,AboutVLearn.class));
+                finish();
                 break;
             }
             case R.id.chatMenu:{
                 startActivity(new Intent(MainActivity.this,Chat.class));
+                finish();
                 break;
             }case R.id.leaderMenu:{
                 startActivity(new Intent(MainActivity.this,LeaderBoard.class));
+                finish();
                 break;
             }
 

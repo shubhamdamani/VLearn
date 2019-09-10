@@ -64,17 +64,8 @@ public class register extends AppCompatActivity {
         pass=findViewById(R.id.Password);
         re_pass=findViewById(R.id.Re_Password);
         register=findViewById(R.id.register);
-        temp=findViewById(R.id.gotemp);
+        //temp=findViewById(R.id.gotemp);
 
-
-        temp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i=new Intent(register.this,interests.class);
-                i.putExtra("operation","insert_interest");
-                startActivity(i);
-            }
-        });
 
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +88,7 @@ public class register extends AppCompatActivity {
     }
 
 
+
     public void getDatafromJSON()
     {
         // Toast.makeText(login.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();
@@ -109,7 +101,7 @@ public class register extends AppCompatActivity {
             while(count<jsonArray.length())
             {
                 JSONObject jo=jsonArray.getJSONObject(count);
-                success=jo.getString("success");
+                success=jo.getString("User_Id");
 
                 count++;
 
@@ -189,6 +181,10 @@ public class register extends AppCompatActivity {
             }else{
                 Toast.makeText(register.this,"REGISTRATION SUCCESS",Toast.LENGTH_SHORT).show();
                 Intent i=new Intent(register.this,interests.class);
+                //i.putExtra("User_Id",success);
+                USER_Class.setLoggedUserName(r_name);
+                USER_Class.setLoggedUserId(success);
+                USER_Class.setLoggedUserEmail(r_email);
                 startActivity(i);
             }
 

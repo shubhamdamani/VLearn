@@ -77,18 +77,19 @@ public class NewsFragment extends Fragment {
     //har site se info nikal rhe h interest k according site automatically select ho rhi h
     @Nullable
     @Override
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        dialog=new SpotsDialog(getContext());
+        dialog = new SpotsDialog(getContext());
         dialog.show();
 
-        View v= inflater.inflate(R.layout.fragment_news,container,false);       //fragment ka view for other purpose
-     //   btnLoadFeed = (Button)v.findViewById(R.id.btnRefreshFeed);
-       // mFeedName = (EditText)v.findViewById(R.id.etFeedName);
-        posts = new ArrayList<Post>();
+            View v = inflater.inflate(R.layout.fragment_news, container, false);       //fragment ka view for other purpose
+            //   btnLoadFeed = (Button)v.findViewById(R.id.btnRefreshFeed);
+            // mFeedName = (EditText)v.findViewById(R.id.etFeedName);
+            posts = new ArrayList<Post>();
 
 
-        listView = (ListView)v.findViewById(R.id.listView);
+            listView = (ListView) v.findViewById(R.id.listView);
       /*  btnLoadFeed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,12 +101,12 @@ public class NewsFragment extends Fragment {
 
             }
         });*/
+            if (getActivity() != null)
+                ret();
+            //dialog.dismiss();
+            return v;
 
-        ret();
-        //dialog.dismiss();
 
-
-        return v;
 
     }
 
@@ -386,8 +387,10 @@ public class NewsFragment extends Fragment {
 
     private void setListView(){
 
-        CustomListAdapter customListAdapter = new CustomListAdapter(getContext(),R.layout.card_layout_news,posts);
-        listView.setAdapter(customListAdapter);
+        if(getActivity()!=null) {
+            CustomListAdapter customListAdapter = new CustomListAdapter(getContext(), R.layout.card_layout_news, posts);
+            listView.setAdapter(customListAdapter);
+        }
 
     }
 

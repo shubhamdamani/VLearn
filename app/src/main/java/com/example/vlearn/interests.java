@@ -229,7 +229,7 @@ public class interests extends AppCompatActivity { //user k topic select krne k 
         protected String doInBackground(Void... voids) {
 
             try {String interest_url;
-                if(operation.equals("up_interest"))
+                if(false)
                 {
                     interest_url="https://vlearndroidrun.000webhostapp.com/updateUserTopics.php";
                 }else{

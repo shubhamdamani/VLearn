@@ -89,8 +89,9 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(login.this,register.class);
-
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
+
             }
         });
         
@@ -200,7 +201,9 @@ public class login extends AppCompatActivity {
 
            }else{
                Intent i=new Intent(login.this,MainActivity.class);
+               i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                startActivity(i);
+
            }
 
 
