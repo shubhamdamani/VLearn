@@ -2,6 +2,8 @@ package com.example.vlearn.PersonalInfo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -54,17 +56,37 @@ public class UpdateInfo extends AppCompatActivity {
 
                // Intent i=new Intent(UpdateInfo.this,FollowUser.class);
               //  startActivity(i);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(UpdateInfo.this);
+                builder.setTitle("Confirm Update !");
+                builder.setMessage("You are about to update your details. Do you really want to proceed ?");
+                builder.setCancelable(false);
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        s=USER_Class.getLoggedUserId();
+                        s1=etName.getText().toString();
+                        s2=etPass.getText().toString();
+                        Toast.makeText(getApplicationContext(), "Profile Updated ", Toast.LENGTH_SHORT).show();
+                        if(s2=="")
+                        {
+                            Toast.makeText(UpdateInfo.this,"PLEASE ENTER PASSWORD",Toast.LENGTH_SHORT).show();
+                        }else{
 
-                 s=USER_Class.getLoggedUserId();
-                s1=etName.getText().toString();
-                s2=etPass.getText().toString();
-                if(s2=="")
-                {
-                    Toast.makeText(UpdateInfo.this,"PLEASE ENTER PASSWORD",Toast.LENGTH_SHORT).show();
-                }else{
+                            new UpdateInfo.BackgroundTask().execute();
+                        }
+                    }
+                });
 
-                    new UpdateInfo.BackgroundTask().execute();
-                }
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "Profile not Updated", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                builder.show();
+
+
             }
         });
 
