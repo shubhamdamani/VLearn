@@ -34,7 +34,7 @@ public class NewsFeedDetails extends AppCompatActivity {
         description = (TextView)findViewById(R.id.description);
         link = (TextView)findViewById(R.id.link);
 
-        Toast.makeText(this,"Link : "+getIntent().getStringExtra("link"),Toast.LENGTH_SHORT).show();
+    //    Toast.makeText(this,"Link : "+getIntent().getStringExtra("link"),Toast.LENGTH_SHORT).show();
         Text = Html.fromHtml(" <br />" +
                 "<a href='"+getIntent().getStringExtra("link")+"'>Click here to visit post</a>");
 

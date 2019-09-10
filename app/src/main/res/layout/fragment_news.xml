@@ -4,13 +4,38 @@
     android:layout_height="match_parent">
 
 
+    <LinearLayout
+        android:id="@+id/TopFeed"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2sp"
+            android:src="@mipmap/ic_launcher_foreground" />
+
+        <TextView
+            android:id="@+id/NewsFeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:padding="1sp"
+            android:text="NEWS FEED"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
 
 
 
     <ListView
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="20dp"
-        android:layout_below="@+id/linLayout"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/TopFeed"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/listView">
