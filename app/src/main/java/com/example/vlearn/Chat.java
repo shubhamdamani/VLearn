@@ -64,7 +64,6 @@ public class Chat extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
 
-                        //checkEmailverification();
                         if(flag==0)
                         {
                             Intent intent=new Intent(Chat.this, chatWithAdmin.class);

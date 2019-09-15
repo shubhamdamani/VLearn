@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import static java.lang.Character.toUpperCase;
+
 public class AnswerForQuestionAdapter extends RecyclerView.Adapter<AnswerForQuestionAdapter.ProductViewHolder> {
 
 
@@ -45,7 +47,9 @@ public class AnswerForQuestionAdapter extends RecyclerView.Adapter<AnswerForQues
         holder.txt_userId.setText(product.getUser_Id());
         holder.txt_username.setText(product.getUserName());
         holder.txt_Answer.setText(product.getAnswer());
-
+        Character name=product.getUserName().charAt(0);
+        name=toUpperCase(name);
+        holder.prof_icon.setText(name.toString());
 
 
     }
@@ -59,7 +63,7 @@ public class AnswerForQuestionAdapter extends RecyclerView.Adapter<AnswerForQues
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txt_userId, txt_username, txt_Answer;
+        TextView txt_userId, txt_username, txt_Answer,prof_icon;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
@@ -67,6 +71,7 @@ public class AnswerForQuestionAdapter extends RecyclerView.Adapter<AnswerForQues
             txt_userId = itemView.findViewById(R.id.ans_User_Id);
             txt_username = itemView.findViewById(R.id.ans_user_name);
             txt_Answer = itemView.findViewById(R.id.answer);
+            prof_icon = itemView.findViewById(R.id.prof_icon);
 
         }
     }

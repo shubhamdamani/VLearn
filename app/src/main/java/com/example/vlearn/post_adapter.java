@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import static java.lang.Character.toUpperCase;
+
 public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewHolder> {
     //this context we will use to inflate the layout
     private Context mCtx;
@@ -51,6 +53,9 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewH
         holder.post_id.setText(product.getPost_Id());
        // String s=
         holder.bookmark.setText((product.getBookmark()).toString());
+        Character name=product.getUserName().charAt(0);
+        name=toUpperCase(name);
+        holder.prof_icon.setText(name.toString());
 
 
 
@@ -66,7 +71,7 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewH
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView post_user, artical, upvote, downvote,post_title,post_date,topic,user_id,post_id,bookmark;
+        TextView post_user, artical, upvote, downvote,post_title,post_date,topic,user_id,post_id,bookmark,prof_icon;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
@@ -81,6 +86,7 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewH
             user_id=itemView.findViewById(R.id.user_id);
             post_id=itemView.findViewById(R.id.post_id);
             bookmark=itemView.findViewById(R.id.bookmarkState);
+            prof_icon=itemView.findViewById(R.id.prof_icon);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

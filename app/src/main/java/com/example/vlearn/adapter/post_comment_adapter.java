@@ -16,6 +16,8 @@ import com.example.vlearn.questionfetch;
 
 import java.util.List;
 
+import static java.lang.Character.toUpperCase;
+
 
 public class post_comment_adapter extends RecyclerView.Adapter<post_comment_adapter.ProductViewHolder> {
 
@@ -50,6 +52,9 @@ public class post_comment_adapter extends RecyclerView.Adapter<post_comment_adap
         //binding the data with the viewholder views
         holder.txt_username.setText(product.getUsername());
         holder.txt_comment.setText(product.getComment());
+        Character name=product.getUsername().charAt(0);
+        name=toUpperCase(name);
+        holder.prof_icon.setText(name.toString());
 
 
 
@@ -65,14 +70,14 @@ public class post_comment_adapter extends RecyclerView.Adapter<post_comment_adap
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txt_username, txt_comment;
+        TextView txt_username, txt_comment,prof_icon;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
 
             txt_username = itemView.findViewById(R.id.tvusername);
             txt_comment = itemView.findViewById(R.id.tvComment);
-
+            prof_icon = itemView.findViewById(R.id.prof_icon);
 
         }
 

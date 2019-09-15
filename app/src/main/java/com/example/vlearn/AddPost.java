@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedWriter;
@@ -28,15 +29,17 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static java.lang.Character.toUpperCase;
 import static okhttp3.internal.http.HttpDate.format;
 
 public class AddPost extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Spinner spinner;
     EditText post_content,post_title;
+    TextView prof_icon;
     Button b_submit;
     String P_content,P_topic,P_title;
     String P_date,user_id;
-    public String[] Topics = { "A", "B", "C", "D", "F" };
+    public String[] Topics = { "Select Topic","A", "B", "C", "D", "F" };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,14 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
         post_content=findViewById(R.id.Post_content);
         b_submit=findViewById(R.id.Post_submit);
         post_title=findViewById(R.id.Post_title);
+        prof_icon=findViewById(R.id.prof_icon);
+
+        String username=USER_Class.getLoggedUserName();
+
+        Character name=username.charAt(0);
+        name=toUpperCase(name);
+        //Toast.makeText(getApplicationContext(), "name "+name ,Toast.LENGTH_SHORT).show();
+       prof_icon.setText(name.toString());
 
         spinner =findViewById(R.id.topic);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Topics);
@@ -71,7 +82,7 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
     }
     @Override
     public void onItemSelected(AdapterView<?> arg0, View arg1, int position,long id) {
-        Toast.makeText(getApplicationContext(), "Selected User: "+Topics[position] ,Toast.LENGTH_SHORT).show();
+       Toast.makeText(getApplicationContext(), "Selected User: "+Topics[position] ,Toast.LENGTH_SHORT).show();
         P_topic=Topics[position];
     }
     @Override

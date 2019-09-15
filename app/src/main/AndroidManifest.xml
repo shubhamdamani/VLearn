@@ -49,22 +49,22 @@
         <activity android:name=".Chat" />
         <activity android:name=".AboutVLearn" />
         <activity android:name=".addquestion" />
-        <activity android:name=".PostDetail" />
-        <activity android:name=".QuestionDetail" />
+        <activity  android:name=".PostDetail" />
+        <activity  android:name=".QuestionDetail" />
         <activity android:name=".questionActivity" />
         <activity android:name=".queslistview" />
-        <activity android:name=".interests" />
-        <activity android:name=".login">
+        <activity android:theme="@style/no_action" android:name=".interests" />
+        <activity android:theme="@style/no_action" android:name=".login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".register" />
-        <activity android:name=".myprofile" />
+        <activity android:theme="@style/no_action" android:name=".register" />
+        <activity android:theme="@style/no_action" android:name=".myprofile" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".NewsFeedDetails" />
+        <activity  android:name=".NewsFeedDetails" />
     </application>
 
 </manifest>

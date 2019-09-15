@@ -7,28 +7,25 @@
     tools:context=".AddPost"
     android:padding="20dp">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/app_icon"
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circle_view"
         android:layout_centerHorizontal="true"
-        android:id="@+id/icimg"
+        android:id="@+id/prof_icon"
+        android:textStyle="bold"
+        android:text="N"
+        android:textColor="@android:color/white"
+        android:textSize="70dp"
+        android:gravity="center"
         />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Write your Post"
-        android:layout_below="@+id/icimg"
-        android:padding="10dp"
-        android:background="@drawable/capsule"
-        android:layout_marginTop="30dp"
-        android:id="@+id/heading"/>
+
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/topic"
-        android:layout_below="@+id/heading"
+        android:layout_below="@+id/prof_icon"
         android:background="@drawable/capsule"
         android:layout_marginTop="15dp"
         android:padding="20dp">

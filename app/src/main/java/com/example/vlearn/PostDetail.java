@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,9 +66,10 @@ import retrofit2.http.POST;
 
 public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnInitListener{
 
-    TextView tvUsername,tvArtical,tvTitle;
+    TextView tvUsername,tvArtical,tvTitle,prof_icon;
     private TextToSpeech tts;
-    Button B_up,B_down,B_post,B_bookmark,share;
+    ImageButton B_up,B_down;
+    Button B_post,B_bookmark,share;
     MaterialFavoriteButton B_mark;
     String username,artical,title,Post_Id,User_Id;
     EditText txt_comment;
@@ -80,8 +82,10 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
     List<getComment_data> getCommentData;
     post_comment_adapter adapter;
     String book_state,sendpost,sendTitle;
-    Button btnEdit,btnMORE,btnaudio,btnPDF;
+    Button btnMORE,btnaudio,btnPDF;
+    ImageButton btnEdit;
     BottomSheetBehavior bottomSheetBehavior;
+
 
     private static final String TAG = "PdfCreatorActivity";
     private File pdfFile;
@@ -105,6 +109,7 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
         btnMORE=findViewById(R.id.btnMORE);
         btnaudio=findViewById(R.id.btnaudio);
         btnPDF=findViewById(R.id.btnpdf);
+        prof_icon=findViewById(R.id.prof_icon);
 
 
         btnPDF.setOnClickListener(new View.OnClickListener() {
@@ -160,6 +165,8 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
         book_state=intent.getStringExtra("Bookmark");
         sendpost=intent.getStringExtra("Post");
         sendTitle=intent.getStringExtra("Post_Title");
+        Character first_letter=username.charAt(0);
+        prof_icon.setText(first_letter.toString());
 
         if(User_Id.equals(USER_Class.getLoggedUserId()) || USER_Class.getLoggedUserId().equals("1") || USER_Class.getLoggedUserId().equals("2") || USER_Class.getLoggedUserId().equals("3"))
         {
@@ -277,7 +284,7 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
 
         tvUsername.setText(username);
         tvArtical.setText(artical);
-        tvTitle.setText(title);
+        tvTitle.setText("Title: "+title);
         new BackgroundTask().execute();
 
         B_post.setOnClickListener(new View.OnClickListener() {

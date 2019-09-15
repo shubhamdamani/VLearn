@@ -5,30 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".login"
-    android:orientation="vertical"
+    android:layout_gravity="center_vertical"
+    android:gravity="center"
     >
 
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="50dp"
-        android:background="@mipmap/app_icon"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/logo"
-        android:layout_centerHorizontal="true"/>
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:passwordToggleEnabled="true"
-        android:layout_below="@+id/logo"
         android:padding="10dp"
         android:id="@+id/name_layout"
-        android:layout_marginHorizontal="20dp">
+        android:layout_marginHorizontal="20dp"
+        android:layout_above="@+id/pass_layout">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/capsule"
+            android:background="@drawable/round_rectangle_border"
             android:paddingStart="10dp"
             android:id="@+id/L_username"
             android:text="Email123@gmail.com"
@@ -39,7 +33,7 @@
        android:layout_height="wrap_content"
        app:passwordToggleEnabled="true"
        android:padding="10dp"
-       android:layout_below="@+id/name_layout"
+      android:layout_above="@+id/login"
        android:id="@+id/pass_layout"
        android:layout_marginHorizontal="20dp"
        >
@@ -50,30 +44,31 @@
             android:id="@+id/L_password"
             android:layout_marginTop="40dp"
             android:paddingStart="10dp"
-            android:background="@drawable/capsule"
+            android:background="@drawable/round_rectangle_border"
             android:text="Password"
             android:inputType="textPassword"
             />
    </com.google.android.material.textfield.TextInputLayout>
     <Button
         android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/btncapsule"
         android:text="login"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/pass_layout"/>
+        android:layout_above="@+id/goto_register"
+        />
     <Button
         android:id="@+id/goto_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:padding="10dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/btncapsule"
         android:text="new user register"
-        android:layout_below="@+id/login"
         android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
 
         />
 

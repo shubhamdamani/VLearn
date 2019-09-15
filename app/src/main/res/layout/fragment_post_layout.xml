@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    >
+    android:background="#dee1e1">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp">
+        android:layout_marginBottom="8dp"
+        card_view:cardElevation="0dp"
+       >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp">
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@mipmap/prof_icon"
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/circle_view"
             android:id="@+id/prof_icon"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:text="U"
+            android:textSize="20dp"
+            android:textStyle="bold"
             />
     <TextView
         android:layout_width="wrap_content"
@@ -25,41 +34,56 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="post:username"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="5dp"
+        android:paddingHorizontal="15dp"
+        android:textSize="14sp"
         android:id="@+id/post_username"
-        android:background="@drawable/tv_border"
-        android:textColor="@color/black"
+        android:textColor="#4a4a4a"
+        android:textStyle="bold"
 
         />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/post_username"
+            android:layout_toRightOf="@+id/prof_icon"
+            android:layout_height="wrap_content"
+            android:text="post:date"
+            android:paddingHorizontal="15dp"
+            android:textSize="12sp"
+            android:id="@+id/post_date"
+
+
+            />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:padding="10dp"
-        android:textSize="18dp"
+        android:textSize="12dp"
         android:id="@+id/artical"
         android:text="Artical"
-        android:layout_below="@+id/post_username"
-        android:textColor="@color/black"/>
+        android:textStyle="bold"
+        android:layout_below="@+id/prof_icon"
+        android:textColor="#464947"
+        />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_below="@+id/artical"
-            android:layout_alignParentEnd="true">
+            android:layout_alignParentEnd="true"
+            android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:id="@+id/nup"
-                android:padding="10dp"/>
+                android:padding="5dp"/>
             <ImageView
                 android:id="@+id/like"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/up" />
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/like_icon" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,10 +93,10 @@
 
             <ImageView
                 android:id="@+id/dislike"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginTop="4dp"
-                android:background="@drawable/down"
+                android:background="@drawable/dislike_icon"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -106,13 +130,7 @@
             android:id="@+id/topic"
             android:padding="10dp"
             android:visibility="invisible"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:id="@+id/post_date"
-            android:padding="10dp"
-            android:visibility="invisible"/>
+
 
         <TextView
             android:id="@+id/post_id"
