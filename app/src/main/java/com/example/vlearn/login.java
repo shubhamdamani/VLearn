@@ -2,17 +2,27 @@ package com.example.vlearn;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -46,6 +56,9 @@ import java.util.Map;
 
 import dmax.dialog.SpotsDialog;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 
 public class login extends AppCompatActivity {
    SpotsDialog dialog;
@@ -60,16 +73,50 @@ public class login extends AppCompatActivity {
     String emyl;
     String USER_ID,USER_NAME;
 
+    private ImageView bookIconImageView;
+    private TextView bookITextView;
+    private ProgressBar loadingProgressBar;
+    private RelativeLayout rootView, afterAnimationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
+       // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+               // WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
+
+
+        bookIconImageView = findViewById(R.id.bookIconImageView);
+        bookITextView = findViewById(R.id.bookITextView);
+        loadingProgressBar = findViewById(R.id.loadingProgressBar);
+        rootView = findViewById(R.id.rootView);
+        afterAnimationView = findViewById(R.id.afterAnimationView);
+
         userame=findViewById(R.id.L_username);
-        pass=findViewById(R.id.L_password);
-        Login=findViewById(R.id.login);
+         pass=findViewById(R.id.L_password);
+         Login=findViewById(R.id.login);
         gotoRegister=findViewById(R.id.goto_register);
         emyl=userame.getText().toString().trim();
+        afterAnimationView.setVisibility(GONE);
 
+        new CountDownTimer(8000, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                bookITextView.setVisibility(GONE);
+                loadingProgressBar.setVisibility(GONE);
+                //rootView.setBackgroundColor(ContextCompat.getColor(login.this, R.color.colorSplashText));
+                //bookIconImageView.setImageResource(R.drawable.background_color_book);
+                startAnimation();
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
 
         Log.d("login",l_name+l_pass);
 
@@ -96,6 +143,34 @@ public class login extends AppCompatActivity {
         });
         
 
+    }
+    private void startAnimation() {
+
+        ViewPropertyAnimator viewPropertyAnimator = bookIconImageView.animate();
+        viewPropertyAnimator.x(50f);
+        viewPropertyAnimator.y(200f);
+        viewPropertyAnimator.setDuration(1000);
+        viewPropertyAnimator.setListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                afterAnimationView.setVisibility(VISIBLE);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
     }
 
     //Retrieve Details Of USER from Database using JSON parsing

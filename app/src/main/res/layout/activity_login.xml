@@ -1,75 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".login"
-    android:layout_gravity="center_vertical"
-    android:gravity="center"
+    android:background="@color/colorBackground"
+
     >
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/bookIconImageView"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:contentDescription="@null"
+        android:src="@drawable/white_book_icon"
+        />
+    <TextView
+        android:id="@+id/bookITextView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true"
-        android:padding="10dp"
-        android:id="@+id/name_layout"
-        android:layout_marginHorizontal="20dp"
-        android:layout_above="@+id/pass_layout">
-        <EditText
+        android:layout_below="@+id/bookIconImageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:text="BookI"
+        android:textColor="@color/colorSplashText"
+        android:textSize="16sp" />
+    <ProgressBar
+        android:id="@+id/loadingProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-4dp"
+        android:foregroundGravity="bottom"
+        android:indeterminate="true"
+        android:padding="0dp"
+        android:theme="@style/ProgressBarStyle" />
+    <RelativeLayout
+        android:id="@+id/afterAnimationView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="130dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/WelcomeTextView"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome Back"
+            android:textColor="@color/colorBackground"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/readItTogetherTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/WelcomeTextView"
+            android:layout_marginTop="10dp"
+            android:text="VLearn"
+            android:textColor="@color/colorAccent"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/readItTogetherTextView"
+            android:gravity="center"
+            android:orientation="vertical">
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true"
+            android:padding="10dp"
+            android:id="@+id/name_layout"
+            android:layout_marginHorizontal="20dp"
+            android:layout_above="@+id/pass_layout">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/round_rectangle_border"
+                android:paddingStart="10dp"
+                android:id="@+id/L_username"
+                android:text="Email123@gmail.com"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+       <com.google.android.material.textfield.TextInputLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:passwordToggleEnabled="true"
+           android:padding="10dp"
+          android:layout_above="@+id/login"
+           android:id="@+id/pass_layout"
+           android:layout_marginHorizontal="20dp"
+           >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/L_password"
+                android:layout_marginTop="40dp"
+                android:paddingStart="10dp"
+                android:background="@drawable/round_rectangle_border"
+                android:text="Password"
+                android:inputType="textPassword"
+                />
+       </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/login"
+            android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/round_rectangle_border"
-            android:paddingStart="10dp"
-            android:id="@+id/L_username"
-            android:text="Email123@gmail.com"
+            android:background="@drawable/button_drawable"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAccent"
+            android:text="login"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/goto_register"
             />
-    </com.google.android.material.textfield.TextInputLayout>
-   <com.google.android.material.textfield.TextInputLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       app:passwordToggleEnabled="true"
-       android:padding="10dp"
-      android:layout_above="@+id/login"
-       android:id="@+id/pass_layout"
-       android:layout_marginHorizontal="20dp"
-       >
-
-        <EditText
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/goto_register"
+            android:layout_width="200dp"
             android:layout_height="50dp"
-            android:id="@+id/L_password"
-            android:layout_marginTop="40dp"
-            android:paddingStart="10dp"
-            android:background="@drawable/round_rectangle_border"
-            android:text="Password"
-            android:inputType="textPassword"
-            />
-   </com.google.android.material.textfield.TextInputLayout>
-    <Button
-        android:id="@+id/login"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/btncapsule"
-        android:text="login"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/goto_register"
-        />
-    <Button
-        android:id="@+id/goto_register"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:padding="10dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/btncapsule"
-        android:text="new user register"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_drawable"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAccent"
+            android:text="new user register"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
 
-        />
+            />
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </RelativeLayout>
