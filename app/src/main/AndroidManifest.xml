@@ -54,7 +54,7 @@
         <activity android:name=".questionActivity" />
         <activity android:name=".queslistview" />
         <activity android:theme="@style/no_action" android:name=".interests" />
-        <activity android:theme="@style/no_action" android:name=".login">
+        <activity android:theme="@style/no_action" android:name=".login" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -63,7 +63,7 @@
         </activity>
         <activity android:theme="@style/no_action" android:name=".register" />
         <activity android:theme="@style/no_action" android:name=".myprofile" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity" android:configChanges="orientation|screenSize" />
         <activity  android:name=".NewsFeedDetails" />
     </application>
 

@@ -3,6 +3,7 @@ package com.example.vlearn;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,8 +66,8 @@ public class PostsFragment extends Fragment {
 
 
         recyclerView = v.findViewById(R.id.post_recycler);
-        //dialog=new SpotsDialog(getContext());
-        //dialog.show();
+        dialog=new SpotsDialog(getContext());
+        dialog.show();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -154,7 +155,7 @@ public class PostsFragment extends Fragment {
 
 
             }
-            //dialog.dismiss();
+            dialog.dismiss();
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -224,9 +225,18 @@ public class PostsFragment extends Fragment {
         protected void onPostExecute(String result) {
             //TextView tv=findViewById(R.id.tv);
             //tv.setText(result);
-            JSON_String=result;
+            try
+            {JSON_String=result;
             //Toast.makeText(getContext(),"hi"+JSON_String,Toast.LENGTH_LONG).show();
             fun();
+            }
+            catch (Exception e)
+            {
+                Snackbar snackbar=Snackbar.make(getActivity().findViewById(R.id.drawer_layout),"No Internet Connection",Snackbar.LENGTH_LONG);
+                //Toast.makeText(getContext(),"no internet",Toast.LENGTH_SHORT).show();
+                snackbar.show();
+                dialog.dismiss();
+            }
 
 
 

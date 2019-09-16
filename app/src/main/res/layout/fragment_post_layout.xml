@@ -81,8 +81,8 @@
                 android:padding="5dp"/>
             <ImageView
                 android:id="@+id/like"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:background="@drawable/like_icon" />
             <TextView
                 android:layout_width="wrap_content"
@@ -93,8 +93,8 @@
 
             <ImageView
                 android:id="@+id/dislike"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_marginTop="4dp"
                 android:background="@drawable/dislike_icon"
                 />
