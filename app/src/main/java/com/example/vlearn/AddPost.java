@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
     EditText post_content,post_title;
     TextView prof_icon;
     Button b_submit;
+    ImageButton btn_close;
     String P_content,P_topic,P_title;
     String P_date,user_id;
     public String[] Topics = { "Select Topic","A", "B", "C", "D", "F" };
@@ -48,6 +50,7 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
         b_submit=findViewById(R.id.Post_submit);
         post_title=findViewById(R.id.Post_title);
         prof_icon=findViewById(R.id.prof_icon);
+        btn_close=findViewById(R.id.close_addpost);
 
         String username=USER_Class.getLoggedUserName();
 
@@ -61,6 +64,13 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+        btn_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
         b_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +80,7 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
             }
         });
     }
+
     public void hideKeyboard(Activity activity) {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         //Find the currently focused view, so we can grab the correct window token from it.

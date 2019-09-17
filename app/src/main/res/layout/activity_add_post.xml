@@ -12,7 +12,7 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:id="@+id/top_bar"
-       android:padding="20dp">
+       android:padding="15dp">
        <ImageButton
            android:layout_width="wrap_content"
            android:layout_height="match_parent"
