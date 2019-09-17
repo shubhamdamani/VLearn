@@ -5,16 +5,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
 import android.view.Window;
 import android.view.WindowManager;
@@ -55,10 +62,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.databinding.DataBindingUtil;
 import dmax.dialog.SpotsDialog;
 
 import static android.view.View.GONE;
+import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
+import com.example.vlearn.databinding.ActivityLoginBinding;
+
 
 
 public class login extends AppCompatActivity {
@@ -66,6 +77,9 @@ public class login extends AppCompatActivity {
     EditText userame,pass;
     Button Login,gotoRegister;
     String l_name="",l_pass="";
+    private ActivityLoginBinding mBinding;
+
+
 
     String json_string;
     String JSON_String;
@@ -86,8 +100,9 @@ public class login extends AppCompatActivity {
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
        // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                // WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_login);
+       // setContentView(R.layout.activity_login);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        mBinding= DataBindingUtil.setContentView(this,R.layout.activity_login);
 
 
         bookIconImageView = findViewById(R.id.bookIconImageView);
@@ -130,6 +145,14 @@ public class login extends AppCompatActivity {
                 l_pass=pass.getText().toString();
 
                 new login.BackgroundTask().execute();
+                animateButtonWidth();
+
+                fadeOutTextAndShowProgressDialog();
+
+                nextAction();
+
+
+
 
             }
         });
@@ -146,6 +169,133 @@ public class login extends AppCompatActivity {
         
 
     }
+
+
+
+
+
+    private void fadeOutTextAndShowProgressDialog() {
+        mBinding.login.animate().alpha(0f)
+                .setDuration(250)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                        showProgressDialog();
+                    }
+                })
+                .start();
+    }
+
+    private void animateButtonWidth() {
+        ValueAnimator anim = ValueAnimator.ofInt(mBinding.login.getMeasuredWidth(), getFabWidth());
+
+        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                int val = (Integer) valueAnimator.getAnimatedValue();
+                ViewGroup.LayoutParams layoutParams = mBinding.login.getLayoutParams();
+                layoutParams.width = val;
+                mBinding.login.requestLayout();
+            }
+        });
+        anim.setDuration(250);
+        anim.start();
+    }
+
+    private void showProgressDialog() {
+        mBinding.loadingProgressBar.setAlpha(1f);
+        mBinding.loadingProgressBar
+                .getIndeterminateDrawable()
+                .setColorFilter(Color.parseColor("#ffffff"), PorterDuff.Mode.SRC_IN);
+        mBinding.loadingProgressBar.setVisibility(VISIBLE);
+    }
+
+    private void nextAction() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                revealButton();
+
+                fadeOutProgressDialog();
+
+                delayedStartNextActivity();
+            }
+        }, 2000);
+    }
+
+    private void revealButton() {
+        mBinding.login.setElevation(0f);
+
+        mBinding.reveal.setVisibility(VISIBLE);
+
+        int cx = mBinding.reveal.getWidth();
+        int cy = mBinding.reveal.getHeight();
+
+
+        int x = (int) (getFabWidth() / 2 + mBinding.login.getX());
+        int y = (int) (getFabWidth() / 2 + mBinding.login.getY());
+
+        float finalRadius = Math.max(cx, cy) * 1.2f;
+
+        Animator reveal = ViewAnimationUtils
+                .createCircularReveal(mBinding.reveal, x, y, getFabWidth(), finalRadius);
+
+        reveal.setDuration(350);
+        reveal.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                reset(animation);
+//                finish();
+            }
+
+            private void reset(Animator animation) {
+                super.onAnimationEnd(animation);
+                mBinding.gotoRegister.setVisibility(VISIBLE);
+                mBinding.reveal.setVisibility(INVISIBLE);
+                mBinding.login.setVisibility(VISIBLE);
+                mBinding.login.setAlpha(1f);
+                mBinding.login.setElevation(4f);
+                ViewGroup.LayoutParams layoutParams = mBinding.login.getLayoutParams();
+                layoutParams.width = (int) (getResources().getDisplayMetrics().density * 300);
+                mBinding.login.requestLayout();
+            }
+        });
+
+        reveal.start();
+    }
+
+    private void fadeOutProgressDialog() {
+        mBinding.loadingProgressBar.animate().alpha(0f).setDuration(200).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+
+            }
+        }).start();
+    }
+
+
+    private void delayedStartNextActivity() {
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+              // startActivity(new Intent(login.this, MainActivity.class));
+
+
+            }
+        }, 0);
+    }
+
+    private int getFabWidth() {
+        return (int) getResources().getDimension(R.dimen.progress_width);
+    }
+
+
+
+
     private void startAnimation() {
 
         ViewPropertyAnimator viewPropertyAnimator = bookIconImageView.animate();
@@ -277,6 +427,7 @@ public class login extends AppCompatActivity {
            {
 
            }else{
+
                Intent i=new Intent(login.this,MainActivity.class);
                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                startActivity(i);
