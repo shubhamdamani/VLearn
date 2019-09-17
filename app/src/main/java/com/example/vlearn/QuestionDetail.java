@@ -36,6 +36,8 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Character.toUpperCase;
+
 public class QuestionDetail extends AppCompatActivity {
 
     String Question, Q_Id, User_Id, Topic;
@@ -43,7 +45,7 @@ public class QuestionDetail extends AppCompatActivity {
     String json_string,JSON_String;                 //this activity is showing answer of particular question and giving option to add answer
     JSONArray jsonArray;
     JSONObject jsonObject;
-    TextView txt_quesDisp,txt_user;
+    TextView txt_quesDisp,txt_user,profile_icon;
     List<AnswerForQuestionCard> mquestionfetch;
     AnswerForQuestionAdapter adapter;
     private RecyclerView recyclerView;
@@ -68,6 +70,9 @@ public class QuestionDetail extends AppCompatActivity {
         editanswer=findViewById(R.id.editanswer);
         postanswer=findViewById(R.id.postanswer);
         txt_user=findViewById(R.id.username);
+        profile_icon=findViewById(R.id.prof_icon);
+
+
 
 
         postanswer.setOnClickListener(new View.OnClickListener() {
@@ -86,9 +91,11 @@ public class QuestionDetail extends AppCompatActivity {
         Q_Id = bundle.getString("Q_Id");
         User_Id = bundle.getString("User_Id");
         Topic = bundle.getString("Topic");
-        txt_user.setText(User_Id);
-
+        txt_user.setText(User_Id); //User_Id==UserName;
         txt_quesDisp.setText(Question);
+        Character name=User_Id.charAt(0);
+        name=toUpperCase(name);
+        profile_icon.setText(name.toString());
 
 
 

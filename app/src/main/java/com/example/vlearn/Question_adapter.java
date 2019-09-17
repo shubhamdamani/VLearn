@@ -1,7 +1,10 @@
 package com.example.vlearn;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,8 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+
+import static java.lang.Character.toUpperCase;
 
 public class Question_adapter extends RecyclerView.Adapter<Question_adapter.ProductViewHolder> {
 
@@ -44,10 +49,14 @@ public class Question_adapter extends RecyclerView.Adapter<Question_adapter.Prod
         questionfetch product = productList.get(position);
 
         //binding the data with the viewholder views
-        holder.txt_userId.setText(product.getUser_Id());
+        holder.txt_username.setText(product.getUser_Id());
         holder.txt_ques.setText(product.getQuestion());
         holder.txt_Topic.setText(product.getTopic());
         holder.txt_Q_Id.setText(product.getQ_Id());
+
+        Character name=product.getUser_Id().charAt(0);
+        name=toUpperCase(name);
+        holder.prof_icon.setText(name.toString());
 
 
 
@@ -62,26 +71,33 @@ public class Question_adapter extends RecyclerView.Adapter<Question_adapter.Prod
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txt_userId, txt_ques, txt_Topic, txt_Q_Id;
+        TextView txt_username, txt_ques, txt_Topic, txt_Q_Id,prof_icon;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
 
-            txt_userId = itemView.findViewById(R.id.tx_User_Id);
+            txt_username = itemView.findViewById(R.id.tx_User_Id);
             txt_ques = itemView.findViewById(R.id.tx_Question);
             txt_Q_Id = itemView.findViewById(R.id.tx_Q_Id);
             txt_Topic = itemView.findViewById(R.id.tx_Topic);
+            prof_icon=itemView.findViewById(R.id.prof_icon);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), QuestionDetail.class);
-                    intent.putExtra("User_Id",txt_userId.getText());
+                    intent.putExtra("User_Id",txt_username.getText());
                     intent.putExtra("Q_Id",txt_Q_Id.getText());
                     //Toast.makeText(v.getContext(), "Q_Id : " + txt_Q_Id.getText(), Toast.LENGTH_LONG).show();
                     intent.putExtra("Question",txt_ques.getText());
                     intent.putExtra("Topic",txt_Topic.getText());
-                    v.getContext().startActivity(intent);
+
+                    Pair[] pairs=new Pair[2];
+                    pairs[0]=new Pair<View,String>(prof_icon,"pImageTransition");
+                    pairs[1]=new Pair<View,String>(txt_username,"pNameTransition");
+                    ActivityOptions options=ActivityOptions.makeSceneTransitionAnimation((Activity)mCtx,pairs);
+                    v.getContext().startActivity(intent,options.toBundle());
+
 
 
                 }

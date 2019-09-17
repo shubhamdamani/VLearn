@@ -17,42 +17,59 @@
             android:padding="8dp"
            >
 
+            <TextView
+
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/circle_view"
+                android:id="@+id/prof_icon"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:text="U"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:transitionName="pImageTransition"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/tx_User_Id"
+                android:layout_toRightOf="@+id/prof_icon"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="post:username"
+                android:paddingHorizontal="15dp"
+                android:textSize="16sp"
+                android:textColor="#4a4a4a"
+                android:textStyle="bold"
+                android:transitionName="pNameTransition"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tx_Date"
+                android:text="17/9/2019"
+                android:textSize="12sp"
+                android:layout_toRightOf="@+id/prof_icon"
+                android:layout_below="@+id/tx_User_Id"
+                android:paddingHorizontal="15dp"/>
+
 
             <TextView
                 android:id="@+id/tx_Question"
+                android:layout_marginLeft="50dp"
+                android:layout_below="@+id/prof_icon"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/capsule"
                 android:gravity="center_vertical"
-                android:paddingVertical="10dp"
-                android:paddingLeft="15dp"
+                android:paddingVertical="5dp"
                 android:text="Question"
                 android:textColor="#000000"
-                android:textSize="15dp" />
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="2dp"
-                android:layout_below="@+id/tx_Question"
-               android:layout_toLeftOf="@+id/tx_User_Id"
-                android:id="@+id/prof_icon"
-                android:background="@drawable/profile_icon"/>
+                android:textSize="14dp" />
 
-            <TextView
-                android:id="@+id/tx_User_Id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tx_Question"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="2dp"
-                android:fontFamily="sans-serif-smallcaps"
-                android:gravity="end"
-                android:paddingVertical="10dp"
-                android:text="PostedBy"
 
-                android:textColor="#00008b"
-                android:textSize="12dp"
-                android:textStyle="bold" />
+
 
             <TextView
                 android:id="@+id/tx_Topic"
