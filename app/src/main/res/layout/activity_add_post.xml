@@ -5,69 +5,105 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddPost"
-    android:padding="20dp">
+    android:background="@android:color/holo_blue_dark"
+    >
 
-    <TextView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/circle_view"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/prof_icon"
-        android:textStyle="bold"
-        android:text="N"
-        android:textColor="@android:color/white"
-        android:textSize="70dp"
-        android:gravity="center"
-        />
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/top_bar"
+       android:padding="20dp">
+       <ImageButton
+           android:layout_width="wrap_content"
+           android:layout_height="match_parent"
+           android:id="@+id/close_addpost"
+           android:background="@drawable/close_btn"/>
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Add your question"
+           android:layout_marginLeft="20dp"
+           android:textSize="25dp"
+           android:textColor="@android:color/white"
+           android:layout_toRightOf="@id/close_addpost"/>
+   </LinearLayout>
 
-
-    <Spinner
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/topic"
-        android:layout_below="@+id/prof_icon"
-        android:background="@drawable/capsule"
-        android:layout_marginTop="15dp"
-        android:padding="20dp">
+        android:layout_below="@+id/top_bar"
+        app:cardCornerRadius="10dp">
 
-    </Spinner>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/Post_title"
-        android:layout_marginTop="15dp"
-        android:layout_below="@+id/topic"
-        android:hint="Post Title"
-        android:padding="20dp"
-        android:background="@drawable/capsule"
-        android:inputType="textMultiLine"
 
-        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/circle_view"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/prof_icon"
+                android:textStyle="bold"
+                android:text="N"
+                android:textColor="@android:color/white"
+                android:textSize="70dp"
+                android:gravity="center"
+                />
 
-    <EditText
-        android:id="@+id/Post_content"
-        android:layout_below="@+id/Post_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:layout_marginTop="15dp"
-        android:minLines="5"
-        android:maxLines="30"
-        android:padding="20dp"
-        android:hint="Write here"
-        android:background="@drawable/capsule"
-        android:gravity="left"/>
-    <Button
-        android:id="@+id/Post_submit"
-        android:layout_below="@+id/Post_content"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
 
-        android:text="Submit"
-        android:padding="1dp"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/btncapsule"
-        />
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/topic"
+                android:layout_below="@+id/prof_icon"
+                android:background="@drawable/capsule"
+                android:layout_marginTop="15dp"
+                android:padding="20dp">
+
+            </Spinner>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Post_title"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/topic"
+                android:hint="Post Title"
+                android:padding="20dp"
+                android:background="@drawable/capsule"
+                android:inputType="textMultiLine"
+
+                />
+
+            <EditText
+                android:id="@+id/Post_content"
+                android:layout_below="@+id/Post_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:layout_marginTop="15dp"
+                android:minLines="5"
+                android:maxLines="30"
+                android:padding="20dp"
+                android:hint="Write here"
+                android:background="@drawable/capsule"
+                android:gravity="left"/>
+            <Button
+                android:id="@+id/Post_submit"
+                android:layout_below="@+id/Post_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+
+                android:text="Submit"
+                android:padding="1dp"
+                android:layout_alignParentEnd="true"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:background="@android:color/holo_blue_light"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

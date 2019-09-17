@@ -66,10 +66,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1205"
+                            android:text="0"
                             android:textStyle="bold"
                             android:textSize="20sp"
                             android:paddingTop="10dp"
+                            android:id="@+id/no_followers"
                             android:textColor="@color/startblue"/>
 
                     </LinearLayout>
@@ -88,7 +89,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="360"
+                            android:text="0"
+                            android:id="@+id/no_following"
                             android:textStyle="bold"
                             android:textSize="20sp"
                             android:paddingTop="10dp"

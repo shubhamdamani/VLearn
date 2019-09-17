@@ -1,13 +1,18 @@
 package com.example.vlearn;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.vlearn.object.key_Topic;
 
 import java.util.List;
 
@@ -48,7 +53,9 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewH
         holder.downvote.setText(Integer.toString(product.getDownvotes()));
         holder.post_title.setText(product.getPost_Title());
         holder.post_date.setText(product.getPost_Date());
-        holder.topic.setText(product.getTopic());
+        //holder.topic.setText(product.getTopic());
+        holder.topic.setText(key_Topic.getTopic((product.getTopic()).charAt(0)));
+
         holder.user_id.setText(product.getUser_Id());
         holder.post_id.setText(product.getPost_Id());
        // String s=
@@ -56,6 +63,9 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewH
         Character name=product.getUserName().charAt(0);
         name=toUpperCase(name);
         holder.prof_icon.setText(name.toString());
+       // if(position%2==0) {
+        //    holder.prof_icon.setBackgroundResource(R.drawable.circle_view_lightgreen);
+       // }
 
 
 
@@ -82,7 +92,7 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewH
             downvote = itemView.findViewById(R.id.ndown);
             post_title=itemView.findViewById(R.id.post_title);
             post_date=itemView.findViewById(R.id.post_date);
-            topic=itemView.findViewById(R.id.topic);
+            topic=itemView.findViewById(R.id.topic_tag);
             user_id=itemView.findViewById(R.id.user_id);
             post_id=itemView.findViewById(R.id.post_id);
             bookmark=itemView.findViewById(R.id.bookmarkState);
@@ -102,7 +112,12 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewH
                     intent.putExtra("Upvotes",upvote.getText());
                     intent.putExtra("Downvotes",downvote.getText());
                     intent.putExtra("Bookmark",bookmark.getText());
-                    v.getContext().startActivity(intent);
+
+                    Pair[] pairs=new Pair[2];
+                    pairs[0]=new Pair<View,String>(prof_icon,"pImageTransition");
+                    pairs[1]=new Pair<View,String>(post_user,"pNameTransition");
+                    ActivityOptions options=ActivityOptions.makeSceneTransitionAnimation((Activity)mCtx,pairs);
+                    v.getContext().startActivity(intent,options.toBundle());
 
 
                 }

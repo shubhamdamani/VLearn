@@ -2,28 +2,29 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.vlearn">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <supports-screens
-        android:smallScreens="true"
-        android:normalScreens="true"
-        android:largeScreens="true"
         android:anyDensity="true"
-        />
-
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true" />
 
     <application
-
-        tools:replace="android:icon"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
+        <activity android:name=".Following"></activity>
+        <activity android:name=".Followers" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -31,10 +32,10 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".LeaderBoard"></activity>
+        <activity android:name=".LeaderBoard" />
         <activity android:name=".PersonalInfo.EditPost" />
         <activity android:name=".chatWithAdmin.AdminPanel" />
         <activity android:name=".chatWithAdmin.chatWithAdmin" />
@@ -44,27 +45,38 @@
         <activity android:name=".Admin.AdminBasic" />
         <activity android:name=".PersonalInfo.FollowUser" />
         <activity android:name=".PersonalInfo.BookmarkActivity" />
-        <activity android:name=".AddPost" />
+        <activity  android:theme="@style/no_action" android:name=".AddPost" />
         <activity android:name=".PersonalInfo.UpdateInfo" />
         <activity android:name=".Chat" />
         <activity android:name=".AboutVLearn" />
         <activity android:name=".addquestion" />
-        <activity  android:name=".PostDetail" />
-        <activity  android:name=".QuestionDetail" />
+        <activity android:name=".PostDetail" />
+        <activity android:name=".QuestionDetail" />
         <activity android:name=".questionActivity" />
         <activity android:name=".queslistview" />
-        <activity android:theme="@style/no_action" android:name=".interests" />
-        <activity android:theme="@style/no_action" android:name=".login" android:configChanges="orientation|screenSize">
+        <activity
+            android:name=".interests"
+            android:theme="@style/no_action" />
+        <activity
+            android:name=".login"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/no_action">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:theme="@style/no_action" android:name=".register" />
-        <activity android:theme="@style/no_action" android:name=".myprofile" />
-        <activity android:name=".MainActivity" android:configChanges="orientation|screenSize" />
-        <activity  android:name=".NewsFeedDetails" />
+        <activity
+            android:name=".register"
+            android:theme="@style/no_action" />
+        <activity
+            android:name=".myprofile"
+            android:theme="@style/no_action" />
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".NewsFeedDetails" />
     </application>
 
 </manifest>

@@ -66,12 +66,12 @@ import retrofit2.http.POST;
 
 public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnInitListener{
 
-    TextView tvUsername,tvArtical,tvTitle,prof_icon;
+    TextView tvUsername,tvArtical,tvTitle,prof_icon,no_upvotes,no_downvotes;
     private TextToSpeech tts;
     ImageButton B_up,B_down;
     Button B_post,B_bookmark,share;
     MaterialFavoriteButton B_mark;
-    String username,artical,title,Post_Id,User_Id;
+    String username,artical,title,Post_Id,User_Id,No_upvotes,No_downvotes;
     EditText txt_comment;
     SpotsDialog dialog;
     String PostComment;
@@ -110,6 +110,8 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
         btnaudio=findViewById(R.id.btnaudio);
         btnPDF=findViewById(R.id.btnpdf);
         prof_icon=findViewById(R.id.prof_icon);
+        no_upvotes=findViewById(R.id.no_upvotes);
+        no_downvotes=findViewById(R.id.no_downvotes);
 
 
         btnPDF.setOnClickListener(new View.OnClickListener() {
@@ -165,6 +167,11 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
         book_state=intent.getStringExtra("Bookmark");
         sendpost=intent.getStringExtra("Post");
         sendTitle=intent.getStringExtra("Post_Title");
+        No_upvotes=intent.getStringExtra("Upvotes");
+        No_downvotes=intent.getStringExtra("Downvotes");
+
+        no_upvotes.setText(No_upvotes);
+        no_downvotes.setText(No_downvotes);
         Character first_letter=username.charAt(0);
         prof_icon.setText(first_letter.toString());
 
