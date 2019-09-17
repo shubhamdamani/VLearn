@@ -33,7 +33,7 @@ import java.net.URLEncoder;
 
 public class myprofile extends AppCompatActivity {
 
-    Button btnUpdInfo,btnUpdinterest,btnBookmark,btnMyPost;
+    Button btnUpdInfo,btnUpdinterest,btnBookmark,btnMyPost,btnProLogout;
     TextView no_followers,no_following;
 
     String json_string;
@@ -49,6 +49,18 @@ public class myprofile extends AppCompatActivity {
         btnUpdinterest=findViewById(R.id.bUpdinterest);
         btnBookmark=findViewById(R.id.bBookmark);
         btnMyPost=findViewById(R.id.bMypost);
+        btnProLogout=findViewById(R.id.prologout);
+        btnProLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                USER_Class.setLoggedUserEmail("");
+                USER_Class.setLoggedUserId("");
+                USER_Class.setLoggedUserName("");
+                Intent i=new Intent(myprofile.this,login.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
         no_followers=findViewById(R.id.no_followers);
         no_following=findViewById(R.id.no_following);

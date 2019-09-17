@@ -198,13 +198,15 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/prologout"
             android:textColor="#fff"
             android:background="@drawable/buttonstyle"
             android:layout_marginTop="25dp"
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Follow Me"/>
+            android:layout_marginBottom="30dp"
+            android:text="LogOut"/>
     </LinearLayout>
 
 

@@ -6,14 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".PersonalInfo.UpdateInfo">
 
-
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circle_view"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textSize="70dp"
+        android:layout_marginTop="45dp"
+        android:id="@+id/profile_ion"
+        />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:text="currentemail"
-        android:textSize="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/profile_ion"
+        android:textColor="#000000"
+
+        android:textSize="20dp"
         android:id="@+id/updemail"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
         />
 
     <EditText
@@ -21,21 +37,29 @@
         android:layout_height="50dp"
         android:id="@+id/updname"
         android:text="username"
+        android:paddingLeft="5dp"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/updemail"
+        android:background="@drawable/capsule"
         android:layout_marginTop="50dp"/>
     <EditText
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/updpassword"
+        android:paddingLeft="5dp"
+        android:layout_centerHorizontal="true"
         android:text="password"
         android:layout_below="@+id/updname"
+        android:background="@drawable/capsule"
         android:layout_marginTop="50dp"/>
 
     <Button
-        android:layout_width="160dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:id="@+id/btnChange"
         android:text="Update"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btncapsule"
         android:layout_below="@+id/updpassword"
         android:layout_marginTop="50dp"/>
 

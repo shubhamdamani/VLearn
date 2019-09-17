@@ -28,12 +28,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import static java.lang.Character.toUpperCase;
+
 public class UpdateInfo extends AppCompatActivity {
 
     TextView tvEmail;
     Button btnUPD;
     EditText etName,etPass;
     String s,s1,s2;
+    TextView proIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +49,13 @@ public class UpdateInfo extends AppCompatActivity {
         etName=findViewById(R.id.updname);
         etPass=findViewById(R.id.updpassword);
         btnUPD=findViewById(R.id.btnChange);
+        proIcon=findViewById(R.id.profile_ion);
         tvEmail.setText(USER_Class.getLoggedUserEmail());
         etName.setText(USER_Class.getLoggedUserName());
+        String a=USER_Class.getLoggedUserName();
+        Character name=a.charAt(0);
+        name=toUpperCase(name);
+        proIcon.setText(name.toString());
         //etPass.setText(USER_Class.get);
 
         btnUPD.setOnClickListener(new View.OnClickListener() {

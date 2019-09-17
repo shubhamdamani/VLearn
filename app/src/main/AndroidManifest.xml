@@ -35,28 +35,28 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".LeaderBoard" />
-        <activity android:name=".PersonalInfo.EditPost" />
-        <activity android:name=".chatWithAdmin.AdminPanel" />
-        <activity android:name=".chatWithAdmin.chatWithAdmin" />
-        <activity android:name=".Admin.PostWaitDetail" />
-        <activity android:name=".Admin.PostAcc" />
-        <activity android:name=".Admin.PostWait" />
-        <activity android:name=".Admin.AdminBasic" />
-        <activity android:name=".PersonalInfo.FollowUser" />
-        <activity android:name=".PersonalInfo.BookmarkActivity" />
-        <activity  android:theme="@style/no_action" android:name=".AddPost" />
-        <activity android:name=".PersonalInfo.UpdateInfo" />
-        <activity android:name=".Chat" />
-        <activity android:name=".AboutVLearn" />
-        <activity android:name=".addquestion" />
-        <activity android:name=".PostDetail" />
-        <activity android:name=".QuestionDetail" />
-        <activity android:name=".questionActivity" />
-        <activity android:name=".queslistview" />
+        <activity android:name=".LeaderBoard" android:configChanges="orientation|screenSize" />
+        <activity android:name=".PersonalInfo.EditPost"  android:configChanges="orientation|screenSize"/>
+        <activity android:name=".chatWithAdmin.AdminPanel" android:configChanges="orientation|screenSize" />
+        <activity android:name=".chatWithAdmin.chatWithAdmin" android:configChanges="orientation|screenSize" />
+        <activity android:name=".Admin.PostWaitDetail" android:configChanges="orientation|screenSize" />
+        <activity android:name=".Admin.PostAcc" android:configChanges="orientation|screenSize"/>
+        <activity android:name=".Admin.PostWait" android:configChanges="orientation|screenSize"/>
+        <activity android:name=".Admin.AdminBasic" android:configChanges="orientation|screenSize" />
+        <activity android:name=".PersonalInfo.FollowUser" android:configChanges="orientation|screenSize" />
+        <activity android:name=".PersonalInfo.BookmarkActivity"  android:configChanges="orientation|screenSize"/>
+        <activity  android:theme="@style/no_action" android:name=".AddPost"  android:configChanges="orientation|screenSize"/>
+        <activity android:name=".PersonalInfo.UpdateInfo" android:configChanges="orientation|screenSize" />
+        <activity android:name=".Chat" android:configChanges="orientation|screenSize"/>
+        <activity android:name=".AboutVLearn" android:configChanges="orientation|screenSize" />
+        <activity android:name=".addquestion" android:configChanges="orientation|screenSize" />
+        <activity android:name=".PostDetail" android:configChanges="orientation|screenSize" />
+        <activity android:name=".QuestionDetail" android:configChanges="orientation|screenSize" />
+        <activity android:name=".questionActivity" android:configChanges="orientation|screenSize"/>
+        <activity android:name=".queslistview" android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".interests"
-            android:theme="@style/no_action" />
+            android:theme="@style/no_action" android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".login"
             android:configChanges="orientation|screenSize"
@@ -69,10 +69,10 @@
         </activity>
         <activity
             android:name=".register"
-            android:theme="@style/no_action" />
+            android:theme="@style/no_action" android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".myprofile"
-            android:theme="@style/no_action" />
+            android:theme="@style/no_action" android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize" />
