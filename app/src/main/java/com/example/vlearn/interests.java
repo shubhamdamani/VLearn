@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vlearn.PersonalInfo.UpdateInfo;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -60,6 +62,7 @@ public class interests extends AppCompatActivity { //user k topic select krne k 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_interests);
         Intent i=getIntent();
         operation=i.getStringExtra("operation");
@@ -150,7 +153,10 @@ public class interests extends AppCompatActivity { //user k topic select krne k 
                     public void onClick(View v) {
                         CheckBox cb = (CheckBox) v ;
                         com.example.vlearn.Topics country = (com.example.vlearn.Topics) cb.getTag();
-                        Toast.makeText(getApplicationContext(), "Clicked on Checkbox: " + cb.getText() + " is " + cb.isChecked(), Toast.LENGTH_LONG).show();
+                        Snackbar snackbar=Snackbar.make(findViewById(R.id.intlay),cb.getText() + " is selected",Snackbar.LENGTH_SHORT);
+                        //Toast.makeText(getContext(),"no internet",Toast.LENGTH_SHORT).show();
+                        snackbar.show();
+                        //Toast.makeText(getApplicationContext(), "Clicked on Checkbox: " + cb.getText() + " is " + cb.isChecked(), Toast.LENGTH_LONG).show();
                         country.setSelected(cb.isChecked());
                     }
                 });

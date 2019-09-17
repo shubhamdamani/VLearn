@@ -5,17 +5,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".interests"
+    android:id="@+id/intlay"
     android:orientation="vertical">
 
-    <TextView android:layout_width="match_parent"
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circle_view"
+
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textSize="70dp"
+        android:layout_marginTop="25dp"
+        android:id="@+id/profileion"
+        />
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+
+        android:text="username"
+
+
+        android:textColor="#000000"
+
+        android:textSize="20dp"
+        android:id="@+id/myname"
+        android:layout_marginTop="45dp"
+        android:gravity="center"
+        />
+
+
+    <TextView android:layout_width="120dp"
+        android:layout_marginTop="3dp"
+        android:layout_height="30dp"
+        android:padding="5dp"
         android:text="Choose Topics"
-        android:textSize="20sp"
+
+        android:background="@drawable/capsule"
+        android:layout_below="@+id/profileion"
+        android:textSize="15dp"
         android:id="@+id/txt"/>
 
     <ListView
         android:id="@+id/listView1"
+        android:layout_marginTop="5dp"
         android:layout_below="@+id/txt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,11 +56,14 @@
         android:scrollbars="vertical"/>
     <Button
         android:id="@+id/findSelected"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="30dp"
         android:text="Submit"
-        android:background="@android:color/holo_blue_dark"
+        android:textSize="15dp"
+        android:background="@drawable/btncapsule"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
         />
 
 
