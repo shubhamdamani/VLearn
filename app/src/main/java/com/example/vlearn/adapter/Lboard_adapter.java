@@ -17,6 +17,8 @@ import com.example.vlearn.questionfetch;
 
 import java.util.List;
 
+import static java.lang.Character.toUpperCase;
+
 
 public class Lboard_adapter extends RecyclerView.Adapter<Lboard_adapter.ProductViewHolder> {
 
@@ -52,6 +54,10 @@ public class Lboard_adapter extends RecyclerView.Adapter<Lboard_adapter.ProductV
         holder.txt_email.setText(product.getUserEmail());
         holder.txt_Id.setText(product.getUserId());
 
+        Character name=product.getUserName().charAt(0);
+        name=toUpperCase(name);
+        holder.prof_icon.setText(name.toString());
+
 
     }
 
@@ -64,7 +70,7 @@ public class Lboard_adapter extends RecyclerView.Adapter<Lboard_adapter.ProductV
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txt_name, txt_email, txt_Id;
+        TextView txt_name, txt_email, txt_Id,prof_icon;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
@@ -72,6 +78,7 @@ public class Lboard_adapter extends RecyclerView.Adapter<Lboard_adapter.ProductV
             txt_name = itemView.findViewById(R.id.u_name);
             txt_email = itemView.findViewById(R.id.u_email);
             txt_Id = itemView.findViewById(R.id.u_id);
+            prof_icon = itemView.findViewById(R.id.prof_icon);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

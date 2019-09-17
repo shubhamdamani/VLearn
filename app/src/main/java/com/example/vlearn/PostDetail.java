@@ -224,8 +224,8 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
         });
 
         B_mark=(MaterialFavoriteButton)findViewById(R.id.bkmark);
-        dialog=new SpotsDialog(this);
-        dialog.show();
+       // dialog=new SpotsDialog(this);
+        //dialog.show();
 
         B_up.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -512,7 +512,7 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
 
 
             }
-            dialog.dismiss();
+            //dialog.dismiss();
 
         } catch (JSONException e) {
             e.printStackTrace();
