@@ -75,7 +75,7 @@ import com.example.vlearn.databinding.ActivityLoginBinding;
 public class login extends AppCompatActivity {
    SpotsDialog dialog;
     EditText userame,pass;
-    Button Login,gotoRegister;
+    TextView gotoRegister;
     String l_name="",l_pass="";
     private ActivityLoginBinding mBinding;
 
@@ -105,20 +105,23 @@ public class login extends AppCompatActivity {
         mBinding= DataBindingUtil.setContentView(this,R.layout.activity_login);
 
 
-        bookIconImageView = findViewById(R.id.bookIconImageView);
+      /*  bookIconImageView = findViewById(R.id.bookIconImageView);
         bookITextView = findViewById(R.id.bookITextView);
         loadingProgressBar = findViewById(R.id.loadingProgressBar);
         rootView = findViewById(R.id.rootView);
-        afterAnimationView = findViewById(R.id.afterAnimationView);
+        afterAnimationView = findViewById(R.id.afterAnimationView);*/
 
         userame=findViewById(R.id.L_username);
          pass=findViewById(R.id.L_password);
-         Login=findViewById(R.id.login);
+         //Login=findViewById(R.id.login);
         gotoRegister=findViewById(R.id.goto_register);
         emyl=userame.getText().toString().trim();
-        afterAnimationView.setVisibility(GONE);
 
-        new CountDownTimer(8000, 1000) {
+
+
+     //   afterAnimationView.setVisibility(GONE);
+
+      /*  new CountDownTimer(8000, 1000) {
 
             @Override
             public void onTick(long millisUntilFinished) {
@@ -133,12 +136,12 @@ public class login extends AppCompatActivity {
             public void onFinish() {
 
             }
-        }.start();
+        }.start();*/
 
         Log.d("login",l_name+l_pass);
 
 
-        Login.setOnClickListener(new View.OnClickListener() {
+      /*  Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 l_name=userame.getText().toString();
@@ -155,7 +158,7 @@ public class login extends AppCompatActivity {
 
 
             }
-        });
+        });*/
         //If User want to create new account this register button send intent to registerActivity
         gotoRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,13 +172,24 @@ public class login extends AppCompatActivity {
         
 
     }
+    public void load(View view) {
+        l_name=userame.getText().toString();
+        l_pass=pass.getText().toString();
+
+        new login.BackgroundTask().execute();
+        animateButtonWidth();
+
+        fadeOutTextAndShowProgressDialog();
+
+
+    }
 
 
 
 
 
     private void fadeOutTextAndShowProgressDialog() {
-        mBinding.login.animate().alpha(0f)
+        mBinding.text.animate().alpha(0f)
                 .setDuration(250)
                 .setListener(new AnimatorListenerAdapter() {
                     @Override
@@ -204,11 +218,11 @@ public class login extends AppCompatActivity {
     }
 
     private void showProgressDialog() {
-        mBinding.loadingProgressBar.setAlpha(1f);
-        mBinding.loadingProgressBar
+        mBinding.progressBar.setAlpha(1f);
+        mBinding.progressBar
                 .getIndeterminateDrawable()
                 .setColorFilter(Color.parseColor("#ffffff"), PorterDuff.Mode.SRC_IN);
-        mBinding.loadingProgressBar.setVisibility(VISIBLE);
+        mBinding.progressBar.setVisibility(VISIBLE);
     }
 
     private void nextAction() {
@@ -251,10 +265,10 @@ public class login extends AppCompatActivity {
 
             private void reset(Animator animation) {
                 super.onAnimationEnd(animation);
-                mBinding.gotoRegister.setVisibility(VISIBLE);
                 mBinding.reveal.setVisibility(INVISIBLE);
-                mBinding.login.setVisibility(VISIBLE);
-                mBinding.login.setAlpha(1f);
+                mBinding.text.setVisibility(VISIBLE);
+              //  mBinding.gotoRegister.setVisibility(INVISIBLE);
+                mBinding.text.setAlpha(1f);
                 mBinding.login.setElevation(4f);
                 ViewGroup.LayoutParams layoutParams = mBinding.login.getLayoutParams();
                 layoutParams.width = (int) (getResources().getDisplayMetrics().density * 300);
@@ -266,7 +280,7 @@ public class login extends AppCompatActivity {
     }
 
     private void fadeOutProgressDialog() {
-        mBinding.loadingProgressBar.animate().alpha(0f).setDuration(200).setListener(new AnimatorListenerAdapter() {
+        mBinding.progressBar.animate().alpha(0f).setDuration(200).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
@@ -283,7 +297,10 @@ public class login extends AppCompatActivity {
             @Override
             public void run() {
               // startActivity(new Intent(login.this, MainActivity.class));
-
+                Intent i=new Intent(login.this,MainActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+               // finish();
 
             }
         }, 0);
@@ -427,10 +444,11 @@ public class login extends AppCompatActivity {
            {
 
            }else{
+               nextAction();
 
-               Intent i=new Intent(login.this,MainActivity.class);
+              /* Intent i=new Intent(login.this,MainActivity.class);
                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-               startActivity(i);
+               startActivity(i);*/
 
            }
 
