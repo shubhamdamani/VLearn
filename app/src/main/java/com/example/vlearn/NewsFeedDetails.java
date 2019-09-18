@@ -26,6 +26,7 @@ public class NewsFeedDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_feed_details);
+        //this.onBackPressed();
 
         source = (TextView)findViewById(R.id.source);
         title = (TextView)findViewById(R.id.title);

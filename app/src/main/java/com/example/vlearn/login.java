@@ -298,10 +298,11 @@ public class login extends AppCompatActivity {
             @Override
             public void run() {
               // startActivity(new Intent(login.this, MainActivity.class));
+                Log.d("login","going to main");
                 Intent i=new Intent(login.this,MainActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
-               // finish();
+                finish();
 
             }
         }, 0);

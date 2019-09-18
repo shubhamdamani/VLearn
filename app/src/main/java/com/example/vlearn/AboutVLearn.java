@@ -38,4 +38,12 @@ public class AboutVLearn extends AppCompatActivity {
         });
 
     }
+    @Override
+    public void onBackPressed(){
+
+        startActivity(new Intent(AboutVLearn.this,MainActivity.class));
+        finish();
+        return;
+    }
+
 }

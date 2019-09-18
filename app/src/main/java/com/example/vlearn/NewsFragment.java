@@ -83,6 +83,8 @@ public class NewsFragment extends Fragment {
         dialog = new SpotsDialog(getContext());
         dialog.show();
 
+       // getActivity().onBackPressed();
+
             View v = inflater.inflate(R.layout.fragment_news, container, false);       //fragment ka view for other purpose
             //   btnLoadFeed = (Button)v.findViewById(R.id.btnRefreshFeed);
             // mFeedName = (EditText)v.findViewById(R.id.etFeedName);

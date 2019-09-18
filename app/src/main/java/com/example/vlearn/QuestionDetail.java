@@ -60,6 +60,7 @@ public class QuestionDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_detail);
+      //  this.onBackPressed();
         dialog=new SpotsDialog(this);
         //dialog.show();
         //recyclerView

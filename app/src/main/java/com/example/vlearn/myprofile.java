@@ -214,5 +214,13 @@ public class myprofile extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed(){
+
+        startActivity(new Intent(myprofile.this,MainActivity.class));
+        finish();
+        return;
+    }
+
 
 }

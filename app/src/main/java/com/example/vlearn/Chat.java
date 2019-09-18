@@ -122,4 +122,12 @@ public class Chat extends AppCompatActivity {
             });
         }
     }
+    @Override
+    public void onBackPressed(){
+
+        startActivity(new Intent(Chat.this,MainActivity.class));
+        finish();
+        return;
+    }
+
 }

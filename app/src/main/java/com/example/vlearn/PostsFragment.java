@@ -77,6 +77,7 @@ public class PostsFragment extends Fragment {
         dialog.show();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        //getActivity().onBackPressed();
 
 
         sortType="-1";

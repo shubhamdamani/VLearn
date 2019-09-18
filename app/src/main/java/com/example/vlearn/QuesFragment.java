@@ -60,7 +60,7 @@ public class QuesFragment extends Fragment {
         dialog=new SpotsDialog(getContext());
         dialog.show();//jaise hi is activity pe aaye, question fetch ho jaaye
 
-
+       // getActivity().onBackPressed();
 
         View v= inflater.inflate(R.layout.fragment_ques,container,false);
 

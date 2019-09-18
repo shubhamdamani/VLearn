@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.vlearn.adapter.Lboard_adapter;
@@ -39,6 +41,7 @@ public class LeaderBoard extends AppCompatActivity {
     JSONObject jsonObject;
     List<Lboard_user> leaderData;
     Lboard_adapter adapter;
+    Button b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,7 @@ public class LeaderBoard extends AppCompatActivity {
         recyclerView =findViewById(R.id.leader_board_recylerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //b=findViewById(R.id.back);
 
         new BackgroundTask().execute();
 
@@ -155,5 +159,13 @@ public class LeaderBoard extends AppCompatActivity {
             super.onProgressUpdate(values);
         }
     }
+    @Override
+    public void onBackPressed(){
+
+        startActivity(new Intent(LeaderBoard.this,MainActivity.class));
+        finish();
+        return;
+    }
+
 
 }
