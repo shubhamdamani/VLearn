@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,22 +27,32 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import static java.lang.Character.toUpperCase;
+
 public class addquestion extends AppCompatActivity {
-    TextView tag;
+    TextView prof_icon;
     EditText Q_txt;
     Button b_Post;
     String QTxt;
     SpotsDialog dialog;
-    USER_Class User_obj;        //unused object
+    USER_Class User_obj;//unused object
+    ImageButton btn_close;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addquestion);
-        tag=findViewById(R.id.tag);
+
         Q_txt=findViewById(R.id.Q_txt);
         b_Post=findViewById(R.id.Q_post);
+        prof_icon=findViewById(R.id.prof_icon);
+        btn_close=findViewById(R.id.close_btn);
         dialog=new SpotsDialog(this);
-      //  User_obj=new USER_Class();
+
+        String username=USER_Class.getLoggedUserName();
+        Character name=username.charAt(0);
+        name=toUpperCase(name);
+        prof_icon.setText(name.toString());
+
         Toast.makeText(addquestion.this,"user"+USER_Class.getLoggedUserId(),Toast.LENGTH_SHORT).show();
 
         b_Post.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +61,13 @@ public class addquestion extends AppCompatActivity {
                 dialog.show();
                 QTxt=Q_txt.getText().toString().trim();
                 PostQuestion();                 // post question to database
+            }
+        });
+        btn_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
             }
         });
     }

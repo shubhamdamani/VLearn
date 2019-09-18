@@ -5,36 +5,79 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".addquestion"
-    android:padding="20dp">
-    <TextView
+    android:background="@android:color/holo_blue_dark">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Write Your Question To post"
-        android:padding="10dp"
-        android:layout_marginTop="100dp"
-        android:id="@+id/tag"/>
+        android:id="@+id/top_bar"
+        android:padding="15dp">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/close_btn"
+            android:background="@drawable/close_btn"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add your post"
+            android:layout_marginLeft="20dp"
+            android:textSize="20dp"
+            android:textColor="@android:color/white"
+            android:layout_toRightOf="@id/close_addpost"/>
+    </LinearLayout>
 
-    <EditText
-        android:id="@+id/Q_txt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tag"
-        android:background="?attr/colorButtonNormal"
-        android:gravity="top|left"
-        android:inputType="textMultiLine"
-        android:lines="20"
-        android:minLines="5"
-        android:scrollbars="vertical"
-        android:scrollHorizontally="false" />
+   <androidx.cardview.widget.CardView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_below="@+id/top_bar"
+       app:cardCornerRadius="10dp">
 
-    <Button
-        android:id="@+id/Q_post"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Q_txt"
-        android:layout_alignParentEnd="true"
-        android:background="@android:color/holo_blue_dark"
-        android:padding="20dp"
-        android:text="Post" />
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical"
+           android:padding="20dp">
+           <TextView
+               android:layout_width="100dp"
+               android:layout_height="100dp"
+               android:background="@drawable/circle_view"
+               android:layout_centerHorizontal="true"
+               android:id="@+id/prof_icon"
+               android:textStyle="bold"
+               android:text="N"
+               android:textColor="@android:color/white"
+               android:textSize="70dp"
+               android:gravity="center"
+               />
+           <EditText
+               android:id="@+id/Q_txt"
+               android:layout_marginTop="20dp"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/bar"
+               android:background="@drawable/round_rectangle_border"
+               android:gravity="top|left"
+               android:inputType="textMultiLine"
+               android:lines="20"
+               android:minLines="5"
+               android:scrollbars="vertical"
+               android:hint="Write Your Question Here..."
+               android:padding="10dp"
+               android:scrollHorizontally="false" />
+
+           <Button
+               android:id="@+id/Q_post"
+               android:layout_marginTop="25dp"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/Q_txt"
+               android:layout_alignParentEnd="true"
+               android:background="@android:color/holo_blue_dark"
+               android:padding="20dp"
+               android:text="Post"
+               android:textColor="@android:color/white"/>
+       </LinearLayout>
+   </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

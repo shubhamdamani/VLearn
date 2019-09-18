@@ -15,22 +15,22 @@
        android:padding="15dp">
        <ImageButton
            android:layout_width="wrap_content"
-           android:layout_height="match_parent"
+           android:layout_height="wrap_content"
            android:id="@+id/close_addpost"
            android:background="@drawable/close_btn"/>
        <TextView
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Add your question"
+           android:text="Add your post"
            android:layout_marginLeft="20dp"
-           android:textSize="25dp"
+           android:textSize="20dp"
            android:textColor="@android:color/white"
            android:layout_toRightOf="@id/close_addpost"/>
    </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/top_bar"
         app:cardCornerRadius="10dp">
 
@@ -61,7 +61,7 @@
                 android:layout_below="@+id/prof_icon"
                 android:background="@drawable/capsule"
                 android:layout_marginTop="15dp"
-                android:padding="20dp">
+                android:padding="10dp">
 
             </Spinner>
             <EditText
@@ -102,6 +102,7 @@
                 android:layout_alignParentEnd="true"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:background="@android:color/holo_blue_light"
+                android:textColor="@android:color/white"
                 />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

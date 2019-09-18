@@ -166,7 +166,7 @@
                 android:minLines="1"
                 android:scrollHorizontally="false"
                 android:scrollbars="vertical"
-                android:hint="Write Your Answer Here"
+                android:hint="Write Your Comment Here ...."
                 android:background="#bee7f7"
                 android:padding="15dp"
                 android:layout_weight="9"/>
