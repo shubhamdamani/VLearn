@@ -64,8 +64,9 @@
                             android:textSize="20sp"
                             />
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="70dp"
+                            android:layout_height="50dp"
+                            android:textAlignment="center"
                             android:text="0"
                             android:textStyle="bold"
                             android:textSize="20sp"
@@ -87,9 +88,10 @@
                             android:textSize="20sp"
                             />
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="70dp"
+                            android:layout_height="50dp"
                             android:text="0"
+                            android:textAlignment="center"
                             android:id="@+id/no_following"
                             android:textStyle="bold"
                             android:textSize="20sp"

@@ -3,13 +3,16 @@ package com.example.vlearn;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import dmax.dialog.SpotsDialog;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.vlearn.adapter.Lboard_adapter;
 import com.example.vlearn.object.Lboard_user;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,10 +40,15 @@ public class Followers extends AppCompatActivity {
     JSONObject jsonObject;
     List<Lboard_user> leaderData;
     Lboard_adapter adapter;
+    SpotsDialog dialog;
+    LinearLayout rl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_followers);
+        rl=findViewById(R.id.acting);
+        dialog=new SpotsDialog(this);
+        dialog.show();
 
         recyclerView =findViewById(R.id.leader_board_recylerview);
         recyclerView.setHasFixedSize(true);
@@ -140,9 +148,17 @@ public class Followers extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            JSON_String=result;
-            Toast.makeText(Followers.this,"gghg"+JSON_String,Toast.LENGTH_LONG).show();
-            getDatafromJSON();
+            try
+            {JSON_String=result;
+                //Toast.makeText(Following.this,"gghg"+JSON_String,Toast.LENGTH_LONG).show();
+                getDatafromJSON();
+                dialog.dismiss();}catch (Exception e)
+            {
+                Snackbar snackbar=Snackbar.make(rl,"No Internet Connection",Snackbar.LENGTH_LONG);
+                snackbar.show();
+                dialog.dismiss();
+
+            }
         }
 
         @Override
