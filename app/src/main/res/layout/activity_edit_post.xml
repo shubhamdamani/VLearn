@@ -4,34 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     tools:context=".PersonalInfo.EditPost">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="120dp"
+        android:padding="15dp"
         android:text="TopicTitle"
+        android:background="@drawable/circle_view"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
         android:id="@+id/tvEditTitle"
         android:textSize="50dp"
         />
     <EditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/capsule"
+        android:padding="5dp"
         android:id="@+id/tvEditPost"
+        android:minHeight="150dp"
+
         android:text="post things"
         android:layout_below="@+id/tvEditTitle"/>
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
+        android:layout_marginLeft="15dp"
         android:layout_height="wrap_content"
         android:text="edit"
+        android:layout_marginTop="65dp"
+        android:background="@drawable/btncapsule"
         android:id="@+id/btnEditpost"
+        android:textColor="#ffffff"
         android:layout_below="@+id/tvEditPost"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
+        android:layout_marginRight="15dp"
         android:layout_height="wrap_content"
-        android:text="deleete"
+        android:layout_marginTop="65dp"
+        android:text="delete"
         android:id="@+id/btnDelpost"
         android:layout_alignParentRight="true"
+        android:textColor="#ffffff"
+        android:background="@drawable/btncapsule"
         android:layout_below="@+id/tvEditPost"/>
 
 

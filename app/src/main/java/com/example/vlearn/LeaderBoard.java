@@ -3,17 +3,20 @@ package com.example.vlearn;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import dmax.dialog.SpotsDialog;
 
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.vlearn.adapter.Lboard_adapter;
 import com.example.vlearn.adapter.post_comment_adapter;
 import com.example.vlearn.object.Lboard_user;
 import com.example.vlearn.object.getComment_data;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,15 +45,20 @@ public class LeaderBoard extends AppCompatActivity {
     List<Lboard_user> leaderData;
     Lboard_adapter adapter;
     Button b;
+    SpotsDialog dialog;
+    LinearLayout r1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader_board);
+        dialog=new SpotsDialog(this);
+        dialog.show();
 
         recyclerView =findViewById(R.id.leader_board_recylerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        r1=findViewById(R.id.ledboard);
         //b=findViewById(R.id.back);
 
         new BackgroundTask().execute();
@@ -85,7 +93,7 @@ public class LeaderBoard extends AppCompatActivity {
 
 
             }
-            //dialog.dismiss();
+            dialog.dismiss();
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -148,10 +156,17 @@ public class LeaderBoard extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
+            try
+            {
+                JSON_String=result;
 
-            JSON_String=result;
-            Toast.makeText(LeaderBoard.this,"gghg"+JSON_String,Toast.LENGTH_LONG).show();
-            getDatafromJSON();
+            //Toast.makeText(LeaderBoard.this,"gghg"+JSON_String,Toast.LENGTH_LONG).show();
+            getDatafromJSON();}
+            catch (Exception e){
+                dialog.dismiss();
+                Snackbar snackbar=Snackbar.make(r1,"No Internet Connection",Snackbar.LENGTH_LONG);
+                snackbar.show();
+            }
         }
 
         @Override
