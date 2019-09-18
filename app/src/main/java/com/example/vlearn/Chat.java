@@ -26,6 +26,7 @@ public class Chat extends AppCompatActivity {
     Button chat,admin;
     FirebaseAuth mAuth;
     DatabaseReference reference;
+    FirebaseUser fuser;
     int flag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class Chat extends AppCompatActivity {
         chat=findViewById(R.id.chat);
         admin=findViewById(R.id.admin);
         mAuth=FirebaseAuth.getInstance();
+        fuser=mAuth.getCurrentUser();
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

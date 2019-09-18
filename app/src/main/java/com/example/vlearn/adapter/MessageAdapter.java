@@ -81,7 +81,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             mRef = FirebaseDatabase.getInstance().getReference().child("Chats");
             //getItemId()
 
-            ItemTouchHelper.SimpleCallback itemTouchHelperCallback=
+            /*ItemTouchHelper.SimpleCallback itemTouchHelperCallback=
                     new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT|ItemTouchHelper.LEFT) {
                         @Override
                         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -96,7 +96,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                                 @Override
                                 public void onClick(View v) {
 */
-                                    fuser= FirebaseAuth.getInstance().getCurrentUser();
+                                   /* fuser= FirebaseAuth.getInstance().getCurrentUser();
 
 
 
@@ -135,7 +135,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                            // });
 
                         //}
-                    };
+                    };*/
 
 
         }
