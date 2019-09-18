@@ -50,7 +50,7 @@ public class Chat extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 flag=1;
-                login("admin@gmail.com","adminadmin");
+                login("admin@gmail.com","admin@gmail.com");
             }
         });
 

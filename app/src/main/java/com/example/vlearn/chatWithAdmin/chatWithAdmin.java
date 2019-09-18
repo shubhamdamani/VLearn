@@ -81,7 +81,7 @@ public class chatWithAdmin extends AppCompatActivity {
                         chatUser user = snapshot.getValue(chatUser.class);
                         Log.d("user", user.getUsername());
                         String u = user.getUsername();
-                        if (u.equals("adminadmin")) {
+                        if (u.equals("admin@gmail.com")) {
                             readMessage(fuser.getUid(), user.getId());
 
                         }
