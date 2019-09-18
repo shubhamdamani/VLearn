@@ -22,14 +22,19 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/loginim"
         android:layout_marginTop="50dp"
-
-
+        android:transitionName="logoTransition"
         />
-
-
-
-
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/app_name"
+        android:text="VLearn"
+        android:textSize="30dp"
+        android:padding="10dp"
+        android:transitionName="app_nameTransition"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/loginim"
+        />
 
             <EditText
                 android:layout_width="match_parent"
@@ -40,7 +45,7 @@
 
                 android:paddingStart="10dp"
                 android:id="@+id/L_username"
-                android:layout_below="@+id/loginim"
+                android:layout_below="@+id/app_name"
                 android:background="@drawable/capsule"
                 android:text="Email123@gmail.com"
                 />
