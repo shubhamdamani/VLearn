@@ -82,85 +82,46 @@ public class login extends AppCompatActivity {
 
 
 
+
     String json_string;
     String JSON_String;
     JSONArray jsonArray;
     JSONObject jsonObject;
     String emyl;
     String USER_ID,USER_NAME;
+    String password;
 
-    private ImageView bookIconImageView;
-    private TextView bookITextView;
-    private ProgressBar loadingProgressBar;
-    private RelativeLayout rootView, afterAnimationView;
+
+    private RelativeLayout rootView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
-       // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-               // WindowManager.LayoutParams.FLAG_FULLSCREEN);
-       // setContentView(R.layout.activity_login);
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         mBinding= DataBindingUtil.setContentView(this,R.layout.activity_login);
         rootView=findViewById(R.id.rootView);
 
 
-      /*  bookIconImageView = findViewById(R.id.bookIconImageView);
-        bookITextView = findViewById(R.id.bookITextView);
-        loadingProgressBar = findViewById(R.id.loadingProgressBar);
-        rootView = findViewById(R.id.rootView);
-        afterAnimationView = findViewById(R.id.afterAnimationView);*/
+
+
+
+
 
         userame=findViewById(R.id.L_username);
          pass=findViewById(R.id.L_password);
-         //Login=findViewById(R.id.login);
+
         gotoRegister=findViewById(R.id.goto_register);
         emyl=userame.getText().toString().trim();
-
-
-
-     //   afterAnimationView.setVisibility(GONE);
-
-      /*  new CountDownTimer(8000, 1000) {
-
-            @Override
-            public void onTick(long millisUntilFinished) {
-                bookITextView.setVisibility(GONE);
-                loadingProgressBar.setVisibility(GONE);
-                //rootView.setBackgroundColor(ContextCompat.getColor(login.this, R.color.colorSplashText));
-                //bookIconImageView.setImageResource(R.drawable.background_color_book);
-                startAnimation();
-            }
-
-            @Override
-            public void onFinish() {
-
-            }
-        }.start();*/
-
-        Log.d("login",l_name+l_pass);
-
-
-      /*  Login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                l_name=userame.getText().toString();
-                l_pass=pass.getText().toString();
-
-                new login.BackgroundTask().execute();
-                animateButtonWidth();
-
-                fadeOutTextAndShowProgressDialog();
-
-                nextAction();
+        password=pass.getText().toString().trim();
 
 
 
 
-            }
-        });*/
+
+
+
         //If User want to create new account this register button send intent to registerActivity
         gotoRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,8 +146,6 @@ public class login extends AppCompatActivity {
 
 
     }
-
-
 
 
 
@@ -330,39 +289,12 @@ public class login extends AppCompatActivity {
 
 
 
-    private void startAnimation() {
 
-        ViewPropertyAnimator viewPropertyAnimator = bookIconImageView.animate();
-        viewPropertyAnimator.x(50f);
-        viewPropertyAnimator.y(200f);
-        viewPropertyAnimator.setDuration(1000);
-        viewPropertyAnimator.setListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                afterAnimationView.setVisibility(VISIBLE);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        });
-    }
 
     //Retrieve Details Of USER from Database using JSON parsing
     public void getDatafromJSON()
     {
-       // Toast.makeText(login.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();
+       // Toast.makeText(login.this,"json"+JSON_String,Toast.LENGTH_LONG).show();
         try {
             jsonObject=new JSONObject(JSON_String);
 
@@ -374,11 +306,13 @@ public class login extends AppCompatActivity {
                 JSONObject jo=jsonArray.getJSONObject(count);
                 USER_NAME=jo.getString("UserName");
                 USER_ID=jo.getString("User_Id");
-                Log.d("ghfiwhfiw:        ",USER_NAME+" "+USER_ID);
+                Log.d("login:        ",USER_NAME+" "+USER_ID);
                 //User_obj=new USER_Class();
                 if(USER_NAME.equals("no") || USER_ID.equals("no"))
                 {
-                    Toast.makeText(login.this,"USER DOES NOT EXIST",Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar=Snackbar.make(rootView,"Login Failed! Enter Correct Details",Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                    //Toast.makeText(login.this,"USER DOES NOT EXIST",Toast.LENGTH_SHORT).show();
 
                 }else {
                     USER_Class.setLoggedUserId(USER_ID);
@@ -455,13 +389,12 @@ public class login extends AppCompatActivity {
             try {
                 JSON_String = result;
 
-                Log.d("josn", JSON_String);
+                Log.d("json", JSON_String);
                 //Toast.makeText(login.this,"asd"+JSON_String,Toast.LENGTH_SHORT).show();
                 getDatafromJSON();
                 if (USER_NAME.equals("no") || USER_ID.equals("no")) {
                     failedAction();
-                    Snackbar snackbar=Snackbar.make(rootView,"Login Failed! Enter Correct Details",Snackbar.LENGTH_LONG);
-                    snackbar.show();
+
 
                 } else {
                     nextAction();
@@ -474,7 +407,7 @@ public class login extends AppCompatActivity {
             }catch (Exception e)
             {
                 failedAction();
-                Snackbar snackbar=Snackbar.make(rootView,"No Internet Connection",Snackbar.LENGTH_LONG);
+                Snackbar snackbar=Snackbar.make(rootView,"No Internet Connection",Snackbar.LENGTH_SHORT);
                 snackbar.show();
             }
 

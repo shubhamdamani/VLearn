@@ -28,7 +28,7 @@ public class AboutVLearn extends AppCompatActivity {
             public void onClick(View v) {
 
                 String s=USER_Class.getLoggedUserId();
-                if(s.equals("1") || s.equals("2") || s.equals("3"))
+                if(s.equals("1"))
                 {
                     Intent i=new Intent(AboutVLearn.this, AdminBasic.class);
                     startActivity(i);
