@@ -40,7 +40,6 @@ public class questionActivity extends AppCompatActivity {
                 Intent i;
                 new BackgroundTask().execute();
 
-                //startActivity(i);
 
             }
         });
@@ -112,8 +111,6 @@ public class questionActivity extends AppCompatActivity {
             tv.setText(result);
             JSON_String=result;
 
-
-            //super.onPostExecute(aVoid);
         }
 
         @Override

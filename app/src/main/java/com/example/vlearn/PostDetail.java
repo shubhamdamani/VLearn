@@ -3,6 +3,7 @@ package com.example.vlearn;
 import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,6 +36,7 @@ import com.example.vlearn.adapter.post_comment_adapter;
 import com.example.vlearn.object.getComment_data;
 import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.snackbar.Snackbar;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
@@ -86,6 +88,7 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
     Button btnMORE,btnaudio,btnPDF;
     ImageButton btnEdit;
     BottomSheetBehavior bottomSheetBehavior;
+    CoordinatorLayout detailView ;
 
 
     private static final String TAG = "PdfCreatorActivity";
@@ -97,7 +100,7 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_detail);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-       // this.onBackPressed();
+        detailView=findViewById(R.id.detail_view);
 
 
 
@@ -149,10 +152,8 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
                 if(bottomSheetBehavior.getState()!=BottomSheetBehavior.STATE_EXPANDED)
                 {
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                  //  btnMORE.setText("hide");
                 }else{
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                //    btnMORE.setText("more");
                 }
             }
         });
@@ -180,7 +181,6 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
 
         if(User_Id.equals(USER_Class.getLoggedUserId()) || USER_Class.getLoggedUserId().equals("1") || USER_Class.getLoggedUserId().equals("2") || USER_Class.getLoggedUserId().equals("3"))
         {
-                Toast.makeText(PostDetail.this,User_Id+" "+USER_Class.getLoggedUserId(),Toast.LENGTH_SHORT).show();
         }else{
             btnEdit.setEnabled(false);
             btnEdit.setVisibility(View.INVISIBLE);
@@ -227,8 +227,6 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
         });
 
         B_mark=(MaterialFavoriteButton)findViewById(R.id.bkmark);
-       // dialog=new SpotsDialog(this);
-        //dialog.show();
 
         B_up.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -322,20 +320,18 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
 
     public void onInit(int status)
     {
-        //tts=new TextToSpeech(this, (TextToSpeech.OnInitListener) this);
         if(status==TextToSpeech.SUCCESS) {
             int reslt = tts.setLanguage(Locale.US);
             float i = 50;
             if (reslt == TextToSpeech.LANG_MISSING_DATA || reslt == TextToSpeech.LANG_NOT_SUPPORTED) {
-                Toast.makeText(PostDetail.this, "not", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PostDetail.this, "Language problem", Toast.LENGTH_SHORT).show();
             } else {
                 btnaudio.setEnabled(true);
-               // voiceOutput();
             }
         }
         else
         {
-            Toast.makeText(PostDetail.this,"fal",Toast.LENGTH_SHORT).show();
+            Toast.makeText(PostDetail.this,"Failed to load speech",Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -363,8 +359,6 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
                             }
                         }
                     });
-                    // Toast.makeText(this,"give perm",Toast.LENGTH_SHORT).show();
-                    //requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},REQUEST_CODE_ASK_PERMISSIONS);
                 }
             }
         }
@@ -401,7 +395,7 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
                     }
                 }
                 else{
-                    Toast.makeText(this,"dedo permission",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,"Grant permission to continue",Toast.LENGTH_SHORT).show();
                 }
                 break;
             default:
@@ -414,15 +408,9 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
         Intent testIntent=new Intent(Intent.ACTION_VIEW);
 
         testIntent.setType("application/pdf");
-        // Toast.makeText(this,"dwnload pdf viewer",Toast.LENGTH_SHORT).show();
 
         List list= packageManager.queryIntentActivities(testIntent,PackageManager.MATCH_DEFAULT_ONLY);
-        // Toast.makeText(this,"dwnload pdf viewer",Toast.LENGTH_SHORT).show();
         if(list.size()>0){
-            /*Intent i=new Intent();
-            i.setAction(Intent.ACTION_VIEW);
-            i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            i.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);*/
             Intent i=new Intent(Intent.ACTION_VIEW);
 
             i.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -431,7 +419,7 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
             startActivity(i);
         }
         else{
-            Toast.makeText(this,"dwnload pdf viewer",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Download pdf viewer",Toast.LENGTH_SHORT).show();
 
         }
 
@@ -465,7 +453,7 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
         String method="addComment";
         if(PostComment.equals(""))
         {
-            Toast.makeText(PostDetail.this,"plese add anser",Toast.LENGTH_SHORT).show();
+            Toast.makeText(PostDetail.this,"Please add answer",Toast.LENGTH_SHORT).show();
             return;
         }
         com.example.vlearn.BackgroundTask backgroundTask=new com.example.vlearn.BackgroundTask(getBaseContext());
@@ -478,19 +466,16 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
     }
     public static void hideKeyboard(Activity activity) {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        //Find the currently focused view, so we can grab the correct window token from it.
         View view = activity.getCurrentFocus();
-        //If no view currently has focus, create a new one, just so we can grab a window token from it
         if (view == null) {
             view = new View(activity);
         }
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
-    //RETRIEVE DETAILS or POst comments
+    //RETRIEVE DETAILS of Post comments
 
     public void getDatafromJSON()
     {
-       // Toast.makeText(PostDetail.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();
         String user_name,p_comment;
          getCommentData=new ArrayList<>();
 
@@ -505,8 +490,6 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
                 JSONObject jo=jsonArray.getJSONObject(count);
                 user_name=jo.getString("UserName");
                 p_comment=jo.getString("Comment");
-
-                Toast.makeText(PostDetail.this,"hi"+user_name+p_comment,Toast.LENGTH_LONG).show();
                 getComment_data contacts=new getComment_data(user_name,p_comment);
                 getCommentData.add(contacts);
                 adapter = new post_comment_adapter(this, getCommentData);
@@ -515,13 +498,12 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
 
 
             }
-            //dialog.dismiss();
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
-    class BackgroundTask extends AsyncTask<Void,Void,String>            //answer upload karega
+    class BackgroundTask extends AsyncTask<Void,Void,String>            //upload answer
     {
         String json_url="https://vlearndroidrun.000webhostapp.com/getComments.php";
 
@@ -532,7 +514,6 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
             try {
                 URL url=new URL(json_url);
                 HttpURLConnection httpURLConnection=(HttpURLConnection) url.openConnection();
-                //my
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 OutputStream os=httpURLConnection.getOutputStream();
@@ -542,7 +523,6 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
                 bufferedWriter.flush();
                 bufferedWriter.close();
                 os.close();
-                //
                 InputStream inputStream=httpURLConnection.getInputStream();
                 BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder stringBuilder=new StringBuilder();
@@ -579,9 +559,14 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
         @Override
         protected void onPostExecute(String result) {
 
-            JSON_String=result;
-            Toast.makeText(PostDetail.this,"gghg"+JSON_String,Toast.LENGTH_LONG).show();
-            getDatafromJSON();
+            try {
+                JSON_String = result;
+                getDatafromJSON();
+            }catch (Exception e)
+            {
+                Snackbar snackbar=Snackbar.make(detailView,"No Internet Connection",Snackbar.LENGTH_LONG);
+                snackbar.show();
+            }
         }
 
         @Override

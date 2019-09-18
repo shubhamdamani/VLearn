@@ -43,12 +43,11 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-public class register extends AppCompatActivity {
+public class register extends AppCompatActivity {         //New User registration
 
     EditText username,email,pass,re_pass;
     Button register;
     String r_name="",r_email="",r_pass="",ure_pass="";
-    //public static final String CHECK_URL="https://vlearndroidrun.000webhostapp.com/check_user.php";
     String json_string;
     String JSON_String;
     JSONArray jsonArray;
@@ -188,9 +187,7 @@ public class register extends AppCompatActivity {
                     dialog.dismiss();
                     Toast.makeText(register.this, "REGISTRATION FAILED", Toast.LENGTH_SHORT).show();
                 } else {
-                   // Toast.makeText(register.this, "REGISTRATION SUCCESS", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(register.this, interests.class);
-                    //i.putExtra("User_Id",success);
                     USER_Class.setLoggedUserName(r_name);
                     USER_Class.setLoggedUserId(success);
                     USER_Class.setLoggedUserEmail(r_email);
@@ -204,7 +201,6 @@ public class register extends AppCompatActivity {
                 snackbar.show();
             }
 
-            //super.onPostExecute(aVoid);
         }
 
         @Override

@@ -5,7 +5,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-public interface FeedYahooAPI {
+public interface FeedYahooAPI {    // API to fetch content from yahoo.com
 
     String BASE_URL ="https://yahoo.com/";
 

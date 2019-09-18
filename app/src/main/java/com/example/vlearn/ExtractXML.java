@@ -3,7 +3,7 @@ package com.example.vlearn;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExtractXML {               //xml ganda h matlab bohot tags h and kam ki chij nikalni h using string and xml functions
+public class ExtractXML {               //used to extract extract image url from unorganised data
 
     private static final String TAG = "ExtractXML";
 
@@ -27,11 +27,7 @@ public class ExtractXML {               //xml ganda h matlab bohot tags h and ka
             String temp = splitXML[i];
 
             int index = temp.indexOf("\"");
-           /* Log.d(TAG,"start : index : "+index);
-            Log.d(TAG,"start : extracted : "+temp);*/
-
             temp = temp.substring(0,index);
-        /*    Log.d(TAG,"start : snipped : "+temp);*/
             result.add(temp);
 
         }

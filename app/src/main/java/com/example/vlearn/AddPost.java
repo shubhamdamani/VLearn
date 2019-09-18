@@ -120,8 +120,6 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
         //P_topic
         user_id=USER_Class.getLoggedUserId();
         Date date = new Date();
-       // android.text.format.DateFormat date = new android.text.format.DateFormat();
-       // date.format("yyyy-MM-dd hh:mm:ss a", new java.util.Date());
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         P_date=sdf.format(date);
         // P_date = DateFormat.getDateTimeInstance().format(date);
@@ -190,14 +188,11 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
 
             try {
                 dialog.dismiss();
-
-                //getDatafromJSON();
                 if (result.equals("Posted Successfully")) {
                     Snackbar snackbar=Snackbar.make(addPostView,"Uploaded to waitlist",Snackbar.LENGTH_LONG);
                     snackbar.show();
                     finish();
                 }
-                //super.onPostExecute(aVoid);
             }catch (Exception e){
                 dialog.dismiss();
                 Snackbar snackbar=Snackbar.make(addPostView,"No Internet Connection",Snackbar.LENGTH_LONG);

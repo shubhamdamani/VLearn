@@ -15,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -88,8 +87,6 @@ public class PostsFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                      //  .setAction("Action", null).show();
                 startActivity(new Intent(getContext(),AddPost.class));
             }
         });
@@ -115,7 +112,6 @@ public class PostsFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_spinner_item, Topics);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        //spinner.setOnItemSelectedListener(this);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
             @Override
@@ -124,22 +120,18 @@ public class PostsFragment extends Fragment {
                 String selected = parentView.getItemAtPosition(position).toString();
                 Context context = parentView.getContext();
                 CharSequence text = selected;
-                int duration = Toast.LENGTH_SHORT;
 
                 switch (position){
                     case 0:
                         sortType="0";//sort according to date
-                        Toast.makeText(getContext(),"date",Toast.LENGTH_LONG).show();
                         new PostsFragment.BackgroundTask().execute();
                         break;
                     case 1:
                         sortType="1";//sort according to popular
-                        Toast.makeText(getContext(),"popular",Toast.LENGTH_LONG).show();
                         new PostsFragment.BackgroundTask().execute();
                         break;
                     case 2:
                         sortType="2";//sort according to follower
-                        Toast.makeText(getContext(),"follower",Toast.LENGTH_LONG).show();
                         new PostsFragment.BackgroundTask().execute();
                         break;
                     default:
@@ -153,7 +145,7 @@ public class PostsFragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
+                // if no item selected do nothing
             }
         });
 
@@ -182,7 +174,7 @@ public class PostsFragment extends Fragment {
 
             while(count<jsonArray.length())
             {
-                JSONObject jo=jsonArray.getJSONObject(count);  // ARRAY KA SUB-TAG, MATLAB KEY OF REQIRED VALUE
+                JSONObject jo=jsonArray.getJSONObject(count);  // ARRAY SUB-TAG, i.e KEY OF REQIRED VALUE
                 User_Id=jo.getString("User_Id");
                 Post_content=jo.getString("Post");
                 Post_Title=jo.getString("Post_Title");
@@ -194,8 +186,6 @@ public class PostsFragment extends Fragment {
                 sendTopic=Topic;
                 UserName=jo.getString("UserName");
                String  Bookmark=jo.getString("BookmarkStatus");
-
-                //questionfetch contacts=new questionfetch(Topic,User_Id,Q_Id,Question);
                 Post_content contacts=new Post_content(Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName,Upvotes,Downvotes,Integer.parseInt(Bookmark));
                 mPostContent.add(contacts);
                 adapter = new post_adapter(getContext(), mPostContent);       //ONE BY ONE PUSHING QUESTIONS TO CARDVIEW
@@ -282,14 +272,11 @@ public class PostsFragment extends Fragment {
             catch (Exception e)
             {
                 Snackbar snackbar=Snackbar.make(getActivity().findViewById(R.id.drawer_layout),"No Internet Connection",Snackbar.LENGTH_LONG);
-                //if net connection not available
+                //if Internet connection not available
                 snackbar.show();
                 dialog.dismiss();
             }
 
-
-
-            //super.onPostExecute(aVoid);
         }
 
         @Override

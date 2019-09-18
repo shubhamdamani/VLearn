@@ -5,7 +5,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-public interface FeedAPI {      //base url me topic add kr dengge
+public interface FeedAPI {      // API to fetch content from reddit.com
 
     String BASE_URL = "https://www.reddit.com/r/";   //static part
 

@@ -12,8 +12,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -23,7 +21,7 @@ import static java.lang.Character.toUpperCase;
 public class Question_adapter extends RecyclerView.Adapter<Question_adapter.ProductViewHolder> {
 
 
-    //this context we will use to inflate the layout
+    //we will use this context  to inflate the layout
     private Context mCtx;
 
     //we are storing all the products in a list
@@ -93,7 +91,6 @@ public class Question_adapter extends RecyclerView.Adapter<Question_adapter.Prod
                     Intent intent = new Intent(v.getContext(), QuestionDetail.class);
                     intent.putExtra("User_Id",txt_username.getText());
                     intent.putExtra("Q_Id",txt_Q_Id.getText());
-                    //Toast.makeText(v.getContext(), "Q_Id : " + txt_Q_Id.getText(), Toast.LENGTH_LONG).show();
                     intent.putExtra("Question",txt_ques.getText());
                     intent.putExtra("Topic",txt_Topic.getText());
 

@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.vlearn.PersonalInfo.BookmarkActivity;
 import com.example.vlearn.PersonalInfo.FollowUser;
@@ -209,7 +208,6 @@ public class myprofile extends AppCompatActivity {
                 JSON_String = result;
 
                 getDatafromJSON();
-                //super.onPostExecute(aVoid);
             }catch (Exception e)
             {
                 Snackbar snackbar=Snackbar.make(myProfileView,"No Internet Connection",Snackbar.LENGTH_LONG);

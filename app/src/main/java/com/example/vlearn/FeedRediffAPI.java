@@ -5,7 +5,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-public interface FeedRediffAPI {
+public interface FeedRediffAPI {             // API to fetch content from rediff.com
 
 
     String BASE_URL = "http://www.rediff.com/rss/";   //static part

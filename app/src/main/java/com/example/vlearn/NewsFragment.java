@@ -75,7 +75,7 @@ public class NewsFragment extends Fragment {
     JSONObject jsonObject;
 
 
-    //har site se info nikal rhe h interest k according site automatically select ho rhi h
+    //Gets news feed loaded from different websites based on user interests
     @Nullable
     @Override
 
@@ -84,29 +84,14 @@ public class NewsFragment extends Fragment {
         dialog = new SpotsDialog(getContext());
         dialog.show();
 
-       // getActivity().onBackPressed();
 
-            View v = inflater.inflate(R.layout.fragment_news, container, false);       //fragment ka view for other purpose
-            //   btnLoadFeed = (Button)v.findViewById(R.id.btnRefreshFeed);
-            // mFeedName = (EditText)v.findViewById(R.id.etFeedName);
+            View v = inflater.inflate(R.layout.fragment_news, container, false);       //fragment's view for other purpose
             posts = new ArrayList<Post>();
 
 
             listView = (ListView) v.findViewById(R.id.listView);
-      /*  btnLoadFeed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String feedName = mFeedName.getText().toString();
-                if(!feedName.equals("")){
-                    posts.clear();
-
-                }
-
-            }
-        });*/
             if (getActivity() != null)
                 ret();
-            //dialog.dismiss();
             return v;
 
 
@@ -127,7 +112,7 @@ public class NewsFragment extends Fragment {
         map.put('I',"Movies");
         map.put('J',"Music");
 
-        String s = retrieve;            //Fetch from Table Topics from User_Id
+        String s = retrieve;            //Fetch from Topics Table for User_Id
         Character c;
         for(int i=0;i<s.length();i++){
 
@@ -164,12 +149,12 @@ public class NewsFragment extends Fragment {
 
     private void init(String currentFeed){
 
-        Retrofit retrofit = new Retrofit.Builder()                                          //retrofit xml parsing m help krega
+        Retrofit retrofit = new Retrofit.Builder()                                          //Using retrofit for xml parsing
                 .baseUrl(BASE_URL)
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .build();
 
-        FeedAPI feedAPI = retrofit.create(FeedAPI.class);                           //apni requirement k hisaab se feedAPI m given exact link se connection establish ho raha h
+        FeedAPI feedAPI = retrofit.create(FeedAPI.class);                           //establish connection with link given in FeedAPI according to user's interests
 
         Call<Feed> call = feedAPI.getFeed(currentFeed);
 
@@ -182,9 +167,6 @@ public class NewsFragment extends Fragment {
 
 
                 for(int i=0;i<entrys.size();i++) {
-
-
-
 
                     ExtractXML extractXML1 = new ExtractXML(entrys.get(i).getContent(), "<a href=");
                     List<String> postContent = extractXML1.start();
@@ -279,7 +261,6 @@ public class NewsFragment extends Fragment {
                 dialog.dismiss();
                 Toast.makeText(getContext(),"No Internet",Toast.LENGTH_SHORT).show();
                 Log.e(TAG, "Failure : Unable to retrieve RSS Feeds "+t.getMessage());
-                //  Toast.makeText(MainActivity.this,"An error occured",Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -332,7 +313,6 @@ public class NewsFragment extends Fragment {
             public void onFailure(Call<NYTimesFeed> call, Throwable t) {
                 dialog.dismiss();
                 Toast.makeText(getContext(),"No Internet",Toast.LENGTH_SHORT).show();
-                //   Toast.makeText(MainActivity.this,"An error occured",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -385,7 +365,6 @@ public class NewsFragment extends Fragment {
             @Override
             public void onFailure(Call<YahooFeed> call, Throwable t) {
                 Log.e(TAG, "Failure : Unable to retrieve RSS Feeds "+t.getMessage());
-                //  Toast.makeText(MainActivity.this,"An error occured",Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -417,7 +396,6 @@ public class NewsFragment extends Fragment {
                         Log.d("Entered Response : ", "Now call ret && fun");
                         ret();
 
-//                        fun();
 
 
                     }
@@ -448,7 +426,7 @@ public class NewsFragment extends Fragment {
         backgroundTask.execute(integer,USER_ID);
     }
 
-    /*/*  static*/ class BackgroundTask extends AsyncTask<Integer,Void,String> ///KOI DIKKAT AAE TOH STATIC HATA DENA
+    class BackgroundTask extends AsyncTask<Integer,Void,String>
     {
         String json_url="https://vlearndroidrun.000webhostapp.com/getUserTopics.php";
 
@@ -469,7 +447,6 @@ public class NewsFragment extends Fragment {
                 bufferedWriter.flush();
                 bufferedWriter.close();
                 os.close();
-                //
                 InputStream inputStream=httpURLConnection.getInputStream();
                 BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder stringBuilder=new StringBuilder();
@@ -534,7 +511,7 @@ public class NewsFragment extends Fragment {
 
             while (count < jsonArray.length()) {
                 JSONObject jo = jsonArray.getJSONObject(count);
-                retrieve = jo.getString("TopicStr");              //YAHA PE TOPIC VAALI STRING LI H JSON FORMAT SE CONVERT HO GAYI HAI
+                retrieve = jo.getString("TopicStr");             // String is converted from JSON format and finally stored in retrieve
                 LoadNewsFeed();
                 count++;
 
@@ -546,7 +523,6 @@ public class NewsFragment extends Fragment {
             e.printStackTrace();
         }
 
-        /*  -----------------------------------------------*/
 
     }
 

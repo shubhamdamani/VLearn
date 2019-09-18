@@ -11,7 +11,7 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.TextView;
 
-public class splashScreen extends AppCompatActivity {
+public class splashScreen extends AppCompatActivity {         /*App SplashScreen*/
     TextView app_name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

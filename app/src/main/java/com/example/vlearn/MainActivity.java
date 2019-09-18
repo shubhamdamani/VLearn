@@ -29,22 +29,18 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
 
-                                                                    //teen fragment banae h, or kch nh h
+                                                                    //Built 3 different fragments for News,Posts And Q/A respectively
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d("main","main started");
-        //this.onBackPressed();
-       /* dl = findViewById(R.id.activity_main);
-        */
        dl=(DrawerLayout)findViewById(R.id.drawer_layout);
        t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
        t.setDrawerIndicatorEnabled(true);
 
         dl.addDrawerListener(t);
         t.syncState();
-       //dl.closeDrawer((int) Gravity.LEFT);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         nv=findViewById(R.id.nv);
@@ -96,13 +92,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
-      /*  if (savedInstanceState == null){
-            getSupportFragmentManager().beginTransaction()
-                    .add(android.R.id.content, new NewsFragment()).commit();}*/
-
         Fragment f=new NewsFragment();
         Fragment f2=new PostsFragment();
         Fragment f1=new QuesFragment();
@@ -114,14 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         BottomNavigationView bottomNavigationView=findViewById(R.id.button_navigation);
-       // bottomNavigationView.getMenu().getItem(0).setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
-
-       /* Fragment sel;
-        sel=new NewsFragment();
-*/
-
-
 
     }
 
@@ -131,41 +113,6 @@ public class MainActivity extends AppCompatActivity {
         if(t.onOptionsItemSelected(item))
             return true;
 
-        /*switch(item.getItemId()){
-            case R.id.logoutMenu:{
-
-                USER_Class.setLoggedUserEmail("");
-                USER_Class.setLoggedUserId("");
-                USER_Class.setLoggedUserName("");
-                Intent i=new Intent(MainActivity.this,login.class);
-                startActivity(i);
-                finish();
-                break;
-            }
-            case R.id.profileMenu: {
-                startActivity(new Intent(MainActivity.this, myprofile.class));
-                finish();
-                break;
-            }
-            case R.id.aboutMenu:{
-                startActivity(new Intent(MainActivity.this,AboutVLearn.class));
-                finish();
-                break;
-            }
-            case R.id.chatMenu:{
-                startActivity(new Intent(MainActivity.this,Chat.class));
-                finish();
-                break;
-            }case R.id.leaderMenu:{
-                startActivity(new Intent(MainActivity.this,LeaderBoard.class));
-                finish();
-                break;
-            }
-
-
-
-
-        }*/
         return super.onOptionsItemSelected(item);
     }
 

@@ -11,7 +11,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.vlearn.adapter.Lboard_adapter;
 import com.example.vlearn.adapter.post_comment_adapter;
@@ -60,7 +59,6 @@ public class LeaderBoard extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         r1=findViewById(R.id.ledboard);
-        //b=findViewById(R.id.back);
 
         new BackgroundTask().execute();
 
@@ -68,7 +66,6 @@ public class LeaderBoard extends AppCompatActivity {
     }
     public void getDatafromJSON()
     {
-        // Toast.makeText(PostDetail.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();
         String user_name,user_email,user_id;
         leaderData=new ArrayList<>();
 
@@ -84,8 +81,6 @@ public class LeaderBoard extends AppCompatActivity {
                 user_name=jo.getString("UserName");
                 user_email=jo.getString("Email");
                 user_id=jo.getString("User_Id");
-
-                Toast.makeText(LeaderBoard.this,"hi"+user_name+user_email,Toast.LENGTH_LONG).show();
                 Lboard_user contacts=new  Lboard_user(user_name,user_email,user_id);
                 leaderData.add(contacts);
                 adapter = new Lboard_adapter(this, leaderData);
@@ -100,7 +95,7 @@ public class LeaderBoard extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-    class BackgroundTask extends AsyncTask<Void,Void,String>            //answer upload karega
+    class BackgroundTask extends AsyncTask<Void,Void,String>            //uploads answer
     {
         String json_url="https://vlearndroidrun.000webhostapp.com/getTopUpvoters.php";
 
@@ -160,8 +155,6 @@ public class LeaderBoard extends AppCompatActivity {
             try
             {
                 JSON_String=result;
-
-            //Toast.makeText(LeaderBoard.this,"gghg"+JSON_String,Toast.LENGTH_LONG).show();
             getDatafromJSON();}
             catch (Exception e){
                 dialog.dismiss();

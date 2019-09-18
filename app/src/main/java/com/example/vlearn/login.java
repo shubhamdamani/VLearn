@@ -31,7 +31,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -122,7 +121,7 @@ public class login extends AppCompatActivity {
 
 
 
-        //If User want to create new account this register button send intent to registerActivity
+        //If User want to create new account this register button sends user to registerActivity
         gotoRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -210,7 +209,6 @@ public class login extends AppCompatActivity {
 
             }
         }, 400);
-        //delayedStartNextActivity();
     }
 
     private void revealButton() {
@@ -235,14 +233,12 @@ public class login extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animator animation) {
                 reset(animation);
-//                finish();
             }
 
             private void reset(Animator animation) {
                 super.onAnimationEnd(animation);
                 mBinding.reveal.setVisibility(INVISIBLE);
                 mBinding.text.setVisibility(VISIBLE);
-              //  mBinding.gotoRegister.setVisibility(INVISIBLE);
                 mBinding.text.setAlpha(1f);
                 mBinding.login.setElevation(4f);
                 ViewGroup.LayoutParams layoutParams = mBinding.login.getLayoutParams();
@@ -271,7 +267,6 @@ public class login extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-              // startActivity(new Intent(login.this, MainActivity.class));
                 Log.d("login","going to main");
                 Intent i=new Intent(login.this,MainActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -294,7 +289,6 @@ public class login extends AppCompatActivity {
     //Retrieve Details Of USER from Database using JSON parsing
     public void getDatafromJSON()
     {
-       // Toast.makeText(login.this,"json"+JSON_String,Toast.LENGTH_LONG).show();
         try {
             jsonObject=new JSONObject(JSON_String);
 
@@ -307,19 +301,16 @@ public class login extends AppCompatActivity {
                 USER_NAME=jo.getString("UserName");
                 USER_ID=jo.getString("User_Id");
                 Log.d("login:        ",USER_NAME+" "+USER_ID);
-                //User_obj=new USER_Class();
                 if(USER_NAME.equals("no") || USER_ID.equals("no"))
                 {
                     Snackbar snackbar=Snackbar.make(rootView,"Login Failed! Enter Correct Details",Snackbar.LENGTH_LONG);
                     snackbar.show();
-                    //Toast.makeText(login.this,"USER DOES NOT EXIST",Toast.LENGTH_SHORT).show();
 
                 }else {
                     USER_Class.setLoggedUserId(USER_ID);
                     USER_Class.setLoggedUserEmail(l_name);
                     USER_Class.setLoggedUserName(USER_NAME);
                 }
-                //Toast.makeText(login.this,"hi",Toast.LENGTH_SHORT).show();
                 count++;
 
 
@@ -329,8 +320,8 @@ public class login extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-    //Thread is created to fetch user info as a JSON data
-    //which work in background
+    //Thread is created to fetch user info as  JSON data
+    //which works in background
     class BackgroundTask extends AsyncTask<Void,Void,String>
     {
         String json_url="https://vlearndroidrun.000webhostapp.com/loginCheck.php";
@@ -390,7 +381,6 @@ public class login extends AppCompatActivity {
                 JSON_String = result;
 
                 Log.d("json", JSON_String);
-                //Toast.makeText(login.this,"asd"+JSON_String,Toast.LENGTH_SHORT).show();
                 getDatafromJSON();
                 if (USER_NAME.equals("no") || USER_ID.equals("no")) {
                     failedAction();
@@ -399,10 +389,6 @@ public class login extends AppCompatActivity {
                 } else {
                     nextAction();
 
-              /* Intent i=new Intent(login.this,MainActivity.class);
-               i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-               startActivity(i);*/
-
                 }
             }catch (Exception e)
             {
@@ -410,9 +396,6 @@ public class login extends AppCompatActivity {
                 Snackbar snackbar=Snackbar.make(rootView,"No Internet Connection",Snackbar.LENGTH_SHORT);
                 snackbar.show();
             }
-
-
-            //super.onPostExecute(aVoid);
         }
 
         @Override

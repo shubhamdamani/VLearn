@@ -37,9 +37,9 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class interests extends AppCompatActivity { //user k topic select krne k liye
+public class interests extends AppCompatActivity { //to select user topics
 
-    static HashMap<String,Character> TopicToKey;    //Map topic to key
+    static HashMap<String,Character> TopicToKey;    //Maps topic to key
     public StringBuffer Interest_Str = new StringBuffer();
     public String operation;
     TextView tc,tnm;
@@ -77,9 +77,6 @@ public class interests extends AppCompatActivity { //user k topic select krne k 
         tnm.setText(nm);
         rl=findViewById(R.id.intlay);
 
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-
-
         displayListView();
 
         checkButtonClick();
@@ -87,7 +84,7 @@ public class interests extends AppCompatActivity { //user k topic select krne k 
     }
     private void displayListView() {
 
-        //Array list of countries
+        //ArrayList of countries
         ArrayList<Topics> interestList = new ArrayList<Topics>();
         Topics interestItem = new Topics("Physics",false);
         interestList.add(interestItem);
@@ -122,9 +119,7 @@ public class interests extends AppCompatActivity { //user k topic select krne k 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                // When clicked, show a toast with the TextView text
                 com.example.vlearn.Topics country = (com.example.vlearn.Topics) parent.getItemAtPosition(position);
-             //   Toast.makeText(getApplicationContext(), "Clicked on Row: " + country.getName(), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -166,9 +161,7 @@ public class interests extends AppCompatActivity { //user k topic select krne k 
                         CheckBox cb = (CheckBox) v ;
                         com.example.vlearn.Topics country = (com.example.vlearn.Topics) cb.getTag();
                         Snackbar snackbar=Snackbar.make(findViewById(R.id.intlay),cb.getText() + " is selected",Snackbar.LENGTH_SHORT);
-                        //Toast.makeText(getContext(),"no internet",Toast.LENGTH_SHORT).show();
                         snackbar.show();
-                        //Toast.makeText(getApplicationContext(), "Clicked on Checkbox: " + cb.getText() + " is " + cb.isChecked(), Toast.LENGTH_LONG).show();
                         country.setSelected(cb.isChecked());
                     }
                 });
@@ -217,8 +210,6 @@ public class interests extends AppCompatActivity { //user k topic select krne k 
                                 Interest_Str.append(key);
                             }
                         }
-
-                        //Toast.makeText(getApplicationContext()," Topics  Updated", Toast.LENGTH_LONG).show();
                         new interests.BackgroundTask().execute();
                     }
                 });
@@ -237,9 +228,7 @@ public class interests extends AppCompatActivity { //user k topic select krne k 
         });
 
     }
-    class BackgroundTask extends AsyncTask<Void,Void,String>        //this class is background task performing which will connect
-            //app to our database(php script of required) and then php script
-            // will run our queryand make changes in database
+    class BackgroundTask extends AsyncTask<Void,Void,String>        //this class is background task performing which will connect to database
     {
 
 
@@ -276,7 +265,7 @@ public class interests extends AppCompatActivity { //user k topic select krne k 
                 e.printStackTrace();
             }
 
-            return "failed";
+            return null;
         }
         public BackgroundTask()
         {
@@ -290,19 +279,17 @@ public class interests extends AppCompatActivity { //user k topic select krne k 
         @Override
         protected void onPostExecute(String result) {
 
-            if(result.equals("Posted Successfully"))
-            {
-                Intent i=new Intent(interests.this,MainActivity.class);
-                startActivity(i);
-                finish();
-            }
-            //JSON_String=result;
-            Snackbar snackbar=Snackbar.make(rl,"No Internet Connection",Snackbar.LENGTH_LONG);
-            snackbar.show();
-            //Toast.makeText(interests.this,result,Toast.LENGTH_LONG).show();
-            //getDatafromJSON();
+            try {
+                if (result.equals("Posted Successfully")) {
+                    Intent i = new Intent(interests.this, MainActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+            }catch (Exception e){
 
-            //super.onPostExecute(aVoid);
+                Snackbar snackbar = Snackbar.make(rl, "No Internet Connection", Snackbar.LENGTH_LONG);
+                snackbar.show();
+            }
         }
 
         @Override

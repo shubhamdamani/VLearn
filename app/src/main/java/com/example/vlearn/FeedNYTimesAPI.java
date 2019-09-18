@@ -5,7 +5,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-public interface FeedNYTimesAPI {
+public interface FeedNYTimesAPI {                // API to fetch content from nytimes.com
 
     String BASE_URL = "https://rss.nytimes.com/services/xml/rss/nyt/";   //static part
 

@@ -21,8 +21,6 @@ public class AboutVLearn extends AppCompatActivity {
         setContentView(R.layout.activity_about_vlearn);
 
         secret=findViewById(R.id.btnsecret);
-        //secret.setVisibility(View.INVISIBLE);
-        //secret.setEnabled(true);
         secret.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

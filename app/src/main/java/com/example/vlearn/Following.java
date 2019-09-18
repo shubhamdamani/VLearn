@@ -8,7 +8,6 @@ import dmax.dialog.SpotsDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.vlearn.adapter.Lboard_adapter;
 import com.example.vlearn.object.Lboard_user;
@@ -58,7 +57,6 @@ public class Following extends AppCompatActivity {
     }
     public void getDatafromJSON()
     {
-        // Toast.makeText(PostDetail.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();
         String user_name,user_email,user_id;
         leaderData=new ArrayList<>();
 
@@ -74,8 +72,6 @@ public class Following extends AppCompatActivity {
                 user_name=jo.getString("UserName");
                 user_email=jo.getString("Email");
                 user_id=jo.getString("User_Id");
-
-                Toast.makeText(Following.this,"hi"+user_name+user_email,Toast.LENGTH_LONG).show();
                 Lboard_user contacts=new  Lboard_user(user_name,user_email,user_id);
                 leaderData.add(contacts);
                 adapter = new Lboard_adapter(this, leaderData);
@@ -84,13 +80,12 @@ public class Following extends AppCompatActivity {
 
 
             }
-            //dialog.dismiss();
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
-    class BackgroundTask extends AsyncTask<Void,Void,String>            //answer upload karega
+    class BackgroundTask extends AsyncTask<Void,Void,String>            //uploads answer
     {
         String json_url="https://vlearndroidrun.000webhostapp.com/getUserFollowing.php";
 
@@ -149,8 +144,7 @@ public class Following extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             try
-            {JSON_String=result;
-            //Toast.makeText(Following.this,"gghg"+JSON_String,Toast.LENGTH_LONG).show();
+            { JSON_String=result;
             getDatafromJSON();
             dialog.dismiss();}catch (Exception e)
             {

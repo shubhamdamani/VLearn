@@ -14,7 +14,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -30,11 +29,6 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
-
-/**
- * Created by User on 4/4/2017.
- */
-
 public class CustomListAdapter  extends ArrayAdapter<Post> {
 
     private static final String TAG = "CustomListAdapter";
@@ -42,10 +36,6 @@ public class CustomListAdapter  extends ArrayAdapter<Post> {
     private Context mContext;
     private int mResource;
     private int lastPosition = -1;
-
-    /**
-     * Holds variables in a View
-     */
     private static class ViewHolder {
         TextView title;
         TextView author;
@@ -53,13 +43,6 @@ public class CustomListAdapter  extends ArrayAdapter<Post> {
         ProgressBar mProgressBar;
         ImageView thumbnailURL;
     }
-
-    /**
-     * Default constructor for the PersonListAdapter
-     * @param context
-     * @param resource
-     * @param objects
-     */
     public CustomListAdapter(Context context, int resource, ArrayList<Post> objects) {
         super(context, resource, objects);
         mContext = context;
@@ -75,7 +58,7 @@ public class CustomListAdapter  extends ArrayAdapter<Post> {
 
 
 
-        //get the persons information
+        //get the person's information
         final String title = getItem(position).getTitle();
         String imgUrl = getItem(position).getThumbnailURL();
         final String author = getItem(position).getAuthor();
@@ -111,12 +94,6 @@ public class CustomListAdapter  extends ArrayAdapter<Post> {
                 holder = (ViewHolder) convertView.getTag();
                 result = convertView;
             }
-
-
-           /* Animation animation = AnimationUtils.loadAnimation(mContext,
-                    (position > lastPosition) ? R.anim.load_down_anim : R.anim.load_up_anim);
-            result.startAnimation(animation);
-            lastPosition = position;*/
 
             holder.title.setText(title);
             holder.author.setText(author);
@@ -166,7 +143,6 @@ public class CustomListAdapter  extends ArrayAdapter<Post> {
                     intent.putExtra("description",description);
                     intent.putExtra("link",link);
                     intent.putExtra("source",source);
-             //       Toast.makeText(mContext, "view clicked: " + description, Toast.LENGTH_SHORT).show();
 
                     view.getContext().startActivity(intent);
                 }

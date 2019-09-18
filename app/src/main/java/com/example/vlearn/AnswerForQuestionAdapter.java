@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,7 +17,7 @@ import static java.lang.Character.toUpperCase;
 public class AnswerForQuestionAdapter extends RecyclerView.Adapter<AnswerForQuestionAdapter.ProductViewHolder> {
 
 
-    //this context we will use to inflate the layout
+    //this context will be used to inflate the layout
     private Context mCtx;
 
     //we are storing all the products in a list

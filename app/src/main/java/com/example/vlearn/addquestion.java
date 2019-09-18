@@ -59,8 +59,6 @@ public class addquestion extends AppCompatActivity {
         name=toUpperCase(name);
         prof_icon.setText(name.toString());
 
-        //Toast.makeText(addquestion.this,"user"+USER_Class.getLoggedUserId(),Toast.LENGTH_SHORT).show();
-
         b_Post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,9 +90,8 @@ public class addquestion extends AppCompatActivity {
         }
     }
 
-    class BackgroundTask extends AsyncTask<Void,Void,String>        //this class is background task performing which will connect
-                                                                    //app to our database(php script of required) and then php script
-                                                                    // will run our queryand make changes in database
+    class BackgroundTask extends AsyncTask<Void,Void,String>        /*this class is performing background task which will connect
+                                                                    app to our databasethrough php script*/
     {
         String addQuestion_url="https://vlearndroidrun.000webhostapp.com/addQuestion.php";
 

@@ -51,7 +51,6 @@ public class QuesFragment extends Fragment {
 
     public QuesFragment(){} //CONSTRUCTOR
 
-   // View v;
 
     @Nullable
     @Override
@@ -59,14 +58,12 @@ public class QuesFragment extends Fragment {
 
         new BackgroundTask().execute();
         dialog=new SpotsDialog(getContext());
-        dialog.show();//jaise hi is activity pe aaye, question fetch ho jaaye
+        dialog.show();                      //Question is fetched at this point
 
-       // getActivity().onBackPressed();
 
         View v= inflater.inflate(R.layout.fragment_ques,container,false);
 
         recyclerView = v.findViewById(R.id.my_recycler_view);
-        //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
@@ -74,8 +71,6 @@ public class QuesFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                //  .setAction("Action", null).show();
                 Intent i=new Intent(getContext(),addquestion.class);
                 startActivity(i);
             }
@@ -112,8 +107,6 @@ public class QuesFragment extends Fragment {
                 User_Id=jo.getString("User_Id");
                 Q_Id=jo.getString("Q_Id");
                 Question=jo.getString("Question");
-
-                //questionfetch contacts=new questionfetch(Topic,User_Id,Q_Id,Question);
                 questionfetch contacts=new questionfetch(Topic,User_Id,Q_Id,Question);
                 mquestionfetch.add(contacts);
                 adapter = new Question_adapter(getContext(), mquestionfetch);       //ONE BY ONE PUSHING QUESTIONS TO CARDVIEW
@@ -185,12 +178,9 @@ public class QuesFragment extends Fragment {
             {
                 dialog.dismiss();
                 Snackbar snackbar=Snackbar.make(getActivity().findViewById(R.id.drawer_layout),"No Internet Connection",Snackbar.LENGTH_LONG);
-                //Toast.makeText(getContext(),"no internet",Toast.LENGTH_SHORT).show();
                 snackbar.show();
             }
 
-
-            //super.onPostExecute(aVoid);
         }
 
         @Override

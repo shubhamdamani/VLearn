@@ -16,8 +16,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class BackgroundTask extends AsyncTask<String,Void,String> {     //this is for online communication in background
-                                                                        //alag thread chalegi background
+public class BackgroundTask extends AsyncTask<String,Void,String> {
+                                                                        //runs separate thread in background
 
     Context ctx;
     public BackgroundTask(Context ctx) {

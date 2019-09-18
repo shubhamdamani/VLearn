@@ -83,7 +83,6 @@ public class QuestionDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 answer=editanswer.getText().toString();
-                Toast.makeText(QuestionDetail.this,answer,Toast.LENGTH_LONG).show();
                 postfun();
 
             }
@@ -109,7 +108,7 @@ public class QuestionDetail extends AppCompatActivity {
 
 
 
-    // ANSWER POST KRNE VALA METHOD POSTFUN
+    // This method is used to post questions
 
     public void postfun()
     {
@@ -139,10 +138,9 @@ public class QuestionDetail extends AppCompatActivity {
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-    //RETRIEVE DETAILS or Answers
+    //RETRIEVE DETAILS of Answers
     public void getDatafromJSON()
     {
-        //Toast.makeText(QuestionDetail.this,"json"+JSON_String,Toast.LENGTH_LONG).show();
         String answer,user_Id;
         String user_name,q_Id,ans_Id;
         mquestionfetch =new ArrayList<>();
@@ -161,7 +159,6 @@ public class QuestionDetail extends AppCompatActivity {
                 q_Id=jo.getString("Q_Id");
                 user_name=jo.getString("ans_username");
                 answer=jo.getString("Answer");
-                Toast.makeText(QuestionDetail.this,"answer:"+answer+user_Id,Toast.LENGTH_LONG).show();
                 AnswerForQuestionCard contacts=new AnswerForQuestionCard(answer,user_Id,user_name);
                 mquestionfetch.add(contacts);
                 adapter = new AnswerForQuestionAdapter(this, mquestionfetch);
@@ -176,7 +173,7 @@ public class QuestionDetail extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-    class BackgroundTask extends AsyncTask<Void,Void,String>            //answer upload karega
+    class BackgroundTask extends AsyncTask<Void,Void,String>            //uploads answers
     {
         String json_url="https://vlearndroidrun.000webhostapp.com/getAnswer.php";
 
@@ -243,7 +240,6 @@ public class QuestionDetail extends AppCompatActivity {
                 snackbar.show();
             }
 
-            //super.onPostExecute(aVoid);
         }
 
         @Override
