@@ -52,10 +52,6 @@ public class PostWait extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         new BackgroundTask().execute();
-
-
-
-
     }
 
 

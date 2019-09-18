@@ -47,7 +47,7 @@
                 android:id="@+id/L_username"
                 android:layout_below="@+id/app_name"
                 android:background="@drawable/capsule"
-                android:text="Email123@gmail.com"
+                android:text="admin@gmail.com"
                 />
 
 
@@ -62,7 +62,7 @@
                 android:layout_marginTop="30dp"
                 android:paddingStart="10dp"
 
-                android:text="Password"
+                android:text="1@2@encoded@3"
                 android:inputType="textPassword"
                 />
 
