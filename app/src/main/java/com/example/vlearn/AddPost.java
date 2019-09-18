@@ -14,11 +14,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vlearn.object.key_Topic;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -44,6 +46,7 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
     ImageButton btn_close;
     String P_content,P_topic,P_title;
     String P_date,user_id;
+    private RelativeLayout addPostView;
     public String[] Topics = { "Select Topic","Physics","Maths","Computer", "Science", "Politics", "Business", "Technology" ,"Sports"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +57,16 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
         post_title=findViewById(R.id.Post_title);
         prof_icon=findViewById(R.id.prof_icon);
         btn_close=findViewById(R.id.close_addpost);
+
+        addPostView=findViewById(R.id.addPostView);
+
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         String username=USER_Class.getLoggedUserName();
 
         Character name=username.charAt(0);
         name=toUpperCase(name);
-        //Toast.makeText(getApplicationContext(), "name "+name ,Toast.LENGTH_SHORT).show();
         prof_icon.setText(name.toString());
         spinner =findViewById(R.id.topic);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Topics);
@@ -97,7 +103,6 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
     }
     @Override
     public void onItemSelected(AdapterView<?> arg0, View arg1, int position,long id) {
-       Toast.makeText(getApplicationContext(), "Selected User: "+Topics[position] ,Toast.LENGTH_SHORT).show();
         P_topic=Topics[position];
     }
     @Override
@@ -117,7 +122,6 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
         P_date=sdf.format(date);
         // P_date = DateFormat.getDateTimeInstance().format(date);
         P_title=post_title.getText().toString().trim();
-        Toast.makeText(AddPost.this,P_content+P_title+P_topic+P_date,Toast.LENGTH_LONG).show();
         if(!P_content.equals("")&&!P_title.equals("")&&!P_topic.equals(""))
         {
             //post question
@@ -165,7 +169,7 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
                 e.printStackTrace();
             }
 
-            return "hi";
+            return null;
         }
         public BackgroundTask()
         {
@@ -179,16 +183,17 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
         @Override
         protected void onPostExecute(String result) {
 
-            //JSON_String=result;
+            try {
 
-            Toast.makeText(AddPost.this,result,Toast.LENGTH_LONG).show();
-
-            //getDatafromJSON();
-            if(result.equals("Posted Successfully"))
-            {
-                 finish();
+                //getDatafromJSON();
+                if (result.equals("Posted Successfully")) {
+                    finish();
+                }
+                //super.onPostExecute(aVoid);
+            }catch (Exception e){
+                Snackbar snackbar=Snackbar.make(addPostView,"No Internet Connection",Snackbar.LENGTH_LONG);
+                snackbar.show();
             }
-            //super.onPostExecute(aVoid);
         }
 
         @Override

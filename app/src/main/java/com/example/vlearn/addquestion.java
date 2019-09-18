@@ -13,8 +13,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -36,8 +39,8 @@ public class addquestion extends AppCompatActivity {
     Button b_Post;
     String QTxt;
     SpotsDialog dialog;
-    USER_Class User_obj;//unused object
     ImageButton btn_close;
+    private RelativeLayout addQuestionView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,7 @@ public class addquestion extends AppCompatActivity {
         b_Post=findViewById(R.id.Q_post);
         prof_icon=findViewById(R.id.prof_icon);
         btn_close=findViewById(R.id.close_btn);
+        addQuestionView=findViewById(R.id.addQuestionView);
         dialog=new SpotsDialog(this);
 
         String username=USER_Class.getLoggedUserName();
@@ -122,7 +126,7 @@ public class addquestion extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            return "jgfksg";
+            return null;
         }
         public BackgroundTask()
         {
@@ -136,20 +140,11 @@ public class addquestion extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            //JSON_String=result;
-            dialog.dismiss();
-            /*QuesFragment q=new QuesFragment();
-            FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.beginTransaction(R.id.fragment_container,q);
-            fragmentTransaction.commit();*/
-            //Intent i=new Intent(addquestion.this,QuesFragment.class);
-            //startActivity(i);
+           if(result==null){
+               Snackbar snackbar=Snackbar.make(addQuestionView,"No Internet Connection",Snackbar.LENGTH_LONG);
+               snackbar.show();
+           }
 
-             Toast.makeText(addquestion.this,result,Toast.LENGTH_LONG).show();
-            //getDatafromJSON();
-           // Intent i=new Intent(login.this,MainActivity.class);
-            //startActivity(i);
-            //super.onPostExecute(aVoid);
         }
 
         @Override

@@ -6,13 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".myprofile"
     android:orientation="vertical"
-    android:background="@color/graylight">
+    android:background="@color/graylight"
+
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/graylight">
+        android:background="@color/graylight"
+        android:id="@+id/myProfileView">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="400dp">

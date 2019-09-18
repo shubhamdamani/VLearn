@@ -8,12 +8,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vlearn.PersonalInfo.BookmarkActivity;
 import com.example.vlearn.PersonalInfo.FollowUser;
 import com.example.vlearn.PersonalInfo.UpdateInfo;
+import com.google.android.material.snackbar.Snackbar;
+import com.itextpdf.text.pdf.parser.Line;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,6 +44,7 @@ public class myprofile extends AppCompatActivity {
     String JSON_String;
     JSONArray jsonArray;
     JSONObject jsonObject;
+    private LinearLayout myProfileView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,7 @@ public class myprofile extends AppCompatActivity {
         btnBookmark=findViewById(R.id.bBookmark);
         btnMyPost=findViewById(R.id.bMypost);
         btnProLogout=findViewById(R.id.prologout);
+        myProfileView=findViewById(R.id.myProfileView);
         btnProLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,7 +127,6 @@ public class myprofile extends AppCompatActivity {
 
     public void getDatafromJSON()
     {
-        // Toast.makeText(login.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();
         try {
             jsonObject=new JSONObject(JSON_String);
 
@@ -135,7 +140,6 @@ public class myprofile extends AppCompatActivity {
                 String N_following=jo.getString("Following");
                 no_followers.setText(N_followers);
                 no_following.setText(N_following);
-                //Toast.makeText(login.this,"hi",Toast.LENGTH_SHORT).show();
                 count++;
 
 
@@ -155,7 +159,6 @@ public class myprofile extends AppCompatActivity {
             try {
                 URL url=new URL(json_url);
                 HttpURLConnection httpURLConnection=(HttpURLConnection) url.openConnection();
-                //my
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 OutputStream os=httpURLConnection.getOutputStream();
@@ -186,7 +189,7 @@ public class myprofile extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            return "fail";
+            return null;
         }
         public BackgroundTask()
         {
@@ -200,12 +203,18 @@ public class myprofile extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            JSON_String=result;
+            try {
 
-            Log.d("josn",JSON_String);
-            //Toast.makeText(login.this,"asd"+JSON_String,Toast.LENGTH_SHORT).show();
-            getDatafromJSON();
-            //super.onPostExecute(aVoid);
+
+                JSON_String = result;
+
+                getDatafromJSON();
+                //super.onPostExecute(aVoid);
+            }catch (Exception e)
+            {
+                Snackbar snackbar=Snackbar.make(myProfileView,"No Internet Connection",Snackbar.LENGTH_LONG);
+                snackbar.show();
+            }
         }
 
         @Override
