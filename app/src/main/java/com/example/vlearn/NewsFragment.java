@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -219,8 +220,9 @@ public class NewsFragment extends Fragment {
             @Override
             public void onFailure(Call<Feed> call, Throwable t) {
                 dialog.dismiss();
-                Snackbar snackbar=Snackbar.make(getActivity().findViewById(R.id.drawer_layout),"No Internet Connection",Snackbar.LENGTH_LONG);
-                snackbar.show();
+                Toast.makeText(getContext(),"No Internet",Toast.LENGTH_SHORT).show();
+              //  Snackbar snackbar=Snackbar.make(getActivity().findViewById(R.id.drawer_layout),"No Internet Connection",Snackbar.LENGTH_LONG);
+                //snackbar.show();
                 Log.e(TAG, "Failure : Unable to retrieve RSS Feeds "+t.getMessage());
                 //   Toast.makeText(MainActivity.this,"An error occured",Toast.LENGTH_LONG).show();
             }

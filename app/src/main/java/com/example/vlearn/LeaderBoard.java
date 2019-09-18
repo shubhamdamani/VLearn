@@ -1,6 +1,7 @@
 package com.example.vlearn;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import dmax.dialog.SpotsDialog;
@@ -46,7 +47,7 @@ public class LeaderBoard extends AppCompatActivity {
     Lboard_adapter adapter;
     Button b;
     SpotsDialog dialog;
-    LinearLayout r1;
+    CoordinatorLayout r1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
