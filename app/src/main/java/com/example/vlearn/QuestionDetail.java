@@ -43,7 +43,7 @@ import static java.lang.Character.toUpperCase;
 public class QuestionDetail extends AppCompatActivity {
 
     String Question, Q_Id, User_Id, Topic;
-    SpotsDialog dialog;
+
     String json_string,JSON_String;                 //this activity is showing answer of particular question and giving option to add answer
     JSONArray jsonArray;
     JSONObject jsonObject;
@@ -53,7 +53,7 @@ public class QuestionDetail extends AppCompatActivity {
     private RecyclerView recyclerView;
     EditText editanswer;
     Button postanswer;
-  //  SpotsDialog dialog;
+
     String answer;
     RelativeLayout rl;
     public static final String POST_ANSWER_URL="https://vlearndroidrun.000webhostapp.com/addAnswer.php";
@@ -63,9 +63,8 @@ public class QuestionDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_detail);
-      //  this.onBackPressed();
-        dialog=new SpotsDialog(this);
-        //dialog.show();
+
+
         //recyclerView
         recyclerView = (RecyclerView) findViewById(R.id.ques_detail_recylerview);
         recyclerView.setHasFixedSize(true);
@@ -86,8 +85,7 @@ public class QuestionDetail extends AppCompatActivity {
                 answer=editanswer.getText().toString();
                 Toast.makeText(QuestionDetail.this,answer,Toast.LENGTH_LONG).show();
                 postfun();
-               // Intent i=new Intent(QuestionDetail.this,QuestionDetail.class);
-                //startActivity(i);
+
             }
         });
         txt_quesDisp=findViewById(R.id.myQuestion);
@@ -104,7 +102,7 @@ public class QuestionDetail extends AppCompatActivity {
 
 
 
-        Toast.makeText(this,Question+" "+Q_Id+ " "+User_Id+" "+Topic,Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,Question+" "+Q_Id+ " "+User_Id+" "+Topic,Toast.LENGTH_LONG).show();
 
         new BackgroundTask().execute();
        //getDatafromJSON() in PostExecute Method Below;
@@ -122,13 +120,13 @@ public class QuestionDetail extends AppCompatActivity {
         String method="addanswer";
         if(answer.trim().equals(""))
         {
-            Toast.makeText(QuestionDetail.this,"plese add anser",Toast.LENGTH_SHORT).show();
+            Toast.makeText(QuestionDetail.this,"please add answer",Toast.LENGTH_SHORT).show();
             return;
-        }Toast.makeText(QuestionDetail.this,Q_Id+"h"+answer+"_"+User_Id,Toast.LENGTH_SHORT).show();
+        }
 
        com.example.vlearn.BackgroundTask backgroundTask=new com.example.vlearn.BackgroundTask(getBaseContext());
         hideKeyboard(QuestionDetail.this);
-        backgroundTask.execute(method,Q_Id.toString(),answer,USER_Class.getLoggedUserId());
+        backgroundTask.execute(method,Q_Id,answer,USER_Class.getLoggedUserId());
 
     }
 
@@ -146,7 +144,7 @@ public class QuestionDetail extends AppCompatActivity {
     //RETRIEVE DETAILS or Answers
     public void getDatafromJSON()
     {
-        Toast.makeText(QuestionDetail.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();
+        //Toast.makeText(QuestionDetail.this,"json"+JSON_String,Toast.LENGTH_LONG).show();
         String answer,user_Id;
         String user_name,q_Id,ans_Id;
         mquestionfetch =new ArrayList<>();
@@ -174,7 +172,7 @@ public class QuestionDetail extends AppCompatActivity {
 
 
             }
-//            dialog.dismiss();
+
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -191,7 +189,7 @@ public class QuestionDetail extends AppCompatActivity {
             try {
                 URL url=new URL(json_url);
                 HttpURLConnection httpURLConnection=(HttpURLConnection) url.openConnection();
-                //my
+
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 OutputStream os=httpURLConnection.getOutputStream();
@@ -201,7 +199,7 @@ public class QuestionDetail extends AppCompatActivity {
                 bufferedWriter.flush();
                 bufferedWriter.close();
                 os.close();
-                //
+
                 InputStream inputStream=httpURLConnection.getInputStream();
                 BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder stringBuilder=new StringBuilder();
@@ -238,9 +236,11 @@ public class QuestionDetail extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            try{JSON_String=result;
-            getDatafromJSON();}catch (Exception e){
-               // dialog.dismiss();
+            try{
+                JSON_String=result;
+                getDatafromJSON();
+            }catch (Exception e){
+
                 Snackbar snackbar=Snackbar.make(rl,"No Internet Connection",Snackbar.LENGTH_LONG);
                 snackbar.show();
             }

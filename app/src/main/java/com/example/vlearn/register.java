@@ -58,9 +58,6 @@ public class register extends AppCompatActivity {
     SpotsDialog dialog;
 
 
-
-    Button temp,ques;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,14 +70,14 @@ public class register extends AppCompatActivity {
         rl=findViewById(R.id.regact);
         dialog=new SpotsDialog(this);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        //temp=findViewById(R.id.gotemp);
+        //fixed orientation
 
 
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.show();//Register button Listener
+                dialog.show();//dialog box displayed                                        //Register button Listener
                 r_name=username.getText().toString();
                 r_email=email.getText().toString();
                 r_pass=pass.getText().toString();
@@ -100,16 +97,16 @@ public class register extends AppCompatActivity {
 
 
 
-    public void getDatafromJSON()
+    public void getDatafromJSON()                   //this function converts the json result we got from our query
     {
-        // Toast.makeText(login.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();
+
         try {
             jsonObject=new JSONObject(JSON_String);
 
             int count=0;
             jsonArray=jsonObject.getJSONArray("server_response");
 
-            while(count<jsonArray.length())
+            while(count<jsonArray.length())             //all json objects are converted to our java objects of particulars(as if it were one instance of a recyclerview)
             {
                 JSONObject jo=jsonArray.getJSONObject(count);
                 success=jo.getString("User_Id");
@@ -134,7 +131,7 @@ public class register extends AppCompatActivity {
             try {
                 URL url=new URL(json_url);
                 HttpURLConnection httpURLConnection=(HttpURLConnection) url.openConnection();
-                //my
+
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 OutputStream os=httpURLConnection.getOutputStream();
@@ -185,10 +182,9 @@ public class register extends AppCompatActivity {
             try {
                 JSON_String = result;
 
-                Log.d("josn", JSON_String);
-                //Toast.makeText(login.this,"asd"+JSON_String,Toast.LENGTH_SHORT).show();
+                Log.d("json", JSON_String);
                 getDatafromJSON();
-                if (success.equals("no")) {
+                if (success.equals("no")) {                 //if details not unique registration failed
                     dialog.dismiss();
                     Toast.makeText(register.this, "REGISTRATION FAILED", Toast.LENGTH_SHORT).show();
                 } else {

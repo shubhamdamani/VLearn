@@ -77,36 +77,13 @@ public class PostsFragment extends Fragment {
         dialog.show();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        //getActivity().onBackPressed();
 
 
         sortType="-1";
-        //Toast.makeText(getContext(),USER_Class.getLoggedUserId(),Toast.LENGTH_SHORT).show();
         new PostsFragment.BackgroundTask().execute();
 
 
-        /*btn_date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sortType="0";
-                new PostsFragment.BackgroundTask().execute();
-            }
-        });
-        btn_popular.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sortType="1";
-                new PostsFragment.BackgroundTask().execute();
 
-            }
-        });
-        btn_follower.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sortType="2";
-                new PostsFragment.BackgroundTask().execute();
-            }
-        });*/
         fab =  v.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -248,7 +225,7 @@ public class PostsFragment extends Fragment {
             try {
                 URL url=new URL(json_url);
                 HttpURLConnection httpURLConnection=(HttpURLConnection) url.openConnection();
-                //my
+
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 OutputStream os=httpURLConnection.getOutputStream();
@@ -259,7 +236,7 @@ public class PostsFragment extends Fragment {
                 bufferedWriter.flush();
                 bufferedWriter.close();
                 os.close();
-                //
+
                 InputStream inputStream=httpURLConnection.getInputStream();
                 BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder stringBuilder=new StringBuilder();
@@ -295,17 +272,17 @@ public class PostsFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String result) {
-            //TextView tv=findViewById(R.id.tv);
-            //tv.setText(result);
+
             try
-            {JSON_String=result;
-            //Toast.makeText(getContext(),"hi"+JSON_String,Toast.LENGTH_LONG).show();
-            fun();
+            {
+                JSON_String=result;
+                fun();
+                //if our json converter function throws error means no internet available
             }
             catch (Exception e)
             {
                 Snackbar snackbar=Snackbar.make(getActivity().findViewById(R.id.drawer_layout),"No Internet Connection",Snackbar.LENGTH_LONG);
-                //Toast.makeText(getContext(),"no internet",Toast.LENGTH_SHORT).show();
+                //if net connection not available
                 snackbar.show();
                 dialog.dismiss();
             }

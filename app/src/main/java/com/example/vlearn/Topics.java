@@ -1,6 +1,6 @@
 package com.example.vlearn;
 
-public class Topics {                           /*Topic structure */
+public class Topics {                           /*Topic structure class */
 
 
     String name = null;

@@ -1,6 +1,6 @@
 package com.example.vlearn;
 
-public class USER_Class {                                 /*Current User Logged In details*/
+public class USER_Class {                                 /*Current User Logged In details CLASS*/
      static  String LOGGED_USER_NAME,LOGGED_USER_EMAIL;
     static  String LOGGED_USER_ID;
     //public static boolean loggedIn=false;
