@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import com.example.vlearn.adapter.post_comment_adapter;
 import com.example.vlearn.object.getComment_data;
 import com.example.vlearn.post_adapter;
 import com.github.ivbaranov.mfb.MaterialFavoriteButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,7 +59,7 @@ public class FollowUser extends AppCompatActivity {
     String fusername,fuid;
     Button foll,btn_unfollow;
     TextView tv,tv1,tv2;
-    //String  f1,f2;
+    RelativeLayout rl;
     String Flag;
     TextView ic;
 
@@ -70,6 +72,7 @@ public class FollowUser extends AppCompatActivity {
         recyclerView=findViewById(R.id.follow_recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        rl=findViewById(R.id.folus);
         Intent in=getIntent();
         fusername=in.getStringExtra("UserName");
         Character a=fusername.charAt(0);
@@ -114,7 +117,7 @@ public class FollowUser extends AppCompatActivity {
         dialog.show();
        // dialog.show();
 
-        Toast.makeText(FollowUser.this,fusername+" "+fuid,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(FollowUser.this,fusername+" "+fuid,Toast.LENGTH_SHORT).show();
 
         new Back().execute();
         new BackgroundTask().execute();
@@ -125,12 +128,7 @@ public class FollowUser extends AppCompatActivity {
 
 
     }
-    public  void unfollow_fun()
-    {
 
-
-
-    }
 
 
     public void fun()                   //PARSING JSON OBJECT TO NORMAL STRING AND SHIFTING TO CARDVIEW
@@ -207,24 +205,12 @@ public class FollowUser extends AppCompatActivity {
                 JSONObject jo=jsonArray1.getJSONObject(count);  // ARRAY KA SUB-TAG, MATLAB KEY OF REQIRED VALUE
                 tv1.setText("followers:"+jo.getString("Followers"));
                 tv2.setText("following:"+jo.getString("Following"));
-               /* Post_Title=jo.getString("Post_Title");
-                Post_Date=jo.getString("Post_Date");
-                Post_Id=jo.getString("Post_Id");
-                Upvotes=jo.getInt("Upvotes");
-                Downvotes=jo.getInt("Downvotes");
-                Topic=jo.getString("TopicStr");
-                UserName=jo.getString("UserName");
 
-                //questionfetch contacts=new questionfetch(Topic,User_Id,Q_Id,Question);
-                Post_content contacts=new Post_content(Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName,Upvotes,Downvotes);
-                mPostContent.add(contacts);
-                adapter = new post_adapter(FollowUser.this, mPostContent);       //ONE BY ONE PUSHING QUESTIONS TO CARDVIEW
-                recyclerView.setAdapter(adapter);*/
                 count++;
 
 
             }
-           // dialog.dismiss();
+            dialog.dismiss();
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -295,12 +281,18 @@ public class FollowUser extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            //TextView tv=findViewById(R.id.tv);
-            //tv.setText(result);
 
-            JSON_String1=result;
-          //  Toast.makeText(FollowUser.this,JSON_String1,Toast.LENGTH_SHORT).show();
-            fun1();
+
+            try {
+                JSON_String1 = result;
+
+                fun1();
+
+            }catch (Exception e){
+                dialog.dismiss();
+                Snackbar snackbar=Snackbar.make(rl,"No Internet Connection",Snackbar.LENGTH_LONG);
+                snackbar.show();
+            }
 
            // dialog.dismiss();
 
@@ -378,8 +370,14 @@ public class FollowUser extends AppCompatActivity {
         protected void onPostExecute(String result) {
             //TextView tv=findViewById(R.id.tv);
             //tv.setText(result);
-            JSON_String=result;
-            fun();
+            try
+            {
+                JSON_String=result;
+            fun();}catch (Exception e){
+                dialog.dismiss();
+                Snackbar snackbar=Snackbar.make(rl,"No Internet Connection",Snackbar.LENGTH_LONG);
+                snackbar.show();
+            }
 
 
 
@@ -458,7 +456,16 @@ public class FollowUser extends AppCompatActivity {
             //tv.setText(result);
            // JSON_String=result;
             //fun();
-            Toast.makeText(FollowUser.this,"User Followed",Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+            if(result==null)
+            {
+                Snackbar snackbar=Snackbar.make(rl,"No Internet Connection",Snackbar.LENGTH_LONG);
+                snackbar.show();
+            }else
+            {
+                Snackbar snackbar=Snackbar.make(rl,"Done",Snackbar.LENGTH_LONG);
+                snackbar.show();
+            }
 
 
 

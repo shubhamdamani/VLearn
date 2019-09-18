@@ -1,6 +1,7 @@
 package com.example.vlearn;
 
 import androidx.appcompat.app.AppCompatActivity;
+import dmax.dialog.SpotsDialog;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -47,6 +48,7 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
     String P_content,P_topic,P_title;
     String P_date,user_id;
     private RelativeLayout addPostView;
+    SpotsDialog dialog;
     public String[] Topics = { "Select Topic","Physics","Maths","Computer", "Science", "Politics", "Business", "Technology" ,"Sports"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,7 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
         post_title=findViewById(R.id.Post_title);
         prof_icon=findViewById(R.id.prof_icon);
         btn_close=findViewById(R.id.close_addpost);
+        dialog=new SpotsDialog(this);
 
         addPostView=findViewById(R.id.addPostView);
 
@@ -84,6 +87,7 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
         b_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dialog.show();
 
                 Post_content_fun();
                 hideKeyboard(AddPost.this);
@@ -129,6 +133,7 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
 
 
         }else{
+            dialog.dismiss();
             Toast.makeText(AddPost.this,"Enter Your Question",Toast.LENGTH_SHORT).show();
         }
     }
@@ -184,13 +189,17 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
         protected void onPostExecute(String result) {
 
             try {
+                dialog.dismiss();
 
                 //getDatafromJSON();
                 if (result.equals("Posted Successfully")) {
+                    Snackbar snackbar=Snackbar.make(addPostView,"Uploaded to waitlist",Snackbar.LENGTH_LONG);
+                    snackbar.show();
                     finish();
                 }
                 //super.onPostExecute(aVoid);
             }catch (Exception e){
+                dialog.dismiss();
                 Snackbar snackbar=Snackbar.make(addPostView,"No Internet Connection",Snackbar.LENGTH_LONG);
                 snackbar.show();
             }

@@ -59,7 +59,7 @@ public class addquestion extends AppCompatActivity {
         name=toUpperCase(name);
         prof_icon.setText(name.toString());
 
-        Toast.makeText(addquestion.this,"user"+USER_Class.getLoggedUserId(),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(addquestion.this,"user"+USER_Class.getLoggedUserId(),Toast.LENGTH_SHORT).show();
 
         b_Post.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +87,7 @@ public class addquestion extends AppCompatActivity {
 
 
         }else{
+            dialog.dismiss();
             Toast.makeText(addquestion.this,"Enter Your Question",Toast.LENGTH_SHORT).show();
         }
     }
@@ -139,11 +140,18 @@ public class addquestion extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
+            dialog.dismiss();
 
            if(result==null){
                Snackbar snackbar=Snackbar.make(addQuestionView,"No Internet Connection",Snackbar.LENGTH_LONG);
                snackbar.show();
+           }else{
+               Snackbar snackbar=Snackbar.make(addQuestionView,"Question Uploaded",Snackbar.LENGTH_LONG);
+               snackbar.show();
+               finish();
            }
+
+
 
         }
 
