@@ -3,11 +3,14 @@ package com.example.vlearn;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Layout;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -53,6 +56,7 @@ public class PostsFragment extends Fragment {
     Button B_postArtical,btn_popular,btn_date,btn_follower;
     String sendTopic="";
     FloatingActionButton fab;
+    EditText searchinput;
 
     @Nullable
     @Override
@@ -64,6 +68,7 @@ public class PostsFragment extends Fragment {
 
         //new PostsFragment.BackgroundTask().execute();
 
+        searchinput=v.findViewById(R.id.searchbar);
 
         recyclerView = v.findViewById(R.id.post_recycler);
         dialog=new SpotsDialog(getContext());
@@ -106,6 +111,24 @@ public class PostsFragment extends Fragment {
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                       //  .setAction("Action", null).show();
                 startActivity(new Intent(getContext(),AddPost.class));
+            }
+        });
+
+        searchinput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                adapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 

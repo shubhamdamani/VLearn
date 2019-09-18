@@ -41,6 +41,7 @@ public class interests extends AppCompatActivity { //user k topic select krne k 
     static HashMap<String,Character> TopicToKey;    //Map topic to key
     public StringBuffer Interest_Str = new StringBuffer();
     public String operation;
+    TextView tc,tnm;
 
     static{
         TopicToKey = new HashMap<>();
@@ -66,6 +67,15 @@ public class interests extends AppCompatActivity { //user k topic select krne k 
         setContentView(R.layout.activity_interests);
         Intent i=getIntent();
         operation=i.getStringExtra("operation");
+        tc=findViewById(R.id.profileion);
+        String nm=USER_Class.getLoggedUserName();
+        Character a=nm.charAt(0);
+        tc.setText(a.toString());
+        tnm=findViewById(R.id.myname);
+        tnm.setText(nm);
+
+
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
 
         displayListView();

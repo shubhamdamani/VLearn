@@ -3,6 +3,7 @@ package com.example.vlearn.PersonalInfo;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import dmax.dialog.SpotsDialog;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -34,16 +35,22 @@ import java.util.List;
 
 public class BookmarkActivity extends AppCompatActivity {
 
+
+
     private RecyclerView recyclerView;
     List<Post_content> mPostContent;
     post_adapter adapter;
     String JSON_String,json_string;
     JSONArray jsonArray;
     JSONObject jsonObject;
+    SpotsDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookmark);
+
+        dialog = new SpotsDialog(this);
+        dialog.show();
 
         recyclerView=findViewById(R.id.Bookmark_recyclerview);
         recyclerView.setHasFixedSize(true);
@@ -93,6 +100,7 @@ public class BookmarkActivity extends AppCompatActivity {
 
 
             }
+            dialog.dismiss();
 
         } catch (JSONException e) {
             e.printStackTrace();

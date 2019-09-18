@@ -59,6 +59,7 @@ public class FollowUser extends AppCompatActivity {
     TextView tv,tv1,tv2;
     //String  f1,f2;
     String Flag;
+    TextView ic;
 
     public FollowUser(){}
 
@@ -71,7 +72,10 @@ public class FollowUser extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Intent in=getIntent();
         fusername=in.getStringExtra("UserName");
+        Character a=fusername.charAt(0);
         tv=findViewById(R.id.followuname);
+        ic=findViewById(R.id.imgfu);
+        ic.setText(a.toString());
         tv1=findViewById(R.id.followers);
         tv2=findViewById(R.id.following);
         foll=findViewById(R.id.btnfollow);
@@ -80,6 +84,8 @@ public class FollowUser extends AppCompatActivity {
         if(fuid.equals(USER_Class.getLoggedUserId()))
         {
             foll.setEnabled(false);
+            foll.setVisibility(View.GONE);
+            btn_unfollow.setEnabled(false);
             btn_unfollow.setVisibility(View.GONE);
 
         }
@@ -104,8 +110,8 @@ public class FollowUser extends AppCompatActivity {
         tv.setText(fusername);
 
 
-        //dialog=new SpotsDialog(this);
-      //  dialog.show();
+        dialog=new SpotsDialog(this);
+        dialog.show();
        // dialog.show();
 
         Toast.makeText(FollowUser.this,fusername+" "+fuid,Toast.LENGTH_SHORT).show();
@@ -168,7 +174,7 @@ public class FollowUser extends AppCompatActivity {
 
             }
 
-          //  dialog.dismiss();
+            dialog.dismiss();
 
         } catch (JSONException e) {
             e.printStackTrace();

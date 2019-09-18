@@ -2,6 +2,7 @@ package com.example.vlearn.chatWithAdmin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.auth.User;
 
@@ -42,6 +44,7 @@ public class chatWithAdmin extends AppCompatActivity {
     List<chat> mchat;
     RecyclerView recyclerView;
     public String user_id;
+    DatabaseReference mRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,8 @@ public class chatWithAdmin extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getApplicationContext());
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
+       // new ItemTouchHelper()
+
 
         username=findViewById(R.id.uname);
         text_send=findViewById(R.id.text_send);
@@ -125,6 +130,7 @@ public class chatWithAdmin extends AppCompatActivity {
                     chat Chat=snapshot.getValue(chat.class);
                     String s=Chat.getSender();
                     String r=Chat.getReciever();
+                    final String m=Chat.getMessage();
                     Toast.makeText(chatWithAdmin.this,Chat.getMessage(),Toast.LENGTH_SHORT).show();
                     //break;
                     Log.d("here",userid+" "+myid);
@@ -135,6 +141,66 @@ public class chatWithAdmin extends AppCompatActivity {
                         Log.d("yaha",r+" "+myid+" "+s+" "+userid);
                         mchat.add(Chat);
                         messageAdapter =new MessageAdapter(chatWithAdmin.this,mchat);
+
+                        mRef = FirebaseDatabase.getInstance().getReference().child("Chats");
+                        //getItemId()
+
+                        ItemTouchHelper.SimpleCallback itemTouchHelperCallback=
+                                new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT|ItemTouchHelper.LEFT) {
+                                    @Override
+                                    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                                        return false;
+                                    }
+
+                                    @Override
+                                    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+
+                            /*itemsView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+*/
+                                        fuser= FirebaseAuth.getInstance().getCurrentUser();
+
+
+
+
+                                        Query mQ=mRef.child("sender").equalTo(fuser.getUid());
+                                        mQ.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                Query mQuery=mRef.orderByChild("message").equalTo(m);
+                                                Toast.makeText(chatWithAdmin.this,mQuery.toString(),Toast.LENGTH_SHORT).show();
+                                                mQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                        for(DataSnapshot ds:dataSnapshot.getChildren())
+                                                        {
+                                                            //ds.child("sen")
+
+                                                            ds.getRef().removeValue();
+                                                        }
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                    }
+                                                });
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
+
+                                    }
+                                    // });
+
+                                    //}
+                                };
+
                         recyclerView.setAdapter(messageAdapter);
                     }
                     if(r.equals(userid) && s.equals(myid))
@@ -144,6 +210,8 @@ public class chatWithAdmin extends AppCompatActivity {
                         messageAdapter =new MessageAdapter(chatWithAdmin.this,mchat);
                         recyclerView.setAdapter(messageAdapter);
                     }
+
+
 
                 }
 

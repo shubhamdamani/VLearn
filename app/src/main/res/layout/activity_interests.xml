@@ -44,6 +44,7 @@
         android:background="@drawable/capsule"
         android:layout_below="@+id/profileion"
         android:textSize="15dp"
+        android:visibility="invisible"
         android:id="@+id/txt"/>
 
     <ListView

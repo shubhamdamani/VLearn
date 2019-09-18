@@ -8,27 +8,37 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.vlearn.PersonalInfo.BookmarkActivity;
 import com.example.vlearn.object.key_Topic;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Character.toUpperCase;
 
-public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewHolder> {
+public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewHolder> implements Filterable {
     //this context we will use to inflate the layout
     private Context mCtx;
 
     //we are storing all the products in a list
     private List<Post_content> productList;
+    private List<Post_content> searchList;
 
     //getting the context and product list with constructor
     public post_adapter(Context mCtx, List<Post_content> productList) {
         this.mCtx = mCtx;
         this.productList = productList;
+        this.searchList=productList;
     }
 
     @Override
@@ -44,8 +54,15 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewH
     @Override
     public void onBindViewHolder(post_adapter.ProductViewHolder holder, int position) {
         //getting the product of the specified position
-        Post_content product = productList.get(position);
 
+
+
+        Post_content product = searchList.get(position);
+
+
+        holder.post_user.setAnimation(AnimationUtils.loadAnimation(mCtx,R.anim.fade_transition_animation));
+
+        holder.container.setAnimation(AnimationUtils.loadAnimation(mCtx,R.anim.fade_scale_animation));
         //binding the data with the viewholder views
         holder.post_user.setText(product.getUserName());
         holder.artical.setText(product.getPost_content());
@@ -75,17 +92,54 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewH
 
     @Override
     public int getItemCount() {
-        return productList.size();
+        return searchList.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String key=constraint.toString();
+                if(key.isEmpty())
+                {
+                    searchList=productList;
+                }else{
+
+                    List<Post_content> filtered=new ArrayList<>();
+                    for(Post_content row: productList)
+                    {
+                        if(row.getPost_content().toLowerCase().contains(key.toLowerCase())){
+                            filtered.add(row);
+                        }
+                    }
+                    searchList=filtered;
+                }
+                FilterResults filterResults=new FilterResults();
+                filterResults.values=searchList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+
+                searchList=(List<Post_content>)results.values;
+                notifyDataSetChanged();
+
+            }
+        };
     }
 
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
         TextView post_user, artical, upvote, downvote,post_title,post_date,topic,user_id,post_id,bookmark,prof_icon;
+        LinearLayout container;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
 
+            container=itemView.findViewById(R.id.postrel);
             post_user = itemView.findViewById(R.id.post_username);
             artical = itemView.findViewById(R.id.artical);
             upvote = itemView.findViewById(R.id.nup);
@@ -116,8 +170,17 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.ProductViewH
                     Pair[] pairs=new Pair[2];
                     pairs[0]=new Pair<View,String>(prof_icon,"pImageTransition");
                     pairs[1]=new Pair<View,String>(post_user,"pNameTransition");
-                    ActivityOptions options=ActivityOptions.makeSceneTransitionAnimation((Activity)mCtx,pairs);
-                    v.getContext().startActivity(intent,options.toBundle());
+                    try
+                    {
+                        ActivityOptions options=ActivityOptions.makeSceneTransitionAnimation((Activity)mCtx,pairs);
+
+                    v.getContext().startActivity(intent,options.toBundle());}
+                    catch(Exception e)
+                    {
+                        //ActivityOptions options=ActivityOptions.makeSceneTransitionAnimation(,pairs);
+
+                        v.getContext().startActivity(intent);
+                    }
 
 
                 }

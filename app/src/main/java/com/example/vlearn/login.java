@@ -233,9 +233,10 @@ public class login extends AppCompatActivity {
 
                 fadeOutProgressDialog();
 
-                delayedStartNextActivity();
+
             }
-        }, 2000);
+        }, 400);
+        delayedStartNextActivity();
     }
 
     private void revealButton() {
@@ -280,7 +281,7 @@ public class login extends AppCompatActivity {
     }
 
     private void fadeOutProgressDialog() {
-        mBinding.progressBar.animate().alpha(0f).setDuration(200).setListener(new AnimatorListenerAdapter() {
+        mBinding.progressBar.animate().alpha(0f).setDuration(350).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
