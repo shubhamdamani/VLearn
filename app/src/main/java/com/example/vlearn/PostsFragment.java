@@ -1,5 +1,6 @@
 package com.example.vlearn;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,8 +10,11 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -53,20 +57,18 @@ public class PostsFragment extends Fragment {
     Integer up=0,down=0;
     SpotsDialog dialog;
     String sortType;
-    Button B_postArtical,btn_popular,btn_date,btn_follower;
+    Button B_postArtical;
     String sendTopic="";
     FloatingActionButton fab;
     EditText searchinput;
+
+    private Spinner spinner;
+    public String[] Topics = { "Sort by","Popular", "Date", "Followers"};
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.fragment_posts,container,false);
-        btn_date=v.findViewById(R.id.btn_date);
-        btn_popular=v.findViewById(R.id.btn_popular);
-        btn_follower=v.findViewById(R.id.btn_followers);
-
-        //new PostsFragment.BackgroundTask().execute();
 
         searchinput=v.findViewById(R.id.searchbar);
 
@@ -82,7 +84,7 @@ public class PostsFragment extends Fragment {
         new PostsFragment.BackgroundTask().execute();
 
 
-        btn_date.setOnClickListener(new View.OnClickListener() {
+        /*btn_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sortType="0";
@@ -103,7 +105,7 @@ public class PostsFragment extends Fragment {
                 sortType="2";
                 new PostsFragment.BackgroundTask().execute();
             }
-        });
+        });*/
         fab =  v.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,11 +133,57 @@ public class PostsFragment extends Fragment {
 
             }
         });
+        spinner =v.findViewById(R.id.Sortby);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_spinner_item, Topics);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        //spinner.setOnItemSelectedListener(this);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id)
+            {
+                String selected = parentView.getItemAtPosition(position).toString();
+                Context context = parentView.getContext();
+                CharSequence text = selected;
+                int duration = Toast.LENGTH_SHORT;
+
+                switch (position){
+                    case 0:
+                        sortType="0";//sort according to date
+                        Toast.makeText(getContext(),"date",Toast.LENGTH_LONG).show();
+                        new PostsFragment.BackgroundTask().execute();
+                        break;
+                    case 1:
+                        sortType="1";//sort according to popular
+                        Toast.makeText(getContext(),"popular",Toast.LENGTH_LONG).show();
+                        new PostsFragment.BackgroundTask().execute();
+                        break;
+                    case 2:
+                        sortType="2";//sort according to follower
+                        Toast.makeText(getContext(),"follower",Toast.LENGTH_LONG).show();
+                        new PostsFragment.BackgroundTask().execute();
+                        break;
+                    default:
+                        sortType="2";//sort according to follower
+                        new PostsFragment.BackgroundTask().execute();
+                        break;
+                }
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+        });
 
 
 
         return v;
     }
+
 
     public void fun()                   //PARSING JSON OBJECT TO NORMAL STRING AND SHIFTING TO CARDVIEW
     {

@@ -64,6 +64,7 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+
         btn_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
