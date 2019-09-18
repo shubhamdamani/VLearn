@@ -44,5 +44,11 @@
         android:padding="10dp"
         android:text="Id"
         android:visibility="invisible"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2sp"
+        android:background="#eaece5"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/prof_icon"/>
 
 </RelativeLayout>

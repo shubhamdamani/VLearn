@@ -17,6 +17,7 @@
         android:textSize="50dp"
         android:layout_marginTop="25dp"
         android:id="@+id/imgfu"
+        android:layout_marginLeft="10dp"
 
         />
 
@@ -37,7 +38,7 @@
     <TextView
         android:layout_width="80dp"
         android:layout_height="40dp"
-        android:text="followers"
+        android:text="Followers"
         android:textSize="12dp"
         android:layout_marginTop="10dp"
         android:layout_toLeftOf="@+id/following"
@@ -50,7 +51,7 @@
         android:layout_width="80dp"
         android:textSize="12dp"
         android:layout_height="40dp"
-        android:text="following"
+        android:text="Following"
         android:layout_marginRight="15dp"
         android:layout_marginTop="10dp"
         android:gravity="center"
