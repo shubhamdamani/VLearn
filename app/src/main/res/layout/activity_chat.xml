@@ -5,17 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Chat"
-    android:orientation="vertical">
+    android:orientation="vertical"
+
+    android:gravity="center">
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/chat"
-        android:text="chat"/>
+        android:text="chat"
+        android:padding="10dp"
+        style="@style/Widget.AppCompat.Button.Borderless"
+       android:background="@drawable/btncapsule"/>
+
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/admin"
-        android:text="admin"/>
+        android:text="admin"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:background="@drawable/btncapsule"/>
+
 
 </LinearLayout>

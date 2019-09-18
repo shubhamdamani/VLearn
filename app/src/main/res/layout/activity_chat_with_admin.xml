@@ -15,7 +15,7 @@
 
 
         <TextView
-            android:id="@+id/uname"
+            android:id="@+id/user_name"
             android:padding="10dp"
             android:layout_alignParentRight="true"
             android:layout_width="match_parent"
@@ -25,6 +25,7 @@
             android:background="@color/colorPrimary"
             android:textAlignment="center"
             android:textSize="20dp"
+            android:textColor="@android:color/white"
             android:layout_alignParentTop="true"/>
 
 

@@ -92,7 +92,7 @@
         <activity
             android:name=".Chat"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/no_action" />
+             />
         <activity
             android:name=".AboutVLearn"
             android:configChanges="orientation|screenSize"

@@ -59,9 +59,10 @@ public class chatWithAdmin extends AppCompatActivity {
         fuser=FirebaseAuth.getInstance().getCurrentUser();
 
 
-        username=findViewById(R.id.uname);
+        username=findViewById(R.id.user_name);
+        username.setText(USER_Class.getLoggedUserName());
+
         text_send=findViewById(R.id.text_send);
-        //prof=findViewById(R.id.profile);
         btn_send=findViewById(R.id.btn_send);
 
 
@@ -81,7 +82,7 @@ public class chatWithAdmin extends AppCompatActivity {
                         String u = user.getUsername();
                         if (u.equals("adminadmin")) {
                             readMessage(fuser.getUid(), user.getId());
-                            username.setText("adminadmin");
+
                         }
 
 
