@@ -71,7 +71,7 @@ public class NewsFragment extends Fragment {
     String json_string;
     String JSON_String;
     JSONArray jsonArray;
-    int USER_ID=1;
+    int USER_ID;
     JSONObject jsonObject;
 
 
@@ -133,6 +133,7 @@ public class NewsFragment extends Fragment {
 
             c = s.charAt(i);
             AddFeed(c,map.get(c));
+            Log.d("tag" ,c+":"+map.get(c));
 
         }
 
@@ -469,7 +470,7 @@ public class NewsFragment extends Fragment {
                 httpURLConnection.setDoOutput(true);
                 OutputStream os=httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
-                String data= URLEncoder.encode("User_Id","UTF-8")+"="+URLEncoder.encode(USER_ID+"","UTF-8");
+                String data= URLEncoder.encode("User_Id","UTF-8")+"="+URLEncoder.encode(USER_Class.getLoggedUserId()+"","UTF-8");
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
                 bufferedWriter.close();

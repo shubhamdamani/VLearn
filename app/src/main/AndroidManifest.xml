@@ -52,7 +52,7 @@
         <activity
             android:name=".chatWithAdmin.AdminPanel"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/no_action" />
+             />
         <activity
             android:name=".chatWithAdmin.chatWithAdmin"
             android:configChanges="orientation|screenSize"

@@ -19,8 +19,8 @@
         />
     <TextView
 
-        android:layout_width="80dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/prof_icon"
         android:textSize="15dp"
         android:layout_centerHorizontal="true"
@@ -34,6 +34,13 @@
 
 
         />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2sp"
+        android:background="#eaece5"
+        android:id="@+id/bar"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/author"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,15 +50,10 @@
         android:layout_marginLeft="10dp"
         android:id="@+id/date_updated"
         />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2sp"
-        android:background="#eaece5"
-        android:id="@+id/bar"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/prof_icon"/>
+
     <TextView
         android:id="@+id/titleText"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -64,6 +66,7 @@
 
     <TextView
         android:id="@+id/title"
+        android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/titleText"
         android:layout_below="@+id/date_updated"
         android:layout_width="match_parent"
