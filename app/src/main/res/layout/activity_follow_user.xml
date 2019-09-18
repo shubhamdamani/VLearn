@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@drawable/circle_view"
+        android:background="@drawable/circle_color"
 
         android:textAlignment="center"
         android:textColor="#ffffff"

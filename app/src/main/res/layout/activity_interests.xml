@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".interests"
     android:id="@+id/intlay"
+    android:background="#ffffff"
     android:orientation="vertical">
 
     <TextView
@@ -54,14 +55,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/findSelected"
+        android:layout_marginBottom="10dp"
         android:scrollbars="vertical"/>
     <Button
         android:id="@+id/findSelected"
         android:layout_width="120dp"
         android:layout_centerHorizontal="true"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:text="Submit"
         android:textSize="15dp"
+        android:textColor="#ffffff"
         android:background="@drawable/btncapsule"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="15dp"

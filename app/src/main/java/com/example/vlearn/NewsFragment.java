@@ -202,7 +202,7 @@ public class NewsFragment extends Fragment {
                     }
                     int lastPosition = postContent.size()-1;
                     try {
-                        Post newPost = new Post(entrys.get(i).getTitle(),entrys.get(i).getAuthor().getName(),entrys.get(i).getUpdated(),postContent.get(0),postContent.get(lastPosition),"No description available ", "Source : Reddit");
+                        Post newPost = new Post(entrys.get(i).getTitle(),entrys.get(i).getAuthor().getName().substring(3),entrys.get(i).getUpdated(),postContent.get(0),postContent.get(lastPosition),"No description available ", "Source : Reddit");
                         posts.add(newPost);
                     }catch (NullPointerException e){
                         e.printStackTrace();

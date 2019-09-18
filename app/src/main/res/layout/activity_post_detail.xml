@@ -58,12 +58,13 @@
             android:textStyle="italic" />
 
         <ImageButton
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:id="@+id/btnEdit"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:text="edit"
             android:layout_marginEnd="15dp"
-            android:layout_below="@+id/bkmark"
+
+            android:layout_above="@+id/linepen"
             android:layout_alignParentEnd="true"
             android:background="@drawable/ic_edit_black_24dp"
             />
@@ -87,6 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="1sp"
             android:background="#eaece5"
+            android:id="@+id/linepen"
             android:layout_above="@+id/tool_bar"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -130,11 +132,13 @@
             <Button
                 android:layout_width="70dp"
                 android:layout_height="50dp"
-                android:textColor="#ffffff"
+                android:textColor="#000000"
+                android:background="#ffffff"
+
                 android:text="more"
                 android:id="@+id/btnMORE"
-                android:layout_marginLeft="180dp"
-                android:background="@drawable/btncapsule"
+                android:layout_marginLeft="200dp"
+
                 android:layout_centerHorizontal="true"
                 />
         </LinearLayout>
@@ -214,10 +218,10 @@
 
   <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="90dp"
         android:id="@+id/bottom_sheet"
         android:clipToPadding="true"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/btncapsule"
         app:behavior_hideable="true"
         app:behavior_peekHeight="100dp"
         app:elevation="4dp"
@@ -230,6 +234,7 @@
             android:text="audio"
             android:gravity="center"
             android:id="@+id/btnaudio"
+            android:textColor="#ffffff"
             style="?android:attr/borderlessButtonStyle"
 
             />
@@ -239,6 +244,7 @@
             android:layout_height="50dp"
             android:id="@+id/btnpdf"
             android:text="save to pdf"
+            android:textColor="#ffffff"
             android:layout_centerHorizontal="true"
             style="?android:attr/borderlessButtonStyle"
            />
@@ -248,6 +254,7 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:text="share"
+            android:textColor="#ffffff"
             android:id="@+id/share"
             style="?android:attr/borderlessButtonStyle"
             android:layout_alignParentRight="true"/>

@@ -5,21 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".NewsFeedDetails"
+    android:background="#ffffff"
     android:padding="20dp">
 
     <ImageView
-        android:layout_width="40dp"
+        android:layout_width="80dp"
         android:layout_marginLeft="20dp"
-        android:layout_height="40dp"
+        android:layout_height="80dp"
         android:id="@+id/prof_icon"
         android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
         android:src="@drawable/ic_account_circle_black_24dp"
         />
     <TextView
-        android:layout_toRightOf="@+id/prof_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/prof_icon"
         android:textSize="15dp"
+        android:layout_centerHorizontal="true"
+
         android:gravity="center"
         android:id="@+id/author"
         android:layout_marginTop="10dp"
@@ -33,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/author"
-        android:layout_toRightOf="@+id/prof_icon"
+        android:layout_centerHorizontal="true"
         android:text="Date"
         android:layout_marginLeft="10dp"
         android:id="@+id/date_updated"
@@ -49,8 +54,10 @@
         android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:inputType="textPersonName"
-        android:layout_below="@+id/bar"
+        android:layout_below="@+id/date_updated"
+
         android:text="Title :"
         android:padding="10dp"
         android:textStyle="bold" />
@@ -58,7 +65,7 @@
     <TextView
         android:id="@+id/title"
         android:layout_toRightOf="@+id/titleText"
-        android:layout_below="@+id/bar"
+        android:layout_below="@+id/date_updated"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10sp"
@@ -91,6 +98,7 @@
         android:layout_height="37dp"
         android:layout_centerHorizontal="true"
        android:layout_above="@id/source"
+        android:textSize="15dp"
         android:hint="Link"
         android:gravity="center"/>
 
@@ -105,6 +113,7 @@
         android:layout_marginBottom="0dp"
         android:layout_marginTop="109dp"
         android:hint="Post Source"
+        android:textSize="20dp"
         android:gravity="center"
         android:textStyle="bold" />
 </RelativeLayout>
