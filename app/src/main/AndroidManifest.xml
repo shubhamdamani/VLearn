@@ -76,7 +76,7 @@
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize" />
-        <activity android:name=".NewsFeedDetails" android:theme="@style/no_action" android:configChanges="orientation|screenSize" />
+        <activity android:name=".NewsFeedDetails" android:configChanges="orientation|screenSize" />
     </application>
 
 </manifest>

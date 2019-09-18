@@ -63,6 +63,12 @@
 
             />
         <TextView
+            android:layout_width="15dp"
+            android:layout_marginTop="2dp"
+            android:layout_height="20dp"
+            android:background="@drawable/ic_bookmark_border_black_24dp"
+            android:layout_toLeftOf="@+id/topic_tag"/>
+        <TextView
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,7 +77,8 @@
             android:layout_alignParentRight="true"
             android:gravity="end"
             android:padding="5dp"
-            android:background="#e0e0e0"
+            android:textColor="#000000"
+            android:background="#ffffff"
             android:paddingLeft="50dp"
             android:textSize="10dp"/>
     <TextView
@@ -144,7 +151,6 @@
             android:id="@+id/post_title"
             android:padding="10dp"
             android:visibility="invisible"/>
-
 
 
         <TextView

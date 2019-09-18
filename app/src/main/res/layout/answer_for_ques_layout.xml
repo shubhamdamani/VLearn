@@ -2,17 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="1dp">
+        android:layout_margin="1dp"
+        app:cardElevation="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp">
+            android:padding="5dp"
+            >
 
 
             <LinearLayout
@@ -22,9 +25,9 @@
                 android:padding="5dp"
                 android:id="@+id/user_bar">
                 <TextView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/circle_view"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/circle_color"
                     android:layout_gravity="center"
                     android:layout_marginRight="8dp"
                     android:textColor="@android:color/white"
@@ -39,9 +42,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/ans_user_name"
+                    android:textSize="10dp"
                     android:text="username"
                     android:textColor="#505352"
-                    android:padding="5dp"
+                    android:padding="2dp"
 
                     />
             </LinearLayout>
@@ -52,9 +56,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/user_bar"
                 android:layout_marginTop="2dp"
-                android:background="@drawable/capsule"
+                android:textSize="12dp"
+
                 android:fontFamily="sans-serif"
-                android:padding="20dp"
+                android:padding="5dp"
                 android:text="answer" />
 
 
