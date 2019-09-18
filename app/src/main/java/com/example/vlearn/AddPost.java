@@ -18,6 +18,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vlearn.object.key_Topic;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,7 +44,7 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
     ImageButton btn_close;
     String P_content,P_topic,P_title;
     String P_date,user_id;
-    public String[] Topics = { "Select Topic","A", "B", "C", "D", "F" };
+    public String[] Topics = { "Select Topic","Physics","Maths","Computer", "Science", "Politics", "Business", "Technology" ,"Sports"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +61,7 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
         Character name=username.charAt(0);
         name=toUpperCase(name);
         //Toast.makeText(getApplicationContext(), "name "+name ,Toast.LENGTH_SHORT).show();
-       prof_icon.setText(name.toString());
-
+        prof_icon.setText(name.toString());
         spinner =findViewById(R.id.topic);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Topics);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -145,7 +146,7 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
                 OutputStream os=httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
                 String data= URLEncoder.encode("User_Id","UTF-8")+"="+URLEncoder.encode(USER_Class.getLoggedUserId(),"UTF-8")+"&"+
-                        URLEncoder.encode("Post_Topic","UTF-8")+"="+URLEncoder.encode(P_topic,"UTF-8")+"&"+
+                        URLEncoder.encode("Post_Topic","UTF-8")+"="+URLEncoder.encode(key_Topic.getTopicToKey(P_topic),"UTF-8")+"&"+
                         URLEncoder.encode("Post_Title","UTF-8")+"="+URLEncoder.encode(P_title,"UTF-8")+"&"+
                         URLEncoder.encode("Post_Content","UTF-8")+"="+URLEncoder.encode(P_content,"UTF-8")+"&"+
                         URLEncoder.encode("Post_Date","UTF-8")+"="+URLEncoder.encode(P_date,"UTF-8");

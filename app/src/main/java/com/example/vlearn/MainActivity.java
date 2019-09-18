@@ -26,7 +26,6 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity {
 
     private NavigationView nv;
-
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
 
