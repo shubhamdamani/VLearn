@@ -8,7 +8,9 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +50,7 @@ public class Question_adapter extends RecyclerView.Adapter<Question_adapter.Prod
         //getting the product of the specified position
         questionfetch product = productList.get(position);
 
+        holder.container.setAnimation(AnimationUtils.loadAnimation(mCtx,R.anim.fade_scale_animation));
         //binding the data with the viewholder views
         holder.txt_username.setText(product.getUser_Id());
         holder.txt_ques.setText(product.getQuestion());
@@ -72,10 +75,12 @@ public class Question_adapter extends RecyclerView.Adapter<Question_adapter.Prod
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
         TextView txt_username, txt_ques, txt_Topic, txt_Q_Id,prof_icon;
+        LinearLayout container;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
 
+            container=itemView.findViewById(R.id.queslin);
             txt_username = itemView.findViewById(R.id.tx_User_Id);
             txt_ques = itemView.findViewById(R.id.tx_Question);
             txt_Q_Id = itemView.findViewById(R.id.tx_Q_Id);

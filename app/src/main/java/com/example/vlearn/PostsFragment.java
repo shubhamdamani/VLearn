@@ -81,7 +81,7 @@ public class PostsFragment extends Fragment {
 
 
         sortType="-1";
-        Toast.makeText(getContext(),USER_Class.getLoggedUserId(),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(),USER_Class.getLoggedUserId(),Toast.LENGTH_SHORT).show();
         new PostsFragment.BackgroundTask().execute();
 
 
