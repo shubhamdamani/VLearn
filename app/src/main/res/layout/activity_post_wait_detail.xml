@@ -33,19 +33,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvWait2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:textSize="15dp"
         android:text="decript"
         android:id="@+id/tvWait3"
         />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
         android:id="@+id/btnDel"
+        android:textColor="#ffffff"
+        android:background="@drawable/btncapsule"
         android:text="delete"
         android:layout_below="@+id/tvWait3"/>
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/btncapsule"
         android:text="ACCEPT"
         android:id="@+id/btnac"
         android:layout_below="@+id/tvWait3"
