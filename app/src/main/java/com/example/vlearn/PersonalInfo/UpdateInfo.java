@@ -1,6 +1,7 @@
 package com.example.vlearn.PersonalInfo;
 
 import androidx.appcompat.app.AppCompatActivity;
+import dmax.dialog.SpotsDialog;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +20,7 @@ import com.example.vlearn.R;
 import com.example.vlearn.USER_Class;
 import com.example.vlearn.addquestion;
 import com.example.vlearn.myprofile;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -38,12 +41,16 @@ public class UpdateInfo extends AppCompatActivity {
     EditText etName,etPass;
     String s,s1,s2;
     TextView proIcon;
+    SpotsDialog dialog;
+    RelativeLayout r1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_update_info);
+        dialog=new SpotsDialog(this);
+        r1=findViewById(R.id.updinf);
 
 
 
@@ -64,6 +71,7 @@ public class UpdateInfo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                // Intent i=new Intent(UpdateInfo.this,FollowUser.class);
               //  startActivity(i);
                 final AlertDialog.Builder builder = new AlertDialog.Builder(UpdateInfo.this);
@@ -73,6 +81,7 @@ public class UpdateInfo extends AppCompatActivity {
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
                         s=USER_Class.getLoggedUserId();
                         s1=etName.getText().toString();
                         s2=etPass.getText().toString();
@@ -81,6 +90,8 @@ public class UpdateInfo extends AppCompatActivity {
                         {
                             Toast.makeText(UpdateInfo.this,"PLEASE ENTER PASSWORD",Toast.LENGTH_SHORT).show();
                         }else{
+
+
 
                             new UpdateInfo.BackgroundTask().execute();
                         }
@@ -146,15 +157,28 @@ public class UpdateInfo extends AppCompatActivity {
         }
         @Override
         protected void onPreExecute() {
+
+            dialog.show();
             super.onPreExecute();
         }
 
         @Override
         protected void onPostExecute(String result) {
 
+            try{
+
+            }catch (Exception e)
+            {
+                dialog.dismiss();
+                Snackbar snackbar=Snackbar.make(r1,"No Internet Connection",Snackbar.LENGTH_LONG);
+                snackbar.show();
+            }
+
+            dialog.dismiss();
+
             //JSON_String=result;
 
-            Toast.makeText(UpdateInfo.this,result,Toast.LENGTH_LONG).show();
+           // Toast.makeText(UpdateInfo.this,result,Toast.LENGTH_LONG).show();
             //getDatafromJSON();
              Intent i=new Intent(UpdateInfo.this, myprofile.class);
             startActivity(i);

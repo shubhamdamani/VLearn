@@ -7,6 +7,7 @@ import dmax.dialog.SpotsDialog;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.vlearn.PostDetail;
@@ -14,6 +15,7 @@ import com.example.vlearn.Post_content;
 import com.example.vlearn.R;
 import com.example.vlearn.USER_Class;
 import com.example.vlearn.post_adapter;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,6 +46,7 @@ public class BookmarkActivity extends AppCompatActivity {
     JSONArray jsonArray;
     JSONObject jsonObject;
     SpotsDialog dialog;
+    RelativeLayout rl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +54,7 @@ public class BookmarkActivity extends AppCompatActivity {
 
         dialog = new SpotsDialog(this);
         dialog.show();
+        rl=findViewById(R.id.bokact);
 
         recyclerView=findViewById(R.id.Bookmark_recyclerview);
         recyclerView.setHasFixedSize(true);
@@ -168,10 +172,17 @@ public class BookmarkActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            //Toast.makeText(BookmarkActivity.this, "userid"+USER_Class.getLoggedUserId(), Toast.LENGTH_SHORT).show();
-            JSON_String=result;
-            //Toast.makeText(BookmarkActivity.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();
-            fun();
+           try
+           {
+               JSON_String=result;
+
+            fun();}catch (Exception e)
+           {
+               dialog.dismiss();
+               Snackbar snackbar=Snackbar.make(rl,"No Internet Connection",Snackbar.LENGTH_LONG);
+               //Toast.makeText(getContext(),"no internet",Toast.LENGTH_SHORT).show();
+               snackbar.show();
+           }
 
 
             //super.onPostExecute(aVoid);

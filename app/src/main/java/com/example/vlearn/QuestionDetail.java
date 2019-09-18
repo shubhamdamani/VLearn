@@ -13,9 +13,11 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.auth.User;
 
 import org.json.JSONArray;
@@ -53,6 +55,7 @@ public class QuestionDetail extends AppCompatActivity {
     Button postanswer;
   //  SpotsDialog dialog;
     String answer;
+    RelativeLayout rl;
     public static final String POST_ANSWER_URL="https://vlearndroidrun.000webhostapp.com/addAnswer.php";
 
 
@@ -67,6 +70,7 @@ public class QuestionDetail extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.ques_detail_recylerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        rl=findViewById(R.id.quesdet);
 
         editanswer=findViewById(R.id.editanswer);
         postanswer=findViewById(R.id.postanswer);
@@ -234,10 +238,12 @@ public class QuestionDetail extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            JSON_String=result;
-
-            Toast.makeText(QuestionDetail.this,JSON_String,Toast.LENGTH_LONG).show();
-            getDatafromJSON();
+            try{JSON_String=result;
+            getDatafromJSON();}catch (Exception e){
+               // dialog.dismiss();
+                Snackbar snackbar=Snackbar.make(rl,"No Internet Connection",Snackbar.LENGTH_LONG);
+                snackbar.show();
+            }
 
             //super.onPostExecute(aVoid);
         }

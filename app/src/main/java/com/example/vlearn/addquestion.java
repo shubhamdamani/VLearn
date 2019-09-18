@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 import dmax.dialog.SpotsDialog;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -41,6 +42,7 @@ public class addquestion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addquestion);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         Q_txt=findViewById(R.id.Q_txt);
         b_Post=findViewById(R.id.Q_post);

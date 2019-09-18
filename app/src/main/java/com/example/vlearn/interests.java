@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class interests extends AppCompatActivity { //user k topic select krne k 
     public StringBuffer Interest_Str = new StringBuffer();
     public String operation;
     TextView tc,tnm;
+    RelativeLayout rl;
 
     static{
         TopicToKey = new HashMap<>();
@@ -73,7 +75,7 @@ public class interests extends AppCompatActivity { //user k topic select krne k 
         tc.setText(a.toString());
         tnm=findViewById(R.id.myname);
         tnm.setText(nm);
-
+        rl=findViewById(R.id.intlay);
 
         //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
@@ -216,7 +218,7 @@ public class interests extends AppCompatActivity { //user k topic select krne k 
                             }
                         }
 
-                        Toast.makeText(getApplicationContext()," Topics  Updated", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext()," Topics  Updated", Toast.LENGTH_LONG).show();
                         new interests.BackgroundTask().execute();
                     }
                 });
@@ -292,9 +294,12 @@ public class interests extends AppCompatActivity { //user k topic select krne k 
             {
                 Intent i=new Intent(interests.this,login.class);
                 startActivity(i);
+                finish();
             }
             //JSON_String=result;
-            Toast.makeText(interests.this,result,Toast.LENGTH_LONG).show();
+            Snackbar snackbar=Snackbar.make(rl,"No Internet Connection",Snackbar.LENGTH_LONG);
+            snackbar.show();
+            //Toast.makeText(interests.this,result,Toast.LENGTH_LONG).show();
             //getDatafromJSON();
 
             //super.onPostExecute(aVoid);

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -51,6 +52,7 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
         post_title=findViewById(R.id.Post_title);
         prof_icon=findViewById(R.id.prof_icon);
         btn_close=findViewById(R.id.close_addpost);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         String username=USER_Class.getLoggedUserName();
 

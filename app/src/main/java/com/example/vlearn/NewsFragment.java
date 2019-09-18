@@ -31,6 +31,7 @@ import com.example.vlearn.model.channel.Item;
 import com.example.vlearn.model.channelYahoo.ItemYahoo;
 import com.example.vlearn.model.entry.Entry;
 import com.example.vlearn.model.rediffitem.RediffItem;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -216,6 +217,9 @@ public class NewsFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Feed> call, Throwable t) {
+                dialog.dismiss();
+                Snackbar snackbar=Snackbar.make(getActivity().findViewById(R.id.drawer_layout),"No Internet Connection",Snackbar.LENGTH_LONG);
+                snackbar.show();
                 Log.e(TAG, "Failure : Unable to retrieve RSS Feeds "+t.getMessage());
                 //   Toast.makeText(MainActivity.this,"An error occured",Toast.LENGTH_LONG).show();
             }
@@ -273,6 +277,10 @@ public class NewsFragment extends Fragment {
 
             @Override
             public void onFailure(Call<MainRediffFeed> call, Throwable t) {
+                dialog.dismiss();
+                Snackbar snackbar=Snackbar.make(getActivity().findViewById(R.id.drawer_layout),"No Internet Connection",Snackbar.LENGTH_LONG);
+                //Toast.makeText(getContext(),"no internet",Toast.LENGTH_SHORT).show();
+                snackbar.show();
                 Log.e(TAG, "Failure : Unable to retrieve RSS Feeds "+t.getMessage());
                 //  Toast.makeText(MainActivity.this,"An error occured",Toast.LENGTH_LONG).show();
             }
@@ -325,6 +333,9 @@ public class NewsFragment extends Fragment {
 
             @Override
             public void onFailure(Call<NYTimesFeed> call, Throwable t) {
+                dialog.dismiss();
+                Snackbar snackbar=Snackbar.make(getActivity().findViewById(R.id.drawer_layout),"No Internet Connection",Snackbar.LENGTH_LONG);
+                snackbar.show();
                 Log.e(TAG, "Failure : Unable to retrieve RSS Feeds "+t.getMessage());
                 //   Toast.makeText(MainActivity.this,"An error occured",Toast.LENGTH_LONG).show();
             }
@@ -500,10 +511,15 @@ public class NewsFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
 
-            JSON_String=result;
-           // dialog.dismiss();
-
-            getUserTopicString();
+            try
+            {JSON_String=result;
+           getUserTopicString();}catch (Exception e)
+            {
+                dialog.dismiss();
+                Snackbar snackbar=Snackbar.make(getActivity().findViewById(R.id.drawer_layout),"No Internet Connection",Snackbar.LENGTH_LONG);
+                //Toast.makeText(getContext(),"no internet",Toast.LENGTH_SHORT).show();
+                snackbar.show();
+            }
         }
 
         @Override

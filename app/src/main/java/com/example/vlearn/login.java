@@ -40,6 +40,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 //import com.google.android.gms.common.api.Response;
 
@@ -103,6 +104,7 @@ public class login extends AppCompatActivity {
        // setContentView(R.layout.activity_login);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         mBinding= DataBindingUtil.setContentView(this,R.layout.activity_login);
+        rootView=findViewById(R.id.rootView);
 
 
       /*  bookIconImageView = findViewById(R.id.bookIconImageView);
@@ -237,6 +239,19 @@ public class login extends AppCompatActivity {
             }
         }, 400);
         delayedStartNextActivity();
+    }
+    private void failedAction() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                revealButton();
+
+                fadeOutProgressDialog();
+
+
+            }
+        }, 400);
+        //delayedStartNextActivity();
     }
 
     private void revealButton() {
@@ -437,22 +452,31 @@ public class login extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            JSON_String=result;
+            try {
+                JSON_String = result;
 
-            Log.d("josn",JSON_String);
-            //Toast.makeText(login.this,"asd"+JSON_String,Toast.LENGTH_SHORT).show();
-           getDatafromJSON();
-           if(USER_NAME.equals("no")|| USER_ID.equals("no"))
-           {
+                Log.d("josn", JSON_String);
+                //Toast.makeText(login.this,"asd"+JSON_String,Toast.LENGTH_SHORT).show();
+                getDatafromJSON();
+                if (USER_NAME.equals("no") || USER_ID.equals("no")) {
+                    failedAction();
+                    Snackbar snackbar=Snackbar.make(rootView,"Login Failed! Enter Correct Details",Snackbar.LENGTH_LONG);
+                    snackbar.show();
 
-           }else{
-               nextAction();
+                } else {
+                    nextAction();
 
               /* Intent i=new Intent(login.this,MainActivity.class);
                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                startActivity(i);*/
 
-           }
+                }
+            }catch (Exception e)
+            {
+                failedAction();
+                Snackbar snackbar=Snackbar.make(rootView,"No Internet Connection",Snackbar.LENGTH_LONG);
+                snackbar.show();
+            }
 
 
             //super.onPostExecute(aVoid);

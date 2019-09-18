@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import dmax.dialog.SpotsDialog;
 
@@ -179,8 +180,14 @@ public class QuesFragment extends Fragment {
         protected void onPostExecute(String result) {
             //TextView tv=findViewById(R.id.tv);
             //tv.setText(result);
-            JSON_String=result;
-            fun();
+            try{JSON_String=result;
+            fun();}catch (Exception e)
+            {
+                dialog.dismiss();
+                Snackbar snackbar=Snackbar.make(getActivity().findViewById(R.id.drawer_layout),"No Internet Connection",Snackbar.LENGTH_LONG);
+                //Toast.makeText(getContext(),"no internet",Toast.LENGTH_SHORT).show();
+                snackbar.show();
+            }
 
 
             //super.onPostExecute(aVoid);

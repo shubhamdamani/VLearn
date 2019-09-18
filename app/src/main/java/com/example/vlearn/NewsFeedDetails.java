@@ -3,6 +3,7 @@ package com.example.vlearn;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
@@ -26,7 +27,7 @@ public class NewsFeedDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_feed_details);
-        //this.onBackPressed();
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         source = (TextView)findViewById(R.id.source);
         title = (TextView)findViewById(R.id.title);

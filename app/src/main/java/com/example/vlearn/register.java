@@ -1,16 +1,19 @@
 package com.example.vlearn;
 
 import androidx.appcompat.app.AppCompatActivity;
+import dmax.dialog.SpotsDialog;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -20,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,6 +54,8 @@ public class register extends AppCompatActivity {
     JSONArray jsonArray;
     JSONObject jsonObject;
     String success;
+    RelativeLayout rl;
+    SpotsDialog dialog;
 
 
 
@@ -64,13 +70,17 @@ public class register extends AppCompatActivity {
         pass=findViewById(R.id.Password);
         re_pass=findViewById(R.id.Re_Password);
         register=findViewById(R.id.register);
+        rl=findViewById(R.id.regact);
+        dialog=new SpotsDialog(this);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //temp=findViewById(R.id.gotemp);
 
 
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {                           //Register button Listener
+            public void onClick(View v) {
+                dialog.show();//Register button Listener
                 r_name=username.getText().toString();
                 r_email=email.getText().toString();
                 r_pass=pass.getText().toString();
@@ -79,6 +89,7 @@ public class register extends AppCompatActivity {
                 {
                         new register.BackgroundTask().execute();
                 }else{
+                    dialog.dismiss();
                     Toast.makeText(getApplicationContext(),"All fields are required",Toast.LENGTH_SHORT).show();
                 }
 
@@ -155,6 +166,7 @@ public class register extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            dialog.dismiss();
 
             return "fail";
         }
@@ -170,24 +182,31 @@ public class register extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            JSON_String=result;
+            try {
+                JSON_String = result;
 
-            Log.d("josn",JSON_String);
-            //Toast.makeText(login.this,"asd"+JSON_String,Toast.LENGTH_SHORT).show();
-            getDatafromJSON();
-            if(success.equals("no"))
+                Log.d("josn", JSON_String);
+                //Toast.makeText(login.this,"asd"+JSON_String,Toast.LENGTH_SHORT).show();
+                getDatafromJSON();
+                if (success.equals("no")) {
+                    dialog.dismiss();
+                    Toast.makeText(register.this, "REGISTRATION FAILED", Toast.LENGTH_SHORT).show();
+                } else {
+                   // Toast.makeText(register.this, "REGISTRATION SUCCESS", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(register.this, interests.class);
+                    //i.putExtra("User_Id",success);
+                    USER_Class.setLoggedUserName(r_name);
+                    USER_Class.setLoggedUserId(success);
+                    USER_Class.setLoggedUserEmail(r_email);
+                    dialog.dismiss();
+                    startActivity(i);
+                }
+            }catch (Exception e)
             {
-                Toast.makeText(register.this,"REGISTRATION FAILED",Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(register.this,"REGISTRATION SUCCESS",Toast.LENGTH_SHORT).show();
-                Intent i=new Intent(register.this,interests.class);
-                //i.putExtra("User_Id",success);
-                USER_Class.setLoggedUserName(r_name);
-                USER_Class.setLoggedUserId(success);
-                USER_Class.setLoggedUserEmail(r_email);
-                startActivity(i);
+                dialog.dismiss();
+                Snackbar snackbar=Snackbar.make(rl,"No Internet Connection",Snackbar.LENGTH_LONG);
+                snackbar.show();
             }
-
 
             //super.onPostExecute(aVoid);
         }
