@@ -5,56 +5,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    tools:context=".PersonalInfo.EditPost">
-
+    tools:context=".PersonalInfo.EditPost"
+    android:gravity="center_vertical"
+    android:padding="20dp">
     <TextView
-        android:layout_width="300dp"
-        android:layout_height="120dp"
-        android:padding="15dp"
-        android:text="TopicTitle"
-        android:background="@drawable/circle_view"
-        android:textAlignment="center"
-        android:textColor="#ffffff"
-
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:id="@+id/tvEditTitle"
-        android:textSize="50dp"
-        />
-    <EditText
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"
+        android:text="Title :"
+        android:textSize="20dp"
+        android:id="@+id/Post_title"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TopicTitle"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/Post_title"
+        android:id="@+id/tvEditTitle"
+        android:textSize="20dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Post Content:"
+        android:textSize="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/Post_title"
+        android:id="@+id/Post_content"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:background="@drawable/capsule"
-        android:padding="5dp"
+        android:padding="20dp"
         android:id="@+id/tvEditPost"
-        android:minHeight="150dp"
-
-        android:text="post things"
-        android:layout_below="@+id/tvEditTitle"/>
+        android:minLines="5"
+        android:gravity="left"
+        android:text="Post things"
+        android:layout_below="@id/Post_content"/>
     <Button
-        android:layout_width="80dp"
-        android:layout_marginLeft="15dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="edit"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/btncapsule"
         android:id="@+id/btnEditpost"
         android:textColor="#ffffff"
-        android:layout_below="@+id/tvEditPost"/>
+        android:layout_below="@+id/tvEditPost"
+        android:layout_centerInParent="true"/>
 
     <Button
-        android:layout_width="80dp"
-        android:layout_marginRight="15dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="10dp"
         android:text="delete"
         android:id="@+id/btnDelpost"
-        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
         android:textColor="#ffffff"
         android:background="@drawable/btncapsule"
-        android:layout_below="@+id/tvEditPost"/>
+        android:layout_below="@+id/btnEditpost"/>
 
 
 

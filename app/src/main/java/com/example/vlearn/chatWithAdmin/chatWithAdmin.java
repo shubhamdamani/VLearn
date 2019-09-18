@@ -29,6 +29,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.auth.User;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -138,26 +139,28 @@ public class chatWithAdmin extends AppCompatActivity {
                     Log.d("here",userid+" "+myid);
                     Log.d("verify",r+" "+s);
 
+                    try{
+                        if(r.equals(myid) && s.equals(userid)){
+                            Log.d("yaha",r+" "+myid+" "+s+" "+userid);
+                            mchat.add(Chat);
+                            messageAdapter =new MessageAdapter(chatWithAdmin.this,mchat);
+                            mRef = FirebaseDatabase.getInstance().getReference().child("Chats");
 
-                    if(r.equals(myid) && s.equals(userid)){
-                        Log.d("yaha",r+" "+myid+" "+s+" "+userid);
-                        mchat.add(Chat);
-                        messageAdapter =new MessageAdapter(chatWithAdmin.this,mchat);
-
-                        mRef = FirebaseDatabase.getInstance().getReference().child("Chats");
-                        //getItemId()
-
-
-
-                        recyclerView.setAdapter(messageAdapter);
-                    }
-                    if(r.equals(userid) && s.equals(myid))
+                            recyclerView.setAdapter(messageAdapter);
+                        }
+                        if(r.equals(userid) && s.equals(myid))
+                        {
+                            Log.d("yaha",r+" "+myid+" "+s+" "+userid);
+                            mchat.add(Chat);
+                            messageAdapter =new MessageAdapter(chatWithAdmin.this,mchat);
+                            recyclerView.setAdapter(messageAdapter);
+                        }
+                    }catch (Exception e)
                     {
-                        Log.d("yaha",r+" "+myid+" "+s+" "+userid);
-                        mchat.add(Chat);
-                        messageAdapter =new MessageAdapter(chatWithAdmin.this,mchat);
-                        recyclerView.setAdapter(messageAdapter);
+                        Log.d("tag","error");
                     }
+
+
 
 
 

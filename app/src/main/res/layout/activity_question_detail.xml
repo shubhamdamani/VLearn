@@ -52,7 +52,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2sp"
-        android:background="#000000"
+        android:background="#eaece5"
         android:layout_above="@+id/ques_detail_recylerview"/>
 
 

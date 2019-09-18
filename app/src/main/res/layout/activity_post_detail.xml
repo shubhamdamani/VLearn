@@ -24,7 +24,6 @@
             android:layout_marginBottom="2dp"
             android:textStyle="bold"
             android:transitionName="pImageTransition"
-
             />
 
         <TextView
@@ -36,7 +35,6 @@
             android:layout_toRightOf="@+id/prof_icon"
             android:gravity="center"
             android:text="username"
-            android:textColor="#000000"
             android:textSize="15dp"
             android:textStyle="bold"
 
@@ -49,13 +47,10 @@
             android:layout_below="@+id/tvPDUname"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="2dp"
-
-            android:fontFamily="monospace"
             android:padding="2dp"
             android:text="Title"
             android:textColor="#505352"
-            android:textSize="12dp"
-            android:textStyle="italic" />
+            android:textSize="12dp" />
 
         <ImageButton
             android:layout_width="30dp"

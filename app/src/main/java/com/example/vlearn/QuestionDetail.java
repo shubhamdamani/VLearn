@@ -101,9 +101,6 @@ public class QuestionDetail extends AppCompatActivity {
         profile_icon.setText(name.toString());
 
 
-
-        //Toast.makeText(this,Question+" "+Q_Id+ " "+User_Id+" "+Topic,Toast.LENGTH_LONG).show();
-
         new BackgroundTask().execute();
        //getDatafromJSON() in PostExecute Method Below;
 
@@ -123,10 +120,11 @@ public class QuestionDetail extends AppCompatActivity {
             Toast.makeText(QuestionDetail.this,"please add answer",Toast.LENGTH_SHORT).show();
             return;
         }
-
        com.example.vlearn.BackgroundTask backgroundTask=new com.example.vlearn.BackgroundTask(getBaseContext());
-        hideKeyboard(QuestionDetail.this);
         backgroundTask.execute(method,Q_Id,answer,USER_Class.getLoggedUserId());
+        editanswer.setText("");
+        hideKeyboard(QuestionDetail.this);
+        new BackgroundTask().execute();
 
     }
 
