@@ -51,8 +51,7 @@ public class PostWaitDetail extends AppCompatActivity {
         setContentView(R.layout.activity_post_wait_detail);
 
 
-
-
+        dialog=new SpotsDialog(this);
 
 
         tv1=findViewById(R.id.tvWait);
@@ -61,7 +60,7 @@ public class PostWaitDetail extends AppCompatActivity {
         b1=findViewById(R.id.btnDel);
         b2=findViewById(R.id.btnac);
         Intent i=getIntent();
-        tv1.setText(i.getStringExtra("UserName"));
+        tv1.setText(i.getStringExtra("Post_User"));
         tv2.setText(i.getStringExtra("Post_Title"));
         tv3.setText(i.getStringExtra("Post"));
         User_Id=i.getStringExtra("User_Id");
@@ -86,6 +85,7 @@ public class PostWaitDetail extends AppCompatActivity {
             public void onClick(View v) {
 
                 //delete
+                dialog.show();
                 FLAG="0";
                 new PostWaitDetail.BackgroundTask().execute();
 
@@ -99,6 +99,7 @@ public class PostWaitDetail extends AppCompatActivity {
             public void onClick(View v) {
 
                 FLAG="1";
+                dialog.show();
 
                new PostWaitDetail.BackgroundTask().execute();
 
@@ -131,6 +132,7 @@ public class PostWaitDetail extends AppCompatActivity {
 
 
             }
+            dialog.dismiss();
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -209,12 +211,23 @@ public class PostWaitDetail extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            JSON_String=result;
+            try
+            {JSON_String=result;
 
             Log.d("josn",JSON_String);
             //Toast.makeText(login.this,"asd"+JSON_String,Toast.LENGTH_SHORT).show();
             getDatafromJSON();
-            Toast.makeText(PostWaitDetail.this,success+result,Toast.LENGTH_SHORT).show();
+
+            Intent i=new Intent(PostWaitDetail.this,PostWait.class);
+            startActivity(i);
+            finish();
+            }
+            catch (Exception e)
+            {
+                dialog.dismiss();
+                Toast.makeText(PostWaitDetail.this,"Some error Occured",Toast.LENGTH_SHORT).show();
+            }
+            //Toast.makeText(PostWaitDetail.this,success+result,Toast.LENGTH_SHORT).show();
 
 
             //super.onPostExecute(aVoid);
@@ -227,9 +240,9 @@ public class PostWaitDetail extends AppCompatActivity {
     }
 
 
-
-
-
-
-
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
 }

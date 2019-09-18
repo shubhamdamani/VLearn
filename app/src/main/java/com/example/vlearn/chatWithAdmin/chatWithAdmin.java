@@ -97,7 +97,7 @@ public class chatWithAdmin extends AppCompatActivity {
             });
         }else{
             user_id=check;
-            Toast.makeText(this,user_id,Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(this,user_id,Toast.LENGTH_SHORT).show();
             readMessage(fuser.getUid(), user_id);
 
         }
@@ -134,7 +134,7 @@ public class chatWithAdmin extends AppCompatActivity {
                     String s=Chat.getSender();
                     String r=Chat.getReciever();
                     final String m=Chat.getMessage();
-                    Toast.makeText(chatWithAdmin.this,Chat.getMessage(),Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(chatWithAdmin.this,Chat.getMessage(),Toast.LENGTH_SHORT).show();
                     //break;
                     Log.d("here",userid+" "+myid);
                     Log.d("verify",r+" "+s);
@@ -157,6 +157,7 @@ public class chatWithAdmin extends AppCompatActivity {
                         }
                     }catch (Exception e)
                     {
+                        Toast.makeText(chatWithAdmin.this,"Some error occured",Toast.LENGTH_SHORT).show();
                         Log.d("tag","error");
                     }
 
@@ -205,10 +206,7 @@ int vie=viewHolder.getAdapterPosition();
                                 String s=Chat.getSender();
                                 String r=Chat.getReciever();
                                 final String m=Chat.getMessage();
-                               // Toast.makeText(chatWithAdmin.this,Chat.getMessage(),Toast.LENGTH_SHORT).show();
-                                //break;
-                               // Log.d("here",userid+" "+myid);
-                              //  Log.d("verify",r+" "+s);
+
 
                                if(s.equals(fuser.getUid()) && u.equals(m))
                                 {
@@ -218,35 +216,13 @@ int vie=viewHolder.getAdapterPosition();
                                     //recyclerView.setAdapter(messageAdapter);
                                 }
 
-
-                              /*  if(r.equals(myid) && s.equals(userid)){
-                                    Log.d("yaha",r+" "+myid+" "+s+" "+userid);
-                                    mchat.add(Chat);
-                                    messageAdapter =new MessageAdapter(chatWithAdmin.this,mchat);
-
-                                    mRef = FirebaseDatabase.getInstance().getReference().child("Chats");
-                                    //getItemId()
-
-
-
-                                    recyclerView.setAdapter(messageAdapter);
-                                }
-                                if(r.equals(userid) && s.equals(myid))
-                                {
-                                    Log.d("yaha",r+" "+myid+" "+s+" "+userid);
-                                    mchat.add(Chat);
-                                    messageAdapter =new MessageAdapter(chatWithAdmin.this,mchat);
-                                    recyclerView.setAdapter(messageAdapter);
-                                }*/
-
-
-
                             }
 
                         }
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
+                            Toast.makeText(chatWithAdmin.this,"Some error occured",Toast.LENGTH_SHORT).show();
 
                         }
                     });
@@ -256,45 +232,5 @@ int vie=viewHolder.getAdapterPosition();
                 }};
 
 
-
-                  /*  fuser= FirebaseAuth.getInstance().getCurrentUser();
-
-
-
-
-                    Query mQ=mRef.child("sender").equalTo(fuser.getUid());
-                    mQ.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            Query mQuery=mRef.orderByChild("message").equalTo(m);
-                            Toast.makeText(chatWithAdmin.this,mQuery.toString(),Toast.LENGTH_SHORT).show();
-                            mQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    for(DataSnapshot ds:dataSnapshot.getChildren())
-                                    {
-                                        //ds.child("sen")
-
-                                        ds.getRef().removeValue();
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-
-                }*/
-                // });
-
-                //}
 
 }

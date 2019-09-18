@@ -235,6 +235,9 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
                 String method="upvote";
                 com.example.vlearn.BackgroundTask backgroundTask=new com.example.vlearn.BackgroundTask(getBaseContext());
                 backgroundTask.execute(method,USER_Class.getLoggedUserId(),Post_Id,"");
+                Snackbar snackbar=Snackbar.make(detailView,"Processing upvote",Snackbar.LENGTH_LONG);
+                //if Internet connection not available
+                snackbar.show();
 
             }
         });
@@ -244,6 +247,9 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
                 String method="downvote";
                 com.example.vlearn.BackgroundTask backgroundTask=new com.example.vlearn.BackgroundTask(getBaseContext());
                 backgroundTask.execute(method,USER_Class.getLoggedUserId(),Post_Id,"");
+                Snackbar snackbar=Snackbar.make(detailView,"Processing downvote",Snackbar.LENGTH_LONG);
+                //if Internet connection not available
+                snackbar.show();
 
             }
         });
@@ -351,7 +357,7 @@ public class PostDetail extends AppCompatActivity  implements TextToSpeech.OnIni
         if(hasP!= PackageManager.PERMISSION_GRANTED){
             if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
                 if(!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_CONTACTS)){
-                    showMessage("you need to allow", new DialogInterface.OnClickListener() {
+                    showMessage("you need to allow permissions", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){

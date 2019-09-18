@@ -185,7 +185,8 @@ public class register extends AppCompatActivity {         //New User registratio
                 getDatafromJSON();
                 if (success.equals("no")) {                 //if details not unique registration failed
                     dialog.dismiss();
-                    Toast.makeText(register.this, "REGISTRATION FAILED", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar=Snackbar.make(rl,"Registration Failed",Snackbar.LENGTH_LONG);
+                    snackbar.show();
                 } else {
                     Intent i = new Intent(register.this, interests.class);
                     USER_Class.setLoggedUserName(r_name);

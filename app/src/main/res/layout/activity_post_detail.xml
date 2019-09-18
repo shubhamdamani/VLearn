@@ -133,7 +133,8 @@
 
                 android:text="more"
                 android:id="@+id/btnMORE"
-                android:layout_marginLeft="200dp"
+                android:layout_marginStart="120dp"
+                android:layout_marginEnd="20dp"
 
                 android:layout_centerHorizontal="true"
                 />

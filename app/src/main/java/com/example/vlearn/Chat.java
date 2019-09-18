@@ -36,13 +36,23 @@ public class Chat extends AppCompatActivity {
         admin=findViewById(R.id.admin);
         mAuth=FirebaseAuth.getInstance();
         fuser=mAuth.getCurrentUser();
+        String logged=USER_Class.getLoggedUserId();
+        if(logged.equals("1"))
+        {
+            chat.setEnabled(false);
+            chat.setVisibility(View.INVISIBLE);
+
+        }else{
+            admin.setEnabled(false);
+            admin.setVisibility(View.INVISIBLE);
+        }
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                // Intent i=new Intent(Chat.this, chatWithAdmin.class);
                 //startActivity(i);
                 flag=0;
-                Toast.makeText(Chat.this, USER_Class.getLoggedUserEmail(), Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(Chat.this, USER_Class.getLoggedUserEmail(), Toast.LENGTH_SHORT).show();
                 login(USER_Class.getLoggedUserEmail(),USER_Class.getLoggedUserEmail());
             }
         });
@@ -76,7 +86,7 @@ public class Chat extends AppCompatActivity {
                             startActivity(new Intent(Chat.this, AdminPanel.class));
                         }
                     } else {
-                        Toast.makeText(Chat.this, "your account doesnot exist We are registring", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(Chat.this, "your account doesnot exist We are registring", Toast.LENGTH_SHORT).show();
                         Register(Pass,Email,Pass);
                     }
                 }
@@ -98,12 +108,12 @@ public class Chat extends AppCompatActivity {
                         HashMap<String,String> hashMap=new HashMap<>();
                         hashMap.put("id",userid);
                         hashMap.put("username",username);
-                        Toast.makeText(Chat.this, "email successfull", Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(Chat.this, "email successfull", Toast.LENGTH_SHORT).show();
                         reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
-                                    Toast.makeText(Chat.this, "data successfull", Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(Chat.this, "data successfull", Toast.LENGTH_SHORT).show();
                                     if(flag==0)
                                     {
                                         startActivity(new Intent(Chat.this, chatWithAdmin.class));

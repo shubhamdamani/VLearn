@@ -76,7 +76,7 @@ public class BookmarkActivity extends AppCompatActivity {
 
         try {
             jsonObject=new JSONObject(JSON_String);
-            Toast.makeText(BookmarkActivity.this,JSON_String,Toast.LENGTH_SHORT).show();
+            //Toast.makeText(BookmarkActivity.this,JSON_String,Toast.LENGTH_SHORT).show();
 
             int count=0;
             jsonArray=jsonObject.getJSONArray("server_response");       //THIS IS NAME OF OUR JSON ARRAY

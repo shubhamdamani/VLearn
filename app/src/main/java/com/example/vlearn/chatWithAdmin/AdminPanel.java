@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.vlearn.Admin.AdminBasic;
 import com.example.vlearn.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -50,7 +51,7 @@ public class AdminPanel extends AppCompatActivity {
                 mUsers.clear();
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
                     chatUser user=dataSnapshot1.getValue(chatUser.class);
-                    Toast.makeText(AdminPanel.this,"use:"+user.getId(),Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(AdminPanel.this,"use:"+user.getId(),Toast.LENGTH_SHORT).show();
                     if(!user.getId().equals(firebaseUser.getUid())){
                         mUsers.add(user);
 
@@ -63,6 +64,8 @@ public class AdminPanel extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                Toast.makeText(AdminPanel.this,"Some error occured",Toast.LENGTH_SHORT).show();
 
             }
         });

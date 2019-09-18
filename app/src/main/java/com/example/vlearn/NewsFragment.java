@@ -201,7 +201,7 @@ public class NewsFragment extends Fragment {
             @Override
             public void onFailure(Call<Feed> call, Throwable t) {
                 dialog.dismiss();
-                Toast.makeText(getContext(),"No Internet",Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(),"No Internet",Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -259,8 +259,8 @@ public class NewsFragment extends Fragment {
             @Override
             public void onFailure(Call<MainRediffFeed> call, Throwable t) {
                 dialog.dismiss();
-                Toast.makeText(getContext(),"No Internet",Toast.LENGTH_SHORT).show();
-                Log.e(TAG, "Failure : Unable to retrieve RSS Feeds "+t.getMessage());
+               // Toast.makeText(getContext(),"No Internet",Toast.LENGTH_SHORT).show();
+                //Log.e(TAG, "Failure : Unable to retrieve RSS Feeds "+t.getMessage());
             }
         });
     }
@@ -312,7 +312,7 @@ public class NewsFragment extends Fragment {
             @Override
             public void onFailure(Call<NYTimesFeed> call, Throwable t) {
                 dialog.dismiss();
-                Toast.makeText(getContext(),"No Internet",Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(),"No Internet",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -364,7 +364,7 @@ public class NewsFragment extends Fragment {
 
             @Override
             public void onFailure(Call<YahooFeed> call, Throwable t) {
-                Log.e(TAG, "Failure : Unable to retrieve RSS Feeds "+t.getMessage());
+                //Log.e(TAG, "Failure : Unable to retrieve RSS Feeds "+t.getMessage());
             }
         });
     }

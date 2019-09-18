@@ -60,19 +60,19 @@
         <activity
             android:name=".Admin.PostWaitDetail"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/no_action" />
+             />
         <activity
             android:name=".Admin.PostAcc"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/no_action" />
+             />
         <activity
             android:name=".Admin.PostWait"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/no_action" />
+             />
         <activity
             android:name=".Admin.AdminBasic"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/no_action" />
+             />
         <activity
             android:name=".PersonalInfo.FollowUser"
             android:configChanges="orientation|screenSize"
@@ -96,7 +96,7 @@
         <activity
             android:name=".AboutVLearn"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/no_action" />
+             />
         <activity
             android:name=".addquestion"
             android:configChanges="orientation|screenSize"

@@ -183,7 +183,7 @@ public class FollowUser extends AppCompatActivity {
 
     public void fun1()                   //PARSING JSON OBJECT TO NORMAL STRING AND SHIFTING TO CARDVIEW
     {
-        Toast.makeText(FollowUser.this,"hi"+JSON_String1,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(FollowUser.this,"hi"+JSON_String1,Toast.LENGTH_SHORT).show();
         json_string1=JSON_String1;
 
         String Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName;

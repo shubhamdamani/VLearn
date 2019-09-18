@@ -61,6 +61,7 @@ public class UpdateInfo extends AppCompatActivity {
         proIcon=findViewById(R.id.profile_ion);
         tvEmail.setText(USER_Class.getLoggedUserEmail());
         etName.setText(USER_Class.getLoggedUserName());
+        etPass.setText("");
         String a=USER_Class.getLoggedUserName();
         Character name=a.charAt(0);
         name=toUpperCase(name);
@@ -85,7 +86,7 @@ public class UpdateInfo extends AppCompatActivity {
                         s=USER_Class.getLoggedUserId();
                         s1=etName.getText().toString();
                         s2=etPass.getText().toString();
-                        Toast.makeText(getApplicationContext(), "Profile Updated ", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "Profile Updated ", Toast.LENGTH_SHORT).show();
                         if(s2=="")
                         {
                             Toast.makeText(UpdateInfo.this,"PLEASE ENTER PASSWORD",Toast.LENGTH_SHORT).show();
@@ -149,7 +150,7 @@ public class UpdateInfo extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            return "jgfksg";
+            return "fail";
         }
         public BackgroundTask()
         {
@@ -165,23 +166,17 @@ public class UpdateInfo extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            try{
-
-            }catch (Exception e)
+            if(result.equals("fail"))
             {
                 dialog.dismiss();
                 Snackbar snackbar=Snackbar.make(r1,"No Internet Connection",Snackbar.LENGTH_LONG);
                 snackbar.show();
-            }
-
-            dialog.dismiss();
-
-            //JSON_String=result;
-
-           // Toast.makeText(UpdateInfo.this,result,Toast.LENGTH_LONG).show();
-            //getDatafromJSON();
+            }else
+            {dialog.dismiss();
+                Snackbar snackbar=Snackbar.make(r1,"Success",Snackbar.LENGTH_LONG);
+                snackbar.show();
              Intent i=new Intent(UpdateInfo.this, myprofile.class);
-            startActivity(i);
+            startActivity(i);}
             //super.onPostExecute(aVoid);
         }
 

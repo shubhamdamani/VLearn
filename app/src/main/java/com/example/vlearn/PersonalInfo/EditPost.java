@@ -1,6 +1,7 @@
 package com.example.vlearn.PersonalInfo;
 
 import androidx.appcompat.app.AppCompatActivity;
+import dmax.dialog.SpotsDialog;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -43,6 +44,7 @@ public class EditPost extends AppCompatActivity {
     String json_string,JSON_String;                 //this activity is showing answer of particular question and giving option to add answer
     JSONArray jsonArray;
     JSONObject jsonObject;
+    SpotsDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,8 @@ public class EditPost extends AppCompatActivity {
         post_title=i.getStringExtra("Post_Title");
         post_id=i.getStringExtra("Post_Id");
         user_id=i.getStringExtra("User_Id");
+        dialog=new SpotsDialog(this);
+
 
 
 
@@ -127,18 +131,8 @@ public class EditPost extends AppCompatActivity {
                 builder.show();
 
 
-
-
-
             }
         });
-
-
-
-
-
-
-
 
 
 
@@ -147,7 +141,6 @@ public class EditPost extends AppCompatActivity {
 
     public void getDatafromJSON()
     {
-        //Toast.makeText(PostDetail.this,"hio"+JSON_String,Toast.LENGTH_LONG).show();
         String status;
 
 
@@ -162,7 +155,7 @@ public class EditPost extends AppCompatActivity {
                 JSONObject jo=jsonArray.getJSONObject(count);
                 status=jo.getString("status");
                 Log.d("status",status);
-                //p_comment=jo.getString("Comment");
+
 
 
                 count++;
@@ -222,11 +215,6 @@ public class EditPost extends AppCompatActivity {
                 JSON_String=stringBuilder.toString().trim();
                 return stringBuilder.toString().trim();
 
-               /// return FLAG;
-
-                // httpURLConnection.disconnect();
-
-                //return "successfully deleted";
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -249,11 +237,12 @@ public class EditPost extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
 
-          //  Toast.makeText(PostWaitDetail.this,success+result,Toast.LENGTH_SHORT).show();
 
-            getDatafromJSON();
-
-            //super.onPostExecute(aVoid);
+            try{
+                getDatafromJSON();
+            }catch (Exception e){
+                Toast.makeText(EditPost.this,"Some error occured",Toast.LENGTH_SHORT).show();
+            }
         }
 
         @Override

@@ -8,6 +8,7 @@ import dmax.dialog.SpotsDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.vlearn.Post_content;
 import com.example.vlearn.R;
@@ -53,6 +54,8 @@ public class PostWait extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Log.d("yyyyyyyyyyy",USER_Class.getLoggedUserId());
+        dialog=new SpotsDialog(this);
+        dialog.show();
         new PostWait.BackgroundTask().execute();
     }
 
@@ -98,7 +101,7 @@ public class PostWait extends AppCompatActivity {
 
 
             }
-            //dialog.dismiss();
+            dialog.dismiss();
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -169,9 +172,15 @@ public class PostWait extends AppCompatActivity {
         protected void onPostExecute(String result) {
             //TextView tv=findViewById(R.id.tv);
             //tv.setText(result);
-            JSON_String=result;
-            //Toast.makeText(getContext(),"hi"+JSON_String,Toast.LENGTH_LONG).show();
-            fun();
+            try
+            {
+                JSON_String=result;
+
+            fun();}catch(Exception e){
+                dialog.dismiss();
+                Toast.makeText(PostWait.this,"Some error occured",Toast.LENGTH_SHORT).show();
+
+            }
 
 
             //super.onPostExecute(aVoid);
