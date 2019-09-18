@@ -2,8 +2,8 @@ package com.example.vlearn;
 
 public class Post_content {
 
-    String Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName;
-    Integer Upvotes,Downvotes,Bookmark;
+    private String Post_Id,Post_Title,Post_content,Post_Date,User_Id,Topic,UserName;
+    private Integer Upvotes,Downvotes,Bookmark;
 
     public Post_content(String post_Id, String post_Title, String post_content, String post_Date, String user_Id, String topic, String userName, Integer upvotes, Integer downvotes, Integer bookmark) {
         Post_Id = post_Id;

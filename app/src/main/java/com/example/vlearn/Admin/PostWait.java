@@ -7,6 +7,7 @@ import dmax.dialog.SpotsDialog;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.vlearn.Post_content;
 import com.example.vlearn.R;
@@ -51,7 +52,8 @@ public class PostWait extends AppCompatActivity {
         recyclerView = findViewById(R.id.Apost_recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        new BackgroundTask().execute();
+        Log.d("yyyyyyyyyyy",USER_Class.getLoggedUserId());
+        new PostWait.BackgroundTask().execute();
     }
 
 
@@ -122,7 +124,9 @@ public class PostWait extends AppCompatActivity {
                 httpURLConnection.setDoOutput(true);
                 OutputStream os=httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
-                String data= URLEncoder.encode("User_Id","UTF-8")+"="+URLEncoder.encode(USER_Class.getLoggedUserId(),"UTF-8");
+                Log.d("tttttttttt",USER_Class.getLoggedUserId());
+                String a=USER_Class.getLoggedUserId();
+                String data= URLEncoder.encode("User_Id","UTF-8")+"="+URLEncoder.encode(a,"UTF-8");
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
                 bufferedWriter.close();

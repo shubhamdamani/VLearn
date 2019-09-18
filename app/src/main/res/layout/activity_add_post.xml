@@ -54,6 +54,11 @@
                 android:gravity="center"
                 />
 
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:id="@+id/abcd"
+                android:visibility="invisible"/>
 
             <Spinner
                 android:layout_width="match_parent"

@@ -117,14 +117,14 @@ public class AddPost extends AppCompatActivity implements AdapterView.OnItemSele
     public void Post_content_fun()
     {
         P_content=post_content.getText().toString().trim();
-        //P_topic
+       // P_topic=post_content.getText().toString().trim();
         user_id=USER_Class.getLoggedUserId();
         Date date = new Date();
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         P_date=sdf.format(date);
         // P_date = DateFormat.getDateTimeInstance().format(date);
         P_title=post_title.getText().toString().trim();
-        if(!P_content.equals("")&&!P_title.equals("")&&!P_topic.equals(""))
+        if(!P_content.equals("")||!P_title.equals("")||!P_topic.equals(""))
         {
             //post question
             new AddPost.BackgroundTask().execute();

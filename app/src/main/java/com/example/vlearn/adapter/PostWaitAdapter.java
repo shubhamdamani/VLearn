@@ -2,9 +2,11 @@ package com.example.vlearn.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.vlearn.Admin.PostWaitDetail;
@@ -55,7 +57,10 @@ public class PostWaitAdapter extends RecyclerView.Adapter<PostWaitAdapter.Produc
         holder.downvote.setText(Integer.toString(product.getDownvotes()));
         holder.post_title.setText(product.getPost_Title());
         holder.post_date.setText(product.getPost_Date());
-        holder.topic.setText(product.getTopic());
+        String a=product.getTopic();
+        holder.abcd.setText(a);
+        //holder.topic.setText(a);
+        Log.d("hhhhhhhhhhhhhhh",a);
         holder.user_id.setText(product.getUser_Id());
         holder.post_id.setText(product.getPost_Id());
         // String s=
@@ -74,12 +79,14 @@ public class PostWaitAdapter extends RecyclerView.Adapter<PostWaitAdapter.Produc
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView post_user, artical, upvote, downvote,post_title,post_date,topic,user_id,post_id,bookmark;
+        TextView abcd,post_user, artical, upvote, downvote,post_title,post_date,user_id,post_id,bookmark;
+        Spinner topic;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
 
             post_user = itemView.findViewById(R.id.post_username);
+            abcd=itemView.findViewById(R.id.topic_tag);
             artical = itemView.findViewById(R.id.artical);
             upvote = itemView.findViewById(R.id.nup);
             downvote = itemView.findViewById(R.id.ndown);
@@ -97,7 +104,7 @@ public class PostWaitAdapter extends RecyclerView.Adapter<PostWaitAdapter.Produc
                     intent.putExtra("User_Id",user_id.getText());
                     intent.putExtra("Post_User",post_user.getText());
                     intent.putExtra("Post",artical.getText());
-                    intent.putExtra("TopicStr",topic.getText());
+                    intent.putExtra("TopicStr",abcd.getText());
                     intent.putExtra("Post_Date",post_date.getText());
                     intent.putExtra("Post_Id",post_id.getText());
                     intent.putExtra("Post_Title",post_title.getText());
